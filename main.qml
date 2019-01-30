@@ -82,15 +82,44 @@ ApplicationWindow {
                     transformOrigin: Item.Center
 
                     property real prev_scale: 1.0
+                    property int page_index: 1
 
                     asynchronous: true
                     cache: false
                     fillMode: Image.PreserveAspectFit
                     smooth: flickable.moving
 
-                    source: '../Amateur/encyclopedie-patrons-modeles/encyclopedie-patrons-modeles.0411.png'
-		    // rotation: 180
-		    
+		    function pad_zero(number, size) {
+			var s = number + ""
+			while (s.length < size)
+			    s = '0' + s
+			return s
+		    }
+
+		    function filename() {
+			var s = '../Amateur/encyclopedie-patrons-modeles/encyclopedie-patrons-modeles.' + pad_zero(page_index, 4) + '.png'
+			console.info(s)
+			return s
+		    }
+
+		    function prev_page() {
+			page_index -= 1
+		    }
+
+		    function next_page() {
+			page_index += 1
+		    }
+
+		    function flip() {
+			if (rotation == 0)
+			    rotation = 180
+			else
+			    rotation = 0
+		    }
+
+                    source: filename()
+		    rotation: 0
+
                     onScaleChanged: {
                         console.debug(scale)
 			// if scaled image is larger than flickable
@@ -120,17 +149,16 @@ ApplicationWindow {
 
             function fit_to_screen() {
                 var new_scale = Math.min(flickable.width / image.width, flickable.height / image.height, 1)
-		console.info('fit_to_screen', flickable.scale, scale, image.scale, new_scale)
                 image.scale = new_scale
                 flickable.min_zoom = new_scale // cannot zoom out more than fit scale
-                image.prev_scale = scale // flickable.scale ???
+                image.prev_scale = 1.0 // flickable.scale ???
                 fit_to_screen_active = true
 		// Ensures the content is within legal bounds
                 flickable.returnToBounds()
             }
 
             function zoom_in() {
-                if (flickable.scale < max_zoom) // why flickable scale ???
+                if (image.scale < max_zoom)
                     image.scale *= (1.0 + zoom_step)
 		// duplicated code
                 // flickable.returnToBounds()
@@ -139,7 +167,7 @@ ApplicationWindow {
             }
 
             function zoom_out() {
-                if (flickable.scale > min_zoom)
+                if (image.scale > min_zoom)
                     image.scale *= (1.0 - zoom_step)
                 else
                     image.scale = flickable.min_zoom
@@ -194,7 +222,7 @@ ApplicationWindow {
                 }
             }
             ToolButton {
-                text: 'Reset'
+                text: 'Full'
                 onClicked: {
                     flickable.zoom_full()
                 }
@@ -209,6 +237,24 @@ ApplicationWindow {
                 text: 'In'
                 onClicked: {
                     flickable.zoom_in()
+                }
+            }
+            ToolButton {
+                text: 'Flip'
+                onClicked: {
+                    image.flip()
+                }
+            }
+            ToolButton {
+                text: 'Prev'
+                onClicked: {
+                    image.prev_page()
+                }
+            }
+            ToolButton {
+                text: 'Next'
+                onClicked: {
+                    image.next_page()
                 }
             }
         }
