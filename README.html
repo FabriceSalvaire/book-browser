@@ -390,8 +390,14 @@ ul.auto-toc {
 <div class="section" id="what-is-bookbrowser">
 <h2>What is BookBrowser ?</h2>
 <p>BookBrowser is a small application to read scanned book where the pages are stored as an image on
-disk.  It is an alternative to pack the images to an huge PDF file.</p>
-<p>The page orientation recto/verso is mangled in the file name.</p>
+disk.  It is an alternative to pack the images to a huge PDF file.</p>
+<p>BookBrowser provides a command line tool</p>
+<ul class="simple">
+<li>to rename the images to fix the page number,</li>
+<li>to guess the orientation.</li>
+</ul>
+<p>The page orientation recto/verso is mangled in the file name. This feature permits to keep raw data
+and avoid several image flips due to error in the automatic orientation detection algorithm.</p>
 <p>BookBrowser is written in Python 3 and the user interface is based on the Qt5 QML framework.</p>
 </div>
 <div class="section" id="where-is-the-documentation">
