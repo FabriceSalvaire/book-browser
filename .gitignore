@@ -17,3 +17,11 @@ BookBrowser/QtApplication/rcc/icons/36x36/add-black.png
 BookBrowser/QtApplication/rcc/icons/36x36/close-black.png
 BookBrowser/QtApplication/rcc/icons/36x36/delete-black.png
 BookBrowser/QtApplication/rcc/icons/36x36/search-black.png
+
+BookBrowser/QtApplication/rcc/icons/36x36-unused/
+TOFIX.txt
+devel/
+template-variables.txt
+topics.txt
+
+notes.txt
