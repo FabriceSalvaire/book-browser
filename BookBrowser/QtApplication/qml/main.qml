@@ -97,7 +97,7 @@ ApplicationWindow {
 		    }
 
 		    function filename() {
-			var s = '../Amateur/encyclopedie-patrons-modeles/encyclopedie-patrons-modeles.' + pad_zero(page_index, 4) + '.png'
+			var s = '/home/fabrice/scan-livre-modlisme/Amateur/encyclopedie-patrons-modeles/encyclopedie-patrons-modeles.' + pad_zero(page_index, 4) + '.png'
 			console.info(s)
 			return s
 		    }
