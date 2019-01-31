@@ -41,7 +41,7 @@ from pathlib import Path
 from PyQt5 import QtCore
 
 from QtShim.QtCore import (
-    Property, Signal, QObject,
+    Property, Signal, Slot, QObject,
     Qt, QTimer, QUrl
 )
 from QtShim.QtGui import QGuiApplication, QIcon
@@ -51,6 +51,7 @@ from QtShim.QtQml import qmlRegisterUncreatableType
 from QtShim.QtQuick import QQuickPaintedItem, QQuickView
 # from QtShim.QtQuickControls2 import QQuickStyle
 
+from BookBrowser.Book import Book
 from BookBrowser.Common.Platform import QtPlatform
 from BookBrowser.Common.ArgparseAction import PathAction
 
@@ -75,6 +76,77 @@ class QmlApplication(QObject):
         super().__init__()
 
         self._application = application
+
+        self._page_number = 1
+
+    ##############################################
+
+    # fooChanged = Signal()
+
+    # @Property(Foo, notify=fooChanged)
+    # def foo(self):
+
+    # @foo.setter
+    # def foo(self, foo):
+
+    # @Slot(Qxxx, result=str)
+    # def foo(self, xxx):
+
+    ##############################################
+
+    @property
+    def _book(self):
+        return self._application.book
+
+    ##############################################
+
+    @property
+    def _page(self):
+        return self._book[self._page_number]
+
+    ##############################################
+
+    number_of_pagesChanged = Signal()
+
+    @Property(int, notify=number_of_pagesChanged)
+    def number_of_pages(self):
+        return len(self._book)
+
+    ##############################################
+
+    page_pathChanged = Signal()
+
+    @Property(str, notify=page_pathChanged)
+    def page_path(self):
+        return str(self._page.path)
+
+    ##############################################
+
+    orientationChanged = Signal()
+
+    @Property(int, notify=orientationChanged)
+    def orientation(self):
+        return 180 if self._page.orientation == 'v' else 0
+
+    ##############################################
+
+    @Slot(result=int)
+    def prev_page(self):
+        if self._page_number > 1:
+            self._page_number -= 1
+            self.page_pathChanged.emit()
+            self.orientationChanged.emit()
+        return self._page_number
+
+    ##############################################
+
+    @Slot(result=int)
+    def next_page(self):
+        if self._page_number < (self.number_of_pages -1):
+            self._page_number += 1
+            self.page_pathChanged.emit()
+            self.orientationChanged.emit()
+        return self._page_number
 
 ####################################################################################################
 
@@ -108,6 +180,9 @@ class Application(QObject):
         QtCore.qInstallMessageHandler(self._message_handler)
 
         self._parse_arguments()
+
+        # Fixme: must be defined before QML
+        self._book = Book(self._args.book_path)
 
         self._appplication = QGuiApplication(sys.argv)
         self._engine = QQmlApplicationEngine()
@@ -145,6 +220,10 @@ class Application(QObject):
     @property
     def platform(self):
         return self._platform
+
+    @property
+    def book(self):
+        return self._book
 
     ##############################################
 
@@ -214,6 +293,12 @@ class Application(QObject):
         # )
 
         parser.add_argument(
+            'book_path', metavar='BookPath',
+            action=PathAction,
+            help='Book path',
+        )
+
+        parser.add_argument(
             '--user-script',
             action=PathAction,
             default=None,
@@ -227,6 +312,7 @@ class Application(QObject):
         )
 
         self._args = parser.parse_args()
+        self._book = None
 
     ##############################################
 

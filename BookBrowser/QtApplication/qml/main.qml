@@ -23,6 +23,8 @@ import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.11
 
+import BookBrowser 1.0
+
 ApplicationWindow {
     id: application_window
     title: qsTr('Book Viewer')
@@ -89,25 +91,12 @@ ApplicationWindow {
                     fillMode: Image.PreserveAspectFit
                     smooth: flickable.moving
 
-		    function pad_zero(number, size) {
-			var s = number + ""
-			while (s.length < size)
-			    s = '0' + s
-			return s
-		    }
-
-		    function filename() {
-			var s = '/home/fabrice/scan-livre-modlisme/Amateur/encyclopedie-patrons-modeles/encyclopedie-patrons-modeles.' + pad_zero(page_index, 4) + '.png'
-			console.info(s)
-			return s
-		    }
-
 		    function prev_page() {
-			page_index -= 1
+			page_index = application.prev_page()
 		    }
 
 		    function next_page() {
-			page_index += 1
+			page_index = application.next_page()
 		    }
 
 		    function flip() {
@@ -117,8 +106,8 @@ ApplicationWindow {
 			    rotation = 0
 		    }
 
-                    source: filename()
-		    rotation: 0
+                    source: application.page_path
+		    rotation: application.orientation
 
                     onScaleChanged: {
                         console.debug(scale)
