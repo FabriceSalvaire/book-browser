@@ -4,7 +4,7 @@ category=$1
 name=$2
 dp="36"
 
-mdi_path="/home/doc/material-design-ressources/material-design-icons"
+mdi_path='/home/doc/material-design-ressources/material-design-icons'
 
 function copy_link() {
   colour=$1
@@ -15,6 +15,7 @@ function copy_link() {
   subdir_dest="../${dp}x${dp}"
   src="ic_${name}_${colour}_${dp}dp.png"
   target=$(tr "_" "-" <<<"${name}-${colour}${scale}.png")
+  echo "${mdi_path}/${subdir}/${src} -> ${subdir_dest}/${target}"
   mkdir -p ${subdir_dest}
   cp ${mdi_path}/${subdir}/${src} ${subdir_dest}/${target}
   # pushd ${subdir_dest}

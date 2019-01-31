@@ -6,9 +6,14 @@
     <qresource prefix="/">
 	<!-- <file>icons/svg/logo.svg</file> -->
 	<!-- <file>icons/logo-256.png</file> -->
+	<file>icons/36x36/arrow-back-black.png</file>
+	<file>icons/36x36/arrow-forward-black.png</file>
+	<file>icons/36x36/first-page-black.png</file>
+	<file>icons/36x36/last-page-black.png</file>
+	<file>icons/36x36/swap-vert-black.png</file>
+	<file>icons/36x36/zoom-in-black.png</file>
+	<file>icons/36x36/zoom-out-black.png</file>
         <file>icons/36x36/settings-overscan-black.png</file>
         <file>icons/36x36/zoom-fit-width.png</file>
-	<file>icons/36x36/zoom-out-black.png</file>
-	<file>icons/36x36/zoom-in-black.png</file>
     </qresource>
 </RCC>

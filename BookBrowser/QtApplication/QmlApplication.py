@@ -118,7 +118,10 @@ class QmlApplication(QObject):
 
     @Property(str, notify=page_pathChanged)
     def page_path(self):
-        return str(self._page.path)
+        if self._page is not None:
+            return str(self._page.path)
+        else:
+            return ''
 
     ##############################################
 
@@ -126,7 +129,10 @@ class QmlApplication(QObject):
 
     @Property(int, notify=orientationChanged)
     def orientation(self):
-        return 180 if self._page.orientation == 'v' else 0
+        if self._page is not None:
+            return 180 if self._page.orientation == 'v' else 0
+        else:
+            return 0
 
     ##############################################
 
@@ -135,7 +141,6 @@ class QmlApplication(QObject):
         if self._page_number > 1:
             self._page_number -= 1
             self.page_pathChanged.emit()
-            self.orientationChanged.emit()
         return self._page_number
 
     ##############################################
@@ -145,8 +150,23 @@ class QmlApplication(QObject):
         if self._page_number < (self.number_of_pages -1):
             self._page_number += 1
             self.page_pathChanged.emit()
-            self.orientationChanged.emit()
         return self._page_number
+
+    ##############################################
+
+    @Slot(int, result=int)
+    def to_page(self, page_number):
+        if 1 < page_number < (self.number_of_pages -1):
+            self._page_number = page_number
+            self.page_pathChanged.emit()
+        return self._page_number
+
+    ##############################################
+
+    @Slot()
+    def flip_page(self):
+        # Fixme:_emit ???
+        self._page.flip()
 
 ####################################################################################################
 
@@ -183,6 +203,7 @@ class Application(QObject):
 
         # Fixme: must be defined before QML
         self._book = Book(self._args.book_path)
+        self._book.fix_empty_pages()
 
         self._appplication = QGuiApplication(sys.argv)
         self._engine = QQmlApplicationEngine()

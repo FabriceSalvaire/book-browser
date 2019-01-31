@@ -246,6 +246,22 @@ class BookPage:
         else:
             return False
 
+    ##############################################
+
+    def flip(self, orientation=None):
+
+        if orientation is None:
+            orientation = self._orientation
+            if orientation == 'r':
+                orientation = 'v'
+            elif orientation == 'v':
+                orientation = 'r'
+            else:
+                orientation = None
+
+        if orientation is not None:
+            self.rename(orientation=orientation)
+
 ####################################################################################################
 
 class Book:
@@ -343,6 +359,22 @@ class Book:
                     self._logger.warning('Page number duplicate {}'.format(page_number))
             if page.orientation not in ('r', 'v'):
                 self._logger.warning('Page orientation unset {} '.format(page_number))
+
+    ##############################################
+
+    def fix_empty_pages(self):
+
+        pages = []
+        page_number = 0
+        for page in self._pages:
+            page_number += 1
+            if page_number < page.page_number:
+                for i in range(page.page_number - page_number):
+                    self._logger.warning('Missing page {}'.format(page_number))
+                    pages.append(None)
+                    page_number += 1
+            pages.append(page)
+        self._pages = pages
 
     ##############################################
 

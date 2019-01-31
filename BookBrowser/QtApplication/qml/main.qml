@@ -104,10 +104,23 @@ ApplicationWindow {
 			    rotation = 180
 			else
 			    rotation = 0
+			application.flip_page()
 		    }
 
-                    source: application.page_path
-		    rotation: application.orientation
+                    // source: application.page_path
+		    // rotation: application.orientation
+                    source: null
+		    rotation: 0
+
+		    function update_page() {
+			source = application.page_path
+			rotation = application.orientation
+		    }
+
+		    Component.onCompleted: {
+			application.page_pathChanged.connect(update_page)
+			update_page()
+		    }
 
                     onScaleChanged: {
                         console.debug(scale)
@@ -202,51 +215,73 @@ ApplicationWindow {
 	*/
     }
 
-    footer: ToolBar {
+    header: ToolBar {
         RowLayout {
             ToolButton {
-                text: 'Out'
+		icon.source: 'qrc:/icons/36x36/zoom-out-black.png'
                 onClicked: {
                     flickable.zoom_out()
                 }
             }
             ToolButton {
-                text: 'Full'
-                onClicked: {
-                    flickable.zoom_full()
-                }
-            }
-            ToolButton {
-                text: 'Fit'
+		icon.source: 'qrc:/icons/36x36/settings-overscan-black.png'
                 onClicked: {
                     flickable.fit_to_screen()
                 }
             }
             ToolButton {
-                text: 'In'
+		icon.source: 'qrc:/icons/36x36/zoom-fit-width.png'
+                onClicked: {
+                    flickable.zoom_full()
+                }
+            }
+            ToolButton {
+		icon.source: 'qrc:/icons/36x36/zoom-in-black.png'
                 onClicked: {
                     flickable.zoom_in()
                 }
             }
+
             ToolButton {
-                text: 'Flip'
+		icon.source: 'qrc:/icons/36x36/swap-vert-black.png'
                 onClicked: {
                     image.flip()
                 }
             }
+
             ToolButton {
-                text: 'Prev'
+		icon.source: 'qrc:/icons/36x36/arrow-back-black.png'
                 onClicked: {
                     image.prev_page()
                 }
             }
             ToolButton {
-                text: 'Next'
+		icon.source: 'qrc:/icons/36x36/arrow-forward-black.png'
                 onClicked: {
                     image.next_page()
                 }
             }
+	    SpinBox {
+		id: page_number
+		editable: true
+		value: image.page_index
+
+		onValueModified: {
+		    application.to_page(value)
+		}
+            }
+	    Label {
+		text: '/' + application.number_of_pages
+            }
         }
     }
 
+    footer: ToolBar {
+        RowLayout {
+            Label {
+		id: message
+		text: ''
+            }
+	}
+    }
 }
