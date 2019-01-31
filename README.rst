@@ -85,21 +85,22 @@ Overview
 What is BookBrowser ?
 ---------------------
 
-BookBrowser is a small application to read scanned book where the pages are stored as an image on
-disk.  It is an alternative to pack the images to a huge PDF file and acts as a post-scanning tool
-to fix orientation, skipped and rescanned pages.
+BookBrowser is a small application to read scanned books where the pages are stored as an image on
+disk.  It is an alternative to pack the images to a huge PDF file.  It also acts as a post-scanning
+tool to fix orientation, skipped and rescanned pages.
 
 BookBrowser provides a command line tool
 
 * to rename the images to fix the page number,
-* to guess the orientation.
+* to guess the page orientation.
 
 The page orientation recto/verso is mangled in the file name. This feature permits to keep raw data
-and avoid several image flips due to error in the automatic orientation detection algorithm.
+and avoid several image flips due to errors in the automatic orientation detection algorithm.
 
-BookBrowser code base could also be plugged to web application.
+BookBrowser implements a file system watcher in order to show a newer page.
 
-BookBrowser is written in Python 3 and the user interface is based on the Qt5 QML framework.
+BookBrowser is written in Python 3 and the user interface is based on the Qt5 QML framework.  The
+code base could also be plugged to a web application.
 
 Where is the Documentation ?
 ----------------------------
