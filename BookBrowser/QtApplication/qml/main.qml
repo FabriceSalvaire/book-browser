@@ -53,6 +53,7 @@ ApplicationWindow {
             clip: true
 
             property bool fit_to_screen_active: true
+	    property bool full_zoom_active: false
             property real min_zoom: 0.1
             property real max_zoom: 2.0
             property real zoom_step: 0.1
@@ -141,7 +142,10 @@ ApplicationWindow {
 
                     onStatusChanged: {
                         if (status === Image.Ready) {
-                            flickable.fit_to_screen()
+			    if (flickable.fit_to_screen_active)
+				flickable.fit_to_screen()
+			    else if (flickable.full_zoom_active)
+				flickable.zoom_full()
                         }
                     }
 
@@ -156,6 +160,7 @@ ApplicationWindow {
                 flickable.min_zoom = new_scale // cannot zoom out more than fit scale
                 image.prev_scale = 1.0 // flickable.scale ???
                 fit_to_screen_active = true
+		full_zoom_active = false
 		// Ensures the content is within legal bounds
                 flickable.returnToBounds()
             }
@@ -166,6 +171,7 @@ ApplicationWindow {
 		// duplicated code
                 // flickable.returnToBounds()
                 fit_to_screen_active = false
+		full_zoom_active = false
                 flickable.returnToBounds() // why twice ?
             }
 
@@ -175,13 +181,15 @@ ApplicationWindow {
                 else
                     image.scale = flickable.min_zoom
                 // flickable.returnToBounds()
-                fit_to_screen_active=false
+                fit_to_screen_active = false
+		full_zoom_active = false
                 flickable.returnToBounds()
             }
 
             function zoom_full() {
                 image.scale = 1
                 fit_to_screen_active = false
+		full_zoom_active = true
                 flickable.returnToBounds()
             }
 
@@ -251,6 +259,12 @@ ApplicationWindow {
             }
 
             ToolButton {
+		icon.source: 'qrc:/icons/36x36/first-page-black.png'
+                onClicked: {
+                    application.to_page(1)
+                }
+            }
+            ToolButton {
 		icon.source: 'qrc:/icons/36x36/arrow-back-black.png'
                 onClicked: {
                     image.prev_page()
@@ -260,6 +274,12 @@ ApplicationWindow {
 		icon.source: 'qrc:/icons/36x36/arrow-forward-black.png'
                 onClicked: {
                     image.next_page()
+                }
+            }
+            ToolButton {
+		icon.source: 'qrc:/icons/36x36/last-page-black.png'
+                onClicked: {
+                    application.to_page(application.number_of_pages)
                 }
             }
 	    SpinBox {
