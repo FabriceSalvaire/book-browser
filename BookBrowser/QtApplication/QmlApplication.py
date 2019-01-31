@@ -51,7 +51,7 @@ from QtShim.QtQml import qmlRegisterUncreatableType
 from QtShim.QtQuick import QQuickPaintedItem, QQuickView
 # from QtShim.QtQuickControls2 import QQuickStyle
 
-from BookBrowser.Book import Book
+from BookBrowser.Book import QtBook
 from BookBrowser.Common.Platform import QtPlatform
 from BookBrowser.Common.ArgparseAction import PathAction
 
@@ -78,6 +78,8 @@ class QmlApplication(QObject):
         self._application = application
 
         self._page_number = 1
+
+        self._book.new_page.connect(self._on_new_page)
 
     ##############################################
 
@@ -123,6 +125,13 @@ class QmlApplication(QObject):
         else:
             return ''
 
+    @Property(int)
+    def page_number(self):
+        if self._page is not None:
+            return int(self._page.page_number)
+        else:
+            return 1
+
     ##############################################
 
     orientationChanged = Signal()
@@ -147,7 +156,7 @@ class QmlApplication(QObject):
 
     @Slot(result=int)
     def next_page(self):
-        if self._page_number < (self.number_of_pages -1):
+        if self._page_number < self.number_of_pages:
             self._page_number += 1
             self.page_pathChanged.emit()
         return self._page_number
@@ -156,7 +165,7 @@ class QmlApplication(QObject):
 
     @Slot(int, result=int)
     def to_page(self, page_number):
-        if 1 < page_number < (self.number_of_pages -1):
+        if 1 <= page_number <= self.number_of_pages:
             self._page_number = page_number
             self.page_pathChanged.emit()
         return self._page_number
@@ -167,6 +176,14 @@ class QmlApplication(QObject):
     def flip_page(self):
         # Fixme:_emit ???
         self._page.flip()
+
+    ##############################################
+
+    def _on_new_page(self, page_number):
+
+        self.number_of_pagesChanged.emit()
+        self._logger.info('On new page {}'.format(page_number))
+        self.to_page(page_number)
 
 ####################################################################################################
 
@@ -202,7 +219,7 @@ class Application(QObject):
         self._parse_arguments()
 
         # Fixme: must be defined before QML
-        self._book = Book(self._args.book_path)
+        self._book = QtBook(self._args.book_path)
         self._book.fix_empty_pages()
 
         self._appplication = QGuiApplication(sys.argv)
@@ -387,8 +404,13 @@ class Application(QObject):
     ##############################################
 
     def _post_init(self):
+
         # Fixme: ui refresh ???
         self._logger.info('post init')
+
+        self._logger.info('Start watcher')
+        self._book.start_watcher() # QtCore.QFileSystemWatcher(self)
+
         if self._args.user_script is not None:
             self.execute_user_script(self._args.user_script)
 

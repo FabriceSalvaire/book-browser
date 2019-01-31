@@ -109,12 +109,13 @@ ApplicationWindow {
 
                     // source: application.page_path
 		    // rotation: application.orientation
-                    source: null
-		    rotation: 0
+                    // source: null
+		    // rotation: 0
 
 		    function update_page() {
 			source = application.page_path
 			rotation = application.orientation
+			page_index = application.page_number
 		    }
 
 		    Component.onCompleted: {
@@ -264,6 +265,8 @@ ApplicationWindow {
 	    SpinBox {
 		id: page_number
 		editable: true
+		from: 1
+		to: application.number_of_pages
 		value: image.page_index
 
 		onValueModified: {

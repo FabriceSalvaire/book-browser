@@ -18,16 +18,28 @@
 #
 ####################################################################################################
 
+__all__ = [
+    'Book',
+    'QtBook',
+]
+
 ####################################################################################################
 
 from pathlib import Path
+import glob
 import logging
 import math
 import os
 import stat
+import traceback
 
 from PIL import Image
 import numpy as np
+
+try:
+    from PyQt5 import QtCore
+except ImportError:
+    QtCore = None
 
 ####################################################################################################
 
@@ -316,6 +328,13 @@ class Book:
 
     ##############################################
 
+    def _glob_files(self):
+        pattern = str(self._path.joinpath('*' + self._extension))
+        for path in glob.glob(pattern):
+            yield Path(path).name
+
+    ##############################################
+
     def _get_pages(self):
 
         pages = []
@@ -328,8 +347,11 @@ class Book:
                     else:
                         raise NameError('')
                 if filename.endswith(self._extension):
-                    page = self._on_image(filename)
-                    pages.append(page)
+                    try:
+                        page = self._on_image(filename)
+                        pages.append(page)
+                    except Exception as exception:
+                        self._logger.warning('Error on {}\n{}'.format(filename, exception))
 
         pages.sort()
 
@@ -368,7 +390,7 @@ class Book:
         page_number = 0
         for page in self._pages:
             page_number += 1
-            if page_number < page.page_number:
+            if page.page_number is not None and page_number < page.page_number:
                 for i in range(page.page_number - page_number):
                     self._logger.warning('Missing page {}'.format(page_number))
                     pages.append(None)
@@ -456,3 +478,47 @@ class Book:
         # results.sort(key=lambda result: result[1])
         # for result in results:
         #     print(*result)
+
+####################################################################################################
+
+class QtBook(Book, QtCore.QObject):
+
+    new_page = QtCore.pyqtSignal(int)
+
+    ##############################################
+
+    def __init__(self, path):
+
+        QtCore.QObject.__init__(self)
+        Book.__init__(self, path)
+
+    ##############################################
+
+    def start_watcher(self, watcher=None):
+
+        if QtCore is None:
+            raise NotImplementedError
+
+        self._files = set(self._glob_files())
+
+        self._watcher = watcher or QtCore.QFileSystemWatcher()
+        self._watcher.addPath(str(self._path))
+        self._watcher.directoryChanged.connect(self._on_directory_change)
+
+    ##############################################
+
+    def _on_directory_change(self, path):
+
+        files = set(self._glob_files())
+        new_files = files - self._files
+
+        for filename in new_files:
+            self._logger.info('New file {}'.format(filename))
+            # try:
+            page = self._on_image(filename)
+            self._pages.append(page)
+            page._page_number = len(self) # Fixme: !!!
+            self._logger.info('New page\n{}'.format(page))
+            self.new_page.emit(page.page_number)
+            # except Exception as exception:
+            #     self._logger.warning('Error on {}\n{}'.format(filename, exception))
