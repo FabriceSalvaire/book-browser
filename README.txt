@@ -21,7 +21,12 @@ Overview
 What is BookBrowser ?
 ---------------------
 
-BookBrowser is a Python module which implements ...
+BookBrowser is a small application to read scanned book where the pages are stored as an image on
+disk.  It is an alternative to pack the images to an huge PDF file.
+
+The page orientation recto/verso is mangled in the file name.
+
+BookBrowser is written in Python 3 and the user interface is based on the Qt5 QML framework.
 
 Where is the Documentation ?
 ----------------------------
