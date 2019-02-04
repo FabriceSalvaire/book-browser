@@ -51,9 +51,9 @@ from QtShim.QtQml import qmlRegisterUncreatableType
 from QtShim.QtQuick import QQuickPaintedItem, QQuickView
 # from QtShim.QtQuickControls2 import QQuickStyle
 
-from BookBrowser.Book import QtBook
 from BookBrowser.Common.Platform import QtPlatform
 from BookBrowser.Common.ArgparseAction import PathAction
+from .QmlBook import QmlBook, QmlBookPage
 
 from .rcc import BookBrowserRessource
 
@@ -76,120 +76,15 @@ class QmlApplication(QObject):
         super().__init__()
 
         self._application = application
-
-        self._page_number = 1
-
-        self._book.new_page.connect(self._on_new_page)
+        self._book = application.book
 
     ##############################################
 
-    # fooChanged = Signal()
+    bookChanged = Signal()
 
-    # @Property(Foo, notify=fooChanged)
-    # def foo(self):
-
-    # @foo.setter
-    # def foo(self, foo):
-
-    # @Slot(Qxxx, result=str)
-    # def foo(self, xxx):
-
-    ##############################################
-
-    @property
-    def _book(self):
-        return self._application.book
-
-    ##############################################
-
-    @property
-    def _page(self):
-        return self._book[self._page_number]
-
-    ##############################################
-
-    number_of_pagesChanged = Signal()
-
-    @Property(int, notify=number_of_pagesChanged)
-    def number_of_pages(self):
-        return len(self._book)
-
-    ##############################################
-
-    page_pathChanged = Signal()
-
-    @Property(str, notify=page_pathChanged)
-    def page_path(self):
-        if self._page is not None:
-            return str(self._page.path)
-        else:
-            return ''
-
-    @Property(int)
-    def page_number(self):
-        if self._page is not None:
-            return int(self._page) # self._page.page_number
-        else:
-            return 1
-
-    ##############################################
-
-    orientationChanged = Signal()
-
-    @Property(int, notify=orientationChanged)
-    def orientation(self):
-        if self._page is not None:
-            return 180 if self._page.orientation == 'v' else 0
-        else:
-            return 0
-
-    ##############################################
-
-    @Slot(result=int)
-    def prev_page(self):
-        if self._page_number > 1:
-            self._page_number -= 1
-            self.page_pathChanged.emit()
-        return self._page_number
-
-    ##############################################
-
-    @Slot(result=int)
-    def next_page(self):
-        if self._page_number < self.number_of_pages:
-            self._page_number += 1
-            self.page_pathChanged.emit()
-        return self._page_number
-
-    ##############################################
-
-    @Slot(int, result=int)
-    def to_page(self, page_number):
-        if 1 <= page_number <= self.number_of_pages:
-            self._page_number = page_number
-            self.page_pathChanged.emit()
-        return self._page_number
-
-    ##############################################
-
-    @Slot(str)
-    def flip_page(self, orientation):
-        # Fixme:_emit ???
-        self._page.flip(orientation)
-
-    ##############################################
-
-    @Slot(str)
-    def flip_from_page(self, orientation):
-        self._book.flip_from_page(self.page_number, orientation)
-
-    ##############################################
-
-    def _on_new_page(self, page_number):
-
-        self.number_of_pagesChanged.emit()
-        self._logger.info('On new page {}'.format(page_number))
-        self.to_page(page_number)
+    @Property(QmlBook, notify=bookChanged)
+    def book(self):
+        return self._book
 
 ####################################################################################################
 
@@ -225,8 +120,7 @@ class Application(QObject):
         self._parse_arguments()
 
         # Fixme: must be defined before QML
-        self._book = QtBook(self._args.book_path)
-        self._book.fix_empty_pages()
+        self._book = QmlBook(self._args.book_path)
 
         self._appplication = QGuiApplication(sys.argv)
         self._engine = QQmlApplicationEngine()
@@ -258,12 +152,12 @@ class Application(QObject):
         return self._args
 
     @property
-    def qml_application(self):
-        return self._qml_application
-
-    @property
     def platform(self):
         return self._platform
+
+    @property
+    def qml_application(self):
+        return self._qml_application
 
     @property
     def book(self):
@@ -381,7 +275,8 @@ class Application(QObject):
     def _register_qml_types(self):
 
         qmlRegisterUncreatableType(QmlApplication, 'BookBrowser', 1, 0, 'QmlApplication', 'Cannot create QmlApplication')
-        # qmlRegisterType(QmlApplication, 'BookBrowser', 1, 0, 'QmlApplication')
+        qmlRegisterUncreatableType(QmlBook, 'BookBrowser', 1, 0, 'QmlBook', 'Cannot create QmlBook')
+        qmlRegisterUncreatableType(QmlBookPage, 'BookBrowser', 1, 0, 'QmlBookPage', 'Cannot create QmlBookPage')
 
     ##############################################
 

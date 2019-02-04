@@ -33,9 +33,12 @@ ApplicationWindow {
     width: 1000
     height: 500
 
+    property var book: application.book
+
     Component.onCompleted: {
 	console.info('ApplicationWindow.onCompleted')
 	application_window.showMaximized()
+	image.first_page()
     }
 
     Page {
@@ -85,19 +88,35 @@ ApplicationWindow {
                     transformOrigin: Item.Center
 
                     property real prev_scale: 1.0
-                    property int page_index: 1
 
                     asynchronous: true
                     cache: false
                     fillMode: Image.PreserveAspectFit
                     smooth: flickable.moving
 
+		    property var book_page
+		    source: book_page ? book_page.path : ''
+		    rotation: book_page ? book_page.orientation : 0
+
+		    function first_page() {
+			book_page = book.first_page
+		    }
+
+		    function last_page() {
+			book_page = book.last_page
+		    }
+
+		    function to_page(page_number) {
+			if (book.is_valid_page_number(page_number))
+			    book_page = book.page(page_number)
+		    }
+
 		    function prev_page() {
-			page_index = application.prev_page()
+			to_page(book_page.page_number -1)
 		    }
 
 		    function next_page() {
-			page_index = application.next_page()
+			to_page(book_page.page_number +1)
 		    }
 
 		    function flip() {
@@ -110,7 +129,7 @@ ApplicationWindow {
 			    rotation = 0
 			    orientation = 'r'
 			}
-			application.flip_page(orientation)
+			book_page.flip_page(orientation)
 		    }
 
 		    function flip_from_page() {
@@ -123,23 +142,11 @@ ApplicationWindow {
 			    // rotation = 0
 			    orientation = 'r'
 			}
-			application.flip_from_page(orientation)
-		    }
-
-                    // source: application.page_path
-		    // rotation: application.orientation
-                    // source: null
-		    // rotation: 0
-
-		    function update_page() {
-			source = application.page_path
-			rotation = application.orientation
-			page_index = application.page_number
+			book.flip_from_page(page, orientation) // Fixme: orientation ?
 		    }
 
 		    Component.onCompleted: {
-			application.page_pathChanged.connect(update_page)
-			update_page()
+			book.new_page.connect(last_page)
 		    }
 
                     onScaleChanged: {
@@ -279,7 +286,7 @@ ApplicationWindow {
             ToolButton {
 		icon.source: 'qrc:/icons/36x36/first-page-black.png'
                 onClicked: {
-                    application.to_page(1)
+		    image.first_page()
                 }
             }
             ToolButton {
@@ -297,29 +304,30 @@ ApplicationWindow {
             ToolButton {
 		icon.source: 'qrc:/icons/36x36/last-page-black.png'
                 onClicked: {
-                    application.to_page(application.number_of_pages)
+		    image.last_page()
                 }
             }
 	    SpinBox {
 		id: page_number
 		editable: true
 		from: 1
-		to: application.number_of_pages
-		value: image.page_index
+		to: book.number_of_pages
+		value: image.book_page ? image.book_page.page_number: 0
 
 		onValueModified: {
-		    application.to_page(value)
+		    image.to_page(value)
 		}
             }
 	    Label {
-		text: '/' + application.number_of_pages
+		text: '/' + book.number_of_pages
             }
 
             ToolButton {
 		// icon.source: 'qrc:/icons/36x36/.png'
 		text: 'Flip from'
                 onClicked: {
-                    image.flip_from_page()
+		    console.info('flip_from_page is disabled')
+                    // image.flip_from_page()
                 }
             }
         }

@@ -19,28 +19,20 @@
 ####################################################################################################
 
 __all__ = [
+    'BookPage',
     'Book',
-    'QtBook',
 ]
 
 ####################################################################################################
 
 from pathlib import Path
-import glob
 import logging
 import math
 import os
 import stat
-import time
-import traceback
 
 from PIL import Image
 import numpy as np
-
-try:
-    from PyQt5 import QtCore
-except ImportError:
-    QtCore = None
 
 ####################################################################################################
 
@@ -92,8 +84,8 @@ class BookPage:
     def __int__(self):
         return self._page_number or self._file_index
 
-    def __lt__(a, b):
-        return int(a) < int(b)
+    def __lt__(self, other):
+        return int(self) < int(other)
 
     ##############################################
 
@@ -288,7 +280,8 @@ class Book:
         self._path = Path(str(path)).resolve()
         self._extension = str(extension)
 
-        self._pages = self._get_pages()
+        self._pages = None
+        self._get_pages()
         self._number_of_digits = int(math.log10(len(self))) + 1
         self.check()
 
@@ -297,6 +290,10 @@ class Book:
     @property
     def path(self):
         return self._path
+
+    @property
+    def extension(self):
+        return self._extension
 
     @property
     def number_of_digits(self):
@@ -319,6 +316,16 @@ class Book:
 
     ##############################################
 
+    @property
+    def first_page(self):
+        return self._pages[0]
+
+    @property
+    def last_page(self):
+        return self._pages[-1]
+
+    ##############################################
+
     def iter_by_page_number(self):
         pages = list(self._pages)
         pages.sort(key=lambda page: int(page))
@@ -333,16 +340,9 @@ class Book:
 
     ##############################################
 
-    def _glob_files(self):
-        pattern = str(self._path.joinpath('*' + self._extension))
-        for path in glob.glob(pattern):
-            yield Path(path).name
-
-    ##############################################
-
     def _get_pages(self):
 
-        pages = []
+        self._pages = []
         for path, directories, files in os.walk(str(self._path)):
             for filename in files:
                 if filename.endswith('_'):
@@ -353,19 +353,18 @@ class Book:
                         raise NameError('')
                 if filename.endswith(self._extension):
                     try:
-                        page = self._on_image(filename)
-                        pages.append(page)
+                        self.add_page(filename)
                     except Exception as exception:
                         self._logger.warning('Error on {}\n{}'.format(filename, exception))
 
-        pages.sort()
-
-        return pages
+        self._pages.sort()
 
     ##############################################
 
-    def _on_image(self, filename):
-        return BookPage(self, filename)
+    def add_page(self, filename):
+        page = BookPage(self, filename)
+        self._pages.append(page)
+        return page
 
     ##############################################
 
@@ -498,54 +497,3 @@ class Book:
         # results.sort(key=lambda result: result[1])
         # for result in results:
         #     print(*result)
-
-####################################################################################################
-
-class QtBook(Book, QtCore.QObject):
-
-    new_page = QtCore.pyqtSignal(int)
-
-    ##############################################
-
-    def __init__(self, path):
-
-        QtCore.QObject.__init__(self)
-        Book.__init__(self, path)
-
-    ##############################################
-
-    def start_watcher(self, watcher=None):
-
-        if QtCore is None:
-            raise NotImplementedError
-
-        self._files = set(self._glob_files())
-
-        self._watcher = watcher or QtCore.QFileSystemWatcher()
-        self._watcher.addPath(str(self._path))
-        self._watcher.directoryChanged.connect(self._on_directory_change)
-
-    ##############################################
-
-    def _on_directory_change(self, path):
-
-        time.sleep(3)
-        # QTimer::singleShot(200, this, SLOT(updateCaption()));
-
-        files = set(self._glob_files())
-        new_files = files - self._files
-        self._logger.info('New files {}'.format(new_files))
-        # Fixme: overwrite
-
-        for filename in new_files:
-            self._logger.info('New file {}'.format(filename))
-            # try:
-            page = self._on_image(filename)
-            self._pages.append(page)
-            page._page_number = len(self) # Fixme: !!!
-            self._logger.info('New page\n{}'.format(page))
-            self.new_page.emit(page.page_number)
-            # except Exception as exception:
-            #     self._logger.warning('Error on {}\n{}'.format(filename, exception))
-
-        self._files = files
