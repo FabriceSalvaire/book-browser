@@ -1,2 +1,3 @@
 module Widgets
+ImageViewer 1.0 ImageViewer.qml
 PageViewer 1.0 PageViewer.qml
