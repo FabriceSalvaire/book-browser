@@ -31,6 +31,7 @@ import logging
 import math
 import os
 import stat
+import time
 import traceback
 
 from PIL import Image
@@ -252,11 +253,11 @@ class BookPage:
         filename = template.format(self)
         new_path = self._book.joinpath(filename)
         self._logger.info('rename\n  {}\n->\n{}'.format(old_path, new_path))
-        if rename_file(old_path, new_path, dry_run=dry_run):
-            self._filename = filename
-            return True
-        else:
-            return False
+        if old_path != new_path:
+            if rename_file(old_path, new_path, dry_run=dry_run):
+                self._filename = filename
+                return True
+        return False
 
     ##############################################
 
@@ -304,6 +305,10 @@ class Book:
     ##############################################
 
     def __len__(self):
+        return len(self._pages)
+
+    @property
+    def number_of_pages(self):
         return len(self._pages)
 
     def __iter__(self):
@@ -400,12 +405,15 @@ class Book:
 
     ##############################################
 
-    def set_orientation(self):
+    def set_orientation(self, positive_delta=True):
 
         for page in self._pages:
             if page.orientation == 'x':
                 self._logger.info(repr(page))
-                orientation = 'r' if page.guess_orientation() else 'v'
+                orientation = page.guess_orientation()
+                if not positive_delta:
+                    orientation = not orientation
+                orientation = 'r' if orientation else 'v'
                 if not page.rename(orientation=orientation):
                     raise NameError('')
                 page.release_image()
@@ -447,6 +455,18 @@ class Book:
         for page in self.iter_by_mtime():
             file_index += 1
             page.rename(file_index=file_index)
+
+    ##############################################
+
+    def flip_from_page(self, pagne_number, orientation):
+
+        for i in range(pagne_number, self.number_of_pages +1):
+            # print(i, orientation)
+            self[i].flip(orientation=None)
+            # if orientation == 'r':
+            #     orientation = 'v'
+            # else:
+            #     orientation = 'r'
 
     ##############################################
 
@@ -509,8 +529,13 @@ class QtBook(Book, QtCore.QObject):
 
     def _on_directory_change(self, path):
 
+        time.sleep(3)
+        # QTimer::singleShot(200, this, SLOT(updateCaption()));
+
         files = set(self._glob_files())
         new_files = files - self._files
+        self._logger.info('New files {}'.format(new_files))
+        # Fixme: overwrite
 
         for filename in new_files:
             self._logger.info('New file {}'.format(filename))
@@ -522,3 +547,5 @@ class QtBook(Book, QtCore.QObject):
             self.new_page.emit(page.page_number)
             # except Exception as exception:
             #     self._logger.warning('Error on {}\n{}'.format(filename, exception))
+
+        self._files = files

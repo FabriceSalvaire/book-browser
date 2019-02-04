@@ -57,6 +57,12 @@ argument_parser.add_argument(
     help='set page orientation',
 )
 argument_parser.add_argument(
+    '--negative-delta',
+    action='store_true',
+    default=False,
+    help='set negative delta for  orientation',
+)
+argument_parser.add_argument(
     '--remove-page-number',
     action='store_true',
     default=False,
@@ -74,6 +80,6 @@ book = Book(args.book_path)
 if args.rename:
     book.renumerate_pages()
 if args.orientation:
-    book.set_orientation()
+    book.set_orientation(positive_delta=not args.negative_delta)
 if args.remove_page_number:
     book.remove_page_number()

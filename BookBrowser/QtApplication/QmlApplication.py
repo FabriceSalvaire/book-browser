@@ -128,7 +128,7 @@ class QmlApplication(QObject):
     @Property(int)
     def page_number(self):
         if self._page is not None:
-            return int(self._page.page_number)
+            return int(self._page) # self._page.page_number
         else:
             return 1
 
@@ -172,10 +172,16 @@ class QmlApplication(QObject):
 
     ##############################################
 
-    @Slot()
-    def flip_page(self):
+    @Slot(str)
+    def flip_page(self, orientation):
         # Fixme:_emit ???
-        self._page.flip()
+        self._page.flip(orientation)
+
+    ##############################################
+
+    @Slot(str)
+    def flip_from_page(self, orientation):
+        self._book.flip_from_page(self.page_number, orientation)
 
     ##############################################
 
@@ -337,6 +343,13 @@ class Application(QObject):
         )
 
         parser.add_argument(
+            '--watcher',
+            action='store_true',
+            default=False,
+            help='start watcher',
+        )
+
+        parser.add_argument(
             '--user-script',
             action=PathAction,
             default=None,
@@ -408,8 +421,9 @@ class Application(QObject):
         # Fixme: ui refresh ???
         self._logger.info('post init')
 
-        self._logger.info('Start watcher')
-        self._book.start_watcher() # QtCore.QFileSystemWatcher(self)
+        if self._args.watcher:
+            self._logger.info('Start watcher')
+            self._book.start_watcher() # QtCore.QFileSystemWatcher(self)
 
         if self._args.user_script is not None:
             self.execute_user_script(self._args.user_script)

@@ -101,11 +101,29 @@ ApplicationWindow {
 		    }
 
 		    function flip() {
-			if (rotation == 0)
+			var orientation
+			if (rotation == 0) {
 			    rotation = 180
-			else
+			    orientation = 'v'
+			}
+			else {
 			    rotation = 0
-			application.flip_page()
+			    orientation = 'r'
+			}
+			application.flip_page(orientation)
+		    }
+
+		    function flip_from_page() {
+			var orientation
+			if (rotation == 0) {
+			    // rotation = 180
+			    orientation = 'v'
+			}
+			else {
+			    // rotation = 0
+			    orientation = 'r'
+			}
+			application.flip_from_page(orientation)
 		    }
 
                     // source: application.page_path
@@ -296,7 +314,30 @@ ApplicationWindow {
 	    Label {
 		text: '/' + application.number_of_pages
             }
+
+            ToolButton {
+		// icon.source: 'qrc:/icons/36x36/.png'
+		text: 'Flip from'
+                onClicked: {
+                    image.flip_from_page()
+                }
+            }
         }
+
+	focus: true
+	Keys.onPressed: {
+	    var key = event.key
+            if (key == Qt.Key_Space)
+		image.next_page()
+            else if (key == Qt.Key_Backspace)
+		image.prev_page()
+            else if (event.text == 'r')
+		image.flip()
+            else if (event.text == 'f')
+		flickable.fit_to_screen()
+            else if (event.text == 'z')
+		flickable.zoom_full()
+	}
     }
 
     footer: ToolBar {
