@@ -288,10 +288,12 @@ class Application(QObject):
 
     def _load_qml_main(self):
 
-        # self._engine.addImportPath('qrc:///qml')
+        qml_path = Path(__file__).parent.joinpath('qml')
+        # qml_path = 'qrc:///qml'
+        self._engine.addImportPath(str(qml_path))
 
-        qml_path = Path(__file__).parent.joinpath('qml', 'main.qml')
-        self._qml_url = QUrl.fromLocalFile(str(qml_path))
+        main_qml_path = qml_path.joinpath('main.qml')
+        self._qml_url = QUrl.fromLocalFile(str(main_qml_path))
         # QUrl('qrc:/qml/main.qml')
         self._engine.objectCreated.connect(self._check_qml_is_loaded)
         self._engine.load(self._qml_url)

@@ -29,12 +29,14 @@ import glob
 import logging
 import time
 
-from PyQt5 import QtCore
+from PyQt5.QtCore import QFileSystemWatcher
+from PyQt5.QtQml import QQmlListProperty
 from QtShim.QtCore import (
     Property, Signal, Slot, QObject,
     Qt, QTimer, QUrl
 )
 
+from BookBrowser.Thumbnail import FreeDesktopThumbnailCache # Fixme: Linux only
 from BookBrowser.Book import Book
 
 ####################################################################################################
@@ -43,7 +45,11 @@ _module_logger = logging.getLogger(__name__)
 
 ####################################################################################################
 
-class QmlBookPage(QtCore.QObject):
+thumbnail_cache = FreeDesktopThumbnailCache()
+
+####################################################################################################
+
+class QmlBookPage(QObject):
 
     _logger = _module_logger.getChild('QmlBookPage')
 
@@ -93,9 +99,9 @@ class QmlBookPage(QtCore.QObject):
 
 ####################################################################################################
 
-class QmlBook(QtCore.QObject):
+class QmlBook(QObject):
 
-    new_page = QtCore.pyqtSignal(int)
+    new_page = Signal(int)
 
     _logger = _module_logger.getChild('QmlBook')
 
@@ -132,6 +138,12 @@ class QmlBook(QtCore.QObject):
 
     ##############################################
 
+    @Property(QQmlListProperty)
+    def pages(self):
+        return QQmlListProperty(QmlBookPage, self, self._pages)
+
+    ##############################################
+
     @Property(QmlBookPage)
     def first_page(self):
         return self._pages[0]
@@ -157,12 +169,9 @@ class QmlBook(QtCore.QObject):
 
     def start_watcher(self, watcher=None):
 
-        if QtCore is None:
-            raise NotImplementedError
-
         self._files = set(self._glob_files())
 
-        self._watcher = watcher or QtCore.QFileSystemWatcher()
+        self._watcher = watcher or QFileSystemWatcher()
         self._watcher.addPath(str(self._book.path))
         self._watcher.directoryChanged.connect(self._on_directory_change)
 

@@ -25,16 +25,20 @@ https://specifications.freedesktop.org/thumbnail-spec/thumbnail-spec-latest.html
 
 ####################################################################################################
 
+__all__ = ['FreeDesktopThumbnailCache']
+
+####################################################################################################
+
 from functools import lru_cache
 from pathlib import Path
 import hashlib
 import shutil
 
-import PIL
+from PIL import Image
 
 ####################################################################################################
 
-class FreedesktopThumbnailCache:
+class FreeDesktopThumbnailCache:
 
     """Class to import FreeDesktop Thumbnail Cache"""
 
@@ -42,7 +46,7 @@ class FreedesktopThumbnailCache:
     LARGE_SIZE = 256
     IMAGE_FORMAT = 'png'
     IMAGE_EXTENSION = '.' + IMAGE_FORMAT
-    SAMPLING = PIL.Image.BICUBIC
+    SAMPLING = Image.BICUBIC
 
     ##############################################
 
@@ -97,7 +101,7 @@ class FreedesktopThumbnailCache:
 
     @classmethod
     def _make_thumbnail(cls, src_path, dst_path, size):
-        image = PIL.Image.open(str(src_path))
+        image = Image.open(str(src_path))
         image.thumbnail(size, resample=cls.SAMPLING)
         image.save(str(dst_path))
 
