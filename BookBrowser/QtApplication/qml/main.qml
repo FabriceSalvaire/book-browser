@@ -76,6 +76,17 @@ ApplicationWindow {
 		anchors.fill: parent
 	    }
 	}
+
+	Page {
+	    id: scanner_page
+
+	    Widgets.ScannerUI {
+		id: scanner_ui
+		anchors.fill: parent
+
+		// scanner: application.scanner
+	    }
+	}
     }
 
     Action {
@@ -88,7 +99,7 @@ ApplicationWindow {
     Action {
 	id: next_page_action
 	icon.source: 'qrc:/icons/36x36/arrow-forward-black.png'
-	shortcut: 'Space'
+	shortcut: 'n' //'Space'
 	onTriggered: page_viewer.next_page()
     }
 
@@ -117,11 +128,23 @@ ApplicationWindow {
         RowLayout {
             ToolButton {
 		icon.source: 'qrc:/icons/36x36/view-comfy-black.png'
-                onClicked: stack_view.pop()
+                onClicked: {
+		    stack_view.pop()
+		}
             }
             ToolButton {
 		icon.source: 'qrc:/icons/36x36/image-black.png'
-                onClicked: stack_view.push(page_viewer_page)
+                onClicked: {
+		    stack_view.push(page_viewer_page)
+		}
+            }
+            ToolButton {
+		icon.source: 'qrc:/icons/36x36/scanner-black.png'
+                onClicked: {
+		    // Fixme:
+		    scanner_ui.init()
+		    stack_view.push(scanner_page)
+		}
             }
 
             ToolButton {
@@ -173,11 +196,7 @@ ApplicationWindow {
             ToolButton {
 		icon.source: 'qrc:/icons/36x36/grid-on-black.png'
 		checkable: true
-                onClicked: {
-		    grid.visible = !grid.visible
-		    // else button receive the key event
-		    page_viewer.forceActiveFocus()
-		}
+                onClicked: grid.visible = !grid.visible
             }
 
             ToolButton {

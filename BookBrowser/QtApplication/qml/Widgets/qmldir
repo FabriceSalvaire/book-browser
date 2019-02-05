@@ -2,4 +2,5 @@ module Widgets
 Grid 1.0 Grid.qml
 ImageViewer 1.0 ImageViewer.qml
 PageViewer 1.0 PageViewer.qml
+ScannerUI 1.0 ScannerUI.qml
 ThumbnailViewer 1.0 ThumbnailViewer.qml

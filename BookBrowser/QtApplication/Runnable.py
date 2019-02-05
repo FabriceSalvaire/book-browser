@@ -70,7 +70,7 @@ class WorkerSignals(QObject):
 
     finished = Signal()
     error = Signal(tuple)
-    result = Signal(object)
+    result = Signal(str) # Fixme: object
     progress = Signal(int)
 
 ####################################################################################################

@@ -20,22 +20,32 @@
 
 """Module to implement a scanner interface.
 
+See `The SANE Application Programmer Interface (API)
+<http://www.sane-project.org/html/doc009.html>`_
+
 """
 
 ####################################################################################################
 
 __all__ = [
     'Scanner',
+    'FileExistsEror',
 ]
 
 ####################################################################################################
 
+from pathlib import Path
 import logging
 import pyinsane2
 
 ####################################################################################################
 
 _module_logger = logging.getLogger(__name__)
+
+####################################################################################################
+
+class FileExistsError(NameError):
+    pass
 
 ####################################################################################################
 
@@ -99,6 +109,11 @@ class Scanner:
 
     ##############################################
 
+    def __bool__(self):
+        return self._device is not None
+
+    ##############################################
+
     @property
     def device(self):
         return self._device
@@ -106,6 +121,16 @@ class Scanner:
     @device.setter
     def device(self, name):
         self._device = pyinsane2.Scanner(name=name)
+
+    @property
+    def device_name(self):
+        # See pyinsane2/sane/abstract_proc.py
+        # device.name
+        # device.nice_name
+        # device.vendor
+        # device.model
+        # device.dev_type
+        return '{0.vendor} {0.model}'.format(self._device)
 
     ##############################################
 
@@ -168,7 +193,9 @@ class Scanner:
 
     ##############################################
 
-    def scan(self, path):
+    def scan_image(self):
+
+        self._logger.info('Start scanning ...')
 
         scan_session = self._device.scan(multiple=False)
 
@@ -179,5 +206,28 @@ class Scanner:
             pass
 
         image = scan_session.images[-1]
-        image.save(path)
-        self._logger.info('Scanned {}'.format(path))
+        self._logger.info('Start done')
+
+        return image
+
+    ##############################################
+
+    def scan(self, path, overwrite=False, index=None):
+
+        self._logger.info('Scan {} {} overwrite = {}'.format(path, index, overwrite))
+
+        # Fixme: kwargs
+        if index is not None:
+            path = str(path).format(index)
+
+        path = Path(path).resolve()
+
+        if not overwrite and path.exists():
+            # raise NameError('File {} exists'.format(path))
+            raise FileExistsError(str(path))
+
+        image = self.scan_image()
+        image.save(str(path))
+        self._logger.info('Saved {}'.format(path))
+
+        return path

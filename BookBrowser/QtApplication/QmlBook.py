@@ -72,9 +72,9 @@ class QmlBookPage(QObject):
 
     ##############################################
 
-    pathChanged = Signal()
+    path_changed = Signal()
 
-    @Property(str, notify=pathChanged)
+    @Property(str, notify=path_changed)
     def path(self):
         return str(self._page.path)
 
@@ -84,9 +84,9 @@ class QmlBookPage(QObject):
     def large_thumbnail_size(self):
         return FreeDesktopThumbnailCache.LARGE_SIZE
 
-    large_thumbnail_pathChanged = Signal()
+    large_thumbnail_path_changed = Signal()
 
-    @Property(str, notify=large_thumbnail_pathChanged)
+    @Property(str, notify=large_thumbnail_path_changed)
     def large_thumbnail_path(self):
         # return str(thumbnail_cache.large_thumbnail(self._page.path))
         return str(thumbnail_cache.large_thumbnail_path(self._page.path))
@@ -109,17 +109,17 @@ class QmlBookPage(QObject):
 
     ##############################################
 
-    page_numberChanged = Signal()
+    page_number_changed = Signal()
 
-    @Property(int, notify=page_numberChanged)
+    @Property(int, notify=page_number_changed)
     def page_number(self):
         return int(self._page) # self._page.page_number
 
     ##############################################
 
-    orientationChanged = Signal()
+    orientation_changed = Signal()
 
-    @Property(int, notify=orientationChanged)
+    @Property(int, notify=orientation_changed)
     def orientation(self):
         return 180 if self._page.orientation == 'v' else 0
 
@@ -127,7 +127,7 @@ class QmlBookPage(QObject):
 
     @Slot(str)
     def flip_page(self, orientation):
-        # don't emit orientationChanged
+        # don't emit orientation_changed
         self._page.flip(orientation)
 
 ####################################################################################################
@@ -158,9 +158,9 @@ class QmlBook(QObject):
 
     ##############################################
 
-    number_of_pagesChanged = Signal()
+    number_of_pages_changed = Signal()
 
-    @Property(int, notify=number_of_pagesChanged)
+    @Property(int, notify=number_of_pages_changed)
     def number_of_pages(self):
         # return self._book.number_of_pages
         return len(self._pages)
@@ -171,9 +171,9 @@ class QmlBook(QObject):
 
     ##############################################
 
-    pagesChanged = Signal()
+    pages_changed = Signal()
 
-    @Property(QQmlListProperty, notify=pagesChanged)
+    @Property(QQmlListProperty, notify=pages_changed)
     def pages(self):
         return QQmlListProperty(QmlBookPage, self, self._pages)
 
@@ -181,11 +181,17 @@ class QmlBook(QObject):
 
     @Property(QmlBookPage)
     def first_page(self):
-        return self._pages[0]
+        try:
+            return self._pages[0]
+        except IndexError:
+            return None
 
     @Property(QmlBookPage)
     def last_page(self):
-        return self._pages[-1]
+        try:
+            return self._pages[-1]
+        except IndexError:
+            return None
 
     @Slot(int, result=QmlBookPage)
     def page(self, page_number):
@@ -208,7 +214,7 @@ class QmlBook(QObject):
 
         self._watcher = watcher or QFileSystemWatcher()
         self._watcher.addPath(str(self._book.path))
-        self._watcher.directoryChanged.connect(self._on_directory_change)
+        self._watcher.directory_changed.connect(self._on_directory_change)
 
     ##############################################
 
@@ -247,7 +253,7 @@ class QmlBook(QObject):
         self._logger.info('New page\n{}'.format(page))
 
         self._pages.append(QmlBookPage(page))
-        self.number_of_pagesChanged.emit()
+        self.number_of_pages_changed.emit()
         self.new_page.emit(page.page_number)
 
         # except Exception as exception:

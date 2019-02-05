@@ -51,9 +51,11 @@ from QtShim.QtQml import qmlRegisterUncreatableType
 from QtShim.QtQuick import QQuickPaintedItem, QQuickView
 # from QtShim.QtQuickControls2 import QQuickStyle
 
-from BookBrowser.Common.Platform import QtPlatform
-from BookBrowser.Common.ArgparseAction import PathAction
 from .QmlBook import QmlBook, QmlBookPage
+from .QmlScanner import ScannerImageProvider, QmlScanner
+from .Runnable import Worker
+from BookBrowser.Common.ArgparseAction import PathAction
+from BookBrowser.Common.Platform import QtPlatform
 
 from .rcc import BookBrowserRessource
 
@@ -67,6 +69,12 @@ class QmlApplication(QObject):
 
     """Class to implement a Qt QML Application."""
 
+    scanner_ready = Signal()
+
+    preview_done = Signal(str)
+    file_exists_error = Signal(str)
+    scan_done = Signal(str)
+
     _logger = _module_logger.getChild('QmlApplication')
 
     ##############################################
@@ -76,15 +84,52 @@ class QmlApplication(QObject):
         super().__init__()
 
         self._application = application
-        self._book = application.book
 
     ##############################################
 
-    bookChanged = Signal()
+    book_changed = Signal()
 
-    @Property(QmlBook, notify=bookChanged)
+    @Property(QmlBook, notify=book_changed)
     def book(self):
-        return self._book
+        return self._application.book
+
+    ##############################################
+
+    @Slot()
+    def init_scanner(self):
+
+        def job():
+            return self._application.init_scanner()
+
+        worker = Worker(job)
+        # worker.signals.result.connect(self.print_output)
+        worker.signals.finished.connect(self.scanner_ready)
+        # worker.signals.progress.connect(self.progress_fn)
+
+        Application.instance.thread_pool.start(worker)
+
+    ##############################################
+
+    @Property(QmlScanner, constant=True)
+    def scanner(self):
+        return self._application.scanner
+
+    ##############################################
+
+    @Slot()
+    def debug(self):
+
+        # self._application.scanner.scan_done.connect(self._on_scan_done)
+
+        self._application.scanner.preview_done.connect(self.preview_done)
+        self._application.scanner.file_exists_error.connect(self.file_exists_error)
+        self._application.scanner.scan_done.connect(self.scan_done)
+
+    ##############################################
+
+    def _on_scan_done(self, path):
+        self._logger.info(path)
+        self.scan_done.emit(path)
 
 ####################################################################################################
 
@@ -95,6 +140,8 @@ class Application(QObject):
     instance = None
 
     _logger = _module_logger.getChild('Application')
+
+    scanner_ready = Signal()
 
     ##############################################
 
@@ -142,6 +189,10 @@ class Application(QObject):
         self._thread_pool = QtCore.QThreadPool()
         self._logger.info("Multithreading with maximum {} threads".format(self._thread_pool.maxThreadCount()))
 
+        self._scanner = None
+        self._scanner_image_provider = ScannerImageProvider()
+        self._engine.addImageProvider('scanner_image',  self._scanner_image_provider)
+
         QTimer.singleShot(0, self._post_init)
 
         # self._view = QQuickView()
@@ -165,6 +216,14 @@ class Application(QObject):
     @property
     def thread_pool(self):
         return self._thread_pool
+
+    @property
+    def scanner_image_provider(self):
+        return self._scanner_image_provider
+
+    @property
+    def scanner(self):
+        return self.init_scanner()
 
     @property
     def book(self):
@@ -284,6 +343,7 @@ class Application(QObject):
         qmlRegisterUncreatableType(QmlApplication, 'BookBrowser', 1, 0, 'QmlApplication', 'Cannot create QmlApplication')
         qmlRegisterUncreatableType(QmlBook, 'BookBrowser', 1, 0, 'QmlBook', 'Cannot create QmlBook')
         qmlRegisterUncreatableType(QmlBookPage, 'BookBrowser', 1, 0, 'QmlBookPage', 'Cannot create QmlBookPage')
+        qmlRegisterUncreatableType(QmlScanner, 'BookBrowser', 1, 0, 'QmlScanner', 'Cannot create QmlScanner')
 
     ##############################################
 
@@ -357,3 +417,13 @@ class Application(QObject):
         except Exception as exception:
             self._on_critical_exception(exception)
         self._logger.info('User script done')
+
+    ##############################################
+
+    def init_scanner(self):
+
+        if self._scanner is None:
+            # take time
+            self._scanner = QmlScanner()
+            self.scanner_ready.emit()
+        return self._scanner
