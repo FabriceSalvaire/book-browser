@@ -84,6 +84,12 @@ ApplicationWindow {
 			zoom_full()
 		}
 	    }
+
+	    Widgets.Grid {
+		id: grid
+		visible: false
+		anchors.fill: parent
+	    }
 	}
     }
 
@@ -171,6 +177,14 @@ ApplicationWindow {
             }
 	    Label {
 		text: '/' + book.number_of_pages
+            }
+
+            ToolButton {
+		icon.source: 'qrc:/icons/36x36/grid-on-black.png'
+		checkable: true
+                onClicked: {
+		    grid.visible = !grid.visible
+                }
             }
 
             ToolButton {

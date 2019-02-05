@@ -18,3 +18,5 @@ copy-icon navigation last_page
 copy-icon navigation refresh
 copy-icon image image
 copy-icon image view_comfy
+copy-icon image grid_off
+copy-icon image grid_on
