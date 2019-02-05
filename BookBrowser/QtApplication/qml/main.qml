@@ -56,7 +56,6 @@ ApplicationWindow {
 		onShow_page: {
 		    page_viewer.to_page(page_number)
 		    stack_view.push(page_viewer_page)
-		    page_viewer.forceActiveFocus()
 		}
 	    }
 	}
@@ -69,20 +68,6 @@ ApplicationWindow {
 		anchors.fill: parent
 
 		book: application.book
-
-		Keys.onPressed: {
-		    var key = event.key
-		    if (key == Qt.Key_Space)
-			next_page()
-		    else if (key == Qt.Key_Backspace)
-			prev_page()
-		    else if (event.text == 'r')
-			flip()
-		    else if (event.text == 'f')
-			fit_to_screen()
-		    else if (event.text == 'z')
-			zoom_full()
-		}
 	    }
 
 	    Widgets.Grid {
@@ -93,76 +78,84 @@ ApplicationWindow {
 	}
     }
 
+    Action {
+	id: prev_page_action
+	icon.source: 'qrc:/icons/36x36/arrow-back-black.png'
+	shortcut: 'Backspace'
+	onTriggered: page_viewer.prev_page()
+    }
+
+    Action {
+	id: next_page_action
+	icon.source: 'qrc:/icons/36x36/arrow-forward-black.png'
+	shortcut: 'Space'
+	onTriggered: page_viewer.next_page()
+    }
+
+    Action {
+	id: flip_action
+	icon.source: 'qrc:/icons/36x36/swap-vert-black.png'
+	shortcut: 'r'
+	onTriggered: page_viewer.flip()
+    }
+
+    Action {
+	id: fit_to_screen_action
+	icon.source: 'qrc:/icons/36x36/settings-overscan-black.png'
+	shortcut: 'f'
+	onTriggered: page_viewer.fit_to_screen()
+    }
+
+    Action {
+	id: zoom_full_action
+	icon.source: 'qrc:/icons/36x36/zoom-fit-width.png'
+	shortcut: 'z'
+	onTriggered: page_viewer.zoom_full()
+    }
+
     header: ToolBar {
         RowLayout {
             ToolButton {
 		icon.source: 'qrc:/icons/36x36/view-comfy-black.png'
-                onClicked: {
-		    stack_view.pop()
-                }
+                onClicked: stack_view.pop()
             }
             ToolButton {
 		icon.source: 'qrc:/icons/36x36/image-black.png'
-                onClicked: {
-		    stack_view.push(page_viewer_page)
-                }
+                onClicked: stack_view.push(page_viewer_page)
             }
 
             ToolButton {
 		icon.source: 'qrc:/icons/36x36/zoom-out-black.png'
-                onClicked: {
-                    page_viewer.zoom_out()
-                }
+                onClicked: page_viewer.zoom_out()
             }
             ToolButton {
-		icon.source: 'qrc:/icons/36x36/settings-overscan-black.png'
-                onClicked: {
-                    page_viewer.fit_to_screen()
-                }
+		action: fit_to_screen_action
             }
             ToolButton {
-		icon.source: 'qrc:/icons/36x36/zoom-fit-width.png'
-                onClicked: {
-                    page_viewer.zoom_full()
-                }
+		action: zoom_full_action
             }
             ToolButton {
 		icon.source: 'qrc:/icons/36x36/zoom-in-black.png'
-                onClicked: {
-                    page_viewer.zoom_in()
-                }
+                onClicked: page_viewer.zoom_in()
             }
 
             ToolButton {
-		icon.source: 'qrc:/icons/36x36/swap-vert-black.png'
-                onClicked: {
-                    page_viewer.flip()
-                }
+		action: flip_action
             }
 
             ToolButton {
 		icon.source: 'qrc:/icons/36x36/first-page-black.png'
-                onClicked: {
-		    page_viewer.first_page()
-                }
+                onClicked: page_viewer.first_page()
             }
             ToolButton {
-		icon.source: 'qrc:/icons/36x36/arrow-back-black.png'
-                onClicked: {
-                    page_viewer.prev_page()
-                }
+		action: prev_page_action
             }
             ToolButton {
-		icon.source: 'qrc:/icons/36x36/arrow-forward-black.png'
-                onClicked: {
-                    page_viewer.next_page()
-                }
+		action: next_page_action
             }
             ToolButton {
 		icon.source: 'qrc:/icons/36x36/last-page-black.png'
-                onClicked: {
-		    page_viewer.last_page()
-                }
+                onClicked: page_viewer.last_page()
             }
 	    SpinBox {
 		id: page_number
@@ -171,9 +164,7 @@ ApplicationWindow {
 		to: book.number_of_pages
 		value: page_viewer.book_page ? page_viewer.book_page.page_number: 0
 
-		onValueModified: {
-		    page_viewer.to_page(value)
-		}
+		onValueModified: page_viewer.to_page(value)
             }
 	    Label {
 		text: '/' + book.number_of_pages
@@ -182,9 +173,7 @@ ApplicationWindow {
             ToolButton {
 		icon.source: 'qrc:/icons/36x36/grid-on-black.png'
 		checkable: true
-                onClicked: {
-		    grid.visible = !grid.visible
-                }
+                onClicked: grid.visible = !grid.visible
             }
 
             ToolButton {
