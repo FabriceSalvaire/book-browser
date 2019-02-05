@@ -187,8 +187,9 @@ class Scanner:
         return [self._get_option_constraint(name) for name in self.AREA_OPTIONS]
 
     @area.setter
-    def area(self, x_inf, x_sup, y_inf, y_sup):
-        for name, value in zip(self.AREA_OPTIONS, (x_inf, x_sup, y_inf, y_sup)):
+    def area(self, bounds):
+        # x_inf, x_sup, y_inf, y_sup = bounds
+        for name, value in zip(self.AREA_OPTIONS, bounds):
             self._set_option(name, value)
 
     ##############################################

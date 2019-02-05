@@ -180,21 +180,36 @@ class QmlScanner(QObject):
 
     area_changed = Signal()
 
-    @Property(int, notify=area_changed)
+    @Property(str, notify=area_changed)
     def area(self):
         if self:
             return self._scanner.area
         else:
             return 0
 
-    # @Property
-    # def area_constraint(self):
-    #     return self._scanner.area_constraint
+    @Property('QStringList', constant=True)
+    def area_constraint(self):
+        return self._scanner.area_constraint
 
     @area.setter
     def area(self, value):
         if self:
-            self._scanner.area = value
+            x_inf, x_sup, y_inf, y_sup = [float(x)/10000 for x in value.split(',')]
+            # Fixme:
+            print(x_inf, x_sup, y_inf, y_sup)
+            print(self._scanner.area_constraint)
+            # 0 0 667.8135955536554 921
+            # [(0, 14149222, 0), (0, 14149222, 0), (0, 19475988, 0), (0, 19475988, 0)]
+            constraint = self._scanner.area_constraint
+            scanner_width = constraint[0][1]
+            scanner_height = constraint[1][1]
+            area = [int(x) for x in (
+                x_inf*scanner_width,  x_sup*scanner_width,
+                y_inf*scanner_height, y_sup*scanner_height,
+            )
+            ]
+            print(area)
+            self._scanner.area = area
 
     ##############################################
 
@@ -218,18 +233,21 @@ class QmlScanner(QObject):
     @Slot()
     def scan_image(self):
 
+        self._logger.info('')
+
         if not self:
             return self._fake_scan()
 
         from .QmlApplication import Application
 
         def job():
-            image = self.scan_image()
+            # self._scanner.maximize_scan_area() # Fixme: here ok ???
+            image = self._scanner.scan_image()
             Application.instance.scanner_image_provider.output = image
-            return ''
+            return 'foo.png' # Fixme:
 
         worker = Worker(job)
-        worker.signals.result.connect(self.scan_done)
+        worker.signals.result.connect(self.preview_done)
         # worker.signals.finished.connect()
         # worker.signals.progress.connect()
 
@@ -240,6 +258,8 @@ class QmlScanner(QObject):
 
     @Slot(str, str, bool, int)
     def scan(self, filename_path, filename_pattern, overwrite, index):
+
+        self._logger.info('')
 
         if not self:
             return self._fake_scan(filename_path, filename_pattern, overwrite, index)

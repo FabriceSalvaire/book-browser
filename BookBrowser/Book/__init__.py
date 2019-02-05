@@ -283,7 +283,7 @@ class Book:
         self._pages = None
         self._get_pages()
         if self.number_of_pages:
-            self._number_of_digits = int(math.log10(number_of_pages)) + 1
+            self._number_of_digits = int(math.log10(self.number_of_pages)) + 1
         else:
             self._number_of_digits = 3 # Fixme: ???
         self.check()

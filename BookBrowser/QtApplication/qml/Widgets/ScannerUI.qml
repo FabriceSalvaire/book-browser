@@ -17,6 +17,8 @@
  *
  ***************************************************************************************************/
 
+// Fixme: selection area, label, backup
+
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.11
@@ -29,6 +31,7 @@ Item {
 
     property bool dirty_selection_area: true
     property bool is_preview_scan: false
+    property bool valid_selection_area: false
 
     Component.onCompleted: {
 	console.info('ScannerUI.onCompleted')
@@ -74,8 +77,8 @@ Item {
     function on_preview_done(path) {
 	console.info('on_preview_done', path)
 	if (path) {
-	    image_preview.source = 'image://scanner_image/' + path
 	    is_preview_scan = true
+	    image_preview.source = 'image://scanner_image/' + path
 	}
     }
 
@@ -88,8 +91,10 @@ Item {
     function on_scan_done(path) {
 	console.info('on_scan_done', path)
 	if (path) {
-	    image_preview.source = path
 	    is_preview_scan = false
+	    image_preview.source = path
+	    filename_count.increment()
+	    valid_selection_area = true
 	}
     }
 
@@ -156,8 +161,13 @@ Item {
 		    radius: 10
 		}
 		onClicked: {
-		    scanner.scan(filename_path.text, filename_pattern.text, false, filename_count.text)
+		    if (valid_selection_area) {
+			if (dirty_selection_area)
+			    scanner.area = image_preview.bounds()
+		    } else
+			scanner.maximize_scan_area()
 		    selection_area.visible = false
+		    scanner.scan(filename_path.text, filename_pattern.text, false, filename_count.text)
 		}
 	    }
 
@@ -171,8 +181,8 @@ Item {
 		    radius: 10
 		}
 		onClicked: {
+		    scanner.maximize_scan_area()
 		    scanner.scan_image()
-		    selection_area.visible = true
 		}
 	    }
 
@@ -192,11 +202,16 @@ Item {
 		TextField {
 		    id: filename_pattern
 		    Layout.fillWidth: true
-		    text: 'foo-{:3}.png'
+		    text: 'foo.{:03}.png'
 		}
 		TextField {
 		    id: filename_count
-		    text: '1'
+		    // Fixme: take last !!
+		    text: application.book ? Math.max(application.book.number_of_pages +1, 1) : '1'
+
+		    function increment(string) {
+			text = String(parseInt(text) + 1)
+		    }
 		}
 	    }
 
@@ -253,6 +268,34 @@ Item {
 		    height: 100
 		}
 
+		function maximise_area() {
+		    selection_area.x = 0
+		    selection_area.y = 0
+		    selection_area.width = image_preview.paintedWidth
+		    selection_area.height = image_preview.paintedHeight
+		    selection_area.visible = true
+		}
+
+		function bounds() {
+		    var x_inf = selection_area.x
+		    var y_inf = selection_area.y
+		    var x_sup = x_inf + selection_area.width
+		    var y_sup = y_inf + selection_area.height
+		    var scale = 10000
+		    x_inf *= scale / image_preview.paintedWidth
+		    x_sup *= scale / image_preview.paintedWidth
+		    y_inf *= scale / image_preview.paintedHeight
+		    y_sup *= scale / image_preview.paintedHeight
+		    return x_inf + ',' + x_sup + ',' + y_inf + ',' + y_sup
+		}
+
+		onStatusChanged: {
+                    if (status === Image.Ready) {
+			if (is_preview_scan)
+			    maximise_area()
+		    }
+		}
+
 		MouseArea {
 		    anchors.fill: parent
 
@@ -266,7 +309,7 @@ Item {
 			var y_inf = selection_area.y
 			var x_sup = x_inf + selection_area.width
 			var y_sup = y_inf + selection_area.height
-			var margin = 50
+			var margin = 100
 
 			if (x < (x_inf + margin))
 			    x_handler = 1

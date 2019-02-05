@@ -99,7 +99,8 @@ class QmlApplication(QObject):
     def init_scanner(self):
 
         def job():
-            return self._application.init_scanner()
+            self._application.init_scanner()
+            return '' # Fixme:
 
         worker = Worker(job)
         # worker.signals.result.connect(self.print_output)

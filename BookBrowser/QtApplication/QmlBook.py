@@ -47,7 +47,7 @@ _module_logger = logging.getLogger(__name__)
 ####################################################################################################
 
 thumbnail_cache = FreeDesktopThumbnailCache()
-thumbnail_cache.clear_cache()
+#! thumbnail_cache.clear_cache()
 
 ####################################################################################################
 
