@@ -51,6 +51,8 @@ ApplicationWindow {
 		id: thumbnail_viewer
 		anchors.fill: parent
 
+		thumbnail_model: book.pages
+
 		onShow_page: {
 		    page_viewer.to_page(page_number)
 		    stack_view.push(page_viewer_page)

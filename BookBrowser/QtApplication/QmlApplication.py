@@ -139,6 +139,9 @@ class Application(QObject):
 
         # self._run_before_event_loop()
 
+        self._thread_pool = QtCore.QThreadPool()
+        self._logger.info("Multithreading with maximum {} threads".format(self._thread_pool.maxThreadCount()))
+
         QTimer.singleShot(0, self._post_init)
 
         # self._view = QQuickView()
@@ -158,6 +161,10 @@ class Application(QObject):
     @property
     def qml_application(self):
         return self._qml_application
+
+    @property
+    def thread_pool(self):
+        return self._thread_pool
 
     @property
     def book(self):

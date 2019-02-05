@@ -33,6 +33,7 @@ from functools import lru_cache
 from pathlib import Path
 import hashlib
 import logging
+import os
 import shutil
 
 from PIL import Image
@@ -63,9 +64,13 @@ class FreeDesktopThumbnailCache:
         self._normal_path = self._path.joinpath('normal')
         self._large_path = self._path.joinpath('large')
 
+        for path in (self._path, self._normal_path, self._large_path):
+            if not path.exists():
+                os.mkdir(path)
+
     ##############################################
 
-    @lru_cache(maxsize=32)
+    @lru_cache(maxsize=512)
     def mangle_path(self, path):
         uri = 'file://' + str(path)
         return hashlib.md5(uri.encode('utf-8')).hexdigest() + self.IMAGE_EXTENSION
@@ -102,7 +107,8 @@ class FreeDesktopThumbnailCache:
     ##############################################
 
     def clear_cache(self):
-        shutil.rmtree(str(self._path), ignore_errors=True)
+        self._logger.info('Clear thumbnail cache {}'.format(self._path))
+        #! shutil.rmtree(str(self._path), ignore_errors=True)
 
     ##############################################
 
@@ -133,9 +139,7 @@ class FreeDesktopThumbnailCache:
         if not self.has_thumbnail(path, is_normal):
             self._logger.info('Make thumbnail for {}'.format(path))
             self.make_thumbnail(path, is_normal)
-        path = self.thumbnail_path(path, is_normal)
-        self._logger.info(path)
-        return path
+        return self.thumbnail_path(path, is_normal)
 
     def normal_thumbnail(self, path):
         return self.thumbnail(path, True)

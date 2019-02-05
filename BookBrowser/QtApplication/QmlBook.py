@@ -38,6 +38,7 @@ from QtShim.QtCore import (
 
 from BookBrowser.Thumbnail import FreeDesktopThumbnailCache # Fixme: Linux only
 from BookBrowser.Book import Book
+from .Runnable import Worker
 
 ####################################################################################################
 
@@ -46,12 +47,15 @@ _module_logger = logging.getLogger(__name__)
 ####################################################################################################
 
 thumbnail_cache = FreeDesktopThumbnailCache()
+thumbnail_cache.clear_cache()
 
 ####################################################################################################
 
 class QmlBookPage(QObject):
 
     _logger = _module_logger.getChild('QmlBookPage')
+
+    thumbnail_ready = Signal()
 
     ##############################################
 
@@ -76,11 +80,32 @@ class QmlBookPage(QObject):
 
     ##############################################
 
+    @Property(int, constant=True)
+    def large_thumbnail_size(self):
+        return FreeDesktopThumbnailCache.LARGE_SIZE
+
     large_thumbnail_pathChanged = Signal()
 
     @Property(str, notify=large_thumbnail_pathChanged)
     def large_thumbnail_path(self):
-        return str(thumbnail_cache.large_thumbnail(self._page.path))
+        # return str(thumbnail_cache.large_thumbnail(self._page.path))
+        return str(thumbnail_cache.large_thumbnail_path(self._page.path))
+
+    ##############################################
+
+    @Slot()
+    def request_large_thumbnail(self):
+
+        def job():
+            return str(thumbnail_cache.large_thumbnail(self._page.path))
+
+        worker = Worker(job)
+        # worker.signals.result.connect(self.print_output)
+        worker.signals.finished.connect(self.thumbnail_ready)
+        # worker.signals.progress.connect(self.progress_fn)
+
+        from .QmlApplication import Application
+        Application.instance.thread_pool.start(worker)
 
     ##############################################
 
