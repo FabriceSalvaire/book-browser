@@ -173,7 +173,11 @@ ApplicationWindow {
             ToolButton {
 		icon.source: 'qrc:/icons/36x36/grid-on-black.png'
 		checkable: true
-                onClicked: grid.visible = !grid.visible
+                onClicked: {
+		    grid.visible = !grid.visible
+		    // else button receive the key event
+		    page_viewer.forceActiveFocus()
+		}
             }
 
             ToolButton {
