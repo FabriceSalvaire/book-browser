@@ -32,9 +32,14 @@ __all__ = ['FreeDesktopThumbnailCache']
 from functools import lru_cache
 from pathlib import Path
 import hashlib
+import logging
 import shutil
 
 from PIL import Image
+
+####################################################################################################
+
+_module_logger = logging.getLogger(__name__)
 
 ####################################################################################################
 
@@ -47,6 +52,8 @@ class FreeDesktopThumbnailCache:
     IMAGE_FORMAT = 'png'
     IMAGE_EXTENSION = '.' + IMAGE_FORMAT
     SAMPLING = Image.BICUBIC
+
+    _logger = _module_logger.getChild('FreeDesktopThumbnailCache')
 
     ##############################################
 
@@ -102,7 +109,7 @@ class FreeDesktopThumbnailCache:
     @classmethod
     def _make_thumbnail(cls, src_path, dst_path, size):
         image = Image.open(str(src_path))
-        image.thumbnail(size, resample=cls.SAMPLING)
+        image.thumbnail((size, size), resample=cls.SAMPLING)
         image.save(str(dst_path))
 
     ##############################################
@@ -121,14 +128,17 @@ class FreeDesktopThumbnailCache:
 
     ##############################################
 
-    def get_thumbnail(self, path, is_normal=True):
+    def thumbnail(self, path, is_normal=True):
         # Fixme: mangle x3
         if not self.has_thumbnail(path, is_normal):
+            self._logger.info('Make thumbnail for {}'.format(path))
             self.make_thumbnail(path, is_normal)
-        return self.thumbnail_path(path, is_normal)
+        path = self.thumbnail_path(path, is_normal)
+        self._logger.info(path)
+        return path
 
-    def get_normal_thumbnail(self, path):
-        return self.get_thumbnail(path, True)
+    def normal_thumbnail(self, path):
+        return self.thumbnail(path, True)
 
-    def get_large_thumbnail(self, path):
-        return self.get_thumbnail(path, False)
+    def large_thumbnail(self, path):
+        return self.thumbnail(path, False)

@@ -76,6 +76,14 @@ class QmlBookPage(QObject):
 
     ##############################################
 
+    large_thumbnail_pathChanged = Signal()
+
+    @Property(str, notify=large_thumbnail_pathChanged)
+    def large_thumbnail_path(self):
+        return str(thumbnail_cache.large_thumbnail(self._page.path))
+
+    ##############################################
+
     page_numberChanged = Signal()
 
     @Property(int, notify=page_numberChanged)
@@ -138,7 +146,9 @@ class QmlBook(QObject):
 
     ##############################################
 
-    @Property(QQmlListProperty)
+    pagesChanged = Signal()
+
+    @Property(QQmlListProperty, notify=pagesChanged)
     def pages(self):
         return QQmlListProperty(QmlBookPage, self, self._pages)
 

@@ -8,6 +8,7 @@ copy-icon action settings_overscan
 copy-icon action zoom_in
 copy-icon action zoom_out
 copy-icon action swap_vert
+copy-icon action view_module
 copy-icon navigation arrow_back
 copy-icon navigation arrow_forward
 copy-icon navigation chevron_left
@@ -15,3 +16,5 @@ copy-icon navigation chevron_right
 copy-icon navigation first_page
 copy-icon navigation last_page
 copy-icon navigation refresh
+copy-icon image image
+copy-icon image view_comfy

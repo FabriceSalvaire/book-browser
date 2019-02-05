@@ -32,7 +32,7 @@ ApplicationWindow {
     width: 1000
     height: 500
 
-    // property var book: application.book
+    property var book: application.book
 
     Component.onCompleted: {
 	console.info('ApplicationWindow.onCompleted')
@@ -40,19 +40,66 @@ ApplicationWindow {
 	page_viewer.first_page()
     }
 
-    Page {
+    StackView {
+        id: stack_view
         anchors.fill: parent
 
-	Widgets.PageViewer {
-	    id: page_viewer
-	    anchors.fill: parent
+        initialItem: Page {
+    	    id: thumbnail_page
 
-	    book: application.book
+	    Widgets.ThumbnailViewer {
+		id: thumbnail_viewer
+		anchors.fill: parent
+
+		onShow_page: {
+		    page_viewer.to_page(page_number)
+		    stack_view.push(page_viewer_page)
+		    page_viewer.forceActiveFocus()
+		}
+	    }
+	}
+
+	Page {
+	    id: page_viewer_page
+
+	    Widgets.PageViewer {
+		id: page_viewer
+		anchors.fill: parent
+
+		book: application.book
+
+		Keys.onPressed: {
+		    var key = event.key
+		    if (key == Qt.Key_Space)
+			next_page()
+		    else if (key == Qt.Key_Backspace)
+			prev_page()
+		    else if (event.text == 'r')
+			flip()
+		    else if (event.text == 'f')
+			fit_to_screen()
+		    else if (event.text == 'z')
+			zoom_full()
+		}
+	    }
 	}
     }
 
     header: ToolBar {
         RowLayout {
+            ToolButton {
+		icon.source: 'qrc:/icons/36x36/view-comfy-black.png'
+                onClicked: {
+		    stack_view.pop()
+                }
+            }
+            ToolButton {
+		icon.source: 'qrc:/icons/36x36/image-black.png'
+                onClicked: {
+		    stack_view.push(page_viewer_page)
+                }
+            }
+
             ToolButton {
 		icon.source: 'qrc:/icons/36x36/zoom-out-black.png'
                 onClicked: {
@@ -133,21 +180,6 @@ ApplicationWindow {
                 }
             }
         }
-
-	focus: true
-	Keys.onPressed: {
-	    var key = event.key
-            if (key == Qt.Key_Space)
-		page_viewer.next_page()
-            else if (key == Qt.Key_Backspace)
-		page_viewer.prev_page()
-            else if (event.text == 'r')
-		page_viewer.flip()
-            else if (event.text == 'f')
-		page_viewer.fit_to_screen()
-            else if (event.text == 'z')
-		page_viewer.zoom_full()
-	}
     }
 
     footer: ToolBar {
