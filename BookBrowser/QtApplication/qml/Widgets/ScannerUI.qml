@@ -139,9 +139,15 @@ Item {
 	preview_scan_button.enabled = status
     }
 
-    function scan_preview() {
-	application_window.show_message('Maximize scan area')
+    function maximize_scan_area() {
 	scanner.maximize_scan_area()
+	scan_area_label.set_maximised()
+	application_window.show_message('Maximize scan area')
+
+    }
+
+    function scan_preview() {
+	maximize_scan_area()
 	enable_scan_button(false)
 	scanner.scan_image()
     }
@@ -157,13 +163,13 @@ Item {
 	if (valid_selection_area) {
 	    if (dirty_selection_area) {
 		var bounds = image_preview.bounds()
-		application_window.show_message('Reset bounds ' + bounds)
+		scan_area_label.set_custon()
+		application_window.show_message('Reset bounds to ' + bounds)
 		scanner.area = bounds
 		dirty_selection_area = false
 	    }
 	} else {
-	    application_window.show_message('Maximize scan area')
-	    scanner.maximize_scan_area()
+	    maximize_scan_area()
 	    dirty_selection_area = false
 	    valid_selection_area = true
 	}
@@ -340,6 +346,21 @@ Item {
 		    id: mode_combobox
 		    model: scanner ? scanner.modes : []
 		    onAccepted: scanner.mode = editText
+		}
+	    }
+
+	    RowLayout {
+		Label {
+		    text: qsTr('Scan Area')
+		}
+		Label {
+		    id: scan_area_label
+		    function set_maximised() {
+			text = qsTr('Maximised')
+		    }
+		    function set_custon() {
+			text = qsTr('Custom')
+		    }
 		}
 	    }
 	}
