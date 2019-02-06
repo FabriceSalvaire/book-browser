@@ -158,15 +158,28 @@ Item {
 	scanner.scan(filename_path.text, filename_pattern.text, overwrite, filename_count.value)
     }
 
+    function to_percent(x) {
+	return Math.round(x*100)
+    }
+
     function scan_page() {
 	application_window.clear_message()
 
 	if (valid_selection_area) {
 	    if (dirty_selection_area) {
 		var bounds = image_preview.bounds()
+		var x_inf = bounds[0]
+		var x_sup = bounds[1]
+		var y_inf = bounds[2]
+		var y_sup = bounds[3]
+		var percent_bounds = bounds.map(to_percent)
+		var x_inf_p = percent_bounds[0]
+		var x_sup_p = percent_bounds[1]
+		var y_inf_p = percent_bounds[2]
+		var y_sup_p = percent_bounds[3]
 		scan_area_label.set_custon()
-		application_window.show_message('Reset bounds to ' + bounds)
-		scanner.area = bounds
+		application_window.show_message('Reset bounds to [%1, %2, %3, %4] %'.arg(x_inf_p).arg(x_sup_p).arg(y_inf_p).arg(y_sup_p))
+		scanner.set_area(x_inf, x_sup, y_inf, y_sup)
 		dirty_selection_area = false
 	    }
 	} else {

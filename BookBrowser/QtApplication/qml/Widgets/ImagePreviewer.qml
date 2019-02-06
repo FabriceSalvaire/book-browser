@@ -48,12 +48,11 @@ Image {
 	var y_inf = selection_area.y
 	var x_sup = x_inf + selection_area.width
 	var y_sup = y_inf + selection_area.height
-	var scale = 10000
-	x_inf *= scale / image_preview.paintedWidth
-	x_sup *= scale / image_preview.paintedWidth
-	y_inf *= scale / image_preview.paintedHeight
-	y_sup *= scale / image_preview.paintedHeight
-	return x_inf + ',' + x_sup + ',' + y_inf + ',' + y_sup
+	x_inf /= image_preview.paintedWidth
+	x_sup /= image_preview.paintedWidth
+	y_inf /= image_preview.paintedHeight
+	y_sup /= image_preview.paintedHeight
+	return [x_inf, x_sup, y_inf, y_sup]
     }
 
     onStatusChanged: {

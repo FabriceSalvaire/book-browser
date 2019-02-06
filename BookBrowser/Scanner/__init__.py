@@ -36,6 +36,7 @@ __all__ = [
 
 from pathlib import Path
 import logging
+
 import pyinsane2
 
 ####################################################################################################
@@ -56,7 +57,7 @@ class Scanner:
     __initialised__ = False
 
     _logger = _module_logger.getChild('Scanner')
-
+    
     AREA_OPTIONS = ('tl-x', 'br-x', 'tl-y', 'br-y')
 
     ##############################################
@@ -184,13 +185,44 @@ class Scanner:
 
     @property
     def area_constraint(self):
+        # [(0, 14149222, 0), (0, 14149222, 0),
+        #  (0, 19475988, 0), (0, 19475988, 0)]
         return [self._get_option_constraint(name) for name in self.AREA_OPTIONS]
+
+    @property
+    def area_constraint_x_inf(self):
+        return self.area_constraint[0][0]
+
+    @property
+    def area_constraint_x_sup(self):
+        return self.area_constraint[0][1]
+
+    @property
+    def area_constraint_y_inf(self):
+        return self.area_constraint[2][0]
+
+    @property
+    def area_constraint_y_sup(self):
+        return self.area_constraint[2][1]
 
     @area.setter
     def area(self, bounds):
         # x_inf, x_sup, y_inf, y_sup = bounds
+        self._logger.info('Set scanner area to {}'.format(bounds))
         for name, value in zip(self.AREA_OPTIONS, bounds):
             self._set_option(name, value)
+
+    def set_area_as_scale(self, x_inf, x_sup, y_inf, y_sup):
+        bounds = (x_inf, x_sup, y_inf, y_sup)
+        self._logger.info('Set scanner area to {} %'.format(bounds))
+        scanner_width = self.area_constraint_x_sup
+        scanner_height = self.area_constraint_y_sup
+        area = [int(round(x)) for x in (
+            x_inf*scanner_width,  x_sup*scanner_width,
+            y_inf*scanner_height, y_sup*scanner_height,
+        )
+        ]
+        self.area = area
 
     ##############################################
 
