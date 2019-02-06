@@ -42,6 +42,11 @@ ApplicationWindow {
 	page_viewer.first_page()
     }
 
+    /***********************************************************************************************
+     *
+     * API
+     *
+     */
 
     function clear_message() {
 	message_label.text = ''
@@ -51,55 +56,11 @@ ApplicationWindow {
 	message_label.text = message
     }
 
-
-    StackView {
-        id: stack_view
-        anchors.fill: parent
-
-        initialItem: Page {
-    	    id: thumbnail_page
-
-	    Widgets.ThumbnailViewer {
-		id: thumbnail_viewer
-		anchors.fill: parent
-
-		thumbnail_model: book.pages
-
-		onShow_page: {
-		    page_viewer.to_page(page_number)
-		    stack_view.push(page_viewer_page)
-		}
-	    }
-	}
-
-	Page {
-	    id: page_viewer_page
-
-	    Widgets.PageViewer {
-		id: page_viewer
-		anchors.fill: parent
-
-		book: application.book
-	    }
-
-	    Widgets.Grid {
-		id: grid
-		visible: false
-		anchors.fill: parent
-	    }
-	}
-
-	Page {
-	    id: scanner_page
-
-	    Widgets.ScannerUI {
-		id: scanner_ui
-		anchors.fill: parent
-
-		// scanner: application.scanner
-	    }
-	}
-    }
+    /***********************************************************************************************
+     *
+     * Actions
+     *
+     */
 
     Action {
 	id: prev_page_action
@@ -135,6 +96,12 @@ ApplicationWindow {
 	shortcut: 'z'
 	onTriggered: page_viewer.zoom_full()
     }
+
+    /***********************************************************************************************
+     *
+     * Header
+     *
+     */
 
     header: ToolBar {
         RowLayout {
@@ -230,6 +197,67 @@ ApplicationWindow {
             }
         }
     }
+
+    /***********************************************************************************************
+     *
+     * Items
+     *
+     */
+
+    StackView {
+        id: stack_view
+        anchors.fill: parent
+
+        initialItem: Page {
+    	    id: thumbnail_page
+
+	    Widgets.ThumbnailViewer {
+		id: thumbnail_viewer
+		anchors.fill: parent
+
+		thumbnail_model: book.pages
+
+		onShow_page: {
+		    page_viewer.to_page(page_number)
+		    stack_view.push(page_viewer_page)
+		}
+	    }
+	}
+
+	Page {
+	    id: page_viewer_page
+
+	    Widgets.PageViewer {
+		id: page_viewer
+		anchors.fill: parent
+
+		book: application.book
+	    }
+
+	    Widgets.Grid {
+		id: grid
+		visible: false
+		anchors.fill: parent
+	    }
+	}
+
+	Page {
+	    id: scanner_page
+
+	    Widgets.ScannerUI {
+		id: scanner_ui
+		anchors.fill: parent
+
+		// scanner: application.scanner
+	    }
+	}
+    }
+
+    /***********************************************************************************************
+     *
+     * Footer
+     *
+     */
 
     footer: ToolBar {
         RowLayout {
