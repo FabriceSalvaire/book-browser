@@ -26,6 +26,8 @@ import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.11
 import QtQuick.Dialogs 1.0
 
+import Widgets 1.0 as Widgets
+
 Item {
     id: scanner_ui
 
@@ -51,7 +53,7 @@ Item {
     function on_scanner_ready() {
 	console.info('on_scanner_ready', application.scanner.has_device)
 	var has_device = application.scanner.has_device
-	// has_device = true // debug
+	has_device = true // debug
 	if (has_device) {
 	    scanner = application.scanner
 
@@ -73,6 +75,8 @@ Item {
 	    application.preview_done.connect(on_preview_done)
 	    application.file_exists_error.connect(on_file_exists_error)
 	    application.scan_done.connect(on_scan_done)
+
+	    image_preview.image_ready.connect(on_image_ready)
 
 	    if (application.book)
 		filename_count.text = Math.max(application.book.number_of_pages +1, 1)
@@ -113,6 +117,11 @@ Item {
 	    enable_scan_button(true)
 	    application_window.show_message('Saved ' + path)
 	}
+    }
+
+    function on_image_ready() {
+	if (is_preview_scan)
+	    image_preview.maximise_area()
     }
 
 
@@ -286,131 +295,11 @@ Item {
 	    Layout.fillWidth: true
 	    Layout.fillHeight: true
 
-	    Image {
+	    Widgets.ImagePreviewer {
 	    	id: image_preview
-	    	anchors.fill: parent
+		anchors.fill: parent
 		horizontalAlignment: Image.AlignLeft
 		verticalAlignment: Image.AlignTop
-	    	fillMode: Image.PreserveAspectFit
-
-	    	// source: '/home/fabrice/book-browser/foo.png'
-
-		Rectangle {
-		    id: selection_area
-		    visible: false
-		    color: '#aaaaaaff'
-		    x: 0
-		    y: 0
-		    width: 100
-		    height: 100
-		}
-
-		function maximise_area() {
-		    selection_area.x = 0
-		    selection_area.y = 0
-		    selection_area.width = image_preview.paintedWidth
-		    selection_area.height = image_preview.paintedHeight
-		    selection_area.visible = true
-		}
-
-		function bounds() {
-		    var x_inf = selection_area.x
-		    var y_inf = selection_area.y
-		    var x_sup = x_inf + selection_area.width
-		    var y_sup = y_inf + selection_area.height
-		    var scale = 10000
-		    x_inf *= scale / image_preview.paintedWidth
-		    x_sup *= scale / image_preview.paintedWidth
-		    y_inf *= scale / image_preview.paintedHeight
-		    y_sup *= scale / image_preview.paintedHeight
-		    return x_inf + ',' + x_sup + ',' + y_inf + ',' + y_sup
-		}
-
-		onStatusChanged: {
-                    if (status === Image.Ready) {
-			if (is_preview_scan)
-			    maximise_area()
-		    }
-		}
-
-		MouseArea {
-		    anchors.fill: parent
-
-		    property int x_handler: 0
-		    property int y_handler: 0
-
-		    function selection_area_start(mouse) {
-			var x = mouse.x
-			var y = mouse.y
-			var x_inf = selection_area.x
-			var y_inf = selection_area.y
-			var x_sup = x_inf + selection_area.width
-			var y_sup = y_inf + selection_area.height
-			var margin = 100
-
-			if (x < (x_inf + margin))
-			    x_handler = 1
-			else if ((x_sup - margin) < x)
-			    x_handler = 3
-			else
-			    x_handler = 2
-
-			if (y < (y_inf + margin))
-			    y_handler = 1
-			else if ((y_sup - margin) < y)
-			    y_handler = 3
-			else
-			    y_handler = 2
-
-			console.info('Handlers', x_handler, y_handler)
-		    }
-
-		    function selection_area_update(mouse) {
-			var x = Math.min(Math.max(mouse.x, 0), image_preview.paintedWidth)
-			var y = Math.min(Math.max(mouse.y, 0), image_preview.paintedHeight)
-			var x_inf = selection_area.x
-			var y_inf = selection_area.y
-
-			//  X   1  2  3
-			//  Y 1 ii xi si
-			//    2 ix xx sx
-			//    3 is xs ss
-
-			// console.info(x_handler, y_handler, x, y)
-			if (x_handler == 1) {
-			    selection_area.width = selection_area.width - (x - x_inf)
-			    selection_area.x = x
-			} else if (x_handler == 3)
-			    selection_area.width = x - x_inf
-
-			if (y_handler == 1) {
-			    selection_area.height = selection_area.height - (y - y_inf)
-			    selection_area.y = y
-			} else if (y_handler == 3)
-			    selection_area.height = y - y_inf
-		    }
-
-		    function selection_area_stop(mouse) {
-			x_handler = 0
-			y_handler = 0
-			dirty_selection_area = true
-		    }
-
-		    onPressed: {
-			if (selection_area.visible)
-			    selection_area_start(mouse)
-		    }
-
-		    onPositionChanged: {
-			if (selection_area.visible)
-			    selection_area_update(mouse)
-		    }
-
-		    onReleased: {
-			if (selection_area.visible)
-			    selection_area_stop(mouse)
-		    }
-		}
 	    }
 	}
     }

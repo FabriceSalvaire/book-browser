@@ -126,7 +126,8 @@ class QmlScanner(QObject):
 
     @Slot()
     def maximize_scan_area(self):
-        self._scanner.maximize_scan_area()
+        if self: # for debug
+            self._scanner.maximize_scan_area()
 
     ##############################################
 
@@ -134,14 +135,14 @@ class QmlScanner(QObject):
 
     @Property(int, notify=resolution_changed)
     def resolution(self):
-        if self:
+        if self: # for debug
             return self._scanner.resolution
         else:
             return 0
 
     @Property('QStringList', constant=True)
     def resolutions(self):
-        if self:
+        if self: # for debug
             return [str(x) for x in self._scanner.resolution_constraint]
         else:
             return []
@@ -149,7 +150,7 @@ class QmlScanner(QObject):
     @resolution.setter
     def resolution(self, value):
         self._logger.info('Set scanner resolution: {}'.format(value))
-        if self:
+        if self: # for debug
             self._scanner.resolution = int(value)
 
     ##############################################
@@ -158,14 +159,14 @@ class QmlScanner(QObject):
 
     @Property(str, notify=mode_changed)
     def mode(self):
-        if self:
+        if self: # for debug
             return self._scanner.mode
         else:
             return 'None'
 
     @Property('QStringList', constant=True)
     def modes(self):
-        if self:
+        if self: # for debug
             return self._scanner.mode_constraint
         else:
             return []
@@ -173,7 +174,7 @@ class QmlScanner(QObject):
     @mode.setter
     def mode(self, value):
         self._logger.info('Set scanner resolution: {}'.format(value))
-        if self:
+        if self: # for debug
             self._scanner.mode = str(value)
 
     ##############################################
@@ -182,7 +183,7 @@ class QmlScanner(QObject):
 
     @Property(str, notify=area_changed)
     def area(self):
-        if self:
+        if self: # for debug
             return self._scanner.area
         else:
             return 0
@@ -193,7 +194,7 @@ class QmlScanner(QObject):
 
     @area.setter
     def area(self, value):
-        if self:
+        if self: # for debug
             x_inf, x_sup, y_inf, y_sup = [float(x)/10000 for x in value.split(',')]
             # Fixme:
             print(x_inf, x_sup, y_inf, y_sup)
@@ -235,7 +236,7 @@ class QmlScanner(QObject):
 
         self._logger.info('')
 
-        if not self:
+        if not self: # for debug
             return self._fake_scan()
 
         from .QmlApplication import Application
