@@ -56,11 +56,29 @@ ApplicationWindow {
 	message_label.text = message
     }
 
+    function load_book(path) {
+	application.load_book(path)
+	show_message(qsTr('Loaded book at %1'.arg(path)))
+    }
+
     /***********************************************************************************************
      *
      * Actions
      *
      */
+
+    Action {
+	id: toggle_menubar_action
+	shortcut: 'm'
+	onTriggered: menubar.visible = !menubar.visible
+    }
+
+    Action {
+	id: reload_action
+	icon.source: 'qrc:/icons/36x36/refresh-black.png'
+	// shortcut: ''
+	onTriggered: load_book(book.path)
+    }
 
     Action {
 	id: prev_page_action
@@ -99,6 +117,59 @@ ApplicationWindow {
 
     /***********************************************************************************************
      *
+     * Dialogs
+     *
+     */
+
+    Widgets.AboutDialog {
+	id: about_dialog
+	title: qsTr('About Book Browser')
+	
+	about_message: application.about_message // qsTr('...')
+    }
+
+    Widgets.BookFolderDialog {
+	id: book_folder_dialog
+	onAccepted: {
+	    var path = book_folder_dialog.selected_path()
+	    load_book(path)
+	}
+    }
+
+    /***********************************************************************************************
+     *
+     * Menu
+     *
+
+     */
+
+    menuBar: MenuBar {
+	id: menubar
+
+	Menu {
+	    title: qsTr("&File")
+            Action {
+		text: qsTr("&Open...")
+		onTriggered: book_folder_dialog.open()
+	    }
+            MenuSeparator { }
+            Action {
+		text: qsTr("&Quit")
+		onTriggered: application_window.close()
+	    }
+        }
+
+        Menu {
+            title: qsTr("&Help")
+            Action {
+		text: qsTr("&About")
+		onTriggered: about_dialog.open()
+	    }
+        }
+    }
+
+    /***********************************************************************************************
+     *
      * Header
      *
      */
@@ -106,12 +177,7 @@ ApplicationWindow {
     header: ToolBar {
         RowLayout {
             ToolButton {
-		icon.source: 'qrc:/icons/36x36/refresh-black.png'
-                onClicked: {
-		    var path = book.path
-		    application.load_book(path)
-		    show_message(qsTr('Loaded book at %1'.arg(path)))
-		}
+		action: reload_action
             }
 
             ToolButton {

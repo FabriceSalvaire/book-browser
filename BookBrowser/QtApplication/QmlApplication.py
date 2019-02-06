@@ -51,8 +51,10 @@ from QtShim.QtQml import qmlRegisterUncreatableType
 from QtShim.QtQuick import QQuickPaintedItem, QQuickView
 # from QtShim.QtQuickControls2 import QQuickStyle
 
+import BookBrowser
 from BookBrowser.Common.ArgparseAction import PathAction
 from BookBrowser.Common.Platform import QtPlatform
+from . import Message as BookBrowserMessage
 from .QmlBook import QmlBook, QmlBookPage
 from .QmlScanner import ScannerImageProvider, QmlScanner
 from .Runnable import Worker
@@ -84,6 +86,12 @@ class QmlApplication(QObject):
         super().__init__()
 
         self._application = application
+
+    ##############################################
+
+    @Property(str, constant=True)
+    def about_message(self):
+        return BookBrowserMessage.about_message()
 
     ##############################################
 

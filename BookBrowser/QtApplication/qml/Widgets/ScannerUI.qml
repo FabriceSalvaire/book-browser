@@ -24,7 +24,6 @@
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.11
-import QtQuick.Dialogs 1.0
 
 import Widgets 1.0 as Widgets
 
@@ -221,22 +220,13 @@ Item {
 	    var overwrite = true
 	    call_scan_page(overwrite)
 	}
-	// onRejected: console.log("Cancel clicked")
     }
 
-    FileDialog {
-	id: file_dialog
-	title: qsTr('Please choose a folder')
-	folder: shortcuts.home
-	selectFolder: true
+    Widgets.BookFolderDialog {
+	id: book_folder_dialog
 	onAccepted: {
-            console.log('You chose: ' + file_dialog.fileUrls)
-	    filename_path.text = file_dialog.fileUrls[0]
+	    filename_path.text = book_folder_dialog.selected_path()
 	}
-	onRejected: {
-            console.log('Canceled')
-	}
-	// Component.onCompleted: visible = true
     }
 
     /***********************************************************************************************
@@ -302,7 +292,7 @@ Item {
 	    RowLayout {
 		ToolButton {
 		    icon.source: 'qrc:/icons/36x36/folder-black.png'
-                    onClicked: file_dialog.open()
+                    onClicked: book_folder_dialog.open()
 		}
 		TextField {
 		    id: filename_path
