@@ -124,7 +124,6 @@ ApplicationWindow {
     Widgets.AboutDialog {
 	id: about_dialog
 	title: qsTr('About Book Browser')
-	
 	about_message: application.about_message // qsTr('...')
     }
 
@@ -140,7 +139,6 @@ ApplicationWindow {
      *
      * Menu
      *
-
      */
 
     menuBar: MenuBar {
@@ -183,21 +181,21 @@ ApplicationWindow {
             ToolButton {
 		icon.source: 'qrc:/icons/36x36/view-comfy-black.png'
                 onClicked: {
-		    stack_view.pop()
+		    stack_layout.set_thumbnail_page()
 		}
             }
             ToolButton {
 		icon.source: 'qrc:/icons/36x36/image-black.png'
                 onClicked: {
-		    stack_view.push(page_viewer_page)
+		    stack_layout.set_viewer_page()
 		}
             }
             ToolButton {
 		icon.source: 'qrc:/icons/36x36/scanner-black.png'
                 onClicked: {
 		    // Fixme:
+		    stack_layout.set_scanner_page()
 		    scanner_ui.init()
-		    stack_view.push(scanner_page)
 		}
             }
 
@@ -270,11 +268,16 @@ ApplicationWindow {
      *
      */
 
-    StackView {
-        id: stack_view
-        anchors.fill: parent
+    StackLayout {
+	id: stack_layout
+	anchors.fill: parent
+	currentIndex: 0
 
-        initialItem: Page {
+	function set_thumbnail_page() { currentIndex = 0 }
+	function set_viewer_page() { currentIndex = 1 }
+	function set_scanner_page() { currentIndex = 2 }
+
+	Page {
     	    id: thumbnail_page
 
 	    Widgets.ThumbnailViewer {
@@ -285,7 +288,7 @@ ApplicationWindow {
 
 		onShow_page: {
 		    page_viewer.to_page(page_number)
-		    stack_view.push(page_viewer_page)
+		    stack_layout.set_viewer_page()
 		}
 	    }
 	}

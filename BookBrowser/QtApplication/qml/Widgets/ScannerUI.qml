@@ -48,6 +48,7 @@ Item {
 
     function init() {
 	if (!scanner) {
+	    busy_indicator.running = true
 	    application.init_scanner()
 	    application.scanner_ready.connect(on_scanner_ready)
 	}
@@ -61,6 +62,7 @@ Item {
 
     function on_scanner_ready() {
 	console.info('on_scanner_ready', application.scanner.has_device)
+	busy_indicator.running = false
 	var has_device = application.scanner.has_device
 	has_device = true // debug
 	if (has_device) {
@@ -255,7 +257,8 @@ Item {
 		    text: scanner ? scanner.device : ''
 		}
 		BusyIndicator {
-		    running: !scanner
+		    id: busy_indicator
+		    running: false
 		}
 	    }
 
