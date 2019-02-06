@@ -226,8 +226,8 @@ class QmlScanner(QObject):
 
         self._logger.info('Fake scan {} {}'.format(args, kwargs))
         # self.file_exists_error.emit('foo.png')
-        self.preview_done.emit('foo.png')
-        # self.scan_done.emit('/home/fabrice/book-browser/foo.png')
+        # self.preview_done.emit('foo.png')
+        self.scan_done.emit('/home/fabrice/book-browser/foo.png')
 
     ##############################################
 

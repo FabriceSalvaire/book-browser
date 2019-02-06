@@ -85,6 +85,7 @@ class BookPage:
         return self._page_number or self._file_index
 
     def __lt__(self, other):
+        """Sort by page number or index"""
         return int(self) < int(other)
 
     ##############################################
@@ -329,6 +330,13 @@ class Book:
 
     ##############################################
 
+    @property
+    def last_page_number(self):
+        """Last page number or index"""
+        return int(self.last_page)
+
+    ##############################################
+
     def iter_by_page_number(self):
         pages = list(self._pages)
         pages.sort(key=lambda page: int(page))
@@ -360,7 +368,7 @@ class Book:
                     except Exception as exception:
                         self._logger.warning('Error on {}\n{}'.format(filename, exception))
 
-        self._pages.sort()
+        self._pages.sort() # by page number or index
 
     ##############################################
 

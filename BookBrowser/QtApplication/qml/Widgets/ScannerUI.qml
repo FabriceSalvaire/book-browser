@@ -79,7 +79,7 @@ Item {
 	    image_preview.image_ready.connect(on_image_ready)
 
 	    if (application.book)
-		filename_count.text = Math.max(application.book.number_of_pages +1, 1)
+		filename_count.value = Math.max(application.book.last_page_number +1, 1)
 
 	    control_panel.enabled = true
 	}
@@ -113,7 +113,7 @@ Item {
 	if (path) {
 	    is_preview_scan = false
 	    image_preview.source = path
-	    filename_count.increment()
+	    filename_count.increase()
 	    enable_scan_button(true)
 	    application_window.show_message('Saved ' + path)
 	}
@@ -152,7 +152,7 @@ Item {
 
 	enable_scan_button(false)
 
-	scanner.scan(filename_path.text, filename_pattern.text, false, filename_count.text)
+	scanner.scan(filename_path.text, filename_pattern.text, false, filename_count.value)
     }
 
 
@@ -210,11 +210,12 @@ Item {
 		Layout.preferredHeight: 100
 		Layout.preferredWidth: control_panel.width
 		text: 'Scan'
-		font.pixelSize: 30
+		font.pixelSize: 50
+		font.bold: true
 		background: Rectangle {
 		    // implicitWidth: 100
 		    // implicitHeight: 40
-		    color: scan_button.down ? "#4b984b" : "#5cb85c"
+		    color: scan_button.down ? "#4c9a4c" : "#5cb85c" // hsv 120 128 184 (-30)
 		    // border.color: "#4b984b"
 		    // border.width: 1
 		    radius: 10
@@ -228,7 +229,7 @@ Item {
 		Layout.preferredWidth: control_panel.width
 		text: 'Preview'
 		background: Rectangle {
-		    color: preview_scan_button.down ? "#d59945" : "#f0ad4e"
+		    color: preview_scan_button.down ? "#d29744" : "#f0ad4e" // hsv 35 172 240 (-20)
 		    radius: 10
 		}
 		onClicked: scan_preview()
@@ -252,14 +253,11 @@ Item {
 		    Layout.fillWidth: true
 		    text: 'foo.{:03}.png'
 		}
-		TextField {
+		SpinBox {
 		    id: filename_count
-		    // Fixme: take last !!
-		    text: '1'
-
-		    function increment(string) {
-			text = String(parseInt(text) + 1)
-		    }
+		    font.pixelSize: 30
+		    value: 1
+		    to: 1000
 		}
 	    }
 

@@ -177,6 +177,14 @@ class QmlBook(QObject):
 
     ##############################################
 
+    last_page_number_changed = Signal()
+
+    @Property(int, notify=last_page_number_changed)
+    def last_page_number(self):
+        return self._book.last_page_number
+
+    ##############################################
+
     pages_changed = Signal()
 
     @Property(QQmlListProperty, notify=pages_changed)

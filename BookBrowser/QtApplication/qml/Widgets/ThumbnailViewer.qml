@@ -40,6 +40,7 @@ Item {
 
 	// ScrollView {
 	Flow {
+	    // Fixme: QML Flow: Cannot anchor to an item that isn't a parent or sibling.
 	    id: flow
 	    width: flickable.width
 	    anchors.horizontalCenter: flickable.horizontalCenter
