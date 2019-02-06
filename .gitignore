@@ -13,11 +13,6 @@ doc/sphinx/source/api/
 BookBrowser/QtApplication/rcc/BookBrowserRessource.py
 BookBrowser/QtApplication/rcc/book-browser.rcc
 
-BookBrowser/QtApplication/rcc/icons/36x36/add-black.png
-BookBrowser/QtApplication/rcc/icons/36x36/close-black.png
-BookBrowser/QtApplication/rcc/icons/36x36/delete-black.png
-BookBrowser/QtApplication/rcc/icons/36x36/search-black.png
-
 BookBrowser/QtApplication/rcc/icons/36x36-unused/
 TOFIX.txt
 devel/
@@ -25,3 +20,8 @@ template-variables.txt
 topics.txt
 
 notes.txt
+
+BookBrowser/QtApplication/qml/Widgets/pinch-area.qml
+BookBrowser/QtApplication/rcc/icons/scripts/material-design-icons
+delta_hist.txt
+test-directory/

@@ -51,11 +51,11 @@ from QtShim.QtQml import qmlRegisterUncreatableType
 from QtShim.QtQuick import QQuickPaintedItem, QQuickView
 # from QtShim.QtQuickControls2 import QQuickStyle
 
+from BookBrowser.Common.ArgparseAction import PathAction
+from BookBrowser.Common.Platform import QtPlatform
 from .QmlBook import QmlBook, QmlBookPage
 from .QmlScanner import ScannerImageProvider, QmlScanner
 from .Runnable import Worker
-from BookBrowser.Common.ArgparseAction import PathAction
-from BookBrowser.Common.Platform import QtPlatform
 
 from .rcc import BookBrowserRessource
 
@@ -92,6 +92,13 @@ class QmlApplication(QObject):
     @Property(QmlBook, notify=book_changed)
     def book(self):
         return self._application.book
+
+    ##############################################
+
+    @Slot(str)
+    def load_book(self, path):
+        self._application.load_book(path)
+        self.book_changed.emit()
 
     ##############################################
 
@@ -167,8 +174,9 @@ class Application(QObject):
 
         self._parse_arguments()
 
+        self._book = None
         # Fixme: must be defined before QML
-        self._book = QmlBook(self._args.book_path)
+        self.load_book(self._args.book_path)
 
         self._appplication = QGuiApplication(sys.argv)
         self._engine = QQmlApplicationEngine()
@@ -229,6 +237,10 @@ class Application(QObject):
     @property
     def book(self):
         return self._book
+
+    @property
+    def book_path(self):
+        return self._book.path
 
     ##############################################
 
@@ -324,7 +336,6 @@ class Application(QObject):
         )
 
         self._args = parser.parse_args()
-        self._book = None
 
     ##############################################
 
@@ -428,3 +439,8 @@ class Application(QObject):
             self._scanner = QmlScanner()
             self.scanner_ready.emit()
         return self._scanner
+
+    ##############################################
+
+    def load_book(self, path):
+        self._book = QmlBook(path)

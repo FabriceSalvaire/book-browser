@@ -139,6 +139,15 @@ ApplicationWindow {
     header: ToolBar {
         RowLayout {
             ToolButton {
+		icon.source: 'qrc:/icons/36x36/refresh-black.png'
+                onClicked: {
+		    var path = book.path
+		    application.load_book(path)
+		    show_message(qsTr('Loaded book at %1'.arg(path)))
+		}
+            }
+
+            ToolButton {
 		icon.source: 'qrc:/icons/36x36/view-comfy-black.png'
                 onClicked: {
 		    stack_view.pop()
