@@ -72,6 +72,12 @@ class QmlBookPage(QObject):
 
     ##############################################
 
+    @property
+    def page(self):
+        return self._page
+
+    ##############################################
+
     path_changed = Signal()
 
     @Property(str, notify=path_changed)
@@ -203,8 +209,10 @@ class QmlBook(QObject):
     ##############################################
 
     @Slot(QmlBookPage, str)
-    def flip_from_page(self, page, orientation):
-        self._book.flip_from_page(page.page_number, orientation)
+    def flip_from_page(self, qml_page, orientation):
+        # Fixme: qml_page.page.page_number is None
+        self._logger.info('{} {}'.format(qml_page.page_number, orientation))
+        self._book.flip_from_page(qml_page.page_number, orientation)
 
     ##############################################
 

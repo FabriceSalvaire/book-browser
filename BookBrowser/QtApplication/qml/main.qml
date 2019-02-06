@@ -42,6 +42,16 @@ ApplicationWindow {
 	page_viewer.first_page()
     }
 
+
+    function clear_message() {
+	message_label.text = ''
+    }
+
+    function show_message(message) {
+	message_label.text = message
+    }
+
+
     StackView {
         id: stack_view
         anchors.fill: parent
@@ -205,8 +215,8 @@ ApplicationWindow {
 		// icon.source: 'qrc:/icons/36x36/.png'
 		text: 'Flip from'
                 onClicked: {
-		    console.info('flip_from_page is disabled')
-                    // page_viewer.flip_from_page()
+		    // console.info('flip_from_page is disabled')
+                    page_viewer.flip_from_page()
                 }
             }
         }
@@ -215,7 +225,7 @@ ApplicationWindow {
     footer: ToolBar {
         RowLayout {
             Label {
-		id: message
+		id: message_label
 		text: ''
             }
 	}

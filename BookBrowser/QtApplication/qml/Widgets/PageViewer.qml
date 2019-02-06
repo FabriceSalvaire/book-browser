@@ -65,16 +65,7 @@ Widgets.ImageViewer {
     }
 
     function flip_from_page() {
-	var orientation
-	if (rotation == 0) {
-	    // rotation = 180
-	    orientation = 'v'
-	}
-	else {
-	    // rotation = 0
-	    orientation = 'r'
-	}
-	book.flip_from_page(page, orientation) // Fixme: orientation ?
+	book.flip_from_page(book_page, 'v')
     }
 
 

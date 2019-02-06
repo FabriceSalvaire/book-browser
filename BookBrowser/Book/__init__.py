@@ -460,15 +460,15 @@ class Book:
 
     ##############################################
 
-    def flip_from_page(self, pagne_number, orientation):
+    def flip_from_page(self, page_number, orientation):
 
-        for i in range(pagne_number, self.number_of_pages +1):
+        for i in range(page_number, self.number_of_pages +1):
             # print(i, orientation)
-            self[i].flip(orientation=None)
-            # if orientation == 'r':
-            #     orientation = 'v'
-            # else:
-            #     orientation = 'r'
+            self[i].flip(orientation=orientation)
+            if orientation == 'r':
+                orientation = 'v'
+            else:
+                orientation = 'r'
 
     ##############################################
 

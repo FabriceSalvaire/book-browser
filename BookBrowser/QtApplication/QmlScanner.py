@@ -202,7 +202,7 @@ class QmlScanner(QObject):
             # [(0, 14149222, 0), (0, 14149222, 0), (0, 19475988, 0), (0, 19475988, 0)]
             constraint = self._scanner.area_constraint
             scanner_width = constraint[0][1]
-            scanner_height = constraint[1][1]
+            scanner_height = constraint[2][1]
             area = [int(x) for x in (
                 x_inf*scanner_width,  x_sup*scanner_width,
                 y_inf*scanner_height, y_sup*scanner_height,

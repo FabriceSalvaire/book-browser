@@ -18,6 +18,8 @@
  ***************************************************************************************************/
 
 // Fixme: selection area, label, backup
+// save preview
+// show mouse pointer
 
 import QtQuick 2.11
 import QtQuick.Controls 2.4
@@ -29,7 +31,7 @@ Item {
 
     property var scanner
 
-    property bool dirty_selection_area: true
+    property bool dirty_selection_area: false
     property bool is_preview_scan: false
     property bool valid_selection_area: false
 
@@ -37,12 +39,14 @@ Item {
 	console.info('ScannerUI.onCompleted')
     }
 
+
     function init() {
 	if (!scanner) {
 	    application.init_scanner()
 	    application.scanner_ready.connect(on_scanner_ready)
 	}
     }
+
 
     function on_scanner_ready() {
 	console.info('on_scanner_ready', application.scanner.has_device)
@@ -70,8 +74,16 @@ Item {
 	    application.file_exists_error.connect(on_file_exists_error)
 	    application.scan_done.connect(on_scan_done)
 
+	    if (application.book)
+		filename_count.text = Math.max(application.book.number_of_pages +1, 1)
+
 	    control_panel.enabled = true
 	}
+    }
+
+    function enable_scan_button(status) {
+	scan_button.enabled = status
+	preview_scan_button.enabled = status
     }
 
     function on_preview_done(path) {
@@ -79,6 +91,9 @@ Item {
 	if (path) {
 	    is_preview_scan = true
 	    image_preview.source = 'image://scanner_image/' + path
+	    valid_selection_area = true
+	    enable_scan_button(true)
+	    application_window.clear_message()
 	}
     }
 
@@ -86,6 +101,7 @@ Item {
 	console.info('on_file_exists_error', path)
 	error_dialog_message.text = 'File "' + path + '" exists'
 	error_dialog.open() // Fixme: position
+	enable_scan_button(true)
     }
 
     function on_scan_done(path) {
@@ -94,9 +110,42 @@ Item {
 	    is_preview_scan = false
 	    image_preview.source = path
 	    filename_count.increment()
-	    valid_selection_area = true
+	    enable_scan_button(true)
+	    application_window.show_message('Saved ' + path)
 	}
     }
+
+
+    function scan_preview() {
+	application_window.show_message('Maximize scan area')
+	scanner.maximize_scan_area()
+	enable_scan_button(false)
+	scanner.scan_image()
+    }
+
+    function scan_page() {
+	if (valid_selection_area) {
+	    if (dirty_selection_area) {
+		var bounds = image_preview.bounds()
+		application_window.show_message('Reset bounds ' + bounds)
+		scanner.area = bounds
+		dirty_selection_area = false
+	    }
+	} else {
+	    application_window.show_message('Maximize scan area')
+	    scanner.maximize_scan_area()
+	    dirty_selection_area = false
+	    valid_selection_area = true
+	}
+
+	if (is_preview_scan)
+	    selection_area.visible = false
+
+	enable_scan_button(false)
+
+	scanner.scan(filename_path.text, filename_pattern.text, false, filename_count.text)
+    }
+
 
     Dialog {
 	id: error_dialog
@@ -152,6 +201,7 @@ Item {
 		Layout.preferredHeight: 100
 		Layout.preferredWidth: control_panel.width
 		text: 'Scan'
+		font.pixelSize: 30
 		background: Rectangle {
 		    // implicitWidth: 100
 		    // implicitHeight: 40
@@ -160,15 +210,7 @@ Item {
 		    // border.width: 1
 		    radius: 10
 		}
-		onClicked: {
-		    if (valid_selection_area) {
-			if (dirty_selection_area)
-			    scanner.area = image_preview.bounds()
-		    } else
-			scanner.maximize_scan_area()
-		    selection_area.visible = false
-		    scanner.scan(filename_path.text, filename_pattern.text, false, filename_count.text)
-		}
+		onClicked: scan_page()
 	    }
 
 	    Button {
@@ -180,10 +222,7 @@ Item {
 		    color: preview_scan_button.down ? "#d59945" : "#f0ad4e"
 		    radius: 10
 		}
-		onClicked: {
-		    scanner.maximize_scan_area()
-		    scanner.scan_image()
-		}
+		onClicked: scan_preview()
 	    }
 
 	    RowLayout {
@@ -207,7 +246,7 @@ Item {
 		TextField {
 		    id: filename_count
 		    // Fixme: take last !!
-		    text: application.book ? Math.max(application.book.number_of_pages +1, 1) : '1'
+		    text: '1'
 
 		    function increment(string) {
 			text = String(parseInt(text) + 1)
@@ -235,9 +274,7 @@ Item {
 		ComboBox {
 		    id: mode_combobox
 		    model: scanner ? scanner.modes : []
-		    onAccepted: {
-			scanner.mode = editText
-		    }
+		    onAccepted: scanner.mode = editText
 		}
 	    }
 	}
@@ -302,7 +339,7 @@ Item {
 		    property int x_handler: 0
 		    property int y_handler: 0
 
-		    onPressed: {
+		    function selection_area_start(mouse) {
 			var x = mouse.x
 			var y = mouse.y
 			var x_inf = selection_area.x
@@ -328,7 +365,7 @@ Item {
 			console.info('Handlers', x_handler, y_handler)
 		    }
 
-		    onPositionChanged: {
+		    function selection_area_update(mouse) {
 			var x = Math.min(Math.max(mouse.x, 0), image_preview.paintedWidth)
 			var y = Math.min(Math.max(mouse.y, 0), image_preview.paintedHeight)
 			var x_inf = selection_area.x
@@ -353,10 +390,25 @@ Item {
 			    selection_area.height = y - y_inf
 		    }
 
-		    onReleased: {
+		    function selection_area_stop(mouse) {
 			x_handler = 0
 			y_handler = 0
 			dirty_selection_area = true
+		    }
+
+		    onPressed: {
+			if (selection_area.visible)
+			    selection_area_start(mouse)
+		    }
+
+		    onPositionChanged: {
+			if (selection_area.visible)
+			    selection_area_update(mouse)
+		    }
+
+		    onReleased: {
+			if (selection_area.visible)
+			    selection_area_stop(mouse)
 		    }
 		}
 	    }
