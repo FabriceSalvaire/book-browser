@@ -4,8 +4,8 @@
         <file>qtquickcontrols2.conf</file>
     </qresource>
     <qresource prefix="/">
-	<!-- <file>icons/svg/logo.svg</file> -->
-	<!-- <file>icons/logo-256.png</file> -->
+	<file>icons/svg/logo.svg</file>
+	<file>icons/logo-256.png</file>
 	<file>icons/36x36/arrow-back-black.png</file>
 	<file>icons/36x36/arrow-forward-black.png</file>
 	<file>icons/36x36/first-page-black.png</file>
