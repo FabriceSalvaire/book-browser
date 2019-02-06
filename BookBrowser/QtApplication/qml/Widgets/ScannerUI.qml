@@ -31,16 +31,21 @@ import Widgets 1.0 as Widgets
 Item {
     id: scanner_ui
 
-    property var scanner
+    property var scanner // Fixme: interval _scanner
 
     property bool dirty_selection_area: false
     property bool is_preview_scan: false
     property bool valid_selection_area: false
 
-    Component.onCompleted: {
-	console.info('ScannerUI.onCompleted')
-    }
+    // Component.onCompleted: {
+    // 	console.info('ScannerUI.onCompleted')
+    // }
 
+    /***********************************************************************************************
+     *
+     * API
+     *
+     */
 
     function init() {
 	if (!scanner) {
@@ -49,6 +54,11 @@ Item {
 	}
     }
 
+    /***********************************************************************************************
+     *
+     * Slots
+     *
+     */
 
     function on_scanner_ready() {
 	console.info('on_scanner_ready', application.scanner.has_device)
@@ -85,11 +95,6 @@ Item {
 	}
     }
 
-    function enable_scan_button(status) {
-	scan_button.enabled = status
-	preview_scan_button.enabled = status
-    }
-
     function on_preview_done(path) {
 	console.info('on_preview_done', path)
 	if (path) {
@@ -103,8 +108,7 @@ Item {
 
     function on_file_exists_error(path) {
 	console.info('on_file_exists_error', path)
-	error_dialog_message.text = 'File "' + path + '" exists'
-	error_dialog.open() // Fixme: position
+	file_exists_error_dialog.open_for_path(path)
 	enable_scan_button(true)
     }
 
@@ -124,6 +128,16 @@ Item {
 	    image_preview.maximise_area()
     }
 
+    /***********************************************************************************************
+     *
+     * Functions
+     *
+     */
+
+    function enable_scan_button(status) {
+	scan_button.enabled = status
+	preview_scan_button.enabled = status
+    }
 
     function scan_preview() {
 	application_window.show_message('Maximize scan area')
@@ -132,7 +146,14 @@ Item {
 	scanner.scan_image()
     }
 
+    function call_scan_page(overwrite) {
+	// can trigger file_exists_error
+	scanner.scan(filename_path.text, filename_pattern.text, overwrite, filename_count.value)
+    }
+
     function scan_page() {
+	application_window.clear_message()
+
 	if (valid_selection_area) {
 	    if (dirty_selection_area) {
 		var bounds = image_preview.bounds()
@@ -152,11 +173,17 @@ Item {
 
 	enable_scan_button(false)
 
-	scanner.scan(filename_path.text, filename_pattern.text, false, filename_count.value)
+	var overwrite = false
+	call_scan_page(overwrite)
     }
 
+    /***********************************************************************************************
+     *
+     * Dialogs
+     *
+     */
 
-    Dialog {
+    Widgets.CentredDialog {
 	id: error_dialog
 	modal: true
 	standardButtons: Dialog.Ok
@@ -166,9 +193,34 @@ Item {
 	}
     }
 
+    Widgets.CentredDialog {
+	id: file_exists_error_dialog
+	modal: true
+	title: qsTr('File Error')
+	standardButtons: Dialog.Ok | Dialog.Cancel
+
+	function open_for_path(path) {
+	    var template = qsTr('<p>A file "%1" already exists.</p><p><b>Do you want to overwrite it ?</b></p>')
+	    file_exists_error_dialog_message.text = template.arg(path)
+	    open() // Fixme: position
+	}
+
+	TextArea {
+	    id: file_exists_error_dialog_message
+	    anchors.margins: 20
+	    textFormat: TextEdit.RichText
+	}
+
+	onAccepted: {
+	    var overwrite = true
+	    call_scan_page(overwrite)
+	}
+	// onRejected: console.log("Cancel clicked")
+    }
+
     FileDialog {
 	id: file_dialog
-	title: 'Please choose a folder'
+	title: qsTr('Please choose a folder')
 	folder: shortcuts.home
 	selectFolder: true
 	onAccepted: {
@@ -180,6 +232,12 @@ Item {
 	}
 	// Component.onCompleted: visible = true
     }
+
+    /***********************************************************************************************
+     *
+     * Items
+     *
+     */
 
     RowLayout{
 	anchors.fill: parent
@@ -195,7 +253,7 @@ Item {
 
 	    RowLayout {
 		Label {
-		    text: 'Device'
+		    text: qsTr('Device')
 		}
 		Label {
 		    text: scanner ? scanner.device : ''
@@ -209,7 +267,7 @@ Item {
 		id: scan_button
 		Layout.preferredHeight: 100
 		Layout.preferredWidth: control_panel.width
-		text: 'Scan'
+		text: qsTr('Scan')
 		font.pixelSize: 50
 		font.bold: true
 		background: Rectangle {
@@ -227,7 +285,7 @@ Item {
 		id: preview_scan_button
 		Layout.preferredHeight: 50
 		Layout.preferredWidth: control_panel.width
-		text: 'Preview'
+		text: qsTr('Preview')
 		background: Rectangle {
 		    color: preview_scan_button.down ? "#d29744" : "#f0ad4e" // hsv 35 172 240 (-20)
 		    radius: 10
@@ -263,7 +321,7 @@ Item {
 
 	    RowLayout {
 		Label {
-		    text: 'Resolution'
+		    text: qsTr('Resolution')
 		}
 		ComboBox {
 		    id: resolution_combobox
@@ -276,7 +334,7 @@ Item {
 
 	    RowLayout {
 		Label {
-		    text: 'Mode'
+		    text: qsTr('Mode')
 		}
 		ComboBox {
 		    id: mode_combobox

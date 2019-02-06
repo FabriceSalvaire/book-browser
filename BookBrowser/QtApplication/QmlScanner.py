@@ -102,7 +102,7 @@ class QmlScanner(QObject):
         super().__init__()
 
         self._scanner = Scanner()
-        #self.scanner_ready.emit()
+        # self.scanner_ready.emit()
 
     ##############################################
 
@@ -225,9 +225,13 @@ class QmlScanner(QObject):
     def _fake_scan(self, *args, **kwargs):
 
         self._logger.info('Fake scan {} {}'.format(args, kwargs))
-        # self.file_exists_error.emit('foo.png')
+
         # self.preview_done.emit('foo.png')
-        self.scan_done.emit('/home/fabrice/book-browser/foo.png')
+
+        if not args[2]:
+            self.file_exists_error.emit('foo.png')
+        else:
+            self.scan_done.emit('/home/fabrice/book-browser/foo.png')
 
     ##############################################
 
