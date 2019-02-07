@@ -20,8 +20,14 @@
 
 """Module to implement a scanner interface.
 
-See `The SANE Application Programmer Interface (API)
-<http://www.sane-project.org/html/doc009.html>`_
+Reference
+---------
+
+* `SANE — Scanner Access Now Easy <http://www.sane-project.org>`_
+* `The SANE Application Programmer Interface (API) <http://www.sane-project.org/html/doc009.html>`_
+* `Windows Image Acquisition 2.0 <https://docs.microsoft.com/en-us/windows/desktop/wia/-wia-startpage>`_
+
+* `PyInsane 2 — Python library to support image scanners (Sane and WIA) <https://gitlab.gnome.org/World/OpenPaperwork/pyinsane>`_
 
 """
 
@@ -29,7 +35,7 @@ See `The SANE Application Programmer Interface (API)
 
 __all__ = [
     'Scanner',
-    'FileExistsEror',
+    'FileExistsError',
 ]
 
 ####################################################################################################
@@ -38,6 +44,8 @@ from pathlib import Path
 import logging
 
 import pyinsane2
+
+from PIL import Image, ImageDraw, ImageFont
 
 ####################################################################################################
 
@@ -57,7 +65,8 @@ class Scanner:
     __initialised__ = False
 
     _logger = _module_logger.getChild('Scanner')
-    
+
+    #: Scanning Area (x_inf, x_sup, y_inf, y_sup)
     AREA_OPTIONS = ('tl-x', 'br-x', 'tl-y', 'br-y')
 
     ##############################################
@@ -264,3 +273,182 @@ class Scanner:
         self._logger.info('Saved {}'.format(path))
 
         return path
+
+####################################################################################################
+
+class FakeDevice:
+
+    __resolution_constraint__ = [100, 200, 400]
+    __mode_constraint__ = ['Color', 'Grayscale']
+    __x_max__ = 14149222
+    __y_max__ = 19475988
+    __area_constraint__ = [(0, __x_max__, 0), (0, __x_max__, 0),
+                           (0, __y_max__, 0), (0, __y_max__, 0)]
+
+    ##############################################
+
+    def __init__(self):
+
+        self._resolution = self.__resolution_constraint__[0]
+        self._mode = self.__mode_constraint__[0]
+        self._area = [0, self.__x_max__, 0, self.__y_max__]
+
+    ##############################################
+
+    def __str__(self):
+        return 'fake scanner'
+
+    ##############################################
+
+    @property
+    def vendor(self):
+        return 'Fake'
+
+    @property
+    def model(self):
+        return 'Scanner'
+
+    ##############################################
+
+    def constraint(self, name):
+        return getattr(self, '__{}_constraint__'.format(name))
+
+    ##############################################
+
+    @property
+    def resolution(self):
+        return self._resolution
+
+    @resolution.setter
+    def resolution(self, value):
+        self._resolution = int(value)
+
+    ##############################################
+
+    @property
+    def mode(self):
+        return self._mode
+
+    @mode.setter
+    def mode(self, value):
+        self._mode = str(value)
+
+    ##############################################
+
+    @property
+    def area(self):
+        return self._area
+
+    @area.setter
+    def area(self, value):
+        self._area = [int(x) for x in value[:4]]
+
+####################################################################################################
+
+class FakeScanner(Scanner):
+
+    _logger = _module_logger.getChild('FakeScanner')
+
+    __fake_device__ = FakeDevice()
+
+    __scan_count__ = 0
+
+    ##############################################
+
+    @classmethod
+    def init(cls):
+        cls.__initialised__ = True
+        cls._logger.info('Sane is initialised')
+
+    ##############################################
+
+    @classmethod
+    def exit(cls):
+        if cls.__initialised__:
+            cls.__initialised__ = False
+            cls._logger.info('Sane exited')
+
+    ##############################################
+
+    @classmethod
+    def devices(cls):
+        return [cls.__fake_device__]
+
+    ##############################################
+
+    def __init__(self, device_hint='fake', release=True):
+        super().__init__(device_hint, release)
+
+    ##############################################
+
+    @property
+    def device(self):
+        return self._device
+
+    @device.setter
+    def device(self, name):
+        raise NotImplementedError
+
+    ##############################################
+
+    def _set_option(self, name, value):
+        raise NotImplementedError
+
+    def _get_option(self, name):
+        raise NotImplementedError
+
+    def _get_option_constraint(self, name):
+        return self._device.constraint(name)
+
+    ##############################################
+
+    def maximize_scan_area(self):
+        pass
+
+    ##############################################
+
+    @property
+    def resolution(self):
+        return self._device.resolution
+
+    @resolution.setter
+    def resolution(self, value):
+        self._device.resolution = value
+
+    ##############################################
+
+    @property
+    def mode(self):
+        return self._device.mode
+
+    @mode.setter
+    def mode(self, value):
+        self._device.mode = value
+
+    ##############################################
+
+    @property
+    def area(self):
+        return self._device.area
+
+    @property
+    def area_constraint(self):
+        return self._device.constraint('area')
+
+    ##############################################
+
+    def scan_image(self):
+
+        self._logger.info('Start scanning ...')
+        self._logger.info('Start done')
+
+        self.__scan_count__ += 1
+
+        size = (1000, 1000) # Fixme:
+        image = Image.new('RGB', size, color=(255,255,255))
+        font = ImageFont.truetype('DejaVuSans.ttf', 200)
+        context= ImageDraw.Draw(image)
+        text = '{}'.format(self.__scan_count__)
+        context.text((100,100), text, font=font, fill=(0,0,0))
+
+        return image
