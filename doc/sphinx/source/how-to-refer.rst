@@ -1,8 +1,8 @@
 .. _how-to-refer-page:
 
-===========================
+===============================
  How to Refer to BookBrowser ?
-===========================
+===============================
 
 Up to now, the official url for BookBrowser is @project_url@
 
