@@ -26,6 +26,8 @@ import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.11
 
 import Widgets 1.0 as Widgets
+import Controls 1.0 as Controls
+import Constants 1.0
 
 Item {
     id: scanner_ui
@@ -36,9 +38,9 @@ Item {
     property bool is_preview_scan: false
     property bool valid_selection_area: false
 
-    // Component.onCompleted: {
-    // 	console.info('ScannerUI.onCompleted')
-    // }
+    Component.onCompleted: {
+    	console.info('ScannerUI.onCompleted')
+    }
 
     /***********************************************************************************************
      *
@@ -275,33 +277,30 @@ Item {
 		}
 	    }
 
-	    Button {
+	    Controls.CustomButton {
 		id: scan_button
 		Layout.preferredHeight: 100
 		Layout.preferredWidth: control_panel.width
-		text: qsTr('Scan')
 		font.pixelSize: 50
 		font.bold: true
-		background: Rectangle {
-		    // implicitWidth: 100
-		    // implicitHeight: 40
-		    color: scan_button.down ? "#4c9a4c" : "#5cb85c" // hsv 120 128 184 (-30)
-		    // border.color: "#4b984b"
-		    // border.width: 1
-		    radius: 10
-		}
+		color_label: 'white'
+		color_background: Style.color.success
+
+		text: qsTr('Scan')
+
 		onClicked: scan_page()
 	    }
 
-	    Button {
+	    Controls.CustomButton {
 		id: preview_scan_button
 		Layout.preferredHeight: 50
 		Layout.preferredWidth: control_panel.width
+		font.bold: true
+		color_label: 'white'
+		color_background: Style.color.primary
+
 		text: qsTr('Preview')
-		background: Rectangle {
-		    color: preview_scan_button.down ? "#d29744" : "#f0ad4e" // hsv 35 172 240 (-20)
-		    radius: 10
-		}
+
 		onClicked: scan_preview()
 	    }
 
@@ -368,6 +367,23 @@ Item {
 			text = qsTr('Custom')
 		    }
 		}
+	    }
+
+	    Controls.CustomButton {
+		id: rescan_button
+		Layout.preferredHeight: 50
+		Layout.preferredWidth: control_panel.width
+		font.bold: true
+		color_label: 'black'
+		color_background: Style.color.warning
+
+		text: qsTr('Rescan')
+
+		// onClicked: rescan()
+	    }
+
+	    Button {
+		text: qsTr('Test')
 	    }
 	}
 
