@@ -145,6 +145,7 @@ class Scanner:
     ##############################################
 
     def _set_option(self, name, value):
+        self._logger.info('{} = {}'.format(name, value))
         pyinsane2.set_scanner_opt(self._device, name, [value])
 
     def _get_option(self, name):
@@ -285,6 +286,8 @@ class FakeDevice:
     __area_constraint__ = [(0, __x_max__, 0), (0, __x_max__, 0),
                            (0, __y_max__, 0), (0, __y_max__, 0)]
 
+    _logger = _module_logger.getChild('FakeDevice')
+
     ##############################################
 
     def __init__(self):
@@ -322,6 +325,7 @@ class FakeDevice:
     @resolution.setter
     def resolution(self, value):
         self._resolution = int(value)
+        self._logger.info('resolution = {0._resolution}'.format(self))
 
     ##############################################
 
@@ -332,6 +336,7 @@ class FakeDevice:
     @mode.setter
     def mode(self, value):
         self._mode = str(value)
+        self._logger.info('mode = {0._mode}'.format(self))
 
     ##############################################
 
@@ -342,6 +347,7 @@ class FakeDevice:
     @area.setter
     def area(self, value):
         self._area = [int(x) for x in value[:4]]
+        self._logger.info('area = {0._area}'.format(self))
 
 ####################################################################################################
 

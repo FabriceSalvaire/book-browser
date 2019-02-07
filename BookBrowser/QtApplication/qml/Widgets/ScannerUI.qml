@@ -66,20 +66,24 @@ Item {
 	console.info('on_scanner_ready', application.scanner.has_device)
 	busy_indicator.running = false
 	var has_device = application.scanner.has_device
-	has_device = true // debug
 	if (has_device) {
 	    scanner = application.scanner
 
-	    var default_resolution = '200'
+	    var default_resolution = scanner.config.resolution
 	    resolution_combobox.currentIndex = resolution_combobox.find(default_resolution)
-	    scanner.resolution = default_resolution
 
-	    var default_mode = 'Color'
+	    var default_mode = scanner.config.mode
 	    mode_combobox.currentIndex = mode_combobox.find(default_mode)
-	    scanner.mode = default_mode
 
-	    // Fixme: ???
-	    // https://www.kdab.com/slot-not-invoked/
+	    filename_path.text = scanner.working_directory
+	    filename_pattern.text = 'foo.{:03}.png'
+
+	    if (application.book) {
+		var index = Math.max(application.book.last_page_number +1, 1)
+		filename_count.value = index
+	    }
+
+	    // Thread issue ???
 	    // scanner.preview_done.connect(on_preview_done)
 	    // scanner.file_exists_error.connect(on_file_exists_error)
 	    // scanner.scan_done.connect(on_scan_done)
@@ -90,9 +94,6 @@ Item {
 	    application.scan_done.connect(on_scan_done)
 
 	    image_preview.image_ready.connect(on_image_ready)
-
-	    if (application.book)
-		filename_count.value = Math.max(application.book.last_page_number +1, 1)
 
 	    control_panel.enabled = true
 	}
@@ -143,7 +144,7 @@ Item {
     }
 
     function maximize_scan_area() {
-	scanner.maximize_scan_area()
+	scanner.config.is_maximized = true
 	scan_area_label.set_maximised()
 	application_window.show_message('Maximize scan area')
 
@@ -157,7 +158,7 @@ Item {
 
     function call_scan_page(overwrite) {
 	// can trigger file_exists_error
-	scanner.scan(filename_path.text, filename_pattern.text, overwrite, filename_count.value)
+	scanner.scan(overwrite)
     }
 
     function to_percent(x) {
@@ -180,7 +181,7 @@ Item {
 		var y_sup_p = to_percent(y_sup)
 		scan_area_label.set_custon()
 		application_window.show_message('Reset bounds to [%1, %2, %3, %4] %'.arg(x_inf_p).arg(x_sup_p).arg(y_inf_p).arg(y_sup_p))
-		scanner.set_area(x_inf, x_sup, y_inf, y_sup)
+		scanner.config.area = bounds
 		dirty_selection_area = false
 	    }
 	} else {
@@ -191,7 +192,6 @@ Item {
 
 	if (is_preview_scan)
 	    image_preview.hide_selection_area()
-
 	enable_scan_button(false)
 
 	call_scan_page(overwrite)
@@ -199,7 +199,8 @@ Item {
 
     function rescan_page() {
 	filename_count.decrease()
-	scan_page(true)
+	enable_scan_button(false)
+	scan_page(true) // not call_scan_page
     }
 
     /***********************************************************************************************
@@ -315,7 +316,9 @@ Item {
 		TextField {
 		    id: filename_path
 		    Layout.fillWidth: true
-		    text: scanner ? scanner.working_directory : ''
+		    selectByMouse: true
+		    text: '' // scanner ? scanner.working_directory : ''
+		    onTextChanged: scanner.config.path = text
 		}
 	    }
 
@@ -323,13 +326,16 @@ Item {
 		TextField {
 		    id: filename_pattern
 		    Layout.fillWidth: true
-		    text: 'foo.{:03}.png'
+		    selectByMouse: true
+		    text: '' // scanner.config.filename_pattern // cannot bind on different thread
+		    onTextChanged: scanner.config.filename_pattern = text
 		}
 		SpinBox {
 		    id: filename_count
 		    font.pixelSize: 30
-		    value: 1
+		    value: 0
 		    to: 1000
+		    onValueChanged: scanner.config.index = value
 		}
 	    }
 
@@ -340,9 +346,7 @@ Item {
 		ComboBox {
 		    id: resolution_combobox
 		    model: scanner ? scanner.resolutions : []
-		    onAccepted: {
-			scanner.resolution = editText
-		    }
+		    onActivated: scanner.config.resolution = parseInt(currentText)
 		}
 	    }
 
@@ -353,7 +357,7 @@ Item {
 		ComboBox {
 		    id: mode_combobox
 		    model: scanner ? scanner.modes : []
-		    onAccepted: scanner.mode = editText
+		    onActivated: scanner.config.mode = currentText
 		}
 	    }
 
