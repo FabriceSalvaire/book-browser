@@ -21,3 +21,9 @@
     for foreign applications. Scans can also be triggered via dbus from foreign applications. On
     platforms which support signaling of dynamic device insertion / removal (libudev, dbus, hal)
     scanbd supports this as well.
+
+* https://github.com/python-pillow/Sane
+
+* XSane [xsane.org domain is done]
+
+  `XSane source code  <https://launchpad.net/xsane>`_
