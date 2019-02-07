@@ -28,6 +28,7 @@ __all__ = [
 from pathlib import Path
 import logging
 import os
+import uuid
 
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtQuick import QQuickImageProvider
@@ -213,7 +214,7 @@ class QmlScanner(QObject):
             # self._scanner.maximize_scan_area() # Fixme: here ok ???
             image = self._scanner.scan_image()
             Application.instance.scanner_image_provider.output = image
-            return 'foo.png' # Fixme:
+            return str(uuid.uuid1())
 
         worker = Worker(job)
         worker.signals.result.connect(self.preview_done)
