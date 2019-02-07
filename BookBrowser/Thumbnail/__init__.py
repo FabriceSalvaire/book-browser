@@ -29,13 +29,12 @@ __all__ = ['FreeDesktopThumbnailCache']
 
 ####################################################################################################
 
-from functools import lru_cache
 from pathlib import Path
 import hashlib
 import logging
 import mimetypes
 import os
-import shutil
+# import shutil
 
 from PIL import Image, PngImagePlugin
 
@@ -45,15 +44,179 @@ _module_logger = logging.getLogger(__name__)
 
 ####################################################################################################
 
+class FreeDesktopThumbnail:
+
+    IMAGE_FORMAT = 'png'
+    IMAGE_EXTENSION = '.' + IMAGE_FORMAT
+    SAMPLING = Image.BICUBIC
+
+    _logger = _module_logger.getChild('FreeDesktopThumbnail')
+
+    ##############################################
+
+    @classmethod
+    def add_uri(cls, path):
+        return 'file://' + str(path)
+
+    ##############################################
+
+    @classmethod
+    def mangle_path(cls, path):
+        uri = cls.add_uri(path)
+        return hashlib.md5(uri.encode('utf-8')).hexdigest() + cls.IMAGE_EXTENSION
+
+    ##############################################
+
+    def __init__(self, cache, path):
+
+        self._cache = cache
+        self._source_path = Path(path).resolve()
+        self._filename = self.mangle_path(path)
+        self._stat = self._source_path.stat()
+
+    ##############################################
+
+    @property
+    def source_path(self):
+        return self._source_path
+
+    @property
+    def uri(self):
+        return self.add_uri(self._source_path)
+
+    ##############################################
+
+    @property
+    def size(self):
+        return self._stat.st_size
+
+    @property
+    def mtime(self):
+        return int(self._stat.st_mtime)
+
+    @property
+    def mime_type(self):
+        return mimetypes.guess_type(str(self._source_path))[0]
+
+    ##############################################
+
+    @property
+    def normal_path(self):
+        return self._cache.normal_thumbnail_path(self._filename)
+
+    @property
+    def large_path(self):
+        return self._cache.large_thumbnail_path(self._filename)
+
+    def thumbnail_path(self, is_normal=True):
+        return self._cache.thumbnail_path(self._filename, is_normal)
+
+    ##############################################
+
+    def _delete_thumbnail(self, is_normal=False):
+        path = self.thumbnail_path(is_normal)
+        if path.exists():
+            self._logger.info('Delete thumbnail for {}'.format(self._source_path))
+            os.unlink(path)
+
+
+    def delete_thumbnail(self):
+        for is_normal in (False, True):
+            self._delete_thumbnail(is_normal)
+
+    ##############################################
+
+    def has_thumbnail(self, is_normal=True):
+        path = self.thumbnail_path(is_normal)
+        if path.exists():
+            thumbnail_mtime = int(path.stat().st_mtime)
+            if thumbnail_mtime < self.mtime:
+                self.delete_thumbnail()
+            else:
+                return True
+        return False
+
+
+    def has_normal_thumbnail(self, path):
+        return self.has_thumbnail(True)
+
+    def has_large_thumbnail(self, path):
+        return self.has_thumbnail(False)
+
+    ##############################################
+
+    def _make_png_info(self):
+
+        # {
+        #     'Thumb::URI': 'file:///home/fabrice/....png'
+        #     'Thumb::MTime': '1547660783',
+        #
+        #     'Thumb::Size': '3312888',
+        #     'Thumb::Mimetype': 'image/png',
+        #     'Software': 'KDE Thumbnail Generator Images (GIF, PNG, BMP, ...)',
+        #
+        #     'dpi': (96, 96),
+        # }
+
+        png_info = PngImagePlugin.PngInfo()
+        # required
+        png_info.add_text('Thumb::URI', self.uri)
+        png_info.add_text('Thumb::MTime', str(self.mtime))
+        # optional
+        png_info.add_text('Thumb::Size', str(self.size))
+        png_info.add_text('Thumb::Mimetype', self.mime_type)
+        png_info.add_text('Software', 'Book Browser')
+
+        return png_info
+
+    ##############################################
+
+    def _make_thumbnail(self, dst_path, size):
+
+        image = Image.open(str(self._source_path))
+        image.thumbnail((size, size), resample=self.SAMPLING)
+        png_info = self._make_png_info()
+        image.save(str(dst_path), 'PNG', pnginfo=png_info)
+
+    ##############################################
+
+    def _make_normal_thumbnail(self):
+        self._make_thumbnail(self.normal_path, self._cache.NORMAL_SIZE)
+
+    def _make_large_thumbnail(self):
+        self._make_thumbnail(self.large_path, self._cache.LARGE_SIZE)
+
+    def _make_xxx_thumbnail(self, is_normal=True):
+        if is_normal:
+            self._make_normal_thumbnail()
+        else:
+            self._make_large_thumbnail()
+
+    ##############################################
+
+    def thumbnail(self, is_normal=True):
+        # Fixme: mangle x3
+        if not self.has_thumbnail(is_normal):
+            self._logger.info('Make thumbnail for {}'.format(self._source_path))
+            self._make_xxx_thumbnail(is_normal)
+        return self.thumbnail_path(is_normal)
+
+    @property
+    def normal(self):
+        return self.thumbnail(True)
+
+    @property
+    def large(self):
+        return self.thumbnail(False)
+
+####################################################################################################
+
 class FreeDesktopThumbnailCache:
 
     """Class to import FreeDesktop Thumbnail Cache"""
 
     NORMAL_SIZE = 128
     LARGE_SIZE = 256
-    IMAGE_FORMAT = 'png'
-    IMAGE_EXTENSION = '.' + IMAGE_FORMAT
-    SAMPLING = Image.BICUBIC
 
     _logger = _module_logger.getChild('FreeDesktopThumbnailCache')
 
@@ -71,45 +234,17 @@ class FreeDesktopThumbnailCache:
 
     ##############################################
 
-    @classmethod
-    def uri_path(cls, path):
-        return 'file://' + str(path)
+    @property
+    def path(self):
+        return self._path
 
-    ##############################################
+    @property
+    def normal_path(self):
+        return self._normal_path
 
-    @lru_cache(maxsize=512)
-    def mangle_path(self, path):
-        uri = self.uri_path(path)
-        return hashlib.md5(uri.encode('utf-8')).hexdigest() + self.IMAGE_EXTENSION
-
-    ##############################################
-
-    def _thumbnail_path(self, cache_path, path):
-        return cache_path.joinpath(self.mangle_path(path))
-
-    def thumbnail_path(self, path, is_normal=True):
-        if is_normal:
-            cache_path = self._normal_path
-        else:
-            cache_path = self._large_path
-        return self._thumbnail_path(cache_path, path)
-
-    def normal_thumbnail_path(self, path):
-        return self.thumbnail_path(path, True)
-
-    def large_thumbnail_path(self, path):
-        return self.thumbnail_path(path, False)
-
-    ##############################################
-
-    def has_thumbnail(self, path, is_normal=True):
-        return self.thumbnail_path(path, is_normal).exists()
-
-    def has_normal_thumbnail(self, path):
-        return self.has_thumbnail(path, True)
-
-    def has_large_thumbnail(self, path):
-        return self.has_thumbnail(path, False)
+    @property
+    def large_path(self):
+        return self._large_path
 
     ##############################################
 
@@ -121,82 +256,20 @@ class FreeDesktopThumbnailCache:
 
     ##############################################
 
-    @classmethod
-    def _make_png_info(cls, src_path):
-
-        # {
-        #     'Thumb::URI': 'file:///home/fabrice/....png'
-        #     'Thumb::MTime': '1547660783',
-        #
-        #     'Thumb::Size': '3312888',
-        #     'Thumb::Mimetype': 'image/png',
-        #     'Software': 'KDE Thumbnail Generator Images (GIF, PNG, BMP, ...)',
-        #
-        #     'dpi': (96, 96),
-        # }
-
-        file_stat = Path(src_path).stat()
-
-        mtime = int(file_stat.st_mtime)
-        file_size = file_stat.st_size # bytes
-        mime_type = mimetypes.guess_type(str(src_path))[0]
-
-        png_info = PngImagePlugin.PngInfo()
-        # required
-        png_info.add_text('Thumb::URI', cls.uri_path(src_path))
-        png_info.add_text('Thumb::MTime', mtime)
-        # optional
-        png_info.add_text('Thumb::Size', file_size)
-        png_info.add_text('Thumb::Mimetype', mime_type)
-        png_info.add_text('Software', 'Book Browser')
-
-        return png_info
-
-    ##############################################
-
-    @classmethod
-    def _make_thumbnail(cls, src_path, dst_path, size):
-        image = Image.open(str(src_path))
-        image.thumbnail((size, size), resample=cls.SAMPLING)
-        png_info = cls._make_png_info(src_path)
-        image.save(str(dst_path), 'PNG', pnginfo=png_info)
-
-    ##############################################
-
-    def make_normal_thumbnail(self, path):
-        self._make_thumbnail(path, self.normal_thumbnail_path(path), self.NORMAL_SIZE)
-
-    def make_large_thumbnail(self, path):
-        self._make_thumbnail(path, self.large_thumbnail_path(path), self.LARGE_SIZE)
-
-    def make_thumbnail(self, path, is_normal=True):
+    def thumbnail_path(self, path, is_normal=True):
         if is_normal:
-            self.make_normal_thumbnail(path)
+            cache_path = self._normal_path
         else:
-            self.make_large_thumbnail(path)
+            cache_path = self._large_path
+        return cache_path.joinpath(path)
+
+    def normal_thumbnail_path(self, path):
+        return self.thumbnail_path(path, True)
+
+    def large_thumbnail_path(self, path):
+        return self.thumbnail_path(path, False)
 
     ##############################################
 
-    def thumbnail(self, path, is_normal=True):
-        # Fixme: mangle x3
-        if not self.has_thumbnail(path, is_normal):
-            self._logger.info('Make thumbnail for {}'.format(path))
-            self.make_thumbnail(path, is_normal)
-        return self.thumbnail_path(path, is_normal)
-
-    def normal_thumbnail(self, path):
-        return self.thumbnail(path, True)
-
-    def large_thumbnail(self, path):
-        return self.thumbnail(path, False)
-
-    ##############################################
-
-    def _delete_thumbnail(self, path, is_normal=False):
-        if self.has_thumbnail(path, is_normal):
-            os.unlink(self.thumbnail_path(path, is_normal))
-
-    def delete_thumbnail(self, path):
-        for is_normal in (False, True):
-            self._delete_thumbnail(path, is_normal=is_normal)
-
+    def __getitem__(self, path):
+        return FreeDesktopThumbnail(self, path)

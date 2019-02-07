@@ -47,7 +47,6 @@ _module_logger = logging.getLogger(__name__)
 ####################################################################################################
 
 thumbnail_cache = FreeDesktopThumbnailCache()
-#! thumbnail_cache.clear_cache()
 
 ####################################################################################################
 
@@ -94,8 +93,8 @@ class QmlBookPage(QObject):
 
     @Property(str, notify=large_thumbnail_path_changed)
     def large_thumbnail_path(self):
-        # return str(thumbnail_cache.large_thumbnail(self._page.path))
-        return str(thumbnail_cache.large_thumbnail_path(self._page.path))
+        # Fixme: cache thumbnail instance ?
+        return str(thumbnail_cache[self._page.path].large_path)
 
     ##############################################
 
@@ -103,7 +102,8 @@ class QmlBookPage(QObject):
     def request_large_thumbnail(self):
 
         def job():
-            return str(thumbnail_cache.large_thumbnail(self._page.path))
+            # Fixme: issue when the application is closed
+            return str(thumbnail_cache[self._page.path].large)
 
         worker = Worker(job)
         # worker.signals.result.connect(self.print_output)
