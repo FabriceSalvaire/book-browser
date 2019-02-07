@@ -1,21 +1,19 @@
+include .gitattributes
 include .gitignore
-include .pyflymakerc
-include CHANGES.txt
+include .travis.yml
 include GPL-V3.0.txt
-include LICENSE.txt
 include MANIFEST.in
 include README.html
 include README.rst
 include README.txt
-include TODO.rst
-include make-release.sh
-include pylintrc.ini
-include setenv.sh start.sh
+include requirements-dev.txt
+include requirements.txt
+include setenv.sh
 include setup_data.py
-include requirements.txt requirements-dev.txt
-include .travis.yml
-include bower/bower.json
-recursive-include BookBrowser *.py *.yml *py.in
+include tox.ini
+recursive-include .github *
+recursive-include gh-pages *
+recursive-include BookBrowser *
 recursive-include doc *
 recursive-include doc/sphinx/source/_static *
 recursive-include doc/sphinx/source/_templates *
@@ -24,6 +22,8 @@ recursive-include unit-test *.py
 global-exclude *~
 global-exclude *__pycache__*
 global-exclude *.pyc
+global-exclude *.qmlc
+global-exclude .directory
 prune build
 prune doc/sphinx/build
 prune doc/sphinx/source/api

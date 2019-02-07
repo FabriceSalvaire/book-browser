@@ -22,8 +22,10 @@
 
 ####################################################################################################
 
+from pathlib import Path
 import glob
 import sys
+import os
 
 from setuptools import setup, find_packages
 setuptools_available = True
@@ -43,6 +45,19 @@ def read_requirement():
 
 ####################################################################################################
 
+qml_path = Path('BookBrowser', 'QtApplication', 'qml')
+data_files = []
+for directory_path, sub_directories, filenames in os.walk(qml_path):
+    path = Path(directory_path)
+    qml_files = []
+    for filename in filenames:
+        if filename == 'qmldir' or filename.endswith('.qml'):
+            file_path = str(path.joinpath(filename))
+            qml_files.append(file_path)
+    data_files.append((str(path), qml_files))
+
+####################################################################################################
+
 setup_dict.update(dict(
     # include_package_data=True, # Look in MANIFEST.in
     packages=find_packages(exclude=['unit-test']),
@@ -53,35 +68,21 @@ setup_dict.update(dict(
     package_data={
         'BookBrowser.Config': ['logging.yml'],
     },
-
+    data_files=data_files,
     platforms='any',
     zip_safe=False, # due to data files
 
     # cf. http://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
-        'Topic :: Scientific/Engineering',
-        'Intended Audience :: Education',
-
-        'Development Status :: 1 - Planning',
-        'Development Status :: 2 - Pre-Alpha',
-        'Development Status :: 3 - Alpha',
-        'Development Status :: 4 - Beta',
+        'Topic :: Office/Business',
+        'Intended Audience :: End Users/Desktop',
         'Development Status :: 5 - Production/Stable',
-        'Development Status :: 6 - Mature',
-        'Development Status :: 7 - Inactive',
-
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
-        'License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)',
-
         'Operating System :: OS Independent',
-
-        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         ],
 
     install_requires=read_requirement(),
-    # [
-    #     'PyYAML',
-    # ],
 ))
 
 ####################################################################################################

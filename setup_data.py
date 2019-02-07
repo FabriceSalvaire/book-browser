@@ -22,6 +22,8 @@
 
 import os
 
+import BookBrowser
+
 ####################################################################################################
 
 def merge_include(src_lines, doc_path, included_rst_files=None):
@@ -33,9 +35,9 @@ def merge_include(src_lines, doc_path, included_rst_files=None):
             include_file_name = line.split('::')[-1].strip()
             if include_file_name not in included_rst_files:
                 # print "include", include_file_name
-                with open(os.path.join(doc_path, include_file_name)) as f:
+                with open(os.path.join(doc_path, include_file_name)) as fh:
                     included_rst_files[include_file_name] = True
-                    text += merge_include(f.readlines(), doc_path, included_rst_files)
+                    text += merge_include(fh.readlines(), doc_path, included_rst_files)
         else:
             text += line
     return text
@@ -55,8 +57,8 @@ def read_readme(file_name):
     doc_path = os.path.join(source_path, 'doc', 'sphinx', 'source')
 
     # Read and merge includes
-    with open(absolut_file_name) as f:
-        lines = f.readlines()
+    with open(absolut_file_name) as fh:
+        lines = fh.readlines()
     text = merge_include(lines, doc_path)
 
     return text
@@ -72,12 +74,12 @@ else:
 
 setup_dict = dict(
     name='BookBrowser',
-    version='0.1.0',
+    version=BookBrowser.__version__,
     author='Fabrice Salvaire',
     author_email='fabrice.salvaire@orange.fr',
-    description='...',
+    description='Qt Application to scan and read books',
     license='GPLv3',
-    keywords= 'foo bar',
-    url='https://github.com/FabriceSalvaire/BookBrowser',
+    keywords= 'scan image book viewer',
+    url='https://github.com/FabriceSalvaire/book-browser',
     long_description=long_description,
 )
