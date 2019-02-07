@@ -25,3 +25,10 @@ BookBrowser/QtApplication/qml/Widgets/pinch-area.qml
 BookBrowser/QtApplication/rcc/icons/scripts/material-design-icons
 delta_hist.txt
 test-directory/
+
+BookBrowser.egg-info/
+TODO.txt
+foo.png
+resources/
+trash/
+xsane/
