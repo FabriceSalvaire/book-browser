@@ -1,0 +1,16 @@
+#! /usr/bin/bash
+
+clear
+
+PYTHON_PREFIX='/opt/python-virtual-env/py37'
+
+#??? source ~/.bashrc
+source ${PYTHON_PREFIX}/bin/activate
+
+# !!!
+/home/etc/users/bin/rmp -r ${PYTHON_PREFIX}/lib/python3.7/site-packages/BookBrowser-1.0.0-py3.7.egg
+
+python3 setup.py install
+
+cd
+book-browser ~/scan-livre-modlisme/Amateur/chemise/
