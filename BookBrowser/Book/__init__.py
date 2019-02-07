@@ -322,18 +322,27 @@ class Book:
 
     @property
     def first_page(self):
-        return self._pages[0]
+        try:
+            return self._pages[0]
+        except IndexError:
+            return None
 
     @property
     def last_page(self):
-        return self._pages[-1]
+        try:
+            return self._pages[-1]
+        except IndexError:
+            return None
 
     ##############################################
 
     @property
     def last_page_number(self):
         """Last page number or index"""
-        return int(self.last_page)
+        if self.number_of_pages:
+             return int(self.last_page)
+        else:
+            return 0
 
     ##############################################
 
