@@ -33,10 +33,11 @@ from functools import lru_cache
 from pathlib import Path
 import hashlib
 import logging
+import mimetypes
 import os
 import shutil
 
-from PIL import Image
+from PIL import Image, PngImagePlugin
 
 ####################################################################################################
 
@@ -70,9 +71,15 @@ class FreeDesktopThumbnailCache:
 
     ##############################################
 
+    @classmethod
+    def uri_path(cls, path):
+        return 'file://' + str(path)
+
+    ##############################################
+
     @lru_cache(maxsize=512)
     def mangle_path(self, path):
-        uri = 'file://' + str(path)
+        uri = self.uri_path(path)
         return hashlib.md5(uri.encode('utf-8')).hexdigest() + self.IMAGE_EXTENSION
 
     ##############################################
@@ -107,8 +114,43 @@ class FreeDesktopThumbnailCache:
     ##############################################
 
     def clear_cache(self):
-        self._logger.info('Clear thumbnail cache {}'.format(self._path))
+        # Warning: This command is dangerous !!!
+        #! self._logger.info('Clear thumbnail cache {}'.format(self._path))
         #! shutil.rmtree(str(self._path), ignore_errors=True)
+        pass
+
+    ##############################################
+
+    @classmethod
+    def _make_png_info(cls, src_path):
+
+        # {
+        #     'Thumb::URI': 'file:///home/fabrice/....png'
+        #     'Thumb::MTime': '1547660783',
+        #
+        #     'Thumb::Size': '3312888',
+        #     'Thumb::Mimetype': 'image/png',
+        #     'Software': 'KDE Thumbnail Generator Images (GIF, PNG, BMP, ...)',
+        #
+        #     'dpi': (96, 96),
+        # }
+
+        file_stat = Path(src_path).stat()
+
+        mtime = int(file_stat.st_mtime)
+        file_size = file_stat.st_size # bytes
+        mime_type = mimetypes.guess_type(str(src_path))[0]
+
+        png_info = PngImagePlugin.PngInfo()
+        # required
+        png_info.add_text('Thumb::URI', cls.uri_path(src_path))
+        png_info.add_text('Thumb::MTime', mtime)
+        # optional
+        png_info.add_text('Thumb::Size', file_size)
+        png_info.add_text('Thumb::Mimetype', mime_type)
+        png_info.add_text('Software', 'Book Browser')
+
+        return png_info
 
     ##############################################
 
@@ -116,7 +158,8 @@ class FreeDesktopThumbnailCache:
     def _make_thumbnail(cls, src_path, dst_path, size):
         image = Image.open(str(src_path))
         image.thumbnail((size, size), resample=cls.SAMPLING)
-        image.save(str(dst_path))
+        png_info = cls._make_png_info(src_path)
+        image.save(str(dst_path), 'PNG', pnginfo=png_info)
 
     ##############################################
 
@@ -146,3 +189,14 @@ class FreeDesktopThumbnailCache:
 
     def large_thumbnail(self, path):
         return self.thumbnail(path, False)
+
+    ##############################################
+
+    def _delete_thumbnail(self, path, is_normal=False):
+        if self.has_thumbnail(path, is_normal):
+            os.unlink(self.thumbnail_path(path, is_normal))
+
+    def delete_thumbnail(self, path):
+        for is_normal in (False, True):
+            self._delete_thumbnail(path, is_normal=is_normal)
+
