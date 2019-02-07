@@ -38,7 +38,7 @@ from QtShim.QtCore import (
 
 from PIL import ImageQt, Image
 
-from BookBrowser.Scanner import Scanner, FileExistsError
+from BookBrowser.Scanner import Scanner, FakeScanner, FileExistsError
 from .Runnable import Worker
 
 ####################################################################################################
@@ -58,7 +58,6 @@ class ScannerImageProvider(QQuickImageProvider):
         super().__init__(QQuickImageProvider.Image) # Pixmap
 
         self._output = None
-        self.output = Image.open('/home/fabrice/book-browser/foo.png')
 
     ##############################################
 
@@ -97,11 +96,14 @@ class QmlScanner(QObject):
 
     ##############################################
 
-    def __init__(self):
+    def __init__(self, fake=False):
 
         super().__init__()
 
-        self._scanner = Scanner()
+        if fake:
+            self._scanner = FakeScanner()
+        else:
+            self._scanner = Scanner()
         # self.scanner_ready.emit()
 
     ##############################################
@@ -117,17 +119,13 @@ class QmlScanner(QObject):
 
     @Property(str, constant=True)
     def device(self):
-        if self:
-            return self._scanner.device_name
-        else:
-            return 'Any device'
+        return self._scanner.device_name
 
     ##############################################
 
     @Slot()
     def maximize_scan_area(self):
-        if self: # for debug
-            self._scanner.maximize_scan_area()
+        self._scanner.maximize_scan_area()
 
     ##############################################
 
@@ -135,23 +133,16 @@ class QmlScanner(QObject):
 
     @Property(int, notify=resolution_changed)
     def resolution(self):
-        if self: # for debug
-            return self._scanner.resolution
-        else:
-            return 0
+        return self._scanner.resolution
 
     @Property('QStringList', constant=True)
     def resolutions(self):
-        if self: # for debug
-            return [str(x) for x in self._scanner.resolution_constraint]
-        else:
-            return []
+        return [str(x) for x in self._scanner.resolution_constraint]
 
     @resolution.setter
     def resolution(self, value):
         self._logger.info('Set scanner resolution: {}'.format(value))
-        if self: # for debug
-            self._scanner.resolution = int(value)
+        self._scanner.resolution = int(value)
 
     ##############################################
 
@@ -159,23 +150,16 @@ class QmlScanner(QObject):
 
     @Property(str, notify=mode_changed)
     def mode(self):
-        if self: # for debug
-            return self._scanner.mode
-        else:
-            return 'None'
+        return self._scanner.mode
 
     @Property('QStringList', constant=True)
     def modes(self):
-        if self: # for debug
-            return self._scanner.mode_constraint
-        else:
-            return []
+        return self._scanner.mode_constraint
 
     @mode.setter
     def mode(self, value):
         self._logger.info('Set scanner resolution: {}'.format(value))
-        if self: # for debug
-            self._scanner.mode = str(value)
+        self._scanner.mode = str(value)
 
     ##############################################
 
@@ -194,17 +178,11 @@ class QmlScanner(QObject):
 
     @Property(int, constant=True)
     def area_x_sup(self):
-        if self: # for debug
-            return self._scanner.area_constraint_x_sup
-        else:
-            return 14149222
+        return self._scanner.area_constraint_x_sup
 
     @Property(int, constant=True)
     def area_y_sup(self):
-        if self: # for debug
-            return self._scanner.area_constraint_y_sup
-        else:
-            return 19475988
+        return self._scanner.area_constraint_y_sup
 
     # @area.setter
     # def area(self, value):
@@ -212,8 +190,7 @@ class QmlScanner(QObject):
 
     @Slot(float, float, float, float)
     def set_area(self, x_inf, x_sup, y_inf, y_sup):
-        if self: # for debug
-            self._scanner.set_area_as_scale(x_inf, x_sup, y_inf, y_sup)
+        self._scanner.set_area_as_scale(x_inf, x_sup, y_inf, y_sup)
 
     ##############################################
 
@@ -225,28 +202,10 @@ class QmlScanner(QObject):
 
     ##############################################
 
-    def _fake_scan(self, *args, **kwargs):
-
-        self._logger.info('Fake scan {} {}'.format(args, kwargs))
-
-        if args:
-            self.scan_done.emit('/home/fabrice/book-browser/foo.png')
-            # if not args[2]:
-            #     self.file_exists_error.emit('foo.png')
-            # else:
-            #     self.scan_done.emit('/home/fabrice/book-browser/foo.png')
-        else:
-            self.preview_done.emit('foo.png')
-
-    ##############################################
-
     @Slot()
     def scan_image(self):
 
         self._logger.info('')
-
-        if not self: # for debug
-            return self._fake_scan()
 
         from .QmlApplication import Application
 
@@ -270,9 +229,6 @@ class QmlScanner(QObject):
     def scan(self, filename_path, filename_pattern, overwrite, index):
 
         self._logger.info('')
-
-        if not self:
-            return self._fake_scan(filename_path, filename_pattern, overwrite, index)
 
         def job():
             try:

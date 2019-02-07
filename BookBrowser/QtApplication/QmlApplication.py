@@ -331,6 +331,13 @@ class Application(QObject):
         )
 
         parser.add_argument(
+            '--fake-scanner',
+            action='store_true',
+            default=False,
+            help='use a fake scanner',
+        )
+
+        parser.add_argument(
             '--user-script',
             action=PathAction,
             default=None,
@@ -444,7 +451,7 @@ class Application(QObject):
 
         if self._scanner is None:
             # take time
-            self._scanner = QmlScanner()
+            self._scanner = QmlScanner(fake=self._args.fake_scanner)
             self.scanner_ready.emit()
         return self._scanner
 
