@@ -27,6 +27,7 @@ __all__ = [
 ####################################################################################################
 
 from pathlib import Path
+import json
 import logging
 import os
 import uuid
@@ -93,6 +94,18 @@ class QmlScannerConfig(QObject):
     #       implementation
 
     maximized = Signal()
+
+    __json_filename__ = '.book_browser.json'
+
+    __json_keys__ = (
+        'path',
+        'filename_pattern',
+        'index',
+        'resolution',
+        'mode',
+        'area',
+        'is_maximized',
+    )
 
     __default_area__ = dict(x_inf=0, x_sup=0, y_inf=0, y_sup=0)
 
@@ -208,7 +221,7 @@ class QmlScannerConfig(QObject):
         value = dict(value)
         if self._area != value:
             self._area = {key:value[key] for key in ('x_inf', 'x_sup', 'y_inf', 'y_sup')}
-            self.maximized = False
+            self.is_maximized = False
             self._logger.info('area = {}'.format(self._area))
             self.area_changed.emit()
 
@@ -230,6 +243,43 @@ class QmlScannerConfig(QObject):
             if value:
                 self.area = self.__default_area__
                 self.maximized.emit()
+
+    ##############################################
+
+    def _json_path(self):
+        return Path(self._path).joinpath(self.__json_filename__)
+
+    @property
+    def json_path(self):
+        return self._json_path()
+
+    ##############################################
+
+    @Slot()
+    def save(self):
+
+        data = {key:getattr(self, '_' + key) for key in self.__json_keys__}
+        self._logger.info('Save scanner config {} {}'.format(self.json_path, data))
+        json_data = json.dumps(data, sort_keys=True, indent=4)
+        with open(self.json_path, 'w') as fh:
+            fh.write(json_data)
+
+    ##############################################
+
+    @Slot(result=bool)
+    def load(self):
+
+        if self._json_path().exists():
+            with open(self.json_path, 'r') as fh:
+                data = json.loads(fh.read())
+
+            self._logger.info('Loads scanner config {} {}'.format(self.json_path, data))
+            for key, value in data.items():
+                setattr(self, key, value)
+
+            return True
+        else:
+            return False
 
 ####################################################################################################
 

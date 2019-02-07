@@ -56,6 +56,12 @@ Item {
 	}
     }
 
+    function save() {
+	if (scanner) {
+	    scanner.config.save()
+	}
+    }
+
     /***********************************************************************************************
      *
      * Slots
@@ -69,18 +75,25 @@ Item {
 	if (has_device) {
 	    scanner = application.scanner
 
+	    console.info('Set scanner config')
+	    scanner.config.path = scanner.working_directory
+	    var loaded = scanner.config.load()
+	    console.info('Scanner config loaded', loaded)
+
 	    var default_resolution = scanner.config.resolution
 	    resolution_combobox.currentIndex = resolution_combobox.find(default_resolution)
 
 	    var default_mode = scanner.config.mode
 	    mode_combobox.currentIndex = mode_combobox.find(default_mode)
 
-	    filename_path.text = scanner.working_directory
-	    filename_pattern.text = 'foo.{:03}.png'
+	    filename_path.text = scanner.config.path
+	    filename_pattern.text = loaded ? scanner.config.filename_pattern : 'foo.{:03}.png'
 
-	    if (application.book) {
+	    if (loaded)
+		filename_index.value = scanner.config.index
+	    else if (application.book) {
 		var index = Math.max(application.book.last_page_number +1, 1)
-		filename_count.value = index
+		filename_index.value = index
 	    }
 
 	    // Thread issue ???
@@ -123,7 +136,7 @@ Item {
 	if (path) {
 	    is_preview_scan = false
 	    image_preview.source = path
-	    filename_count.increase()
+	    filename_index.increase()
 	    enable_scan_button(true)
 	    application_window.show_message('Saved ' + path)
 	}
@@ -202,7 +215,7 @@ Item {
     }
 
     function rescan_page() {
-	filename_count.decrease()
+	filename_index.decrease()
 	enable_scan_button(false)
 	scan_page(true) // not call_scan_page
     }
@@ -331,7 +344,7 @@ Item {
 		    onTextChanged: scanner.config.filename_pattern = text
 		}
 		SpinBox {
-		    id: filename_count
+		    id: filename_index
 		    font.pixelSize: 30
 		    value: 0
 		    to: 1000
