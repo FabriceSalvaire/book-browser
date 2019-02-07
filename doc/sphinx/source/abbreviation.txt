@@ -14,3 +14,12 @@
 
 .. |Sphinx| replace:: Sphinx
 .. _Sphinx: http://sphinx-doc.org
+
+.. |PyInsane| replace:: PyInsane 2
+.. _PyInsane: https://gitlab.gnome.org/World/OpenPaperwork/pyinsane
+
+.. |SANE| replace:: SANE
+.. _SANE: http://www.sane-project.org>
+
+.. |WIA| replace:: WIA
+.. _WIA: https://docs.microsoft.com/en-us/windows/desktop/wia/-wia-startpage

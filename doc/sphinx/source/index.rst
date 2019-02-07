@@ -37,26 +37,30 @@
 
    <div class="reduced-width">
 
-########
- Title
-########
+#########################################
+ BookBrowser — A Book Scanner and Reader
+#########################################
 
 .. image:: /_static/logo.png
    :alt: BookBrowser logo
-   :width: 750
-
-.. important::
-   This doc was generated from a template and need to be completed ...
+   :height: 64px
+   :width: 64px
 
 ********
 Overview
 ********
 
-BookBrowser is a free and open source (*) Python module which interface |Python|_ ...
+BookBrowser is a small application to read scanned books where the pages are stored as an image on
+disk.  It is an alternative to pack the images to a huge PDF file.  It also acts as a post-scanning
+tool to fix orientation, skipped and rescanned pages.
 
-.. rst-class:: small-text
+BookBrowser is licensed under GPLv3 therms.
 
-    (*) BookBrowser is licensed under GPLv3 therms.
+.. BookBrowser is a free and open source (*)
+
+.. .. rst-class:: small-text
+..
+..     (*) BookBrowser is licensed under GPLv3 therms.
 
 BookBrowser requires Python 3 and works on Linux, Windows and OS X.
 
@@ -88,13 +92,6 @@ How to install BookBrowser on your system
 ====================
 
 Answers to frequent questions
-
-.. rst-class:: column column2
-
-:ref:`examples-page`
-====================
-
-Many examples to learn how to use BookBrowser.
 
 .. rst-class:: column column2
 

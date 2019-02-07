@@ -92,18 +92,4 @@ Then to build and install BookBrowser run these commands:
 Dependencies
 ------------
 
-BookBrowser requires the following dependencies:
-
- * |Python|_ 3
- * |Numpy|_
-
-Also it is recommanded to have these Python modules:
-
- * |IPython|_
-
-.. * pip
-.. * virtualenv
-
-To generate the documentation, you will need in addition:
-
- * |Sphinx|_
+See *requirements.txt* file for normal installation and *requirements-dev.txt* to regenerate the package.

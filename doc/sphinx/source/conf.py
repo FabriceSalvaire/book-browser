@@ -139,16 +139,44 @@ pygments_style = 'sphinx'
 # Options for Autodoc
 #
 
+# http://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html
+
 # Show both class-level docstring and __init__ docstring in class documentation
 autoclass_content = 'both'
-autodoc_default_flags = [
-    'members',
-    'undoc-members',
-    # 'private-members',
-    # 'special-members',
-    # 'inherited-members',
-    # 'show-inheritance',
-    ]
+
+autodoc_member_order = 'alphabetical' # groupwise bysource
+
+# autodoc_default_flags = [
+#     'members',
+#     'undoc-members',
+#
+#     # 'members',
+#     # 'undoc-members',
+#     # 'private-members',
+#     # 'special-members',
+#     # 'inherited-members',
+#     # 'show-inheritance',
+#     # 'ignore-module-all',
+#     # 'exclude-members',
+# ]
+
+excluded_members = [
+    '__dict__',
+    '__module__',
+    '__weakref__',
+]
+
+autodoc_default_options = {
+    'members': None,
+    # 'member-order': 'alphabetical' ,
+    'undoc-members': None,
+    'private-members': None,
+    'special-members': None,
+    # 'inherited-members': ,
+    'show-inheritance': None,
+    'ignore-module-all': None,
+    'exclude-members': ','.join(excluded_members),
+}
 
 ####################################################################################################
 #
@@ -187,7 +215,7 @@ html_theme_path = ['themes']
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-html_logo = None
+html_logo = '_static/logo-64.png'
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
@@ -264,7 +292,7 @@ latex_documents = [
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-latex_logo = None
+latex_logo = '_static/logo-64.png'
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
@@ -313,4 +341,4 @@ intersphinx_mapping = {'http://docs.python.org/': None}
 # https://github.com/jdillard/sphinx-sitemap
 #
 
-site_url = '@project_url@' # could use setup_dict
+site_url = 'https://github.com/FabriceSalvaire/book-browser' # could use setup_dict
