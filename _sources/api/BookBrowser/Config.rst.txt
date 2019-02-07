@@ -1,0 +1,11 @@
+
+========
+ Config
+========
+
+.. toctree::
+    Config/ConfigInstall
+
+.. automodule:: BookBrowser.Config
+   :members:
+   :show-inheritance:

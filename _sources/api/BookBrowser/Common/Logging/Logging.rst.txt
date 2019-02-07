@@ -1,0 +1,8 @@
+
+=========
+ Logging
+=========
+
+.. automodule:: BookBrowser.Common.Logging.Logging
+   :members:
+   :show-inheritance:

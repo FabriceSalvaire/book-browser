@@ -1,0 +1,10 @@
+
+=========
+ Scanner
+=========
+
+.. toctree::
+
+.. automodule:: BookBrowser.Scanner
+   :members:
+   :show-inheritance:

@@ -1,0 +1,385 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.1.4.5. Runnable &mdash; BookBrowser 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../static/css/BookBrowser.css" type="text/css" />
+  <link rel="stylesheet" href="../../../static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="7.1.5. Scanner" href="../Scanner.html" />
+    <link rel="prev" title="7.1.4.4. QmlScanner" href="QmlScanner.html" /> 
+
+  
+  <script src="../../../static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> BookBrowser
+          
+
+          
+            
+            <img src="../../../static/logo-64.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">1. Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#what-is-bookbrowser">1.1. What is BookBrowser ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#how-is-bookbrowser-licensed">1.2. How is BookBrowser licensed ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#going-further-with-bookbrowser">1.3. Going further with BookBrowser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#which-platforms-are-supported-by-bookbrowser">1.4. Which platforms are supported by BookBrowser ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#how-to-install-bookbrowser">1.5. How to install BookBrowser ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#which-version-of-python-is-required">1.6. Which version of Python is required ?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../news.html">2. News</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../news.html#v0-2019-01-01">2.1. V0 2019-01-01</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../roadmap.html">3. Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">4. Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#on-windows">4.1. On Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#on-linux">4.2. On Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#on-osx">4.3. On OSX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#installation-from-pypi-repository">4.4. Installation from PyPi Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install-a-more-recent-version-from-github">4.5. Install a more recent version from Github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#installation-from-source">4.6. Installation from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#dependencies">4.7. Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">5. User FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq.html#how-to-get-help-or-report-an-issue">5.1. How to get help or report an issue ?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../design-notes.html">6. Design Notes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../reference-manual.html">7. API Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../BookBrowser.html">7.1. BookBrowser</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../Book.html">7.1.1. Book</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Common.html">7.1.2. Common</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Common/ArgparseAction.html">7.1.2.1. ArgparseAction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Common/Logging.html">7.1.2.2. Logging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Common/Path.html">7.1.2.3. Path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Common/Platform.html">7.1.2.4. Platform</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Config.html">7.1.3. Config</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Config/ConfigInstall.html">7.1.3.1. ConfigInstall</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="../QtApplication.html">7.1.4. QtApplication</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="Message.html">7.1.4.1. Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QmlApplication.html">7.1.4.2. QmlApplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QmlBook.html">7.1.4.3. QmlBook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QmlScanner.html">7.1.4.4. QmlScanner</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">7.1.4.5. Runnable</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Scanner.html">7.1.5. Scanner</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Scanner.html#reference">7.1.5.1. Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Thumbnail.html">7.1.6. Thumbnail</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference-manual.html#indexes">7.2. Indexes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development.html">8. Development &amp; Community</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#how-you-can-help">8.1. How you can help ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#contributors">8.2. Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../how-to-refer.html">9. How to Refer to BookBrowser ?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../donate.html">10. How to Help Further ?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../related-projects.html">11. Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bibliography.html">12. Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">BookBrowser</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../reference-manual.html">7. API Documentation</a> &raquo;</li>
+        
+          <li><a href="../../BookBrowser.html">7.1. BookBrowser</a> &raquo;</li>
+        
+          <li><a href="../QtApplication.html">7.1.4. QtApplication</a> &raquo;</li>
+        
+      <li>7.1.4.5. Runnable</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/api/BookBrowser/QtApplication/Runnable.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-BookBrowser.QtApplication.Runnable">
+<span id="runnable"></span><h1>7.1.4.5. Runnable<a class="headerlink" href="#module-BookBrowser.QtApplication.Runnable" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="BookBrowser.QtApplication.Runnable.Worker">
+<em class="property">class </em><code class="descclassname">BookBrowser.QtApplication.Runnable.</code><code class="descname">Worker</code><span class="sig-paren">(</span><em>callback</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/Runnable.html#Worker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.Runnable.Worker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt5.QtCore.QRunnable</span></code></p>
+<p>Class to implement a worker thread.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">non-GIL-releasing Python code can only execute in one thread at a time.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>callback</strong> (<em>function</em>) – The function callback to run on this worker thread. Supplied args and
+kwargs will be passed through to the runner.</li>
+<li><strong>args</strong> – Arguments to pass to the callback function</li>
+<li><strong>kwargs</strong> – Keywords to pass to the callback function</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="BookBrowser.QtApplication.Runnable.Worker.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>callback</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/Runnable.html#Worker.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.Runnable.Worker.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.Runnable.Worker._logger">
+<code class="descname">_logger</code><em class="property"> = &lt;Logger BookBrowser.QtApplication.Runnable.Worker (WARNING)&gt;</em><a class="headerlink" href="#BookBrowser.QtApplication.Runnable.Worker._logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.QtApplication.Runnable.Worker.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/Runnable.html#Worker.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.Runnable.Worker.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.Runnable.Worker.signals">
+<code class="descname">signals</code><a class="headerlink" href="#BookBrowser.QtApplication.Runnable.Worker.signals" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="BookBrowser.QtApplication.Runnable.WorkerSignals">
+<em class="property">class </em><code class="descclassname">BookBrowser.QtApplication.Runnable.</code><code class="descname">WorkerSignals</code><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/Runnable.html#WorkerSignals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.Runnable.WorkerSignals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt5.QtCore.QObject</span></code></p>
+<p>Class to define the signals available from a running worker thread.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">signals can only be defined on objects derived from QObject.</p>
+</div>
+<p>Supported signals are:</p>
+<dl class="docutils">
+<dt>finished</dt>
+<dd>No data</dd>
+<dt>error</dt>
+<dd><cite>tuple</cite> (exctype, value, traceback.format_exc() )</dd>
+<dt>result</dt>
+<dd><cite>object</cite> data returned from processing, anything</dd>
+<dt>progress</dt>
+<dd>int</dd>
+</dl>
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.Runnable.WorkerSignals.error">
+<code class="descname">error</code><a class="headerlink" href="#BookBrowser.QtApplication.Runnable.WorkerSignals.error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.Runnable.WorkerSignals.finished">
+<code class="descname">finished</code><a class="headerlink" href="#BookBrowser.QtApplication.Runnable.WorkerSignals.finished" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.Runnable.WorkerSignals.progress">
+<code class="descname">progress</code><a class="headerlink" href="#BookBrowser.QtApplication.Runnable.WorkerSignals.progress" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.Runnable.WorkerSignals.result">
+<code class="descname">result</code><a class="headerlink" href="#BookBrowser.QtApplication.Runnable.WorkerSignals.result" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Scanner.html" class="btn btn-neutral float-right" title="7.1.5. Scanner" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="QmlScanner.html" class="btn btn-neutral" title="7.1.4.4. QmlScanner" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Fabrice Salvaire
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../static/jquery.js"></script>
+        <script type="text/javascript" src="../../../static/underscore.js"></script>
+        <script type="text/javascript" src="../../../static/doctools.js"></script>
+        <script type="text/javascript" src="../../../static/language_data.js"></script>
+        <script type="text/javascript" src="../../../static/getthecode.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+
+============
+ QmlScanner
+============
+
+.. automodule:: BookBrowser.QtApplication.QmlScanner
+   :members:
+   :show-inheritance:

@@ -1,0 +1,521 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.1.4.2. QmlApplication &mdash; BookBrowser 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../static/css/BookBrowser.css" type="text/css" />
+  <link rel="stylesheet" href="../../../static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="7.1.4.3. QmlBook" href="QmlBook.html" />
+    <link rel="prev" title="7.1.4.1. Message" href="Message.html" /> 
+
+  
+  <script src="../../../static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> BookBrowser
+          
+
+          
+            
+            <img src="../../../static/logo-64.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">1. Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#what-is-bookbrowser">1.1. What is BookBrowser ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#how-is-bookbrowser-licensed">1.2. How is BookBrowser licensed ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#going-further-with-bookbrowser">1.3. Going further with BookBrowser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#which-platforms-are-supported-by-bookbrowser">1.4. Which platforms are supported by BookBrowser ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#how-to-install-bookbrowser">1.5. How to install BookBrowser ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#which-version-of-python-is-required">1.6. Which version of Python is required ?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../news.html">2. News</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../news.html#v0-2019-01-01">2.1. V0 2019-01-01</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../roadmap.html">3. Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">4. Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#on-windows">4.1. On Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#on-linux">4.2. On Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#on-osx">4.3. On OSX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#installation-from-pypi-repository">4.4. Installation from PyPi Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install-a-more-recent-version-from-github">4.5. Install a more recent version from Github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#installation-from-source">4.6. Installation from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#dependencies">4.7. Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">5. User FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq.html#how-to-get-help-or-report-an-issue">5.1. How to get help or report an issue ?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../design-notes.html">6. Design Notes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../reference-manual.html">7. API Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../BookBrowser.html">7.1. BookBrowser</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../Book.html">7.1.1. Book</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Common.html">7.1.2. Common</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Common/ArgparseAction.html">7.1.2.1. ArgparseAction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Common/Logging.html">7.1.2.2. Logging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Common/Path.html">7.1.2.3. Path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Common/Platform.html">7.1.2.4. Platform</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Config.html">7.1.3. Config</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Config/ConfigInstall.html">7.1.3.1. ConfigInstall</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="../QtApplication.html">7.1.4. QtApplication</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="Message.html">7.1.4.1. Message</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">7.1.4.2. QmlApplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QmlBook.html">7.1.4.3. QmlBook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QmlScanner.html">7.1.4.4. QmlScanner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Runnable.html">7.1.4.5. Runnable</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Scanner.html">7.1.5. Scanner</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Scanner.html#reference">7.1.5.1. Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Thumbnail.html">7.1.6. Thumbnail</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference-manual.html#indexes">7.2. Indexes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development.html">8. Development &amp; Community</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#how-you-can-help">8.1. How you can help ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#contributors">8.2. Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../how-to-refer.html">9. How to Refer to BookBrowser ?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../donate.html">10. How to Help Further ?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../related-projects.html">11. Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bibliography.html">12. Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">BookBrowser</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../reference-manual.html">7. API Documentation</a> &raquo;</li>
+        
+          <li><a href="../../BookBrowser.html">7.1. BookBrowser</a> &raquo;</li>
+        
+          <li><a href="../QtApplication.html">7.1.4. QtApplication</a> &raquo;</li>
+        
+      <li>7.1.4.2. QmlApplication</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/api/BookBrowser/QtApplication/QmlApplication.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-BookBrowser.QtApplication.QmlApplication">
+<span id="qmlapplication"></span><h1>7.1.4.2. QmlApplication<a class="headerlink" href="#module-BookBrowser.QtApplication.QmlApplication" title="Permalink to this headline">¶</a></h1>
+<p>Module to implement a Qt Application.</p>
+<dl class="class">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application">
+<em class="property">class </em><code class="descclassname">BookBrowser.QtApplication.QmlApplication.</code><code class="descname">Application</code><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/QmlApplication.html#Application"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt5.QtCore.QObject</span></code></p>
+<p>Class to implement a Qt Application.</p>
+<dl class="method">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/QmlApplication.html#Application.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application._check_qml_is_loaded">
+<code class="descname">_check_qml_is_loaded</code><span class="sig-paren">(</span><em>obj</em>, <em>url</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/QmlApplication.html#Application._check_qml_is_loaded"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application._check_qml_is_loaded" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application._load_qml_main">
+<code class="descname">_load_qml_main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/QmlApplication.html#Application._load_qml_main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application._load_qml_main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application._logger">
+<code class="descname">_logger</code><em class="property"> = &lt;Logger BookBrowser.QtApplication.QmlApplication.Application (WARNING)&gt;</em><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application._logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application._message_handler">
+<code class="descname">_message_handler</code><span class="sig-paren">(</span><em>msg_type</em>, <em>context</em>, <em>msg</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/QmlApplication.html#Application._message_handler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application._message_handler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application._on_critical_exception">
+<code class="descname">_on_critical_exception</code><span class="sig-paren">(</span><em>exception</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/QmlApplication.html#Application._on_critical_exception"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application._on_critical_exception" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application._parse_arguments">
+<code class="descname">_parse_arguments</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/QmlApplication.html#Application._parse_arguments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application._parse_arguments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application._post_init">
+<code class="descname">_post_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/QmlApplication.html#Application._post_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application._post_init" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application._print_critical_message">
+<code class="descname">_print_critical_message</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/QmlApplication.html#Application._print_critical_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application._print_critical_message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application._register_qml_types">
+<code class="descname">_register_qml_types</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/QmlApplication.html#Application._register_qml_types"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application._register_qml_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application._set_context_properties">
+<code class="descname">_set_context_properties</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/QmlApplication.html#Application._set_context_properties"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application._set_context_properties" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application.args">
+<code class="descname">args</code><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application.args" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application.book">
+<code class="descname">book</code><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application.book" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application.book_path">
+<code class="descname">book_path</code><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application.book_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application.create">
+<em class="property">classmethod </em><code class="descname">create</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/QmlApplication.html#Application.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application.create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application.exec_">
+<code class="descname">exec_</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/QmlApplication.html#Application.exec_"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application.exec_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application.execute_user_script">
+<code class="descname">execute_user_script</code><span class="sig-paren">(</span><em>script_path</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/QmlApplication.html#Application.execute_user_script"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application.execute_user_script" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute an user script provided by file <em>script_path</em> in a context where is defined a
+variable <em>application</em> that is a reference to the application instance.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application.init_scanner">
+<code class="descname">init_scanner</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/QmlApplication.html#Application.init_scanner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application.init_scanner" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application.instance">
+<code class="descname">instance</code><em class="property"> = None</em><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application.instance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application.load_book">
+<code class="descname">load_book</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/QmlApplication.html#Application.load_book"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application.load_book" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application.platform">
+<code class="descname">platform</code><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application.platform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application.qml_application">
+<code class="descname">qml_application</code><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application.qml_application" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application.scanner">
+<code class="descname">scanner</code><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application.scanner" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application.scanner_image_provider">
+<code class="descname">scanner_image_provider</code><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application.scanner_image_provider" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application.scanner_ready">
+<code class="descname">scanner_ready</code><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application.scanner_ready" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application.setup_gui_application">
+<em class="property">classmethod </em><code class="descname">setup_gui_application</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/QmlApplication.html#Application.setup_gui_application"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application.setup_gui_application" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.QmlApplication.Application.thread_pool">
+<code class="descname">thread_pool</code><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.Application.thread_pool" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="BookBrowser.QtApplication.QmlApplication.QmlApplication">
+<em class="property">class </em><code class="descclassname">BookBrowser.QtApplication.QmlApplication.</code><code class="descname">QmlApplication</code><span class="sig-paren">(</span><em>application</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/QmlApplication.html#QmlApplication"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.QmlApplication" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt5.QtCore.QObject</span></code></p>
+<p>Class to implement a Qt QML Application.</p>
+<dl class="method">
+<dt id="BookBrowser.QtApplication.QmlApplication.QmlApplication.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>application</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/QmlApplication.html#QmlApplication.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.QmlApplication.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.QmlApplication.QmlApplication._logger">
+<code class="descname">_logger</code><em class="property"> = &lt;Logger BookBrowser.QtApplication.QmlApplication.QmlApplication (WARNING)&gt;</em><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.QmlApplication._logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.QtApplication.QmlApplication.QmlApplication._on_scan_done">
+<code class="descname">_on_scan_done</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/QmlApplication.html#QmlApplication._on_scan_done"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.QmlApplication._on_scan_done" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.QmlApplication.QmlApplication.about_message">
+<code class="descname">about_message</code><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.QmlApplication.about_message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.QmlApplication.QmlApplication.book">
+<code class="descname">book</code><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.QmlApplication.book" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.QmlApplication.QmlApplication.book_changed">
+<code class="descname">book_changed</code><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.QmlApplication.book_changed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.QtApplication.QmlApplication.QmlApplication.debug">
+<code class="descname">debug</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/QmlApplication.html#QmlApplication.debug"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.QmlApplication.debug" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.QmlApplication.QmlApplication.file_exists_error">
+<code class="descname">file_exists_error</code><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.QmlApplication.file_exists_error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.QtApplication.QmlApplication.QmlApplication.init_scanner">
+<code class="descname">init_scanner</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/QmlApplication.html#QmlApplication.init_scanner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.QmlApplication.init_scanner" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.QtApplication.QmlApplication.QmlApplication.load_book">
+<code class="descname">load_book</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/QmlApplication.html#QmlApplication.load_book"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.QmlApplication.load_book" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.QmlApplication.QmlApplication.preview_done">
+<code class="descname">preview_done</code><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.QmlApplication.preview_done" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.QmlApplication.QmlApplication.scan_done">
+<code class="descname">scan_done</code><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.QmlApplication.scan_done" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.QmlApplication.QmlApplication.scanner">
+<code class="descname">scanner</code><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.QmlApplication.scanner" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.QtApplication.QmlApplication.QmlApplication.scanner_ready">
+<code class="descname">scanner_ready</code><a class="headerlink" href="#BookBrowser.QtApplication.QmlApplication.QmlApplication.scanner_ready" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="QmlBook.html" class="btn btn-neutral float-right" title="7.1.4.3. QmlBook" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Message.html" class="btn btn-neutral" title="7.1.4.1. Message" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Fabrice Salvaire
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../static/jquery.js"></script>
+        <script type="text/javascript" src="../../../static/underscore.js"></script>
+        <script type="text/javascript" src="../../../static/doctools.js"></script>
+        <script type="text/javascript" src="../../../static/language_data.js"></script>
+        <script type="text/javascript" src="../../../static/getthecode.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

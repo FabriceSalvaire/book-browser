@@ -1,0 +1,16 @@
+
+=============
+ BookBrowser
+=============
+
+.. toctree::
+    BookBrowser/Book
+    BookBrowser/Common
+    BookBrowser/Config
+    BookBrowser/QtApplication
+    BookBrowser/Scanner
+    BookBrowser/Thumbnail
+
+.. automodule:: BookBrowser
+   :members:
+   :show-inheritance:

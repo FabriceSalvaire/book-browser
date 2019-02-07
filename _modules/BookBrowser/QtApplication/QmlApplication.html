@@ -1,0 +1,732 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>BookBrowser.QtApplication.QmlApplication &mdash; BookBrowser 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../static/css/BookBrowser.css" type="text/css" />
+  <link rel="stylesheet" href="../../../static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> BookBrowser
+          
+
+          
+            
+            <img src="../../../static/logo-64.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">1. Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#what-is-bookbrowser">1.1. What is BookBrowser ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#how-is-bookbrowser-licensed">1.2. How is BookBrowser licensed ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#going-further-with-bookbrowser">1.3. Going further with BookBrowser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#which-platforms-are-supported-by-bookbrowser">1.4. Which platforms are supported by BookBrowser ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#how-to-install-bookbrowser">1.5. How to install BookBrowser ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#which-version-of-python-is-required">1.6. Which version of Python is required ?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../news.html">2. News</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../news.html#v0-2019-01-01">2.1. V0 2019-01-01</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../roadmap.html">3. Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">4. Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#on-windows">4.1. On Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#on-linux">4.2. On Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#on-osx">4.3. On OSX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#installation-from-pypi-repository">4.4. Installation from PyPi Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install-a-more-recent-version-from-github">4.5. Install a more recent version from Github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#installation-from-source">4.6. Installation from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#dependencies">4.7. Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">5. User FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq.html#how-to-get-help-or-report-an-issue">5.1. How to get help or report an issue ?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../design-notes.html">6. Design Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference-manual.html">7. API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/BookBrowser.html">7.1. BookBrowser</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/BookBrowser/Book.html">7.1.1. Book</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/BookBrowser/Common.html">7.1.2. Common</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/Common/ArgparseAction.html">7.1.2.1. ArgparseAction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/Common/Logging.html">7.1.2.2. Logging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/Common/Path.html">7.1.2.3. Path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/Common/Platform.html">7.1.2.4. Platform</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/BookBrowser/Config.html">7.1.3. Config</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/Config/ConfigInstall.html">7.1.3.1. ConfigInstall</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/BookBrowser/QtApplication.html">7.1.4. QtApplication</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/QtApplication/Message.html">7.1.4.1. Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/QtApplication/QmlApplication.html">7.1.4.2. QmlApplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/QtApplication/QmlBook.html">7.1.4.3. QmlBook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/QtApplication/QmlScanner.html">7.1.4.4. QmlScanner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/QtApplication/Runnable.html">7.1.4.5. Runnable</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/BookBrowser/Scanner.html">7.1.5. Scanner</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/Scanner.html#reference">7.1.5.1. Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/BookBrowser/Thumbnail.html">7.1.6. Thumbnail</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference-manual.html#indexes">7.2. Indexes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development.html">8. Development &amp; Community</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#how-you-can-help">8.1. How you can help ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#contributors">8.2. Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../how-to-refer.html">9. How to Refer to BookBrowser ?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../donate.html">10. How to Help Further ?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../related-projects.html">11. Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bibliography.html">12. Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">BookBrowser</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>BookBrowser.QtApplication.QmlApplication</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for BookBrowser.QtApplication.QmlApplication</h1><div class="highlight"><pre>
+<span></span><span class="c1">####################################################################################################</span>
+<span class="c1">#</span>
+<span class="c1"># BookBrowser - A book browser</span>
+<span class="c1"># Copyright (C) 2019 Fabrice Salvaire</span>
+<span class="c1">#</span>
+<span class="c1"># This program is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># This program is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="c1">#</span>
+<span class="c1">####################################################################################################</span>
+
+<span class="sd">&quot;&quot;&quot;Module to implement a Qt Application.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1">####################################################################################################</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;QmlApplication&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="c1">####################################################################################################</span>
+
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="c1"># import datetime</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">traceback</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
+
+<span class="c1"># Fixme:</span>
+<span class="kn">from</span> <span class="nn">PyQt5</span> <span class="k">import</span> <span class="n">QtCore</span>
+
+<span class="kn">from</span> <span class="nn">QtShim.QtCore</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">Property</span><span class="p">,</span> <span class="n">Signal</span><span class="p">,</span> <span class="n">Slot</span><span class="p">,</span> <span class="n">QObject</span><span class="p">,</span>
+    <span class="n">Qt</span><span class="p">,</span> <span class="n">QTimer</span><span class="p">,</span> <span class="n">QUrl</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">QtShim.QtGui</span> <span class="k">import</span> <span class="n">QGuiApplication</span><span class="p">,</span> <span class="n">QIcon</span>
+<span class="kn">from</span> <span class="nn">QtShim.QtQml</span> <span class="k">import</span> <span class="n">qmlRegisterType</span><span class="p">,</span> <span class="n">QQmlApplicationEngine</span>
+<span class="c1"># Fixme: PYSIDE-574 qmlRegisterSingletonType and qmlRegisterUncreatableType missing in QtQml</span>
+<span class="kn">from</span> <span class="nn">QtShim.QtQml</span> <span class="k">import</span> <span class="n">qmlRegisterUncreatableType</span>
+<span class="kn">from</span> <span class="nn">QtShim.QtQuick</span> <span class="k">import</span> <span class="n">QQuickPaintedItem</span><span class="p">,</span> <span class="n">QQuickView</span>
+<span class="c1"># from QtShim.QtQuickControls2 import QQuickStyle</span>
+
+<span class="kn">import</span> <span class="nn">BookBrowser</span>
+<span class="kn">from</span> <span class="nn">BookBrowser.Common.ArgparseAction</span> <span class="k">import</span> <span class="n">PathAction</span>
+<span class="kn">from</span> <span class="nn">BookBrowser.Common.Platform</span> <span class="k">import</span> <span class="n">QtPlatform</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">Message</span> <span class="k">as</span> <span class="n">BookBrowserMessage</span>
+<span class="kn">from</span> <span class="nn">.QmlBook</span> <span class="k">import</span> <span class="n">QmlBook</span><span class="p">,</span> <span class="n">QmlBookPage</span>
+<span class="kn">from</span> <span class="nn">.QmlScanner</span> <span class="k">import</span> <span class="n">ScannerImageProvider</span><span class="p">,</span> <span class="n">QmlScanner</span><span class="p">,</span> <span class="n">QmlScannerConfig</span>
+<span class="kn">from</span> <span class="nn">.Runnable</span> <span class="k">import</span> <span class="n">Worker</span>
+
+<span class="kn">from</span> <span class="nn">.rcc</span> <span class="k">import</span> <span class="n">BookBrowserRessource</span>
+
+<span class="c1">####################################################################################################</span>
+
+<span class="n">_module_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1">####################################################################################################</span>
+
+<div class="viewcode-block" id="QmlApplication"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.QmlApplication">[docs]</a><span class="k">class</span> <span class="nc">QmlApplication</span><span class="p">(</span><span class="n">QObject</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Class to implement a Qt QML Application.&quot;&quot;&quot;</span>
+
+    <span class="n">scanner_ready</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+
+    <span class="n">preview_done</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">file_exists_error</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">scan_done</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+
+    <span class="n">_logger</span> <span class="o">=</span> <span class="n">_module_logger</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="s1">&#39;QmlApplication&#39;</span><span class="p">)</span>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="QmlApplication.__init__"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.QmlApplication.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">application</span><span class="p">):</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_application</span> <span class="o">=</span> <span class="n">application</span></div>
+
+    <span class="c1">##############################################</span>
+
+    <span class="nd">@Property</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">about_message</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">BookBrowserMessage</span><span class="o">.</span><span class="n">about_message</span><span class="p">()</span>
+
+    <span class="c1">##############################################</span>
+
+    <span class="n">book_changed</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+
+    <span class="nd">@Property</span><span class="p">(</span><span class="n">QmlBook</span><span class="p">,</span> <span class="n">notify</span><span class="o">=</span><span class="n">book_changed</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">book</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_application</span><span class="o">.</span><span class="n">book</span>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="QmlApplication.load_book"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.QmlApplication.load_book">[docs]</a>    <span class="nd">@Slot</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">load_book</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_application</span><span class="o">.</span><span class="n">load_book</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">book_changed</span><span class="o">.</span><span class="n">emit</span><span class="p">()</span></div>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="QmlApplication.init_scanner"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.QmlApplication.init_scanner">[docs]</a>    <span class="nd">@Slot</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">init_scanner</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">def</span> <span class="nf">job</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_application</span><span class="o">.</span><span class="n">init_scanner</span><span class="p">()</span>
+            <span class="k">return</span> <span class="s1">&#39;&#39;</span> <span class="c1"># Fixme:</span>
+
+        <span class="n">worker</span> <span class="o">=</span> <span class="n">Worker</span><span class="p">(</span><span class="n">job</span><span class="p">)</span>
+        <span class="c1"># worker.signals.result.connect(self.print_output)</span>
+        <span class="n">worker</span><span class="o">.</span><span class="n">signals</span><span class="o">.</span><span class="n">finished</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scanner_ready</span><span class="p">)</span>
+        <span class="c1"># worker.signals.progress.connect(self.progress_fn)</span>
+
+        <span class="n">Application</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="n">thread_pool</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">worker</span><span class="p">)</span></div>
+
+    <span class="c1">##############################################</span>
+
+    <span class="nd">@Property</span><span class="p">(</span><span class="n">QmlScanner</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">scanner</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_application</span><span class="o">.</span><span class="n">scanner</span>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="QmlApplication.debug"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.QmlApplication.debug">[docs]</a>    <span class="nd">@Slot</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">debug</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># self._application.scanner.scan_done.connect(self._on_scan_done)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_application</span><span class="o">.</span><span class="n">scanner</span><span class="o">.</span><span class="n">preview_done</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">preview_done</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_application</span><span class="o">.</span><span class="n">scanner</span><span class="o">.</span><span class="n">file_exists_error</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_exists_error</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_application</span><span class="o">.</span><span class="n">scanner</span><span class="o">.</span><span class="n">scan_done</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scan_done</span><span class="p">)</span></div>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="QmlApplication._on_scan_done"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.QmlApplication._on_scan_done">[docs]</a>    <span class="k">def</span> <span class="nf">_on_scan_done</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scan_done</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div></div>
+
+<span class="c1">####################################################################################################</span>
+
+<div class="viewcode-block" id="Application"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application">[docs]</a><span class="k">class</span> <span class="nc">Application</span><span class="p">(</span><span class="n">QObject</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Class to implement a Qt Application.&quot;&quot;&quot;</span>
+
+    <span class="n">instance</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">_logger</span> <span class="o">=</span> <span class="n">_module_logger</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="s1">&#39;Application&#39;</span><span class="p">)</span>
+
+    <span class="n">scanner_ready</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+
+    <span class="c1">##############################################</span>
+
+    <span class="c1"># Fixme: Singleton</span>
+
+<div class="viewcode-block" id="Application.create"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application.create">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">instance</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NameError</span><span class="p">(</span><span class="s1">&#39;Instance exists&#39;</span><span class="p">)</span>
+
+        <span class="bp">cls</span><span class="o">.</span><span class="n">instance</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">instance</span></div>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Application.__init__"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="n">QtCore</span><span class="o">.</span><span class="n">qInstallMessageHandler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_message_handler</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parse_arguments</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_book</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1"># Fixme: must be defined before QML</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">load_book</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_args</span><span class="o">.</span><span class="n">book_path</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_appplication</span> <span class="o">=</span> <span class="n">QGuiApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="n">QQmlApplicationEngine</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_qml_application</span> <span class="o">=</span> <span class="n">QmlApplication</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="n">logo_path</span> <span class="o">=</span> <span class="s1">&#39;:/icons/logo-256.png&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_appplication</span><span class="o">.</span><span class="n">setWindowIcon</span><span class="p">(</span><span class="n">QIcon</span><span class="p">(</span><span class="n">logo_path</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_platform</span> <span class="o">=</span> <span class="n">QtPlatform</span><span class="p">()</span>
+        <span class="c1"># self._logger.info(&#39;\n&#39; + str(self._platform))</span>
+
+        <span class="c1"># self._load_translation()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_qml_types</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_context_properties</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_load_qml_main</span><span class="p">()</span>
+
+        <span class="c1"># self._run_before_event_loop()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_thread_pool</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QThreadPool</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Multithreading with maximum </span><span class="si">{}</span><span class="s2"> threads&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_thread_pool</span><span class="o">.</span><span class="n">maxThreadCount</span><span class="p">()))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scanner</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scanner_image_provider</span> <span class="o">=</span> <span class="n">ScannerImageProvider</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">addImageProvider</span><span class="p">(</span><span class="s1">&#39;scanner_image&#39;</span><span class="p">,</span>  <span class="bp">self</span><span class="o">.</span><span class="n">_scanner_image_provider</span><span class="p">)</span>
+
+        <span class="n">QTimer</span><span class="o">.</span><span class="n">singleShot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post_init</span><span class="p">)</span></div>
+
+        <span class="c1"># self._view = QQuickView()</span>
+        <span class="c1"># self._view.setResizeMode(QQuickView.SizeRootObjectToView)</span>
+        <span class="c1"># self._view.setSource(qml_url)</span>
+
+    <span class="c1">##############################################</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">args</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_args</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">platform</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_platform</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">qml_application</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_qml_application</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">thread_pool</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_thread_pool</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">scanner_image_provider</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scanner_image_provider</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">scanner</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_scanner</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">book</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_book</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">book_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_book</span><span class="o">.</span><span class="n">path</span>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Application._print_critical_message"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application._print_critical_message">[docs]</a>    <span class="k">def</span> <span class="nf">_print_critical_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="c1"># print(&#39;\nCritical Error on {}&#39;.format(datetime.datetime.now()))</span>
+        <span class="c1"># print(&#39;-&#39;*80)</span>
+        <span class="c1"># print(message)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Application._message_handler"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application._message_handler">[docs]</a>    <span class="k">def</span> <span class="nf">_message_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg_type</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">msg_type</span> <span class="o">==</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QtDebugMsg</span><span class="p">:</span>
+            <span class="n">method</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">debug</span>
+        <span class="k">elif</span> <span class="n">msg_type</span> <span class="o">==</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QtInfoMsg</span><span class="p">:</span>
+            <span class="n">method</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span>
+        <span class="k">elif</span> <span class="n">msg_type</span> <span class="o">==</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QtWarningMsg</span><span class="p">:</span>
+            <span class="n">method</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">warning</span>
+        <span class="k">elif</span> <span class="n">msg_type</span> <span class="ow">in</span> <span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">QtCriticalMsg</span><span class="p">,</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QtFatalMsg</span><span class="p">):</span>
+            <span class="n">method</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">critical</span>
+            <span class="c1"># method = None</span>
+
+        <span class="c1"># local_msg = msg.toLocal8Bit()</span>
+        <span class="c1"># localMsg.constData()</span>
+        <span class="n">context_file</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">file</span>
+        <span class="k">if</span> <span class="n">context_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">file_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">context_file</span><span class="p">)</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">file_path</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{1}</span><span class="s1"> </span><span class="si">{3}</span><span class="s1"> — </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">context</span><span class="o">.</span><span class="n">line</span><span class="p">,</span> <span class="n">context</span><span class="o">.</span><span class="n">function</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">method</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_print_critical_message</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Application._on_critical_exception"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application._on_critical_exception">[docs]</a>    <span class="k">def</span> <span class="nf">_on_critical_exception</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exception</span><span class="p">):</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">exception</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_print_critical_message</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></div>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Application.setup_gui_application"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application.setup_gui_application">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">setup_gui_application</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+
+        <span class="c1"># QGuiApplication.setApplicationName(APPLICATION_NAME)</span>
+        <span class="c1"># QGuiApplication.setOrganizationName(ORGANISATION_NAME)</span>
+        <span class="n">QGuiApplication</span><span class="o">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">AA_EnableHighDpiScaling</span><span class="p">)</span></div>
+
+        <span class="c1"># QQuickStyle.setStyle(&#39;Material&#39;)</span>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Application._parse_arguments"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application._parse_arguments">[docs]</a>    <span class="k">def</span> <span class="nf">_parse_arguments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+            <span class="n">description</span><span class="o">=</span><span class="s1">&#39;BookBrowser&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># parser.add_argument(</span>
+        <span class="c1">#     &#39;--version&#39;,</span>
+        <span class="c1">#     action=&#39;store_true&#39;, default=False,</span>
+        <span class="c1">#     help=&quot;show version and exit&quot;,</span>
+        <span class="c1"># )</span>
+
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s1">&#39;book_path&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;BookPath&#39;</span><span class="p">,</span>
+            <span class="n">action</span><span class="o">=</span><span class="n">PathAction</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Book path&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s1">&#39;--watcher&#39;</span><span class="p">,</span>
+            <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s1">&#39;start watcher&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s1">&#39;--user-script&#39;</span><span class="p">,</span>
+            <span class="n">action</span><span class="o">=</span><span class="n">PathAction</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s1">&#39;user script to execute&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s1">&#39;--user-script-args&#39;</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;user script args (don&#39;t forget to quote)&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span></div>
+
+    <span class="c1">##############################################</span>
+
+    <span class="c1"># def _load_translationt(self):</span>
+
+    <span class="c1">#     locale = QLocale()</span>
+
+    <span class="c1">#     if m_translator.load(locale, &#39;...&#39;, &#39;.&#39;, &#39;:/translations&#39;, &#39;.qm&#39;):</span>
+    <span class="c1">#         m_application.installTranslator(m_translator)</span>
+    <span class="c1">#     else:</span>
+    <span class="c1">#         raise &quot;No translator for locale&quot; locale.name()</span>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Application._register_qml_types"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application._register_qml_types">[docs]</a>    <span class="k">def</span> <span class="nf">_register_qml_types</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">qmlRegisterUncreatableType</span><span class="p">(</span><span class="n">QmlApplication</span><span class="p">,</span> <span class="s1">&#39;BookBrowser&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;QmlApplication&#39;</span><span class="p">,</span> <span class="s1">&#39;Cannot create QmlApplication&#39;</span><span class="p">)</span>
+        <span class="n">qmlRegisterUncreatableType</span><span class="p">(</span><span class="n">QmlBook</span><span class="p">,</span> <span class="s1">&#39;BookBrowser&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;QmlBook&#39;</span><span class="p">,</span> <span class="s1">&#39;Cannot create QmlBook&#39;</span><span class="p">)</span>
+        <span class="n">qmlRegisterUncreatableType</span><span class="p">(</span><span class="n">QmlBookPage</span><span class="p">,</span> <span class="s1">&#39;BookBrowser&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;QmlBookPage&#39;</span><span class="p">,</span> <span class="s1">&#39;Cannot create QmlBookPage&#39;</span><span class="p">)</span>
+        <span class="n">qmlRegisterUncreatableType</span><span class="p">(</span><span class="n">QmlScanner</span><span class="p">,</span> <span class="s1">&#39;BookBrowser&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;QmlScanner&#39;</span><span class="p">,</span> <span class="s1">&#39;Cannot create QmlScanner&#39;</span><span class="p">)</span>
+
+        <span class="n">qmlRegisterType</span><span class="p">(</span><span class="n">QmlScannerConfig</span><span class="p">,</span> <span class="s1">&#39;BookBrowser&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;QmlScannerConfig&#39;</span><span class="p">)</span></div>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Application._set_context_properties"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application._set_context_properties">[docs]</a>    <span class="k">def</span> <span class="nf">_set_context_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">rootContext</span><span class="p">()</span>
+        <span class="n">context</span><span class="o">.</span><span class="n">setContextProperty</span><span class="p">(</span><span class="s1">&#39;application&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_qml_application</span><span class="p">)</span></div>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Application._load_qml_main"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application._load_qml_main">[docs]</a>    <span class="k">def</span> <span class="nf">_load_qml_main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">qml_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s1">&#39;qml&#39;</span><span class="p">)</span>
+        <span class="c1"># qml_path = &#39;qrc:///qml&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">addImportPath</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">qml_path</span><span class="p">))</span>
+
+        <span class="n">main_qml_path</span> <span class="o">=</span> <span class="n">qml_path</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s1">&#39;main.qml&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_qml_url</span> <span class="o">=</span> <span class="n">QUrl</span><span class="o">.</span><span class="n">fromLocalFile</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">main_qml_path</span><span class="p">))</span>
+        <span class="c1"># QUrl(&#39;qrc:/qml/main.qml&#39;)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">objectCreated</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_check_qml_is_loaded</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_qml_url</span><span class="p">)</span></div>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Application._check_qml_is_loaded"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application._check_qml_is_loaded">[docs]</a>    <span class="k">def</span> <span class="nf">_check_qml_is_loaded</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+        <span class="c1"># See https://bugreports.qt.io/browse/QTBUG-39469</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">obj</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">url</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_qml_url</span><span class="p">):</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span></div>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Application.exec_"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application.exec_">[docs]</a>    <span class="k">def</span> <span class="nf">exec_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># self._view.show()</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_appplication</span><span class="o">.</span><span class="n">exec_</span><span class="p">())</span></div>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Application._post_init"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application._post_init">[docs]</a>    <span class="k">def</span> <span class="nf">_post_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># Fixme: ui refresh ???</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;post init&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_args</span><span class="o">.</span><span class="n">watcher</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Start watcher&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_book</span><span class="o">.</span><span class="n">start_watcher</span><span class="p">()</span> <span class="c1"># QtCore.QFileSystemWatcher(self)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_args</span><span class="o">.</span><span class="n">user_script</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">execute_user_script</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_args</span><span class="o">.</span><span class="n">user_script</span><span class="p">)</span></div>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Application.execute_user_script"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application.execute_user_script">[docs]</a>    <span class="k">def</span> <span class="nf">execute_user_script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">script_path</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Execute an user script provided by file *script_path* in a context where is defined a</span>
+<span class="sd">        variable *application* that is a reference to the application instance.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">script_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">script_path</span><span class="p">)</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Execute user script:</span><span class="se">\n</span><span class="s1">  </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">script_path</span><span class="p">))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">script_path</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;File </span><span class="si">{}</span><span class="s1"> not found&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">script_path</span><span class="p">))</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">bytecode</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">script_path</span><span class="p">,</span> <span class="s1">&#39;exec&#39;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">SyntaxError</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_on_critical_exception</span><span class="p">(</span><span class="n">exception</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">exec</span><span class="p">(</span><span class="n">bytecode</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;application&#39;</span><span class="p">:</span><span class="bp">self</span><span class="p">})</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_on_critical_exception</span><span class="p">(</span><span class="n">exception</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;User script done&#39;</span><span class="p">)</span></div>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Application.init_scanner"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application.init_scanner">[docs]</a>    <span class="k">def</span> <span class="nf">init_scanner</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scanner</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># take time</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_scanner</span> <span class="o">=</span> <span class="n">QmlScanner</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">scanner_ready</span><span class="o">.</span><span class="n">emit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scanner</span></div>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Application.load_book"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application.load_book">[docs]</a>    <span class="k">def</span> <span class="nf">load_book</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_book</span> <span class="o">=</span> <span class="n">QmlBook</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Fabrice Salvaire
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../static/jquery.js"></script>
+        <script type="text/javascript" src="../../../static/underscore.js"></script>
+        <script type="text/javascript" src="../../../static/doctools.js"></script>
+        <script type="text/javascript" src="../../../static/language_data.js"></script>
+        <script type="text/javascript" src="../../../static/getthecode.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

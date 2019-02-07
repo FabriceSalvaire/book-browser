@@ -1,0 +1,8 @@
+
+===============
+ ConfigInstall
+===============
+
+.. automodule:: BookBrowser.Config.ConfigInstall
+   :members:
+   :show-inheritance:

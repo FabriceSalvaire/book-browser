@@ -1,0 +1,10 @@
+
+===========
+ Thumbnail
+===========
+
+.. toctree::
+
+.. automodule:: BookBrowser.Thumbnail
+   :members:
+   :show-inheritance:

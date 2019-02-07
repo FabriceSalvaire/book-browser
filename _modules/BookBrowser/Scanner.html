@@ -1,0 +1,547 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>BookBrowser.Scanner &mdash; BookBrowser 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../static/css/BookBrowser.css" type="text/css" />
+  <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> BookBrowser
+          
+
+          
+            
+            <img src="../../static/logo-64.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">1. Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html#what-is-bookbrowser">1.1. What is BookBrowser ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html#how-is-bookbrowser-licensed">1.2. How is BookBrowser licensed ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html#going-further-with-bookbrowser">1.3. Going further with BookBrowser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html#which-platforms-are-supported-by-bookbrowser">1.4. Which platforms are supported by BookBrowser ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html#how-to-install-bookbrowser">1.5. How to install BookBrowser ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html#which-version-of-python-is-required">1.6. Which version of Python is required ?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../news.html">2. News</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../news.html#v0-2019-01-01">2.1. V0 2019-01-01</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../roadmap.html">3. Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">4. Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#on-windows">4.1. On Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#on-linux">4.2. On Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#on-osx">4.3. On OSX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#installation-from-pypi-repository">4.4. Installation from PyPi Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#install-a-more-recent-version-from-github">4.5. Install a more recent version from Github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#installation-from-source">4.6. Installation from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#dependencies">4.7. Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">5. User FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../faq.html#how-to-get-help-or-report-an-issue">5.1. How to get help or report an issue ?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../design-notes.html">6. Design Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference-manual.html">7. API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/BookBrowser.html">7.1. BookBrowser</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/BookBrowser/Book.html">7.1.1. Book</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/BookBrowser/Common.html">7.1.2. Common</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/BookBrowser/Common/ArgparseAction.html">7.1.2.1. ArgparseAction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/BookBrowser/Common/Logging.html">7.1.2.2. Logging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/BookBrowser/Common/Path.html">7.1.2.3. Path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/BookBrowser/Common/Platform.html">7.1.2.4. Platform</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/BookBrowser/Config.html">7.1.3. Config</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/BookBrowser/Config/ConfigInstall.html">7.1.3.1. ConfigInstall</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/BookBrowser/QtApplication.html">7.1.4. QtApplication</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/BookBrowser/QtApplication/Message.html">7.1.4.1. Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/BookBrowser/QtApplication/QmlApplication.html">7.1.4.2. QmlApplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/BookBrowser/QtApplication/QmlBook.html">7.1.4.3. QmlBook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/BookBrowser/QtApplication/QmlScanner.html">7.1.4.4. QmlScanner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/BookBrowser/QtApplication/Runnable.html">7.1.4.5. Runnable</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/BookBrowser/Scanner.html">7.1.5. Scanner</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/BookBrowser/Scanner.html#reference">7.1.5.1. Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/BookBrowser/Thumbnail.html">7.1.6. Thumbnail</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference-manual.html#indexes">7.2. Indexes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development.html">8. Development &amp; Community</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../development.html#how-you-can-help">8.1. How you can help ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development.html#contributors">8.2. Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how-to-refer.html">9. How to Refer to BookBrowser ?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../donate.html">10. How to Help Further ?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../related-projects.html">11. Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">12. Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">BookBrowser</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>BookBrowser.Scanner</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for BookBrowser.Scanner</h1><div class="highlight"><pre>
+<span></span><span class="c1">####################################################################################################</span>
+<span class="c1">#</span>
+<span class="c1"># BookBrowser - A book browser</span>
+<span class="c1"># Copyright (C) 2019 Fabrice Salvaire</span>
+<span class="c1">#</span>
+<span class="c1"># This program is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># This program is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="c1">#</span>
+<span class="c1">####################################################################################################</span>
+
+<span class="sd">&quot;&quot;&quot;Module to implement a scanner interface.</span>
+
+<span class="sd">Reference</span>
+<span class="sd">---------</span>
+
+<span class="sd">* `PyInsane 2 — Python library to support image scanners (Sane and WIA) &lt;https://gitlab.gnome.org/World/OpenPaperwork/pyinsane&gt;`_</span>
+<span class="sd">* `SANE — Scanner Access Now Easy &lt;http://www.sane-project.org&gt;`_</span>
+<span class="sd">* `The SANE Application Programmer Interface (API) &lt;http://www.sane-project.org/html/doc009.html&gt;`_</span>
+<span class="sd">* `Windows Image Acquisition 2.0 &lt;https://docs.microsoft.com/en-us/windows/desktop/wia/-wia-startpage&gt;`_</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1">####################################################################################################</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;Scanner&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;FileExistsError&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="c1">####################################################################################################</span>
+
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">import</span> <span class="nn">pyinsane2</span>
+
+<span class="c1">####################################################################################################</span>
+
+<span class="n">_module_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1">####################################################################################################</span>
+
+<div class="viewcode-block" id="FileExistsError"><a class="viewcode-back" href="../../api/BookBrowser/Scanner.html#BookBrowser.Scanner.FileExistsError">[docs]</a><span class="k">class</span> <span class="nc">FileExistsError</span><span class="p">(</span><span class="ne">NameError</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+<span class="c1">####################################################################################################</span>
+
+<div class="viewcode-block" id="Scanner"><a class="viewcode-back" href="../../api/BookBrowser/Scanner.html#BookBrowser.Scanner.Scanner">[docs]</a><span class="k">class</span> <span class="nc">Scanner</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;class to implement a scanner interface.&quot;&quot;&quot;</span>
+
+    <span class="n">__initialised__</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="n">_logger</span> <span class="o">=</span> <span class="n">_module_logger</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="s1">&#39;Scanner&#39;</span><span class="p">)</span>
+
+    <span class="n">AREA_OPTIONS</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;tl-x&#39;</span><span class="p">,</span> <span class="s1">&#39;br-x&#39;</span><span class="p">,</span> <span class="s1">&#39;tl-y&#39;</span><span class="p">,</span> <span class="s1">&#39;br-y&#39;</span><span class="p">)</span>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Scanner.init"><a class="viewcode-back" href="../../api/BookBrowser/Scanner.html#BookBrowser.Scanner.Scanner.init">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="c1"># take time</span>
+        <span class="n">pyinsane2</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">__initialised__</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Sane is initialised&#39;</span><span class="p">)</span></div>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Scanner.exit"><a class="viewcode-back" href="../../api/BookBrowser/Scanner.html#BookBrowser.Scanner.Scanner.exit">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">exit</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">__initialised__</span><span class="p">:</span>
+            <span class="n">pyinsane2</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">__initialised__</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Sane exited&#39;</span><span class="p">)</span></div>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Scanner.devices"><a class="viewcode-back" href="../../api/BookBrowser/Scanner.html#BookBrowser.Scanner.Scanner.devices">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">devices</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">__initialised__</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">pyinsane2</span><span class="o">.</span><span class="n">get_devices</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span></div>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Scanner.__init__"><a class="viewcode-back" href="../../api/BookBrowser/Scanner.html#BookBrowser.Scanner.Scanner.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device_hint</span><span class="o">=</span><span class="s1">&#39;libusb&#39;</span><span class="p">,</span> <span class="n">release</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__initialised__</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_release</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">release</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_device</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">devices</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">device_hint</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">device</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_device</span> <span class="o">=</span> <span class="n">device</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Sane use </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">device</span><span class="p">))</span></div>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Scanner.__del__"><a class="viewcode-back" href="../../api/BookBrowser/Scanner.html#BookBrowser.Scanner.Scanner.__del__">[docs]</a>    <span class="k">def</span> <span class="nf">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_release</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span></div>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Scanner.__bool__"><a class="viewcode-back" href="../../api/BookBrowser/Scanner.html#BookBrowser.Scanner.Scanner.__bool__">[docs]</a>    <span class="k">def</span> <span class="nf">__bool__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_device</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span></div>
+
+    <span class="c1">##############################################</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_device</span>
+
+    <span class="nd">@device</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">device</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_device</span> <span class="o">=</span> <span class="n">pyinsane2</span><span class="o">.</span><span class="n">Scanner</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">device_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># See pyinsane2/sane/abstract_proc.py</span>
+        <span class="c1"># device.name</span>
+        <span class="c1"># device.nice_name</span>
+        <span class="c1"># device.vendor</span>
+        <span class="c1"># device.model</span>
+        <span class="c1"># device.dev_type</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{0.vendor}</span><span class="s1"> </span><span class="si">{0.model}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="p">)</span>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Scanner._set_option"><a class="viewcode-back" href="../../api/BookBrowser/Scanner.html#BookBrowser.Scanner.Scanner._set_option">[docs]</a>    <span class="k">def</span> <span class="nf">_set_option</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">pyinsane2</span><span class="o">.</span><span class="n">set_scanner_opt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="p">[</span><span class="n">value</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Scanner._get_option"><a class="viewcode-back" href="../../api/BookBrowser/Scanner.html#BookBrowser.Scanner.Scanner._get_option">[docs]</a>    <span class="k">def</span> <span class="nf">_get_option</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">value</span></div>
+
+<div class="viewcode-block" id="Scanner._get_option_constraint"><a class="viewcode-back" href="../../api/BookBrowser/Scanner.html#BookBrowser.Scanner.Scanner._get_option_constraint">[docs]</a>    <span class="k">def</span> <span class="nf">_get_option_constraint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">constraint</span></div>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Scanner.maximize_scan_area"><a class="viewcode-back" href="../../api/BookBrowser/Scanner.html#BookBrowser.Scanner.Scanner.maximize_scan_area">[docs]</a>    <span class="k">def</span> <span class="nf">maximize_scan_area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pyinsane2</span><span class="o">.</span><span class="n">maximize_scan_area</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="p">)</span></div>
+
+    <span class="c1">##############################################</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">resolution</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_option</span><span class="p">(</span><span class="s1">&#39;resolution&#39;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">resolution_constraint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_option_constraint</span><span class="p">(</span><span class="s1">&#39;resolution&#39;</span><span class="p">)</span>
+
+    <span class="nd">@resolution</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">resolution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_option</span><span class="p">(</span><span class="s1">&#39;resolution&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="c1">##############################################</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_option</span><span class="p">(</span><span class="s1">&#39;mode&#39;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mode_constraint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_option_constraint</span><span class="p">(</span><span class="s1">&#39;mode&#39;</span><span class="p">)</span>
+
+    <span class="nd">@mode</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_option</span><span class="p">(</span><span class="s1">&#39;mode&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="c1">##############################################</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_option</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">AREA_OPTIONS</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">area_constraint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># [(0, 14149222, 0), (0, 14149222, 0),</span>
+        <span class="c1">#  (0, 19475988, 0), (0, 19475988, 0)]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_option_constraint</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">AREA_OPTIONS</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">area_constraint_x_inf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">area_constraint</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">area_constraint_x_sup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">area_constraint</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">area_constraint_y_inf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">area_constraint</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">area_constraint_y_sup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">area_constraint</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="nd">@area</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bounds</span><span class="p">):</span>
+        <span class="c1"># x_inf, x_sup, y_inf, y_sup = bounds</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Set scanner area to </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">AREA_OPTIONS</span><span class="p">,</span> <span class="n">bounds</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_set_option</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Scanner.set_area_as_scale"><a class="viewcode-back" href="../../api/BookBrowser/Scanner.html#BookBrowser.Scanner.Scanner.set_area_as_scale">[docs]</a>    <span class="k">def</span> <span class="nf">set_area_as_scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_inf</span><span class="p">,</span> <span class="n">x_sup</span><span class="p">,</span> <span class="n">y_inf</span><span class="p">,</span> <span class="n">y_sup</span><span class="p">):</span>
+        <span class="n">bounds</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_inf</span><span class="p">,</span> <span class="n">x_sup</span><span class="p">,</span> <span class="n">y_inf</span><span class="p">,</span> <span class="n">y_sup</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Set scanner area to </span><span class="si">{}</span><span class="s1"> %&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
+        <span class="n">scanner_width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">area_constraint_x_sup</span>
+        <span class="n">scanner_height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">area_constraint_y_sup</span>
+        <span class="n">area</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span>
+            <span class="n">x_inf</span><span class="o">*</span><span class="n">scanner_width</span><span class="p">,</span>  <span class="n">x_sup</span><span class="o">*</span><span class="n">scanner_width</span><span class="p">,</span>
+            <span class="n">y_inf</span><span class="o">*</span><span class="n">scanner_height</span><span class="p">,</span> <span class="n">y_sup</span><span class="o">*</span><span class="n">scanner_height</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">area</span> <span class="o">=</span> <span class="n">area</span></div>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Scanner.scan_image"><a class="viewcode-back" href="../../api/BookBrowser/Scanner.html#BookBrowser.Scanner.Scanner.scan_image">[docs]</a>    <span class="k">def</span> <span class="nf">scan_image</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Start scanning ...&#39;</span><span class="p">)</span>
+
+        <span class="n">scan_session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="n">multiple</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">scan_session</span><span class="o">.</span><span class="n">scan</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">EOFError</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="n">image</span> <span class="o">=</span> <span class="n">scan_session</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Start done&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">image</span></div>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="Scanner.scan"><a class="viewcode-back" href="../../api/BookBrowser/Scanner.html#BookBrowser.Scanner.Scanner.scan">[docs]</a>    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Scan </span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1"> overwrite = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">overwrite</span><span class="p">))</span>
+
+        <span class="c1"># Fixme: kwargs</span>
+        <span class="k">if</span> <span class="n">index</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+
+        <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">overwrite</span> <span class="ow">and</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="c1"># raise NameError(&#39;File {} exists&#39;.format(path))</span>
+            <span class="k">raise</span> <span class="ne">FileExistsError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+
+        <span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scan_image</span><span class="p">()</span>
+        <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Saved </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">path</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Fabrice Salvaire
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../static/jquery.js"></script>
+        <script type="text/javascript" src="../../static/underscore.js"></script>
+        <script type="text/javascript" src="../../static/doctools.js"></script>
+        <script type="text/javascript" src="../../static/language_data.js"></script>
+        <script type="text/javascript" src="../../static/getthecode.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

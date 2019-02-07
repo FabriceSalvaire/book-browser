@@ -1,0 +1,8 @@
+
+================
+ ArgparseAction
+================
+
+.. automodule:: BookBrowser.Common.ArgparseAction
+   :members:
+   :show-inheritance:

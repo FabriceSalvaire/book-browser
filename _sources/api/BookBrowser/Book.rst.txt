@@ -1,0 +1,10 @@
+
+======
+ Book
+======
+
+.. toctree::
+
+.. automodule:: BookBrowser.Book
+   :members:
+   :show-inheritance:
