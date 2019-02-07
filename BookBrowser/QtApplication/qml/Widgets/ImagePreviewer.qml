@@ -35,6 +35,10 @@ Image {
 
     signal image_ready()
 
+    function hide_selection_area() {
+	selection_area.visible = false
+    }
+
     function maximise_area() {
 	selection_area.x = 0
 	selection_area.y = 0

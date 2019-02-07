@@ -189,7 +189,7 @@ Item {
 	}
 
 	if (is_preview_scan)
-	    selection_area.visible = false
+	    image_preview.hide_selection_area()
 
 	enable_scan_button(false)
 
