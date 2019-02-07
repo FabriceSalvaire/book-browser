@@ -124,8 +124,11 @@ class Worker(QRunnable):
         except:
             traceback.print_exc()
             # exctype, value = sys.exc_info()[:2]
+            self._logger.info('emit error')
             self._signals.error.emit((exctype, value, traceback.format_exc()))
         else:
+            self._logger.info('emit result {}'.format(result))
             self._signals.result.emit(result)
         finally:
+            self._logger.info('emit finished')
             self._signals.finished.emit()

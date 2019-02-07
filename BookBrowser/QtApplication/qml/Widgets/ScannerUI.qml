@@ -84,10 +84,12 @@ Item {
 	    }
 
 	    // Thread issue ???
+	    // QML -> QmlScanner start -> Runable -> QmlScanner
 	    // scanner.preview_done.connect(on_preview_done)
 	    // scanner.file_exists_error.connect(on_file_exists_error)
 	    // scanner.scan_done.connect(on_scan_done)
 
+	    // Fixme: sometimes signal is not received
 	    application.debug()
 	    application.preview_done.connect(on_preview_done)
 	    application.file_exists_error.connect(on_file_exists_error)
@@ -141,6 +143,8 @@ Item {
     function enable_scan_button(status) {
 	scan_button.enabled = status
 	preview_scan_button.enabled = status
+	rescan_button.enabled = status
+	busy_indicator.running = !status
     }
 
     function maximize_scan_area() {
@@ -275,10 +279,6 @@ Item {
 		Label {
 		    text: scanner ? scanner.device : ''
 		}
-		BusyIndicator {
-		    id: busy_indicator
-		    running: false
-		}
 	    }
 
 	    Controls.CustomButton {
@@ -389,9 +389,9 @@ Item {
 		onClicked: rescan_page()
 	    }
 
-	    Button {
-		text: qsTr('Test')
-	    }
+	    // Button {
+	    // 	text: qsTr('Test')
+	    // }
 	}
 
 	Item {
@@ -408,5 +408,14 @@ Item {
 		verticalAlignment: Image.AlignTop
 	    }
 	}
+    }
+
+    BusyIndicator {
+	id: busy_indicator
+	anchors.right: parent.right
+	anchors.top: parent.top
+	width: 128
+	height: width
+	running: false
     }
 }

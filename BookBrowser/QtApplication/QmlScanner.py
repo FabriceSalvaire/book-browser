@@ -89,6 +89,9 @@ class ScannerImageProvider(QQuickImageProvider):
 
 class QmlScannerConfig(QObject):
 
+    # Note: look commit 3fc86cf "Implemented QmlScannerConfig" for the past and simpler
+    #       implementation
+
     maximized = Signal()
 
     __default_area__ = dict(x_inf=0, x_sup=0, y_inf=0, y_sup=0)
@@ -232,6 +235,7 @@ class QmlScannerConfig(QObject):
 
 class QmlScanner(QObject):
 
+    # Fixme: these signals are issues with QML code
     # scanner_ready = Signal()
     preview_done = Signal(str)
     file_exists_error = Signal(str)
@@ -254,6 +258,19 @@ class QmlScanner(QObject):
         self._config = QmlScannerConfig()
 
         # Fixme: thread issue ???
+        #
+        #   Signal is not received when a property is set from QML
+        #   https://doc.qt.io/qt-5/threads-qobject.html#signals-and-slots-across-threads
+        #
+        #   Auto Connection (default)
+        #       If the signal is emitted in the thread which the receiving object has affinity then
+        #       the behavior is the same as the Direct Connection. Otherwise, the behavior is the
+        #       same as the Queued Connection."
+        #
+        #   Direct Connection
+        #       The slot is invoked immediately, when the signal is emitted. The slot is executed in
+        #       the emitter's thread, which is not necessarily the receiver's thread.
+
         self._config.resolution_changed.connect(self._set_resolution, type=Qt.DirectConnection)
         self._config.mode_changed.connect(self._set_mode, type=Qt.DirectConnection)
         self._config.area_changed.connect(self._set_area, type=Qt.DirectConnection)
