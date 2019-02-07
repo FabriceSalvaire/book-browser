@@ -431,6 +431,12 @@ class FakeScanner(Scanner):
     def area(self):
         return self._device.area
 
+    @area.setter
+    def area(self, bounds):
+        # x_inf, x_sup, y_inf, y_sup = bounds
+        self._logger.info('Set scanner area to {}'.format(bounds))
+        self._device.area = bounds
+
     @property
     def area_constraint(self):
         return self._device.constraint('area')

@@ -56,7 +56,7 @@ Image {
 	x_sup /= image_preview.paintedWidth
 	y_inf /= image_preview.paintedHeight
 	y_sup /= image_preview.paintedHeight
-	return [x_inf, x_sup, y_inf, y_sup]
+	return {x_inf:x_inf, x_sup:x_sup, y_inf:y_inf, y_sup:y_sup}
     }
 
     onStatusChanged: {
@@ -111,13 +111,13 @@ Image {
 	    else
 		_y_handler = 2
 
-	    return [_x_handler, _y_handler]
+	    return {x:_x_handler, y:_y_handler}
 	}
 
 	function update_pointer(mouse) {
-	    var handlers = get_handler(mouse)
-	    x_handler = handlers[0]
-	    y_handler = handlers[1]
+	    var handler = get_handler(mouse)
+	    x_handler = handler.x
+	    y_handler = handler.y
 	    if (x_handler != 2 || y_handler != 2)
 		cursorShape = Qt.CrossCursor
 	    else
@@ -125,9 +125,9 @@ Image {
 	}
 
 	function start_selection_area(mouse) {
-	    var handlers = get_handler(mouse)
-	    x_handler = handlers[0]
-	    y_handler = handlers[1]
+	    var handler = get_handler(mouse)
+	    x_handler = handler.x
+	    y_handler = handler.y
 	    edited = true
 	    console.info('Handlers', x_handler, y_handler)
 	}
