@@ -38,9 +38,9 @@ Item {
     property bool is_preview_scan: false
     property bool valid_selection_area: false
 
-    Component.onCompleted: {
-    	console.info('ScannerUI.onCompleted')
-    }
+    // Component.onCompleted: {
+    // 	console.info('ScannerUI.onCompleted')
+    // }
 
     /***********************************************************************************************
      *
@@ -164,7 +164,7 @@ Item {
 	return Math.round(x*100)
     }
 
-    function scan_page() {
+    function scan_page(overwrite) {
 	application_window.clear_message()
 
 	if (valid_selection_area) {
@@ -195,8 +195,12 @@ Item {
 
 	enable_scan_button(false)
 
-	var overwrite = false
 	call_scan_page(overwrite)
+    }
+
+    function rescan_page() {
+	filename_count.decrease()
+	scan_page(true)
     }
 
     /***********************************************************************************************
@@ -288,7 +292,7 @@ Item {
 
 		text: qsTr('Scan')
 
-		onClicked: scan_page()
+		onClicked: scan_page(false)
 	    }
 
 	    Controls.CustomButton {
@@ -379,7 +383,7 @@ Item {
 
 		text: qsTr('Rescan')
 
-		// onClicked: rescan()
+		onClicked: rescan_page()
 	    }
 
 	    Button {
