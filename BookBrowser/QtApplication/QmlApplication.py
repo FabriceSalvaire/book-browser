@@ -135,15 +135,27 @@ class QmlApplication(QObject):
     @Slot()
     def debug(self):
 
-        # self._application.scanner.scan_done.connect(self._on_scan_done)
-
         self._application.scanner.preview_done.connect(self.preview_done)
         self._application.scanner.file_exists_error.connect(self.file_exists_error)
-        self._application.scanner.scan_done.connect(self.scan_done)
+        self._application.scanner.scan_done.connect(self._on_scan_done)
+        # self._application.scanner.scan_done.connect(self.scan_done)
 
     ##############################################
 
     def _on_scan_done(self, path):
+
+        # Fixme: not received
+        # 13:00,363 - BookBrowser.QtApplication.QmlApplication.Application._message_handler - INFO - ScannerUI.qml on_scanner_ready — Scanner config loaded true
+        # 13:01,110 - BookBrowser.QtApplication.QmlScanner.QmlScanner.scan - INFO - 
+        # 13:01,111 - BookBrowser.QtApplication.Runnable.Worker.run - INFO - run <function QmlScanner.scan.<locals>.job at 0x7f4962611e18>((), {})
+        # 13:01,111 - BookBrowser.Scanner.FakeScanner.scan - INFO - Scan /home/fabrice/home/developpement/python/book-browser/test-directory/afoo.{:03}.png 93
+        #             overwrite = False
+        # 13:01,112 - BookBrowser.Scanner.FakeScanner.scan_image - INFO - Start scanning ...
+        # 13:01,112 - BookBrowser.Scanner.FakeScanner.scan_image - INFO - Start done
+        # 13:01,150 - BookBrowser.Scanner.FakeScanner.scan - INFO - Saved /home/fabrice/home/developpement/python/book-browser/test-directory/afoo.093.png
+        # 13:01,151 - BookBrowser.QtApplication.Runnable.Worker.run - INFO - emit result /home/fabrice/home/developpement/python/book-browser/test-directory/afoo.093.png
+        # 13:01,151 - BookBrowser.QtApplication.Runnable.Worker.run - INFO - emit finished
+
         self._logger.info(path)
         self.scan_done.emit(path)
 
