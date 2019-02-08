@@ -38,6 +38,8 @@ Item {
     property bool is_preview_scan: false
     property bool valid_selection_area: false
 
+    property bool started_scan: false
+
     // Component.onCompleted: {
     // 	console.info('ScannerUI.onCompleted')
     // }
@@ -132,6 +134,7 @@ Item {
     }
 
     function on_scan_done(path) {
+	image_preview.source = '' // to force reload
 	console.info('on_scan_done', path)
 	if (path) {
 	    is_preview_scan = false
@@ -139,7 +142,18 @@ Item {
 	    filename_index.increase()
 	    enable_scan_button(true)
 	    application_window.show_message('Saved ' + path)
+	    if (!started_scan) {
+		started_scan = true
+		scanner.start_timer()
+	    }
+	    update_end_time()
 	}
+    }
+
+    function update_end_time() {
+	var end_time = scanner.end_time(filename_index.value -1, number_of_pages.value)
+	if (end_time.length)
+	    end_time_label.text = end_time
     }
 
     function on_image_ready() {
@@ -281,7 +295,7 @@ Item {
 	ColumnLayout {
 	    id: control_panel
 	    Layout.alignment: Qt.AlignTop
-	    Layout.preferredWidth: 250
+	    Layout.preferredWidth: 300
 	    spacing: 20
 	    enabled: false
 
@@ -400,6 +414,35 @@ Item {
 		text: qsTr('Rescan')
 
 		onClicked: rescan_page()
+	    }
+
+	    RowLayout {
+		Label {
+		    text: qsTr('Number of pages')
+		}
+		SpinBox {
+		    id: number_of_pages
+		    from: 1
+		    value: 100
+		    to: 1000
+		    editable: true
+		    onValueChanged: update_end_time()
+		}
+	    }
+
+	    RowLayout {
+		Label {
+		    text: qsTr('End Time')
+		}
+		Label {
+		    id: end_time_label
+		    text: 'unknown'
+		}
+	    }
+
+	    Button {
+		text: qsTr('Reset Timer')
+		onClicked: scanner.start_timer()
 	    }
 
 	    // Button {

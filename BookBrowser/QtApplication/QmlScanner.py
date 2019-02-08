@@ -26,6 +26,7 @@ __all__ = [
 
 ####################################################################################################
 
+from datetime import datetime
 from pathlib import Path
 import json
 import logging
@@ -332,6 +333,10 @@ class QmlScanner(QObject):
         # self._config.mode = self._scanner.mode
         # self._config.resolution = self._scanner.resolution
 
+        self._start_time = None
+        self._page_count = 0
+        self.start_timer()
+
     ##############################################
 
     def __bool__(self):
@@ -452,3 +457,41 @@ class QmlScanner(QObject):
 
         from .QmlApplication import Application
         Application.instance.thread_pool.start(worker)
+
+        self._page_count += 1 # Fixme: count rescan
+
+    ##############################################
+
+    @Slot()
+    def start_timer(self):
+        self._start_time = datetime.now()
+        self._page_count = 0
+
+    @Slot(int, int, result=str)
+    def end_time(self, number_of_pages_done, number_of_pages):
+
+        self._logger.info('{} / {}'.format(number_of_pages_done, number_of_pages))
+
+        if self._page_count < 4:
+            return ''
+
+        now = datetime.now()
+        delta_time = now - self._start_time
+        page_count = self._page_count
+        speed = delta_time / self._page_count
+        self._logger.info('Scan speed {}'.format(speed))
+        end_time = now + speed * (number_of_pages - number_of_pages_done)
+
+        achieved = int(100 * number_of_pages_done / number_of_pages)
+
+        number_of_seconds = (end_time - now).total_seconds()
+        hours, remainder = divmod(number_of_seconds, 3600)
+        minutes, seconds = divmod(remainder, 60)
+        remaining_time = '{:02}:{:02}'.format(int(hours), int(minutes))
+
+        time_format = '%H:%M'
+        return '{}   ( {} )   @{} %'.format(
+            end_time.strftime(time_format),
+            remaining_time,
+            achieved
+        )
