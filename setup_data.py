@@ -79,7 +79,7 @@ setup_dict = dict(
     author_email='fabrice.salvaire@orange.fr',
     description='Qt Application to scan and read books',
     license='GPLv3',
-    keywords= 'scan image book viewer',
+    keywords= 'scan book image viewer',
     url='https://github.com/FabriceSalvaire/book-browser',
     long_description=long_description,
 )
