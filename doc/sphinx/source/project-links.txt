@@ -15,10 +15,10 @@
    :height: 15px
    :width:  80px
 
-.. |BookBrowserUrl| replace:: @https://github.com/FabriceSalvaire/book-browser@
+.. |BookBrowserUrl| replace:: https://github.com/FabriceSalvaire/book-browser
 
 .. |BookBrowserHomePage| replace:: BookBrowser Home Page
-.. _BookBrowserHomePage: @https://github.com/FabriceSalvaire/book-browser@
+.. _BookBrowserHomePage: https://github.com/FabriceSalvaire/book-browser
 
 .. |BookBrowser@readthedocs-badge| image:: https://readthedocs.org/projects/BookBrowser/badge/?version=latest
    :target: http://BookBrowser.readthedocs.org/en/latest
