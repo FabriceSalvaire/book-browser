@@ -106,9 +106,9 @@ It also acts as a post-scanning tool to fix orientation, skipped and rescanned p
 
 **BookBrowser is multi-platforms and features:**
 
-* A summary pane showing **page thumbnails** ( supporting |FreeDesktopThumbnail|_ )
+* A summary pane showing **page thumbnails** (supporting |FreeDesktopThumbnail|_)
 * A **page viewer** which permits to navigate, zoom and fix page orientation
-* A **scanner interface** similar to XSane and featuring a timer to estimate the scan process time ( supporting |Sane|_ and |WIA|_ )
+* A **scanner interface** similar to XSane and featuring a timer to estimate the scan process time (gsupporting |Sane|_ and |WIA|_)
 * It implements a file system watcher in order to show a newer page.
 
 BookBrowser also provides a **command line tool**
