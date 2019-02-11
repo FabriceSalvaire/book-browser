@@ -23,17 +23,25 @@ import QtQuick.Controls 2.4
 import Widgets 1.0 as Widgets
 
 Widgets.CentredDialog {
+    /******************************************************
+     *
+     * API
+     *
+     */
+
+    property alias about_message: text_area.text
+
+    /******************************************************/
+
     id: about_dialog
     modal: true
     standardButtons: Dialog.Ok
 
-    property string about_message
-
     TextArea {
+	id: text_area
 	width: 800
 	anchors.margins: 20
 	wrapMode: TextEdit.Wrap
 	textFormat: TextEdit.RichText
-	text: about_message
     }
 }
