@@ -27,6 +27,8 @@ import QtQuick.Controls 2.4
 Image {
     id: image_preview
 
+    property alias mouse_area: mouse_area
+
     // anchors.fill: parent
     // horizontalAlignment: Image.AlignLeft
     // verticalAlignment: Image.AlignTop
@@ -76,6 +78,7 @@ Image {
     }
 
     MouseArea {
+	id: mouse_area
 	anchors.fill: parent
 
 	hoverEnabled: true

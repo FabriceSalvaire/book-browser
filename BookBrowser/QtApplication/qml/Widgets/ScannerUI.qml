@@ -288,6 +288,7 @@ Item {
      */
 
     RowLayout{
+	id: row_layout
 	anchors.fill: parent
 	anchors.margins: 10
 	spacing: 10
@@ -295,7 +296,7 @@ Item {
 	ColumnLayout {
 	    id: control_panel
 	    Layout.alignment: Qt.AlignTop
-	    Layout.preferredWidth: 300
+	    Layout.preferredWidth: row_layout.width / 3
 	    spacing: 20
 	    enabled: false
 
@@ -453,7 +454,7 @@ Item {
 	Item {
 	    id: image_preview_container
 	    Layout.alignment: Qt.AlignTop
-	    Layout.preferredWidth: 1000
+	    Layout.preferredWidth: scanner_ui.width
 	    Layout.fillWidth: true
 	    Layout.fillHeight: true
 
@@ -462,6 +463,22 @@ Item {
 		anchors.fill: parent
 		horizontalAlignment: Image.AlignLeft
 		verticalAlignment: Image.AlignTop
+	    }
+	}
+
+	ColumnLayout {
+	    Layout.alignment: Qt.AlignBottom
+	    Layout.preferredWidth: image_magnifier.width
+	    Layout.fillHeight: true
+
+	    Widgets.ImageMagnifier {
+	    	id: image_magnifier
+		anchors.bottom: parent.bottom
+		anchors.right: parent.right
+		width: 256
+		height: 256
+
+		image_previewer: image_preview
 	    }
 	}
     }
