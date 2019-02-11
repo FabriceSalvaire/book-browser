@@ -23,3 +23,6 @@
 
 .. |WIA| replace:: WIA
 .. _WIA: https://docs.microsoft.com/en-us/windows/desktop/wia/-wia-startpage
+
+.. |FreeDesktopThumbnail| replace:: Free Desktop Thumbnail
+.. _FreeDesktopThumbnail: https://specifications.freedesktop.org/thumbnail-spec/thumbnail-spec-latest.html

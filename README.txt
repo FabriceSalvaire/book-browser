@@ -3,9 +3,9 @@
 .. include:: project-links.txt
 .. include:: abbreviation.txt
 
-============
+=============
  BookBrowser
-============
+=============
 
 |Pypi License|
 |Pypi Python Version|
@@ -21,22 +21,36 @@ Overview
 What is BookBrowser ?
 ---------------------
 
-BookBrowser is a small application to read scanned books where the pages are stored as an image on
-disk.  It is an alternative to pack the images to a huge PDF file.  It also acts as a post-scanning
-tool to fix orientation, skipped and rescanned pages.
+**BookBrowser** is an application to **scan and read book** (*) where pages are stored as images on
+disk.  (*) *A book is just any paper document of several pages.*
 
-BookBrowser provides a command line tool
+It is an alternative to pack the page's images to a huge PDF file.
 
-* to rename the images to fix the page number,
+It also acts as a post-scanning tool to fix orientation, skipped and rescanned pages.
+
+**BookBrowser is multi-platforms and features:**
+
+* A summary pane showing **page thumbnails** ( supporting |FreeDesktopThumbnail|_ )
+* A **page viewer** which permits to navigate, zoom and fix page orientation
+* A **scanner interface** similar to XSane and featuring a timer to estimate the scan process time ( supporting |Sane|_ and |WIA|_ )
+* It implements a file system watcher in order to show a newer page.
+
+BookBrowser also provides a **command line tool**
+
+* to rename the images to fix page numbers,
 * to guess the page orientation.
 
-The page orientation recto/verso is mangled in the file name. This feature permits to keep raw data
-and avoid several image flips due to errors in the automatic orientation detection algorithm.
+**Implementation details:**
 
-BookBrowser implements a file system watcher in order to show a newer page.
+The page orientation recto/verso can be mangled in the file name by a flag.  This feature permits to
+keep raw data and avoid several image flips due to errors.  It is also a fast way to set the page
+orientation from a page by alternating the flag and just updating the directory on disk.  Pages are
+rendered in the right orientation by a basic GPU shader.
 
-BookBrowser is written in Python 3 and the user interface is based on the Qt5 QML framework.  The
-code base could also be plugged to a web application.
+.. in the automatic orientation detection algorithm
+
+BookBrowser is written in **Python 3** and the user interface is based on the **Qt5 QML Controls 2**
+framework.  The code base could be plugged to a web application.
 
 Where is the Documentation ?
 ----------------------------

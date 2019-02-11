@@ -389,23 +389,34 @@ ul.auto-toc {
 <h1>Overview</h1>
 <div class="section" id="what-is-bookbrowser">
 <h2>What is BookBrowser ?</h2>
-<p>BookBrowser is a small application to read scanned books where the pages are stored as an image on
-disk.  It is an alternative to pack the images to a huge PDF file.  It also acts as a post-scanning
-tool to fix orientation, skipped and rescanned pages.</p>
-<p>BookBrowser provides a command line tool</p>
+<p><strong>BookBrowser</strong> is an application to <strong>scan and read book</strong> (*) where pages are stored as images on
+disk.  (*) <em>A book is just any paper document of several pages.</em></p>
+<p>It is an alternative to pack the page's images to a huge PDF file.</p>
+<p>It also acts as a post-scanning tool to fix orientation, skipped and rescanned pages.</p>
+<p><strong>BookBrowser is multi-platforms and features:</strong></p>
 <ul class="simple">
-<li>to rename the images to fix the page number,</li>
+<li>A summary pane showing <strong>page thumbnails</strong> ( supporting <a class="reference external" href="https://specifications.freedesktop.org/thumbnail-spec/thumbnail-spec-latest.html">Free Desktop Thumbnail</a> )</li>
+<li>A <strong>page viewer</strong> which permits to navigate, zoom and fix page orientation</li>
+<li>A <strong>scanner interface</strong> similar to XSane and featuring a timer to estimate the scan process time ( supporting <a class="reference external" href="http://www.sane-project.org&gt;">SANE</a> and <a class="reference external" href="https://docs.microsoft.com/en-us/windows/desktop/wia/-wia-startpage">WIA</a> )</li>
+<li>It implements a file system watcher in order to show a newer page.</li>
+</ul>
+<p>BookBrowser also provides a <strong>command line tool</strong></p>
+<ul class="simple">
+<li>to rename the images to fix page numbers,</li>
 <li>to guess the page orientation.</li>
 </ul>
-<p>The page orientation recto/verso is mangled in the file name. This feature permits to keep raw data
-and avoid several image flips due to errors in the automatic orientation detection algorithm.</p>
-<p>BookBrowser implements a file system watcher in order to show a newer page.</p>
-<p>BookBrowser is written in Python 3 and the user interface is based on the Qt5 QML framework.  The
-code base could also be plugged to a web application.</p>
+<p><strong>Implementation details:</strong></p>
+<p>The page orientation recto/verso can be mangled in the file name by a flag.  This feature permits to
+keep raw data and avoid several image flips due to errors.  It is also a fast way to set the page
+orientation from a page by alternating the flag and just updating the directory on disk.  Pages are
+rendered in the right orientation by a basic GPU shader.</p>
+<!-- in the automatic orientation detection algorithm -->
+<p>BookBrowser is written in <strong>Python 3</strong> and the user interface is based on the <strong>Qt5 QML Controls 2</strong>
+framework.  The code base could be plugged to a web application.</p>
 </div>
 <div class="section" id="where-is-the-documentation">
 <h2>Where is the Documentation ?</h2>
-<p>The documentation is available on the <a class="reference external" href="&#64;project_url&#64;">BookBrowser Home Page</a>.</p>
+<p>The documentation is available on the <a class="reference external" href="&#64;https://github.com/FabriceSalvaire/book-browser&#64;">BookBrowser Home Page</a>.</p>
 </div>
 <div class="section" id="what-are-the-main-features">
 <h2>What are the main features ?</h2>
