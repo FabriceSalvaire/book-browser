@@ -64,6 +64,14 @@ Widgets.ImageViewer {
 	book_page.flip_page(orientation)
     }
 
+    function set_recto() {
+	book_page.flip_page('r')
+    }
+
+    function set_verso() {
+	book_page.flip_page('v')
+    }
+
     function flip_from_page() {
 	book.flip_from_page(book_page, 'v')
     }

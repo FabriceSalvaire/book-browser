@@ -184,93 +184,112 @@ ApplicationWindow {
      */
 
     header: ToolBar {
-        RowLayout {
-            ToolButton {
-		action: reload_action
-            }
+	RowLayout {
+	    anchors.fill: parent
+	    spacing: 10
 
-            ToolButton {
-		icon.source: 'qrc:/icons/36x36/view-comfy-black.png'
-                onClicked: {
-		    stack_layout.set_thumbnail_page()
+	    RowLayout {
+		ToolButton {
+		    action: reload_action
+		}
+
+		ToolButton {
+		    icon.source: 'qrc:/icons/36x36/view-comfy-black.png'
+                    onClicked: {
+			stack_layout.set_thumbnail_page()
+		    }
+		}
+		ToolButton {
+		    icon.source: 'qrc:/icons/36x36/image-black.png'
+                    onClicked: {
+			stack_layout.set_viewer_page()
+		    }
+		}
+		ToolButton {
+		    icon.source: 'qrc:/icons/36x36/scanner-black.png'
+                    onClicked: {
+			// Fixme:
+			stack_layout.set_scanner_page()
+			scanner_ui.init()
+		    }
+		}
+	    }
+
+            RowLayout {
+		visible: page_viewer_page.visible
+
+		ToolButton {
+		    icon.source: 'qrc:/icons/36x36/zoom-out-black.png'
+                    onClicked: page_viewer.zoom_out()
+		}
+		ToolButton {
+		    action: fit_to_screen_action
+		}
+		ToolButton {
+		    action: zoom_full_action
+		}
+		ToolButton {
+		    icon.source: 'qrc:/icons/36x36/zoom-in-black.png'
+                    onClicked: page_viewer.zoom_in()
+		}
+
+		ToolButton {
+		    icon.source: 'qrc:/icons/36x36/first-page-black.png'
+                    onClicked: page_viewer.first_page()
+		}
+		ToolButton {
+		    action: prev_page_action
+		}
+		ToolButton {
+		    action: next_page_action
+		}
+		ToolButton {
+		    icon.source: 'qrc:/icons/36x36/last-page-black.png'
+                    onClicked: page_viewer.last_page()
+		}
+		SpinBox {
+		    id: page_number
+		    editable: true
+		    from: 1
+		    to: book.number_of_pages
+		    value: page_viewer.book_page ? page_viewer.book_page.page_number: 0
+
+		    onValueModified: page_viewer.to_page(value)
+		}
+		Label {
+		    text: '/' + book.number_of_pages
+		}
+
+		ToolButton {
+		    icon.source: 'qrc:/icons/36x36/grid-on-black.png'
+		    checkable: true
+                    onClicked: grid.visible = !grid.visible
+		}
+
+		ToolButton {
+		    action: flip_action
+		}
+
+		ToolButton {
+		    icon.source: 'qrc:/icons/36x36/recto-page.png'
+                    onClicked: page_viewer.set_recto()
+		}
+
+		ToolButton {
+		    icon.source: 'qrc:/icons/36x36/verso-page.png'
+                    onClicked: page_viewer.set_verso()
+		}
+
+		ToolButton {
+		    icon.source: 'qrc:/icons/36x36/flip-from-page.png'
+                    onClicked: page_viewer.flip_from_page()
 		}
             }
-            ToolButton {
-		icon.source: 'qrc:/icons/36x36/image-black.png'
-                onClicked: {
-		    stack_layout.set_viewer_page()
-		}
-            }
-            ToolButton {
-		icon.source: 'qrc:/icons/36x36/scanner-black.png'
-                onClicked: {
-		    // Fixme:
-		    stack_layout.set_scanner_page()
-		    scanner_ui.init()
-		}
-            }
 
-            ToolButton {
-		icon.source: 'qrc:/icons/36x36/zoom-out-black.png'
-                onClicked: page_viewer.zoom_out()
-            }
-            ToolButton {
-		action: fit_to_screen_action
-            }
-            ToolButton {
-		action: zoom_full_action
-            }
-            ToolButton {
-		icon.source: 'qrc:/icons/36x36/zoom-in-black.png'
-                onClicked: page_viewer.zoom_in()
-            }
-
-            ToolButton {
-		action: flip_action
-            }
-
-            ToolButton {
-		icon.source: 'qrc:/icons/36x36/first-page-black.png'
-                onClicked: page_viewer.first_page()
-            }
-            ToolButton {
-		action: prev_page_action
-            }
-            ToolButton {
-		action: next_page_action
-            }
-            ToolButton {
-		icon.source: 'qrc:/icons/36x36/last-page-black.png'
-                onClicked: page_viewer.last_page()
-            }
-	    SpinBox {
-		id: page_number
-		editable: true
-		from: 1
-		to: book.number_of_pages
-		value: page_viewer.book_page ? page_viewer.book_page.page_number: 0
-
-		onValueModified: page_viewer.to_page(value)
-            }
-	    Label {
-		text: '/' + book.number_of_pages
-            }
-
-            ToolButton {
-		icon.source: 'qrc:/icons/36x36/grid-on-black.png'
-		checkable: true
-                onClicked: grid.visible = !grid.visible
-            }
-
-            ToolButton {
-		// icon.source: 'qrc:/icons/36x36/.png'
-		text: 'Flip from'
-                onClicked: {
-		    // console.info('flip_from_page is disabled')
-                    page_viewer.flip_from_page()
-                }
-            }
-        }
+	    Item {
+		Layout.fillWidth: true
+	    }
+	}
     }
 
     /***********************************************************************************************
