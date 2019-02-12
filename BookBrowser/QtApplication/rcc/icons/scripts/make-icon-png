@@ -39,7 +39,7 @@ svg_path = Path(args.svg_path).resolve()
 
 ####################################################################################################
 
-sizes = (36,)
+sizes = (36, 48)
 
 inkscape_options = [
     '--export-area-page',
