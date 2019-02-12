@@ -27,3 +27,10 @@
 * XSane [xsane.org domain is done]
 
   `XSane source code  <https://launchpad.net/xsane>`_
+
+
+.. https://gitlab.com/luspi/photoqt
+.. https://openpaper.work
+.. https://github.com/geek1011/BookBrowser
+..   https://pgaskin.net/BookBrowser/
+..   epub-books ebooks ebook-manager epub epub-reader webapp server golang-application pdf reader epub-book
