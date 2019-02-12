@@ -4,6 +4,8 @@
 
 PATH=$PWD/scripts:$PATH
 
+copy-icon action alarm
+copy-icon action hourglass_empty
 copy-icon action settings_overscan
 copy-icon action swap_vert
 copy-icon action view_module

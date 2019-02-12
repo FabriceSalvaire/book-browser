@@ -23,6 +23,10 @@ import QtQuick.Controls 2.4
 ToolButton {
     // property alias tip: ToolTip.text
     property string tip: null
+    property int size: 22
+
+    icon.height: size
+    icon.width: size
 
     hoverEnabled: tip
     ToolTip.delay: 1000

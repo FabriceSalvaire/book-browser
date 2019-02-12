@@ -106,6 +106,7 @@ class QmlScannerConfig(QObject):
         'mode',
         'area',
         'is_maximized',
+        'number_of_pages',
     )
 
     __default_area__ = dict(x_inf=0, x_sup=0, y_inf=0, y_sup=0)
@@ -126,6 +127,8 @@ class QmlScannerConfig(QObject):
         self._mode = ''
         self._area = self.__default_area__
         self._is_maximized = False
+
+        self._number_of_pages = 0
 
     ##############################################
 
@@ -244,6 +247,22 @@ class QmlScannerConfig(QObject):
             if value:
                 self.area = self.__default_area__
                 self.maximized.emit()
+
+    ##############################################
+
+    number_of_pages_changed = Signal()
+
+    @Property(int, notify=number_of_pages_changed)
+    def number_of_pages(self):
+        return self._number_of_pages
+
+    @number_of_pages.setter
+    def number_of_pages(self, value):
+        value = int(value)
+        if self._number_of_pages != value:
+            self._number_of_pages = value
+            self._logger.info('number_of_pages = {}'.format(self._number_of_pages))
+            self.number_of_pages_changed.emit()
 
     ##############################################
 

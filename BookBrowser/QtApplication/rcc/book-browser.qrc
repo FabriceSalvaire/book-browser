@@ -9,12 +9,14 @@
     </qresource>
     <qresource prefix="/icons">
 	<!-- <file>icons/36x36/grid-off-black.png</file> -->
+	<file alias='alarm-black.png'>icons/36x36/alarm-black.png</file>
 	<file alias='arrow-back-black.png'>icons/36x36/arrow-back-black.png</file>
 	<file alias='arrow-forward-black.png'>icons/36x36/arrow-forward-black.png</file>
 	<file alias='first-page-black.png'>icons/36x36/first-page-black.png</file>
 	<file alias='flip-from-page.png'>icons/36x36/flip-from-page.png</file>
 	<file alias='folder-black.png'>icons/36x36/folder-black.png</file>
 	<file alias='grid-on-black.png'>icons/36x36/grid-on-black.png</file>
+	<file alias='hourglass-empty-black.png'>icons/36x36/hourglass-empty-black.png</file>
 	<file alias='image-black.png'>icons/36x36/image-black.png</file>
 	<file alias='last-page-black.png'>icons/36x36/last-page-black.png</file>
 	<file alias='recto-page.png'>icons/36x36/recto-page.png</file>
