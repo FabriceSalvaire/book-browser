@@ -75,42 +75,42 @@ ApplicationWindow {
 
     Action {
 	id: reload_action
-	icon.source: 'qrc:/icons/36x36/refresh-black.png'
+	icon.source: 'qrc:/icons/refresh-black.png'
 	// shortcut: ''
 	onTriggered: load_book(book.path)
     }
 
     Action {
 	id: prev_page_action
-	icon.source: 'qrc:/icons/36x36/arrow-back-black.png'
+	icon.source: 'qrc:/icons/arrow-back-black.png'
 	shortcut: 'Backspace'
 	onTriggered: page_viewer.prev_page()
     }
 
     Action {
 	id: next_page_action
-	icon.source: 'qrc:/icons/36x36/arrow-forward-black.png'
+	icon.source: 'qrc:/icons/arrow-forward-black.png'
 	shortcut: 'n' //'Space'
 	onTriggered: page_viewer.next_page()
     }
 
     Action {
 	id: flip_action
-	icon.source: 'qrc:/icons/36x36/swap-vert-black.png'
+	icon.source: 'qrc:/icons/swap-vert-black.png'
 	shortcut: 'r'
 	onTriggered: page_viewer.flip()
     }
 
     Action {
 	id: fit_to_screen_action
-	icon.source: 'qrc:/icons/36x36/settings-overscan-black.png'
+	icon.source: 'qrc:/icons/settings-overscan-black.png'
 	shortcut: 'f'
 	onTriggered: page_viewer.fit_to_screen()
     }
 
     Action {
 	id: zoom_full_action
-	icon.source: 'qrc:/icons/36x36/zoom-fit-width.png'
+	icon.source: 'qrc:/icons/zoom-fit-width.png'
 	shortcut: 'z'
 	onTriggered: page_viewer.zoom_full()
     }
@@ -189,24 +189,28 @@ ApplicationWindow {
 	    spacing: 10
 
 	    RowLayout {
-		ToolButton {
+		Widgets.ToolButtonTip {
 		    action: reload_action
+		    tip: qsTr('Reload book')
 		}
 
-		ToolButton {
-		    icon.source: 'qrc:/icons/36x36/view-comfy-black.png'
+		Widgets.ToolButtonTip {
+		    icon.source: 'qrc:/icons/view-comfy-black.png'
+		    tip: qsTr('Show page thumbnails')
                     onClicked: {
 			stack_layout.set_thumbnail_page()
 		    }
 		}
-		ToolButton {
-		    icon.source: 'qrc:/icons/36x36/image-black.png'
+		Widgets.ToolButtonTip {
+		    icon.source: 'qrc:/icons/image-black.png'
+		    tip: qsTr('Show page viewer')
                     onClicked: {
 			stack_layout.set_viewer_page()
 		    }
 		}
-		ToolButton {
-		    icon.source: 'qrc:/icons/36x36/scanner-black.png'
+		Widgets.ToolButtonTip {
+		    icon.source: 'qrc:/icons/scanner-black.png'
+		    tip: qsTr('Show scanner interface')
                     onClicked: {
 			// Fixme:
 			stack_layout.set_scanner_page()
@@ -218,33 +222,33 @@ ApplicationWindow {
             RowLayout {
 		visible: page_viewer_page.visible
 
-		ToolButton {
-		    icon.source: 'qrc:/icons/36x36/zoom-out-black.png'
+		Widgets.ToolButtonTip {
+		    icon.source: 'qrc:/icons/zoom-out-black.png'
                     onClicked: page_viewer.zoom_out()
 		}
-		ToolButton {
+		Widgets.ToolButtonTip {
 		    action: fit_to_screen_action
 		}
-		ToolButton {
+		Widgets.ToolButtonTip {
 		    action: zoom_full_action
 		}
-		ToolButton {
-		    icon.source: 'qrc:/icons/36x36/zoom-in-black.png'
+		Widgets.ToolButtonTip {
+		    icon.source: 'qrc:/icons/zoom-in-black.png'
                     onClicked: page_viewer.zoom_in()
 		}
 
-		ToolButton {
-		    icon.source: 'qrc:/icons/36x36/first-page-black.png'
+		Widgets.ToolButtonTip {
+		    icon.source: 'qrc:/icons/first-page-black.png'
                     onClicked: page_viewer.first_page()
 		}
-		ToolButton {
+		Widgets.ToolButtonTip {
 		    action: prev_page_action
 		}
-		ToolButton {
+		Widgets.ToolButtonTip {
 		    action: next_page_action
 		}
-		ToolButton {
-		    icon.source: 'qrc:/icons/36x36/last-page-black.png'
+		Widgets.ToolButtonTip {
+		    icon.source: 'qrc:/icons/last-page-black.png'
                     onClicked: page_viewer.last_page()
 		}
 		SpinBox {
@@ -260,28 +264,33 @@ ApplicationWindow {
 		    text: '/' + book.number_of_pages
 		}
 
-		ToolButton {
-		    icon.source: 'qrc:/icons/36x36/grid-on-black.png'
+		Widgets.ToolButtonTip {
+		    icon.source: 'qrc:/icons/grid-on-black.png'
+		    tip: qsTr('Show grid')
 		    checkable: true
                     onClicked: grid.visible = !grid.visible
 		}
 
-		ToolButton {
+		Widgets.ToolButtonTip {
 		    action: flip_action
+		    tip: qsTr('Flip page')
 		}
 
-		ToolButton {
-		    icon.source: 'qrc:/icons/36x36/recto-page.png'
+		Widgets.ToolButtonTip {
+		    icon.source: 'qrc:/icons/recto-page.png'
+		    tip: qsTr('Flip page as recto')
                     onClicked: page_viewer.set_recto()
 		}
 
-		ToolButton {
-		    icon.source: 'qrc:/icons/36x36/verso-page.png'
+		Widgets.ToolButtonTip {
+		    icon.source: 'qrc:/icons/verso-page.png'
+		    tip: qsTr('Flip page as verso')
                     onClicked: page_viewer.set_verso()
 		}
 
-		ToolButton {
-		    icon.source: 'qrc:/icons/36x36/flip-from-page.png'
+		Widgets.ToolButtonTip {
+		    icon.source: 'qrc:/icons/flip-from-page.png'
+		    tip: qsTr('Flip page from this page')
                     onClicked: page_viewer.flip_from_page()
 		}
             }

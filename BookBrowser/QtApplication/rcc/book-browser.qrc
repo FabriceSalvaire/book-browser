@@ -6,26 +6,26 @@
     <qresource prefix="/">
 	<file>icons/svg/logo.svg</file>
 	<file>icons/logo-256.png</file>
-
+    </qresource>
+    <qresource prefix="/icons">
 	<!-- <file>icons/36x36/grid-off-black.png</file> -->
-
-	<file>icons/36x36/arrow-back-black.png</file>
-	<file>icons/36x36/arrow-forward-black.png</file>
-	<file>icons/36x36/first-page-black.png</file>
-	<file>icons/36x36/flip-from-page.png</file>
-	<file>icons/36x36/folder-black.png</file>
-	<file>icons/36x36/grid-on-black.png</file>
-	<file>icons/36x36/image-black.png</file>
-	<file>icons/36x36/last-page-black.png</file>
-	<file>icons/36x36/recto-page.png</file>
-	<file>icons/36x36/refresh-black.png</file>
-	<file>icons/36x36/scanner-black.png</file>
-	<file>icons/36x36/swap-vert-black.png</file>
-	<file>icons/36x36/verso-page.png</file>
-	<file>icons/36x36/zoom-in-black.png</file>
-	<file>icons/36x36/zoom-out-black.png</file>
-        <file>icons/36x36/settings-overscan-black.png</file>
-        <file>icons/36x36/view-comfy-black.png</file>
-        <file>icons/36x36/zoom-fit-width.png</file>
+	<file alias='arrow-back-black.png'>icons/36x36/arrow-back-black.png</file>
+	<file alias='arrow-forward-black.png'>icons/36x36/arrow-forward-black.png</file>
+	<file alias='first-page-black.png'>icons/36x36/first-page-black.png</file>
+	<file alias='flip-from-page.png'>icons/36x36/flip-from-page.png</file>
+	<file alias='folder-black.png'>icons/36x36/folder-black.png</file>
+	<file alias='grid-on-black.png'>icons/36x36/grid-on-black.png</file>
+	<file alias='image-black.png'>icons/36x36/image-black.png</file>
+	<file alias='last-page-black.png'>icons/36x36/last-page-black.png</file>
+	<file alias='recto-page.png'>icons/36x36/recto-page.png</file>
+	<file alias='refresh-black.png'>icons/36x36/refresh-black.png</file>
+	<file alias='scanner-black.png'>icons/36x36/scanner-black.png</file>
+	<file alias='swap-vert-black.png'>icons/36x36/swap-vert-black.png</file>
+	<file alias='verso-page.png'>icons/36x36/verso-page.png</file>
+	<file alias='zoom-in-black.png'>icons/36x36/zoom-in-black.png</file>
+	<file alias='zoom-out-black.png'>icons/36x36/zoom-out-black.png</file>
+        <file alias='settings-overscan-black.png'>icons/36x36/settings-overscan-black.png</file>
+        <file alias='view-comfy-black.png'>icons/36x36/view-comfy-black.png</file>
+        <file alias='zoom-fit-width.png'>icons/36x36/zoom-fit-width.png</file>
     </qresource>
 </RCC>
