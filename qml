@@ -1,0 +1,1 @@
+BookBrowser/QtApplication/qml/
