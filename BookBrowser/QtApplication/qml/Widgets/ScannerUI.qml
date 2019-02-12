@@ -448,7 +448,10 @@ Item {
                         Widgets.ToolButtonTip {
                             icon.source: 'qrc:/icons/alarm-black.png'
 			    size: 36
-                            onClicked: scanner.start_timer()
+                            onClicked: {
+                                end_time_label.text = '...'
+                                scanner.start_timer()
+                            }
                         }
                         // Image {
                         //     source: 'qrc:/icons/alarm-black.png'
@@ -458,7 +461,7 @@ Item {
                         // }
                         Label {
                             id: end_time_label
-                            text: 'unknown'
+                            text: qsTr('unknown')
                         }
                     }
 
