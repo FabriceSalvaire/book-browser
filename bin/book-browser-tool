@@ -26,10 +26,7 @@ import logging
 from BookBrowser.Common.Logging import Logging
 Logging.setup_logging()
 
-import argparse
-
-from BookBrowser.Common.ArgparseAction import PathAction
-from BookBrowser.Book import Book
+from BookBrowser.Application.ToolApplication import ToolApplication
 
 ####################################################################################################
 
@@ -38,48 +35,5 @@ _module_logger.info('Started Book Browser')
 
 ####################################################################################################
 
-argument_parser = argparse.ArgumentParser(description='Book Browser Tool.')
-argument_parser.add_argument(
-    'book_path', metavar='BookPath',
-    action=PathAction,
-    help='Book path',
-)
-argument_parser.add_argument(
-    '--rename',
-    action='store_true',
-    default=False,
-    help='rename pages',
-)
-argument_parser.add_argument(
-    '--orientation',
-    action='store_true',
-    default=False,
-    help='set page orientation',
-)
-argument_parser.add_argument(
-    '--negative-delta',
-    action='store_true',
-    default=False,
-    help='set negative delta for  orientation',
-)
-argument_parser.add_argument(
-    '--remove-page-number',
-    action='store_true',
-    default=False,
-    help='remove page numbers',
-)
-
-args = argument_parser.parse_args()
-
-####################################################################################################
-
-_module_logger.info(args)
-
-book = Book(args.book_path)
-
-if args.rename:
-    book.renumerate_pages()
-if args.orientation:
-    book.set_orientation(positive_delta=not args.negative_delta)
-if args.remove_page_number:
-    book.remove_page_number()
+application = ToolApplication()
+application.run()

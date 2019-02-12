@@ -25,6 +25,7 @@ __all__ = [
 
 ####################################################################################################
 
+from operator import itemgetter
 from pathlib import Path
 import logging
 import math
@@ -272,14 +273,22 @@ class BookPage:
 
 class Book:
 
+    __book_page_cls__ = BookPage
+
     _logger = _module_logger.getChild('Book')
 
     ##############################################
 
-    def __init__(self, path, extension='.png'):
+    def __init__(self, path, extension=None):
+
+        # extension='.png'
 
         self._path = Path(str(path)).resolve()
-        self._extension = str(extension)
+
+        if extension is not None:
+            self._extension = str(extension)
+        else:
+            self._extension = self._guess_extension()
 
         self._pages = None
         self._get_pages()
@@ -288,6 +297,27 @@ class Book:
         else:
             self._number_of_digits = 3 # Fixme: ???
         self.check()
+
+    ##############################################
+
+    @property
+    def _list_dir(self):
+        return iter(os.listdir(self._path))
+
+    ##############################################
+
+    def _guess_extension(self):
+
+        extensions = {}
+        for filename in self._list_dir:
+            suffix = Path(filename).suffix
+            extensions.setdefault(suffix, 0)
+            extensions[suffix] += 1
+
+        extension = sorted(extensions.items(), key=itemgetter(1))[-1][0]
+        self._logger.info('Guessed extension {}'.format(extension))
+
+        return extension
 
     ##############################################
 
@@ -363,26 +393,26 @@ class Book:
     def _get_pages(self):
 
         self._pages = []
-        for path, directories, files in os.walk(str(self._path)):
-            for filename in files:
-                if filename.endswith('_'):
-                    path = str(self.joinpath(filename))
-                    if not rename_file(path, path[:-1]):
-                        filename = filename[:-1]
-                    else:
-                        raise NameError('')
-                if filename.endswith(self._extension):
-                    try:
-                        self.add_page(filename)
-                    except Exception as exception:
-                        self._logger.warning('Error on {}\n{}'.format(filename, exception))
+        for filename in self._list_dir:
+            # Fixme: fix _ suffix
+            if filename.endswith('_'):
+                path = str(self.joinpath(filename))
+                if not rename_file(path, path[:-1]):
+                    filename = filename[:-1]
+                else:
+                    raise NameError('')
+            if filename.endswith(self._extension):
+                try:
+                    self.add_page(filename)
+                except Exception as exception:
+                    self._logger.warning('Error on {}\n{}'.format(filename, exception))
 
         self._pages.sort() # by page number or index
 
     ##############################################
 
     def add_page(self, filename):
-        page = BookPage(self, filename)
+        page = self.__book_page_cls__(self, filename)
         self._pages.append(page)
         return page
 
@@ -403,8 +433,8 @@ class Book:
                     page_numbers[page_number] = 1
                 else:
                     self._logger.warning('Page number duplicate {}'.format(page_number))
-            if page.orientation not in ('r', 'v'):
-                self._logger.warning('Page orientation unset {} '.format(page_number))
+            # if page.orientation not in ('r', 'v'):
+            #     self._logger.warning('Page orientation unset {} '.format(page_number))
 
     ##############################################
 
@@ -439,11 +469,16 @@ class Book:
 
     ##############################################
 
-    def renumerate_pages(self, dry_run=False):
+    def renumerate_pages(self, dry_run=False, iter_by_mtime=False):
+
+        if iter_by_mtime:
+            page_iter = self.iter_by_mtime()
+        else:
+            page_iter = self
 
         renames = []
         page_number = 0
-        for page in self.iter_by_mtime():
+        for page in page_iter:
             if page.page_number is None:
                 page_number += 1
                 renames.append((page, page_number))
@@ -463,8 +498,8 @@ class Book:
 
         for page, page_number in renames:
             self._logger.info('Rename {} -> {}'.format(page.file_index, page_number))
-            if not dry_run:
-                page.rename(page_number=page_number, suffix='_') # , dry_run=dry_run
+            # if not dry_run:
+            page.rename(page_number=page_number, suffix='_', dry_run=dry_run)
 
     ##############################################
 
