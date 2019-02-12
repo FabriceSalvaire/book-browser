@@ -49,6 +49,6 @@ about_message_template = '''
 def about_message():
     return about_message_template.format(
         version=__version__,
-        url='https://github.com/FabriceSalvaire/BookBrowser',
+        url='https://github.com/FabriceSalvaire/book-browser',
         year=2019,
     )
