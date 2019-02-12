@@ -24,20 +24,20 @@ Item {
     id: grid
 
     Repeater {
-	model: [.1, .25, .5, .75]
+        model: [.1, .25, .5, .75]
 
-	Shape {
-	    anchors.fill: parent
+        Shape {
+            anchors.fill: parent
 
-	    ShapePath {
-		strokeWidth: 3
-		strokeColor: '#222222'
+            ShapePath {
+                strokeWidth: 3
+                strokeColor: '#222222'
 
-		startX: 0
-		startY: grid.height * modelData
+                startX: 0
+                startY: grid.height * modelData
 
-		PathLine { x: grid.width; relativeY: 0 }
-	    }
-	}
+                PathLine { x: grid.width; relativeY: 0 }
+            }
+        }
     }
 }

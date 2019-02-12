@@ -38,10 +38,10 @@ Widgets.CentredDialog {
     standardButtons: Dialog.Ok
 
     TextArea {
-	id: text_area
-	width: 800
-	anchors.margins: 20
-	wrapMode: TextEdit.Wrap
-	textFormat: TextEdit.RichText
+        id: text_area
+        width: 800
+        anchors.margins: 20
+        wrapMode: TextEdit.Wrap
+        textFormat: TextEdit.RichText
     }
 }

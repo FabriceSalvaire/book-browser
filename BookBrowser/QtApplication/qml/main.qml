@@ -37,9 +37,9 @@ ApplicationWindow {
     property var book: application.book
 
     Component.onCompleted: {
-	console.info('ApplicationWindow.onCompleted')
-	application_window.showMaximized()
-	page_viewer.first_page()
+        console.info('ApplicationWindow.onCompleted')
+        application_window.showMaximized()
+        page_viewer.first_page()
     }
 
     /***********************************************************************************************
@@ -49,16 +49,16 @@ ApplicationWindow {
      */
 
     function clear_message() {
-	message_label.text = ''
+        message_label.text = ''
     }
 
     function show_message(message) {
-	message_label.text = message
+        message_label.text = message
     }
 
     function load_book(path) {
-	application.load_book(path)
-	show_message(qsTr('Loaded book at %1'.arg(path)))
+        application.load_book(path)
+        show_message(qsTr('Loaded book at %1'.arg(path)))
     }
 
     /***********************************************************************************************
@@ -68,51 +68,51 @@ ApplicationWindow {
      */
 
     Action {
-	id: toggle_menubar_action
-	shortcut: 'm'
-	onTriggered: menubar.visible = !menubar.visible
+        id: toggle_menubar_action
+        shortcut: 'm'
+        onTriggered: menubar.visible = !menubar.visible
     }
 
     Action {
-	id: reload_action
-	icon.source: 'qrc:/icons/refresh-black.png'
-	// shortcut: ''
-	onTriggered: load_book(book.path)
+        id: reload_action
+        icon.source: 'qrc:/icons/refresh-black.png'
+        // shortcut: ''
+        onTriggered: load_book(book.path)
     }
 
     Action {
-	id: prev_page_action
-	icon.source: 'qrc:/icons/arrow-back-black.png'
-	shortcut: 'Backspace'
-	onTriggered: page_viewer.prev_page()
+        id: prev_page_action
+        icon.source: 'qrc:/icons/arrow-back-black.png'
+        shortcut: 'Backspace'
+        onTriggered: page_viewer.prev_page()
     }
 
     Action {
-	id: next_page_action
-	icon.source: 'qrc:/icons/arrow-forward-black.png'
-	shortcut: 'n' //'Space'
-	onTriggered: page_viewer.next_page()
+        id: next_page_action
+        icon.source: 'qrc:/icons/arrow-forward-black.png'
+        shortcut: 'n' //'Space'
+        onTriggered: page_viewer.next_page()
     }
 
     Action {
-	id: flip_action
-	icon.source: 'qrc:/icons/swap-vert-black.png'
-	shortcut: 'r'
-	onTriggered: page_viewer.flip()
+        id: flip_action
+        icon.source: 'qrc:/icons/swap-vert-black.png'
+        shortcut: 'r'
+        onTriggered: page_viewer.flip()
     }
 
     Action {
-	id: fit_to_screen_action
-	icon.source: 'qrc:/icons/settings-overscan-black.png'
-	shortcut: 'f'
-	onTriggered: page_viewer.fit_to_screen()
+        id: fit_to_screen_action
+        icon.source: 'qrc:/icons/settings-overscan-black.png'
+        shortcut: 'f'
+        onTriggered: page_viewer.fit_to_screen()
     }
 
     Action {
-	id: zoom_full_action
-	icon.source: 'qrc:/icons/zoom-fit-width.png'
-	shortcut: 'z'
-	onTriggered: page_viewer.zoom_full()
+        id: zoom_full_action
+        icon.source: 'qrc:/icons/zoom-fit-width.png'
+        shortcut: 'z'
+        onTriggered: page_viewer.zoom_full()
     }
 
     /***********************************************************************************************
@@ -122,8 +122,8 @@ ApplicationWindow {
      */
 
     onClosing: {
-	console.info('Close', close)
-	scanner_ui.save()
+        console.info('Close', close)
+        scanner_ui.save()
     }
 
     /***********************************************************************************************
@@ -133,17 +133,17 @@ ApplicationWindow {
      */
 
     Widgets.AboutDialog {
-	id: about_dialog
-	title: qsTr('About Book Browser')
-	about_message: application.about_message // qsTr('...')
+        id: about_dialog
+        title: qsTr('About Book Browser')
+        about_message: application.about_message // qsTr('...')
     }
 
     Widgets.BookFolderDialog {
-	id: book_folder_dialog
-	onAccepted: {
-	    var path = book_folder_dialog.selected_path()
-	    load_book(path)
-	}
+        id: book_folder_dialog
+        onAccepted: {
+            var path = book_folder_dialog.selected_path()
+            load_book(path)
+        }
     }
 
     /***********************************************************************************************
@@ -153,27 +153,27 @@ ApplicationWindow {
      */
 
     menuBar: MenuBar {
-	id: menubar
+        id: menubar
 
-	Menu {
-	    title: qsTr("&File")
+        Menu {
+            title: qsTr("&File")
             Action {
-		text: qsTr("&Open...")
-		onTriggered: book_folder_dialog.open()
-	    }
+                text: qsTr("&Open...")
+                onTriggered: book_folder_dialog.open()
+            }
             MenuSeparator { }
             Action {
-		text: qsTr("&Quit")
-		onTriggered: application_window.close()
-	    }
+                text: qsTr("&Quit")
+                onTriggered: application_window.close()
+            }
         }
 
         Menu {
             title: qsTr("&Help")
             Action {
-		text: qsTr("&About")
-		onTriggered: about_dialog.open()
-	    }
+                text: qsTr("&About")
+                onTriggered: about_dialog.open()
+            }
         }
     }
 
@@ -184,121 +184,121 @@ ApplicationWindow {
      */
 
     header: ToolBar {
-	RowLayout {
-	    anchors.fill: parent
-	    spacing: 10
-
-	    RowLayout {
-		Widgets.ToolButtonTip {
-		    action: reload_action
-		    tip: qsTr('Reload book')
-		}
-
-		Widgets.ToolButtonTip {
-		    icon.source: 'qrc:/icons/view-comfy-black.png'
-		    tip: qsTr('Show page thumbnails')
-                    onClicked: {
-			stack_layout.set_thumbnail_page()
-		    }
-		}
-		Widgets.ToolButtonTip {
-		    icon.source: 'qrc:/icons/image-black.png'
-		    tip: qsTr('Show page viewer')
-                    onClicked: {
-			stack_layout.set_viewer_page()
-		    }
-		}
-		Widgets.ToolButtonTip {
-		    icon.source: 'qrc:/icons/scanner-black.png'
-		    tip: qsTr('Show scanner interface')
-                    onClicked: {
-			// Fixme:
-			stack_layout.set_scanner_page()
-			scanner_ui.init()
-		    }
-		}
-	    }
+        RowLayout {
+            anchors.fill: parent
+            spacing: 10
 
             RowLayout {
-		visible: page_viewer_page.visible
+                Widgets.ToolButtonTip {
+                    action: reload_action
+                    tip: qsTr('Reload book')
+                }
 
-		Widgets.ToolButtonTip {
-		    icon.source: 'qrc:/icons/zoom-out-black.png'
-                    onClicked: page_viewer.zoom_out()
-		}
-		Widgets.ToolButtonTip {
-		    action: fit_to_screen_action
-		}
-		Widgets.ToolButtonTip {
-		    action: zoom_full_action
-		}
-		Widgets.ToolButtonTip {
-		    icon.source: 'qrc:/icons/zoom-in-black.png'
-                    onClicked: page_viewer.zoom_in()
-		}
-
-		Widgets.ToolButtonTip {
-		    icon.source: 'qrc:/icons/first-page-black.png'
-                    onClicked: page_viewer.first_page()
-		}
-		Widgets.ToolButtonTip {
-		    action: prev_page_action
-		}
-		Widgets.ToolButtonTip {
-		    action: next_page_action
-		}
-		Widgets.ToolButtonTip {
-		    icon.source: 'qrc:/icons/last-page-black.png'
-                    onClicked: page_viewer.last_page()
-		}
-		SpinBox {
-		    id: page_number
-		    editable: true
-		    from: 1
-		    to: book.number_of_pages
-		    value: page_viewer.book_page ? page_viewer.book_page.page_number: 0
-
-		    onValueModified: page_viewer.to_page(value)
-		}
-		Label {
-		    text: '/' + book.number_of_pages
-		}
-
-		Widgets.ToolButtonTip {
-		    icon.source: 'qrc:/icons/grid-on-black.png'
-		    tip: qsTr('Show grid')
-		    checkable: true
-                    onClicked: grid.visible = !grid.visible
-		}
-
-		Widgets.ToolButtonTip {
-		    action: flip_action
-		    tip: qsTr('Flip page')
-		}
-
-		Widgets.ToolButtonTip {
-		    icon.source: 'qrc:/icons/recto-page.png'
-		    tip: qsTr('Flip page as recto')
-                    onClicked: page_viewer.set_recto()
-		}
-
-		Widgets.ToolButtonTip {
-		    icon.source: 'qrc:/icons/verso-page.png'
-		    tip: qsTr('Flip page as verso')
-                    onClicked: page_viewer.set_verso()
-		}
-
-		Widgets.ToolButtonTip {
-		    icon.source: 'qrc:/icons/flip-from-page.png'
-		    tip: qsTr('Flip page from this page')
-                    onClicked: page_viewer.flip_from_page()
-		}
+                Widgets.ToolButtonTip {
+                    icon.source: 'qrc:/icons/view-comfy-black.png'
+                    tip: qsTr('Show page thumbnails')
+                    onClicked: {
+                        stack_layout.set_thumbnail_page()
+                    }
+                }
+                Widgets.ToolButtonTip {
+                    icon.source: 'qrc:/icons/image-black.png'
+                    tip: qsTr('Show page viewer')
+                    onClicked: {
+                        stack_layout.set_viewer_page()
+                    }
+                }
+                Widgets.ToolButtonTip {
+                    icon.source: 'qrc:/icons/scanner-black.png'
+                    tip: qsTr('Show scanner interface')
+                    onClicked: {
+                        // Fixme:
+                        stack_layout.set_scanner_page()
+                        scanner_ui.init()
+                    }
+                }
             }
 
-	    Item {
-		Layout.fillWidth: true
-	    }
-	}
+            RowLayout {
+                visible: page_viewer_page.visible
+
+                Widgets.ToolButtonTip {
+                    icon.source: 'qrc:/icons/zoom-out-black.png'
+                    onClicked: page_viewer.zoom_out()
+                }
+                Widgets.ToolButtonTip {
+                    action: fit_to_screen_action
+                }
+                Widgets.ToolButtonTip {
+                    action: zoom_full_action
+                }
+                Widgets.ToolButtonTip {
+                    icon.source: 'qrc:/icons/zoom-in-black.png'
+                    onClicked: page_viewer.zoom_in()
+                }
+
+                Widgets.ToolButtonTip {
+                    icon.source: 'qrc:/icons/first-page-black.png'
+                    onClicked: page_viewer.first_page()
+                }
+                Widgets.ToolButtonTip {
+                    action: prev_page_action
+                }
+                Widgets.ToolButtonTip {
+                    action: next_page_action
+                }
+                Widgets.ToolButtonTip {
+                    icon.source: 'qrc:/icons/last-page-black.png'
+                    onClicked: page_viewer.last_page()
+                }
+                SpinBox {
+                    id: page_number
+                    editable: true
+                    from: 1
+                    to: book.number_of_pages
+                    value: page_viewer.book_page ? page_viewer.book_page.page_number: 0
+
+                    onValueModified: page_viewer.to_page(value)
+                }
+                Label {
+                    text: '/' + book.number_of_pages
+                }
+
+                Widgets.ToolButtonTip {
+                    icon.source: 'qrc:/icons/grid-on-black.png'
+                    tip: qsTr('Show grid')
+                    checkable: true
+                    onClicked: grid.visible = !grid.visible
+                }
+
+                Widgets.ToolButtonTip {
+                    action: flip_action
+                    tip: qsTr('Flip page')
+                }
+
+                Widgets.ToolButtonTip {
+                    icon.source: 'qrc:/icons/recto-page.png'
+                    tip: qsTr('Flip page as recto')
+                    onClicked: page_viewer.set_recto()
+                }
+
+                Widgets.ToolButtonTip {
+                    icon.source: 'qrc:/icons/verso-page.png'
+                    tip: qsTr('Flip page as verso')
+                    onClicked: page_viewer.set_verso()
+                }
+
+                Widgets.ToolButtonTip {
+                    icon.source: 'qrc:/icons/flip-from-page.png'
+                    tip: qsTr('Flip page from this page')
+                    onClicked: page_viewer.flip_from_page()
+                }
+            }
+
+            Item {
+                Layout.fillWidth: true
+            }
+        }
     }
 
     /***********************************************************************************************
@@ -308,57 +308,57 @@ ApplicationWindow {
      */
 
     StackLayout {
-	id: stack_layout
-	anchors.fill: parent
-	currentIndex: 0
+        id: stack_layout
+        anchors.fill: parent
+        currentIndex: 0
 
-	function set_thumbnail_page() { currentIndex = 0 }
-	function set_viewer_page() { currentIndex = 1 }
-	function set_scanner_page() { currentIndex = 2 }
+        function set_thumbnail_page() { currentIndex = 0 }
+        function set_viewer_page() { currentIndex = 1 }
+        function set_scanner_page() { currentIndex = 2 }
 
-	Page {
-    	    id: thumbnail_page
+        Page {
+            id: thumbnail_page
 
-	    Widgets.ThumbnailViewer {
-		id: thumbnail_viewer
-		anchors.fill: parent
+            Widgets.ThumbnailViewer {
+                id: thumbnail_viewer
+                anchors.fill: parent
 
-		thumbnail_model: book.pages
+                thumbnail_model: book.pages
 
-		onShow_page: {
-		    page_viewer.to_page(page_number)
-		    stack_layout.set_viewer_page()
-		}
-	    }
-	}
+                onShow_page: {
+                    page_viewer.to_page(page_number)
+                    stack_layout.set_viewer_page()
+                }
+            }
+        }
 
-	Page {
-	    id: page_viewer_page
+        Page {
+            id: page_viewer_page
 
-	    Widgets.PageViewer {
-		id: page_viewer
-		anchors.fill: parent
+            Widgets.PageViewer {
+                id: page_viewer
+                anchors.fill: parent
 
-		book: application.book
-	    }
+                book: application.book
+            }
 
-	    Widgets.Grid {
-		id: grid
-		visible: false
-		anchors.fill: parent
-	    }
-	}
+            Widgets.Grid {
+                id: grid
+                visible: false
+                anchors.fill: parent
+            }
+        }
 
-	Page {
-	    id: scanner_page
+        Page {
+            id: scanner_page
 
-	    Widgets.ScannerUI {
-		id: scanner_ui
-		anchors.fill: parent
+            Widgets.ScannerUI {
+                id: scanner_ui
+                anchors.fill: parent
 
-		// scanner: application.scanner
-	    }
-	}
+                // scanner: application.scanner
+            }
+        }
     }
 
     /***********************************************************************************************
@@ -370,9 +370,9 @@ ApplicationWindow {
     footer: ToolBar {
         RowLayout {
             Label {
-		id: message_label
-		text: ''
+                id: message_label
+                text: ''
             }
-	}
+        }
     }
 }

@@ -38,157 +38,157 @@ Image {
     signal image_ready()
 
     function hide_selection_area() {
-	selection_area.visible = false
+        selection_area.visible = false
     }
 
     function maximise_area() {
-	selection_area.x = 0
-	selection_area.y = 0
-	selection_area.width = image_preview.paintedWidth
-	selection_area.height = image_preview.paintedHeight
-	selection_area.visible = true
+        selection_area.x = 0
+        selection_area.y = 0
+        selection_area.width = image_preview.paintedWidth
+        selection_area.height = image_preview.paintedHeight
+        selection_area.visible = true
     }
 
     function bounds() {
-	var x_inf = selection_area.x
-	var y_inf = selection_area.y
-	var x_sup = x_inf + selection_area.width
-	var y_sup = y_inf + selection_area.height
-	x_inf /= image_preview.paintedWidth
-	x_sup /= image_preview.paintedWidth
-	y_inf /= image_preview.paintedHeight
-	y_sup /= image_preview.paintedHeight
-	return {x_inf:x_inf, x_sup:x_sup, y_inf:y_inf, y_sup:y_sup}
+        var x_inf = selection_area.x
+        var y_inf = selection_area.y
+        var x_sup = x_inf + selection_area.width
+        var y_sup = y_inf + selection_area.height
+        x_inf /= image_preview.paintedWidth
+        x_sup /= image_preview.paintedWidth
+        y_inf /= image_preview.paintedHeight
+        y_sup /= image_preview.paintedHeight
+        return {x_inf:x_inf, x_sup:x_sup, y_inf:y_inf, y_sup:y_sup}
     }
 
     onStatusChanged: {
         if (status === Image.Ready)
-	    image_ready()
+            image_ready()
     }
 
 
     Rectangle {
-	id: selection_area
-	visible: false
-	color: '#aaaaaaff'
-	x: 0
-	y: 0
-	width: 100
-	height: 100
+        id: selection_area
+        visible: false
+        color: '#aaaaaaff'
+        x: 0
+        y: 0
+        width: 100
+        height: 100
     }
 
     MouseArea {
-	id: mouse_area
-	anchors.fill: parent
+        id: mouse_area
+        anchors.fill: parent
 
-	hoverEnabled: true
+        hoverEnabled: true
 
-	property int margin: 60
-	property int size_min: 100
+        property int margin: 60
+        property int size_min: 100
 
-	property int x_handler: 0
-	property int y_handler: 0
-	property bool edited: false
+        property int x_handler: 0
+        property int y_handler: 0
+        property bool edited: false
 
-	function get_handler(mouse) {
-	    var x = mouse.x
-	    var y = mouse.y
-	    var x_inf = selection_area.x
-	    var y_inf = selection_area.y
-	    var x_sup = x_inf + selection_area.width
-	    var y_sup = y_inf + selection_area.height
+        function get_handler(mouse) {
+            var x = mouse.x
+            var y = mouse.y
+            var x_inf = selection_area.x
+            var y_inf = selection_area.y
+            var x_sup = x_inf + selection_area.width
+            var y_sup = y_inf + selection_area.height
 
-	    var _x_handler, _y_handler
+            var _x_handler, _y_handler
 
-	    if (x < (x_inf + margin))
-		_x_handler = 1
-	    else if ((x_sup - margin) < x)
-		_x_handler = 3
-	    else
-		_x_handler = 2
+            if (x < (x_inf + margin))
+                _x_handler = 1
+            else if ((x_sup - margin) < x)
+                _x_handler = 3
+            else
+                _x_handler = 2
 
-	    if (y < (y_inf + margin))
-		_y_handler = 1
-	    else if ((y_sup - margin) < y)
-		_y_handler = 3
-	    else
-		_y_handler = 2
+            if (y < (y_inf + margin))
+                _y_handler = 1
+            else if ((y_sup - margin) < y)
+                _y_handler = 3
+            else
+                _y_handler = 2
 
-	    return {x:_x_handler, y:_y_handler}
-	}
+            return {x:_x_handler, y:_y_handler}
+        }
 
-	function update_pointer(mouse) {
-	    var handler = get_handler(mouse)
-	    x_handler = handler.x
-	    y_handler = handler.y
-	    if (x_handler != 2 || y_handler != 2)
-		cursorShape = Qt.CrossCursor
-	    else
-		cursorShape = Qt.ArrowCursor
-	}
+        function update_pointer(mouse) {
+            var handler = get_handler(mouse)
+            x_handler = handler.x
+            y_handler = handler.y
+            if (x_handler != 2 || y_handler != 2)
+                cursorShape = Qt.CrossCursor
+            else
+                cursorShape = Qt.ArrowCursor
+        }
 
-	function start_selection_area(mouse) {
-	    var handler = get_handler(mouse)
-	    x_handler = handler.x
-	    y_handler = handler.y
-	    edited = true
-	    console.info('Handlers', x_handler, y_handler)
-	}
+        function start_selection_area(mouse) {
+            var handler = get_handler(mouse)
+            x_handler = handler.x
+            y_handler = handler.y
+            edited = true
+            console.info('Handlers', x_handler, y_handler)
+        }
 
-	function update_selection_area(mouse) {
-	    var x = Math.min(Math.max(mouse.x, 0), image_preview.paintedWidth)
-	    var y = Math.min(Math.max(mouse.y, 0), image_preview.paintedHeight)
-	    var x_inf = selection_area.x
-	    var y_inf = selection_area.y
+        function update_selection_area(mouse) {
+            var x = Math.min(Math.max(mouse.x, 0), image_preview.paintedWidth)
+            var y = Math.min(Math.max(mouse.y, 0), image_preview.paintedHeight)
+            var x_inf = selection_area.x
+            var y_inf = selection_area.y
 
-	    //  X   1  2  3
-	    //  Y 1 ii xi si
-	    //    2 ix xx sx
-	    //    3 is xs ss
+            //  X   1  2  3
+            //  Y 1 ii xi si
+            //    2 ix xx sx
+            //    3 is xs ss
 
-	    // console.info(x_handler, y_handler, x, y)
-	    if (x_handler == 1) {
-		selection_area.width -= x - x_inf
-		// prevent null area, else area is moved
-		if (selection_area.width > size_min)
-		    selection_area.x = x
-	    } else if (x_handler == 3)
-		selection_area.width = x - x_inf
-	    selection_area.width = Math.max(selection_area.width, size_min)
+            // console.info(x_handler, y_handler, x, y)
+            if (x_handler == 1) {
+                selection_area.width -= x - x_inf
+                // prevent null area, else area is moved
+                if (selection_area.width > size_min)
+                    selection_area.x = x
+            } else if (x_handler == 3)
+                selection_area.width = x - x_inf
+            selection_area.width = Math.max(selection_area.width, size_min)
 
-	    if (y_handler == 1) {
-		selection_area.height -= y - y_inf
-		if (selection_area.height > size_min)
-		    selection_area.y = y
-	    } else if (y_handler == 3)
-		selection_area.height = y - y_inf
-	    selection_area.height = Math.max(selection_area.height, size_min)
-	}
+            if (y_handler == 1) {
+                selection_area.height -= y - y_inf
+                if (selection_area.height > size_min)
+                    selection_area.y = y
+            } else if (y_handler == 3)
+                selection_area.height = y - y_inf
+            selection_area.height = Math.max(selection_area.height, size_min)
+        }
 
-	function stop_selection_area(mouse) {
-	    x_handler = 0
-	    y_handler = 0
-	    dirty_selection_area = true
-	    edited = false
-	}
+        function stop_selection_area(mouse) {
+            x_handler = 0
+            y_handler = 0
+            dirty_selection_area = true
+            edited = false
+        }
 
-	onPressed: {
-	    if (selection_area.visible)
-		start_selection_area(mouse)
-	}
+        onPressed: {
+            if (selection_area.visible)
+                start_selection_area(mouse)
+        }
 
-	onPositionChanged: {
-	    if (selection_area.visible) {
-		if (edited)
-		    update_selection_area(mouse)
-		else
-		    update_pointer(mouse)
-	    }
-	}
+        onPositionChanged: {
+            if (selection_area.visible) {
+                if (edited)
+                    update_selection_area(mouse)
+                else
+                    update_pointer(mouse)
+            }
+        }
 
-	onReleased: {
-	    if (selection_area.visible)
-		stop_selection_area(mouse)
-	}
+        onReleased: {
+            if (selection_area.visible)
+                stop_selection_area(mouse)
+        }
     }
 }

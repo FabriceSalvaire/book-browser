@@ -56,14 +56,14 @@ Flickable {
 
     Item {
         id: image_container // purpose ???
-	// image_container.size = max(image.size * scale, flickable.size)
+        // image_container.size = max(image.size * scale, flickable.size)
         width: Math.max(image.width * image.scale, flickable.width)
         height: Math.max(image.height * image.scale, flickable.height)
 
         Image {
             id: image
-	    // image in centered in image_container
-	    // image size can be scaled
+            // image in centered in image_container
+            // image size can be scaled
             anchors.centerIn: parent
             transformOrigin: Item.Center
 
@@ -74,14 +74,14 @@ Flickable {
             fillMode: Image.PreserveAspectFit
             smooth: flickable.moving
 
-	    source: image_source
-	    rotation: image_rotation
+            source: image_source
+            rotation: image_rotation
 
             onScaleChanged: {
                 console.debug(scale)
-		// if scaled image is larger than flickable
-		// then update position of the surface coordinate currently at the top-left corner of the flickable
-		// zooming is centered
+                // if scaled image is larger than flickable
+                // then update position of the surface coordinate currently at the top-left corner of the flickable
+                // zooming is centered
                 if ((width * scale) > flickable.width) {
                     var x_offset = (flickable.width / 2 + flickable.contentX) * scale / prev_scale
                     flickable.contentX = x_offset - flickable.width / 2
@@ -95,10 +95,10 @@ Flickable {
 
             onStatusChanged: {
                 if (status === Image.Ready) {
-		    if (flickable.fit_to_screen_active)
-			flickable.fit_to_screen()
-		    else if (flickable.full_zoom_active)
-			flickable.zoom_full()
+                    if (flickable.fit_to_screen_active)
+                        flickable.fit_to_screen()
+                    else if (flickable.full_zoom_active)
+                        flickable.zoom_full()
                 }
             }
 
@@ -117,18 +117,18 @@ Flickable {
         flickable.min_zoom = new_scale // cannot zoom out more than fit scale
         image.prev_scale = 1.0 // flickable.scale ???
         fit_to_screen_active = true
-	full_zoom_active = false
-	// Ensures the content is within legal bounds
+        full_zoom_active = false
+        // Ensures the content is within legal bounds
         flickable.returnToBounds()
     }
 
     function zoom_in() {
         if (image.scale < max_zoom)
             image.scale *= (1.0 + zoom_step)
-	// duplicated code
+        // duplicated code
         // flickable.returnToBounds()
         fit_to_screen_active = false
-	full_zoom_active = false
+        full_zoom_active = false
         flickable.returnToBounds() // why twice ?
     }
 
@@ -139,14 +139,14 @@ Flickable {
             image.scale = flickable.min_zoom
         // flickable.returnToBounds()
         fit_to_screen_active = false
-	full_zoom_active = false
+        full_zoom_active = false
         flickable.returnToBounds()
     }
 
     function zoom_full() {
         image.scale = 1
         fit_to_screen_active = false
-	full_zoom_active = true
+        full_zoom_active = true
         flickable.returnToBounds()
     }
 }

@@ -31,53 +31,54 @@ Widgets.ImageViewer {
     image_rotation: book_page ? book_page.orientation : 0
 
     function first_page() {
-	book_page = book.first_page
+        book_page = book.first_page
     }
 
     function last_page() {
-	book_page = book.last_page
+        book_page = book.last_page
     }
 
     function to_page(page_number) {
-	if (book.is_valid_page_number(page_number))
-	    book_page = book.page(page_number)
+        if (book.is_valid_page_number(page_number))
+            book_page = book.page(page_number)
     }
 
     function prev_page() {
-	to_page(book_page.page_number -1)
+        to_page(book_page.page_number -1)
     }
 
     function next_page() {
-	to_page(book_page.page_number +1)
+        to_page(book_page.page_number +1)
     }
 
     function flip() {
-	var orientation
-	if (rotation == 0) {
-	    rotation = 180
-	    orientation = 'v'
-	}
-	else {
-	    rotation = 0
-	    orientation = 'r'
-	}
-	book_page.flip_page(orientation)
+        var orientation
+        if (rotation == 0) {
+            rotation = 180
+            orientation = 'v'
+        }
+        else {
+            rotation = 0
+            orientation = 'r'
+        }
+        book_page.flip_page(orientation)
     }
 
     function set_recto() {
-	book_page.flip_page('r')
+        book_page.flip_page('r')
     }
 
     function set_verso() {
-	book_page.flip_page('v')
+        book_page.flip_page('v')
     }
 
     function flip_from_page() {
-	book.flip_from_page(book_page, 'v')
+        book.flip_from_page(book_page, 'v')
     }
 
 
     Component.onCompleted: {
-	book.new_page.connect(last_page)
+        book.new_page.connect(last_page)
     }
+
 }

@@ -72,7 +72,7 @@ T.Button {
         text: control.text
         font: control.font
         // color: control.palette.buttonText
-	color: control.color_label
+        color: control.color_label
     }
 
     // background: ButtonPanel {
@@ -84,45 +84,45 @@ T.Button {
     // }
 
     background: Rectangle {
-	id: panel
+        id: panel
 
-	implicitWidth: 80
-	implicitHeight: 24
+        implicitWidth: 80
+        implicitHeight: 24
 
-	// property Item control
-	property bool highlighted: control.highlighted
+        // property Item control
+        property bool highlighted: control.highlighted
 
-	// visible: !control.flat || control.down || control.checked
-	visible: !control.flat || control.down || control.checked || control.highlighted || control.visualFocus || control.hovered
+        // visible: !control.flat || control.down || control.checked
+        visible: !control.flat || control.down || control.checked || control.highlighted || control.visualFocus || control.hovered
 
-	// color: Fusion.buttonColor(control.palette, panel.highlighted, control.down || control.checked, control.hovered)
-	color: control.down ? Qt.darker(control.color_background, 1.1) :
-	    (control.hovered ? Qt.lighter(control.color_background, 1.1): control.color_background)
-	// gradient: control.down || control.checked ? null : buttonGradient
+        // color: Fusion.buttonColor(control.palette, panel.highlighted, control.down || control.checked, control.hovered)
+        color: control.down ? Qt.darker(control.color_background, 1.1) :
+            (control.hovered ? Qt.lighter(control.color_background, 1.1): control.color_background)
+        // gradient: control.down || control.checked ? null : buttonGradient
 
-	// Gradient {
+        // Gradient {
         //     id: buttonGradient
         //     GradientStop {
-	// 	position: 0
-	// 	color: Fusion.gradientStart(Fusion.buttonColor(control.palette, panel.highlighted, control.down, control.hovered))
+        //      position: 0
+        //      color: Fusion.gradientStart(Fusion.buttonColor(control.palette, panel.highlighted, control.down, control.hovered))
         //     }
         //     GradientStop {
-	// 	position: 1
-	// 	color: Fusion.gradientStop(Fusion.buttonColor(control.palette, panel.highlighted, control.down, control.hovered))
+        //      position: 1
+        //      color: Fusion.gradientStop(Fusion.buttonColor(control.palette, panel.highlighted, control.down, control.hovered))
         //     }
-	// }
+        // }
 
-	// radius: 2
-	radius: 10
-	// border.color: Fusion.buttonOutline(control.palette, panel.highlighted || control.visualFocus, control.enabled)
+        // radius: 2
+        radius: 10
+        // border.color: Fusion.buttonOutline(control.palette, panel.highlighted || control.visualFocus, control.enabled)
 
-	// Rectangle {
+        // Rectangle {
         //     x: 1; y: 1
         //     width: parent.width - 2
         //     height: parent.height - 2
         //     border.color: Fusion.innerContrastLine
         //     color: "transparent"
         //     radius: 2
-	// }
+        // }
     }
 }

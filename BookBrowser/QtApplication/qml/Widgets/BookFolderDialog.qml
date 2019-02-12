@@ -28,8 +28,8 @@ FileDialog {
     selectFolder: true
 
     function selected_path() {
-	// remove 'file://'
-	var path = book_folder_dialog.fileUrls[0]
-	return path.substr(7, path.length)
+        // remove 'file://'
+        var path = book_folder_dialog.fileUrls[0]
+        return path.substr(7, path.length)
     }
 }

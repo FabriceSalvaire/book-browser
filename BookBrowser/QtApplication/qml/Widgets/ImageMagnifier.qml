@@ -30,8 +30,8 @@ Item {
     visible: image_previewer != null
 
     Image {
-	id: image_source
-	source: image_previewer.source
+        id: image_source
+        source: image_previewer.source
     }
 
     ShaderEffectSource {
@@ -40,7 +40,7 @@ Item {
         hideSource: true
         visible: false
         smooth: false
-	sourceItem: image_source
+        sourceItem: image_source
     }
 
     ShaderEffect {
@@ -50,18 +50,18 @@ Item {
         property variant translation // in [0, 1]
         property variant texture: effect_source
 
-	Component.onCompleted: {
-	    translation: Qt.point(0.0, 0.0)
-	}
+        Component.onCompleted: {
+            translation: Qt.point(0.0, 0.0)
+        }
 
-	function _set_center(mouse) {
-	    // Image must be top-left aligned in the previewer
-	    // since mouse area is larger
-	    var offset = scaling / 2
-	    var x = mouse.x / image_previewer.paintedWidth - offset
-	    var y = mouse.y / image_previewer.paintedHeight - offset
+        function _set_center(mouse) {
+            // Image must be top-left aligned in the previewer
+            // since mouse area is larger
+            var offset = scaling / 2
+            var x = mouse.x / image_previewer.paintedWidth - offset
+            var y = mouse.y / image_previewer.paintedHeight - offset
             translation = Qt.point(x, y)
-	}
+        }
 
         vertexShader: "
             uniform highp mat4 qt_Matrix;
@@ -88,26 +88,26 @@ Item {
     property color stroke_color: '#222222'
 
     Shape {
-	id: shape
+        id: shape
         anchors.fill: parent
 
-	ShapePath {
-	    strokeWidth: stroke_width
-	    strokeColor: stroke_color
+        ShapePath {
+            strokeWidth: stroke_width
+            strokeColor: stroke_color
 
-	    startX: shape.width / 2
-	    startY: 0
-	    PathLine { relativeX: 0; relativeY: shape.height }
-	}
+            startX: shape.width / 2
+            startY: 0
+            PathLine { relativeX: 0; relativeY: shape.height }
+        }
 
-	ShapePath {
-	    strokeWidth: stroke_width
-	    strokeColor: stroke_color
+        ShapePath {
+            strokeWidth: stroke_width
+            strokeColor: stroke_color
 
-	    startX: 0
-	    startY: shape.height / 2
-	    PathLine { relativeX: shape.width; relativeY: 0 }
-	}
+            startX: 0
+            startY: shape.height / 2
+            PathLine { relativeX: shape.width; relativeY: 0 }
+        }
     }
 
     Connections {
@@ -115,12 +115,12 @@ Item {
 
         onPressed: {
             if (target.pressedButtons & Qt.LeftButton)
-		effect._set_center(mouse)
+                effect._set_center(mouse)
         }
 
         onPositionChanged: {
             if (target.pressedButtons & Qt.LeftButton)
-		effect._set_center(mouse)
+                effect._set_center(mouse)
         }
     }
 }
