@@ -314,7 +314,10 @@ class Book:
             extensions.setdefault(suffix, 0)
             extensions[suffix] += 1
 
-        extension = sorted(extensions.items(), key=itemgetter(1))[-1][0]
+        if extensions:
+            extension = sorted(extensions.items(), key=itemgetter(1))[-1][0]
+        else:
+            extension = '.png'
         self._logger.info('Guessed extension {}'.format(extension))
 
         return extension
