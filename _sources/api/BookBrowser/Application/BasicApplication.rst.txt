@@ -1,0 +1,8 @@
+
+==================
+ BasicApplication
+==================
+
+.. automodule:: BookBrowser.Application.BasicApplication
+   :members:
+   :show-inheritance:

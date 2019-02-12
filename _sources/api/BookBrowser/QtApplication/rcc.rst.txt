@@ -1,0 +1,11 @@
+
+=====
+ rcc
+=====
+
+.. toctree::
+    rcc/BookBrowserRessource
+
+.. automodule:: BookBrowser.QtApplication.rcc
+   :members:
+   :show-inheritance:

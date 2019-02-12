@@ -1,0 +1,8 @@
+
+=================
+ ToolApplication
+=================
+
+.. automodule:: BookBrowser.Application.ToolApplication
+   :members:
+   :show-inheritance:

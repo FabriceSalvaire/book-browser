@@ -1,0 +1,8 @@
+
+======================
+ BookBrowserRessource
+======================
+
+.. automodule:: BookBrowser.QtApplication.rcc.BookBrowserRessource
+   :members:
+   :show-inheritance:

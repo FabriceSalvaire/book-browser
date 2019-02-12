@@ -9,6 +9,7 @@
     QtApplication/QmlBook
     QtApplication/QmlScanner
     QtApplication/Runnable
+    QtApplication/rcc
 
 .. automodule:: BookBrowser.QtApplication
    :members:

@@ -4,6 +4,7 @@
 =============
 
 .. toctree::
+    BookBrowser/Application
     BookBrowser/Book
     BookBrowser/Common
     BookBrowser/Config

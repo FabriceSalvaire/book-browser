@@ -1,0 +1,12 @@
+
+=============
+ Application
+=============
+
+.. toctree::
+    Application/BasicApplication
+    Application/ToolApplication
+
+.. automodule:: BookBrowser.Application
+   :members:
+   :show-inheritance:

@@ -7,8 +7,6 @@
  Installation
 ==============
 
-**Note to Packagers: Please don't create BookBrowser package (PiPY do the job)**
-
 On Windows
 ----------
 
