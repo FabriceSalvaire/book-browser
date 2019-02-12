@@ -4,6 +4,17 @@
  Design Notes
 ==============
 
+General Code Design
+===================
+
+The code is splitted in three parts
+
+* a core part written in Python which implement things like book, page
+* a Python-QML interface which provides QObject classes to wrap the core API to QML
+* a QML user interface written in QML / Javascript
+
+This design must maintain a clear separation between the roles of each part.
+
 Free Desktop Thumbnail Managing Standard
 ========================================
 
