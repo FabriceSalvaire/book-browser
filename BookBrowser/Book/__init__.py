@@ -318,6 +318,10 @@ class Book:
             extension = sorted(extensions.items(), key=itemgetter(1))[-1][0]
         else:
             extension = '.png'
+        # Check for supported image format
+        # https://doc.qt.io/qt-5/qtimageformats-index.html
+        if extension not in ('.png', '.jpg', '.jpeg', '.webp', '.tiff'):
+            extension = '.png'
         self._logger.info('Guessed extension {}'.format(extension))
 
         return extension
