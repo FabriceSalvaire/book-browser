@@ -492,7 +492,7 @@ class QmlScanner(QObject):
         self._logger.info('{} / {}'.format(number_of_pages_done, number_of_pages))
 
         if self._page_count < 4:
-            return ''
+            return 'estimation in {} pages'.format(4 - self._page_count +1)
 
         now = datetime.now()
         delta_time = now - self._start_time
