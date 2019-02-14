@@ -19,15 +19,13 @@
 
 import QtQuick 2.11
 import QtQuick.Controls 2.4
-import QtQuick.Dialogs 1.0
+import Qt.labs.platform 1.1
 
-FileDialog {
-    id: book_folder_dialog
-    title: qsTr('Please choose a folder')
-    folder: shortcuts.home
-    selectFolder: true
+FolderDialog {
+    id: root
+    options: FolderDialog.ShowDirsOnly
 
     function selected_path() {
-        return book_folder_dialog.fileUrls[0]
+        return folder
     }
 }

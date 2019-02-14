@@ -39,6 +39,7 @@ from pathlib import Path
 
 # Fixme:
 from PyQt5 import QtCore
+from PyQt5.QtWidgets import QApplication
 
 from QtShim.QtCore import (
     Property, Signal, Slot, QObject,
@@ -103,8 +104,9 @@ class QmlApplication(QObject):
 
     ##############################################
 
-    @Slot(str)
-    def load_book(self, path):
+    @Slot('QUrl')
+    def load_book(self, url):
+        path = url.toString(QUrl.RemoveScheme)
         self._application.load_book(path)
         self.book_changed.emit()
 
@@ -191,7 +193,6 @@ class Application(QObject):
         super().__init__()
 
         QtCore.qInstallMessageHandler(self._message_handler)
-        # QLoggingCategory.setFilterRules('app.* = false')
 
         self._parse_arguments()
 
@@ -199,7 +200,9 @@ class Application(QObject):
         # Fixme: must be defined before QML
         self.load_book(self._args.book_path)
 
-        self._application = QGuiApplication(sys.argv)
+        # For Qt Labs Platform native widgets
+        # self._application = QGuiApplication(sys.argv)
+        self._application = QApplication(sys.argv)
         self._init_application()
 
         self._engine = QQmlApplicationEngine()
@@ -323,6 +326,11 @@ class Application(QObject):
     @classmethod
     def setup_gui_application(self):
 
+        # https://bugreports.qt.io/browse/QTBUG-55167
+        # for path in (
+        #         'qt.qpa.xcb.xcberror',
+        # ):
+        #     QtCore.QLoggingCategory.setFilterRules('{} = false'.format(path))
         QGuiApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
 
         # QQuickStyle.setStyle('Material')

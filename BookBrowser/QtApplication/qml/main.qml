@@ -138,10 +138,11 @@ ApplicationWindow {
         about_message: application.about_message // qsTr('...')
     }
 
-    Widgets.BookFolderDialog {
+    // Widgets.BookFolderDialog {
+    Widgets.NativeBookFolderDialog {
         id: book_folder_dialog
         onAccepted: {
-            var path = book_folder_dialog.selected_path()
+            var path = selected_path()
             load_book(path)
         }
     }
@@ -371,7 +372,6 @@ ApplicationWindow {
         RowLayout {
             Label {
                 id: message_label
-                text: ''
             }
         }
     }
