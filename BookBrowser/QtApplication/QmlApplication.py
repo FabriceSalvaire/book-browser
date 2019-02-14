@@ -54,7 +54,7 @@ from QtShim.QtQuick import QQuickPaintedItem, QQuickView
 import BookBrowser
 from BookBrowser.Common.ArgparseAction import PathAction
 from BookBrowser.Common.Platform import QtPlatform
-from . import Message as BookBrowserMessage
+from .ApplicationMetadata import ApplicationMetadata
 from .QmlBook import QmlBook, QmlBookPage
 from .QmlScanner import ScannerImageProvider, QmlScanner, QmlScannerConfig
 from .Runnable import Worker
@@ -91,7 +91,7 @@ class QmlApplication(QObject):
 
     @Property(str, constant=True)
     def about_message(self):
-        return BookBrowserMessage.about_message()
+        return ApplicationMetadata.about_message()
 
     ##############################################
 
@@ -191,6 +191,7 @@ class Application(QObject):
         super().__init__()
 
         QtCore.qInstallMessageHandler(self._message_handler)
+        # QLoggingCategory.setFilterRules('app.* = false')
 
         self._parse_arguments()
 
@@ -198,12 +199,11 @@ class Application(QObject):
         # Fixme: must be defined before QML
         self.load_book(self._args.book_path)
 
-        self._appplication = QGuiApplication(sys.argv)
+        self._application = QGuiApplication(sys.argv)
+        self._init_application()
+
         self._engine = QQmlApplicationEngine()
         self._qml_application = QmlApplication(self)
-
-        logo_path = ':/icons/logo-256.png'
-        self._appplication.setWindowIcon(QIcon(logo_path))
 
         self._platform = QtPlatform()
         # self._logger.info('\n' + str(self._platform))
@@ -306,11 +306,23 @@ class Application(QObject):
 
     ##############################################
 
-    @classmethod
-    def setup_gui_application(cls):
+    def _init_application(self):
 
-        # QGuiApplication.setApplicationName(APPLICATION_NAME)
-        # QGuiApplication.setOrganizationName(ORGANISATION_NAME)
+        self._application.setOrganizationName(ApplicationMetadata.organisation_name)
+        self._application.setOrganizationDomain(ApplicationMetadata.organisation_domain)
+
+        self._application.setApplicationName(ApplicationMetadata.name)
+        self._application.setApplicationDisplayName(ApplicationMetadata.display_name)
+        self._application.setApplicationVersion(ApplicationMetadata.version)
+
+        logo_path = ':/icons/logo-256.png'
+        self._application.setWindowIcon(QIcon(logo_path))
+
+    ##############################################
+
+    @classmethod
+    def setup_gui_application(self):
+
         QGuiApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
 
         # QQuickStyle.setStyle('Material')
@@ -329,6 +341,7 @@ class Application(QObject):
         #     help="show version and exit",
         # )
 
+        # Fixme: should be able to start application without !!!
         parser.add_argument(
             'book_path', metavar='BookPath',
             action=PathAction,
@@ -416,7 +429,7 @@ class Application(QObject):
 
     def exec_(self):
         # self._view.show()
-        sys.exit(self._appplication.exec_())
+        sys.exit(self._application.exec_())
 
     ##############################################
 

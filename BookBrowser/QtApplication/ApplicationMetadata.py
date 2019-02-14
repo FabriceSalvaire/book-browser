@@ -18,7 +18,9 @@
 #
 ####################################################################################################
 
-__all__ = ['about_message']
+__all__ = [
+    'ApplicationMetadata',
+]
 
 ####################################################################################################
 
@@ -26,14 +28,14 @@ from BookBrowser import __version__
 
 ####################################################################################################
 
-about_message_template = '''
+_about_message_template = '''
 <h1>Book Browser</h1>
 
-<p>Version: {version}</p>
+<p>Version: {0.version}</p>
 
-<p>Home Page: <a href="{url}">{url}</a></p>
+<p>Home Page: <a href="{0.url}">{0.url}</a></p>
 
-<p>Copyright (C) {year} Fabrice Salvaire</p>
+<p>Copyright (C) {0.year} Fabrice Salvaire</p>
 
 <h2>Therms</h2>
 
@@ -46,9 +48,22 @@ about_message_template = '''
 
 ####################################################################################################
 
-def about_message():
-    return about_message_template.format(
-        version=__version__,
-        url='https://github.com/FabriceSalvaire/book-browser',
-        year=2019,
-    )
+class ApplicationMetadata:
+
+    organisation_name = 'Fabrice Salvaire'
+    organisation_domain = 'fabrice-salvaire.fr'
+
+    name = 'BookBrowser'
+    display_name = 'BookBrowser — A Book Scanner and Reader Application'
+
+    version = str(__version__)
+
+    year = 2019
+
+    url = 'https://github.com/FabriceSalvaire/book-browser'
+
+    ##############################################
+
+    @classmethod
+    def about_message(cls):
+        return _about_message_template.format(cls)
