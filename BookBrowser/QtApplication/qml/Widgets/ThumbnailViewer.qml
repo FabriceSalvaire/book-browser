@@ -43,7 +43,7 @@ Item {
             // Fixme: QML Flow: Cannot anchor to an item that isn't a parent or sibling.
             id: flow
             width: flickable.width
-            anchors.horizontalCenter: flickable.horizontalCenter
+            //! anchors.horizontalCenter: flickable.horizontalCenter
             // anchors.margins: 0
             spacing: 30
 
@@ -85,7 +85,6 @@ Item {
                         anchors.centerIn: parent
 
                         asynchronous: true
-                        source: book_page.large_thumbnail_path
                         rotation: book_page.orientation
 
                         MouseArea {
@@ -96,6 +95,10 @@ Item {
                             }
                             onEntered: selected = true
                             onExited: selected = false
+                        }
+
+                        Component.onCompleted: {
+                            source = book_page.large_thumbnail_path
                         }
 
                         function on_thumbnail_ready() {

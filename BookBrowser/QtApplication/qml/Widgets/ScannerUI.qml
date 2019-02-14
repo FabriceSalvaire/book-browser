@@ -154,8 +154,9 @@ Item {
 
     function update_end_time() {
         var end_time = scanner.end_time(filename_index.value -1, number_of_pages.value)
-        if (end_time.length)
-            end_time_label.text = end_time
+        // if (end_time.length) {
+        end_time_label.text = end_time
+        // }
     }
 
     function on_image_ready() {
@@ -340,7 +341,7 @@ Item {
 
             RowLayout {
                 ToolButton {
-                    icon.source: 'qrc:/icons/36x36/folder-black.png'
+                    icon.source: 'qrc:/icons/folder-black.png'
                     onClicked: book_folder_dialog.open()
                 }
                 TextField {
@@ -447,7 +448,7 @@ Item {
                     RowLayout {
                         Widgets.ToolButtonTip {
                             icon.source: 'qrc:/icons/alarm-black.png'
-			    size: 36
+                            size: 36
                             onClicked: {
                                 end_time_label.text = '...'
                                 scanner.start_timer()
@@ -461,7 +462,9 @@ Item {
                         // }
                         Label {
                             id: end_time_label
-                            text: qsTr('unknown')
+                            // Fixme: cause segfault !!!
+                            // text: qsTr('unknown')
+                            text: 'unknown'
                         }
                     }
 
@@ -491,14 +494,14 @@ Item {
         }
 
         ColumnLayout {
-            Layout.alignment: Qt.AlignBottom
+            Layout.alignment: Qt.AlignBottom | Qt.AlignRight
             Layout.preferredWidth: image_magnifier.width
             Layout.fillHeight: true
 
             Widgets.ImageMagnifier {
                 id: image_magnifier
-                anchors.bottom: parent.bottom
-                anchors.right: parent.right
+                //! anchors.bottom: parent.bottom
+                //! anchors.right: parent.right
                 width: 256
                 height: 256
 
