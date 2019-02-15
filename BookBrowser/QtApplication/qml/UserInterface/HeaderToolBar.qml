@@ -34,7 +34,6 @@ ToolBar {
      */
 
     property var actions
-    property var grid
     property var page_viewer
     property var page_viewer_page
     property var scanner_ui
@@ -43,6 +42,8 @@ ToolBar {
     /******************************************************/
 
     property var book: application.book
+
+    // property alias page_viewer: page_viewer_page.page_viewer
 
     /******************************************************/
 
@@ -130,7 +131,7 @@ ToolBar {
                 icon.source: 'qrc:/icons/grid-on-black.png'
                 tip: qsTr('Show grid')
                 checkable: true
-                onClicked: grid.visible = !grid.visible
+                onClicked: page_viewer_page.toggle_grid()
             }
 
             Widgets.ToolButtonTip {

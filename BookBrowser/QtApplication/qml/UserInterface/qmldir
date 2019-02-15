@@ -1,4 +1,8 @@
 module Widgets
 Actions 1.0 Actions.qml
+FooterToolBar 1.0 FooterToolBar.qml
 HeaderToolBar 1.0 HeaderToolBar.qml
 MenuBar 1.0 MenuBar.qml
+PageViewerPage 1.0 PageViewerPage.qml
+ScannerPage 1.0 ScannerPage.qml
+ThumbnailPage 1.0 ThumbnailPage.qml

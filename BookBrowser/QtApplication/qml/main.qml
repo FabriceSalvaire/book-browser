@@ -35,12 +35,11 @@ ApplicationWindow {
     width: 1000
     height: 500
 
-    property var book: application.book
 
     Component.onCompleted: {
         console.info('ApplicationWindow.onCompleted')
         application_window.showMaximized()
-        page_viewer.first_page()
+        page_viewer_page.page_viewer.first_page()
     }
 
     /***********************************************************************************************
@@ -50,11 +49,11 @@ ApplicationWindow {
      */
 
     function clear_message() {
-        message_label.text = ''
+        footer_tool_bar.message = ''
     }
 
     function show_message(message) {
-        message_label.text = message
+        footer_tool_bar.message = message
     }
 
     function load_book(path) {
@@ -64,7 +63,8 @@ ApplicationWindow {
 
     function close_application(close) {
         console.info('Close application')
-        scanner_ui.save()
+        show_message(qsTr('Close ...'))
+        scanner_page.scanner_ui.save()
         if (!close)
             Qt.quit()
         // else
@@ -108,7 +108,7 @@ ApplicationWindow {
 
     Ui.Actions {
         id: actions
-        page_viewer: page_viewer
+        page_viewer: page_viewer_page.page_viewer
     }
 
     /***********************************************************************************************
@@ -133,10 +133,9 @@ ApplicationWindow {
     header: Ui.HeaderToolBar {
         id: header_tool_bar
         actions: actions
-        grid: grid
-        page_viewer: page_viewer
+        page_viewer: page_viewer_page.page_viewer
         page_viewer_page: page_viewer_page
-        scanner_ui: scanner_ui
+        scanner_ui: scanner_page.scanner_ui
         stack_layout: stack_layout
     }
 
@@ -155,48 +154,17 @@ ApplicationWindow {
         function set_viewer_page() { currentIndex = 1 }
         function set_scanner_page() { currentIndex = 2 }
 
-        Page {
+        Ui.ThumbnailPage {
             id: thumbnail_page
-
-            Widgets.ThumbnailViewer {
-                id: thumbnail_viewer
-                anchors.fill: parent
-
-                thumbnail_model: book.pages
-
-                onShow_page: {
-                    page_viewer.to_page(page_number)
-                    stack_layout.set_viewer_page()
-                }
-            }
+            page_viewer: page_viewer_page.page_viewer
         }
 
-        Page {
+        Ui.PageViewerPage {
             id: page_viewer_page
-
-            Widgets.PageViewer {
-                id: page_viewer
-                anchors.fill: parent
-
-                book: application.book
-            }
-
-            Widgets.Grid {
-                id: grid
-                visible: false
-                anchors.fill: parent
-            }
         }
 
-        Page {
+        Ui.ScannerPage {
             id: scanner_page
-
-            Widgets.ScannerUI {
-                id: scanner_ui
-                anchors.fill: parent
-
-                // scanner: application.scanner
-            }
         }
     }
 
@@ -206,11 +174,7 @@ ApplicationWindow {
      *
      */
 
-    footer: ToolBar {
-        RowLayout {
-            Label {
-                id: message_label
-            }
-        }
+    footer: Ui.FooterToolBar {
+        id: footer_tool_bar
     }
 }

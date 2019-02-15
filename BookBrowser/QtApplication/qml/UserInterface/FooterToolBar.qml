@@ -18,9 +18,25 @@
  ***************************************************************************************************/
 
 import QtQuick 2.11
-import QtQuick.Controls 2.12
+import QtQuick.Controls 2.4
+import QtQuick.Layouts 1.11
 
-Dialog {
-    modal: true
-    anchors.centerIn: parent
+ToolBar {
+    id: root
+
+    /*******************************************************
+     *
+     * API
+     *
+     */
+
+    property alias message: message_label.text
+
+    /******************************************************/
+
+    RowLayout {
+        Label {
+            id: message_label
+        }
+    }
 }

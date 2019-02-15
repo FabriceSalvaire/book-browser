@@ -18,9 +18,27 @@
  ***************************************************************************************************/
 
 import QtQuick 2.11
-import QtQuick.Controls 2.12
+import QtQuick.Controls 2.4
 
-Dialog {
-    modal: true
-    anchors.centerIn: parent
+import Widgets 1.0 as Widgets
+
+Page {
+    id: root
+
+    /*******************************************************
+     *
+     * API
+     *
+     */
+
+    property alias scanner_ui: scanner_ui
+
+    /******************************************************/
+
+    Widgets.ScannerUI {
+        id: scanner_ui
+        anchors.fill: parent
+
+        // scanner: application.scanner
+    }
 }

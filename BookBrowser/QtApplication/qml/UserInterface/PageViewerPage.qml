@@ -18,9 +18,38 @@
  ***************************************************************************************************/
 
 import QtQuick 2.11
-import QtQuick.Controls 2.12
+import QtQuick.Controls 2.4
 
-Dialog {
-    modal: true
-    anchors.centerIn: parent
+import BookBrowser 1.0
+import Widgets 1.0 as Widgets
+
+Page {
+    id: root
+
+    /*******************************************************
+     *
+     * API
+     *
+     */
+
+    property alias page_viewer: page_viewer
+
+    function toggle_grid() {
+        grid.visible = !grid.visible
+    }
+
+    /******************************************************/
+
+    Widgets.PageViewer {
+        id: page_viewer
+        anchors.fill: parent
+
+        book: application.book
+    }
+
+    Widgets.Grid {
+        id: grid
+        anchors.fill: parent
+        visible: false
+    }
 }

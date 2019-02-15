@@ -18,9 +18,38 @@
  ***************************************************************************************************/
 
 import QtQuick 2.11
-import QtQuick.Controls 2.12
+import QtQuick.Controls 2.4
 
-Dialog {
-    modal: true
-    anchors.centerIn: parent
+import BookBrowser 1.0
+import Widgets 1.0 as Widgets
+
+Page {
+    id: root
+
+    /*******************************************************
+     *
+     * API
+     *
+     */
+
+    property var page_viewer
+    // property var stack_layout
+
+    /******************************************************/
+
+    property var book: application.book
+
+    /******************************************************/
+
+    Widgets.ThumbnailViewer {
+        id: thumbnail_viewer
+        anchors.fill: parent
+
+        thumbnail_model: book.pages
+
+        onShow_page: {
+            page_viewer.to_page(page_number)
+            stack_layout.set_viewer_page()
+        }
+    }
 }
