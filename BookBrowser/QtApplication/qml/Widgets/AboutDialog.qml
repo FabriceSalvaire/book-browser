@@ -23,6 +23,7 @@ import QtQuick.Controls 2.4
 import Widgets 1.0 as Widgets
 
 Widgets.CentredDialog {
+
     /******************************************************
      *
      * API

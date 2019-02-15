@@ -20,6 +20,8 @@
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 
+import BookBrowser 1.0
+
 Item {
     id: root
 
@@ -47,7 +49,7 @@ Item {
         id: reload_action
         icon.source: 'qrc:/icons/refresh-black.png'
         // shortcut: ''
-        onTriggered: load_book(book.path)
+        onTriggered: load_book(application.book.path)
     }
 
     Action {

@@ -41,12 +41,6 @@ ToolBar {
 
     /******************************************************/
 
-    property var book: application.book
-
-    // property alias page_viewer: page_viewer_page.page_viewer
-
-    /******************************************************/
-
     RowLayout {
         anchors.fill: parent
         spacing: 10
@@ -84,6 +78,7 @@ ToolBar {
 
         Ui.PageViewerToolBar {
             visible: page_viewer_page.visible
+
             actions: root.actions
             page_viewer: root.page_viewer_page.page_viewer
             page_viewer_page: root.page_viewer_page
