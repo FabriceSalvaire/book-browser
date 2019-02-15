@@ -91,6 +91,14 @@ class QmlApplication(QObject):
     ##############################################
 
     @Property(str, constant=True)
+    def application_name(self):
+        return ApplicationMetadata.name
+
+    @Property(str, constant=True)
+    def application_url(self):
+        return ApplicationMetadata.url
+
+    @Property(str, constant=True)
     def about_message(self):
         return ApplicationMetadata.about_message()
 

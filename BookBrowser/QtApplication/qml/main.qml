@@ -25,10 +25,11 @@ import QtQuick.Layouts 1.11
 
 import BookBrowser 1.0
 import Widgets 1.0 as Widgets
+import UserInterface 1.0 as Ui
 
 ApplicationWindow {
     id: application_window
-    title: qsTr('Book Viewer')
+    title: qsTr('Book Viewer') // Fixme: ???
     visible: true
 
     width: 1000
@@ -67,52 +68,10 @@ ApplicationWindow {
      *
      */
 
-    Action {
-        id: toggle_menubar_action
-        shortcut: 'm'
-        onTriggered: menubar.visible = !menubar.visible
-    }
-
-    Action {
-        id: reload_action
-        icon.source: 'qrc:/icons/refresh-black.png'
-        // shortcut: ''
-        onTriggered: load_book(book.path)
-    }
-
-    Action {
-        id: prev_page_action
-        icon.source: 'qrc:/icons/arrow-back-black.png'
-        shortcut: 'Backspace'
-        onTriggered: page_viewer.prev_page()
-    }
-
-    Action {
-        id: next_page_action
-        icon.source: 'qrc:/icons/arrow-forward-black.png'
-        shortcut: 'n' //'Space'
-        onTriggered: page_viewer.next_page()
-    }
-
-    Action {
-        id: flip_action
-        icon.source: 'qrc:/icons/swap-vert-black.png'
-        shortcut: 'r'
-        onTriggered: page_viewer.flip()
-    }
-
-    Action {
-        id: fit_to_screen_action
-        icon.source: 'qrc:/icons/settings-overscan-black.png'
-        shortcut: 'f'
-        onTriggered: page_viewer.fit_to_screen()
-    }
-
-    Action {
-        id: zoom_full_action
-        icon.source: 'qrc:/icons/zoom-fit-width.png'
-        shortcut: 'z'
-        onTriggered: page_viewer.zoom_full()
+    Ui.Actions {
+        id: actions
+        // menu_bar: menu_bar
+        page_viewer: page_viewer
     }
 
     /***********************************************************************************************
@@ -153,29 +112,11 @@ ApplicationWindow {
      *
      */
 
-    menuBar: MenuBar {
-        id: menubar
-
-        Menu {
-            title: qsTr("&File")
-            Action {
-                text: qsTr("&Open...")
-                onTriggered: book_folder_dialog.open()
-            }
-            MenuSeparator { }
-            Action {
-                text: qsTr("&Quit")
-                onTriggered: application_window.close()
-            }
-        }
-
-        Menu {
-            title: qsTr("&Help")
-            Action {
-                text: qsTr("&About")
-                onTriggered: about_dialog.open()
-            }
-        }
+    // Fixme: use native menu ???
+    menuBar: Ui.MenuBar {
+        id: menu_bar
+        about_dialog: about_dialog
+        book_folder_dialog: book_folder_dialog
     }
 
     /***********************************************************************************************
@@ -184,122 +125,14 @@ ApplicationWindow {
      *
      */
 
-    header: ToolBar {
-        RowLayout {
-            anchors.fill: parent
-            spacing: 10
-
-            RowLayout {
-                Widgets.ToolButtonTip {
-                    action: reload_action
-                    tip: qsTr('Reload book')
-                }
-
-                Widgets.ToolButtonTip {
-                    icon.source: 'qrc:/icons/view-comfy-black.png'
-                    tip: qsTr('Show page thumbnails')
-                    onClicked: {
-                        stack_layout.set_thumbnail_page()
-                    }
-                }
-                Widgets.ToolButtonTip {
-                    icon.source: 'qrc:/icons/image-black.png'
-                    tip: qsTr('Show page viewer')
-                    onClicked: {
-                        stack_layout.set_viewer_page()
-                    }
-                }
-                Widgets.ToolButtonTip {
-                    icon.source: 'qrc:/icons/scanner-black.png'
-                    tip: qsTr('Show scanner interface')
-                    onClicked: {
-                        // Fixme:
-                        stack_layout.set_scanner_page()
-                        scanner_ui.init()
-                    }
-                }
-            }
-
-            RowLayout {
-                visible: page_viewer_page.visible
-
-                Widgets.ToolButtonTip {
-                    icon.source: 'qrc:/icons/zoom-out-black.png'
-                    onClicked: page_viewer.zoom_out()
-                }
-                Widgets.ToolButtonTip {
-                    action: fit_to_screen_action
-                }
-                Widgets.ToolButtonTip {
-                    action: zoom_full_action
-                }
-                Widgets.ToolButtonTip {
-                    icon.source: 'qrc:/icons/zoom-in-black.png'
-                    onClicked: page_viewer.zoom_in()
-                }
-
-                Widgets.ToolButtonTip {
-                    icon.source: 'qrc:/icons/first-page-black.png'
-                    onClicked: page_viewer.first_page()
-                }
-                Widgets.ToolButtonTip {
-                    action: prev_page_action
-                }
-                Widgets.ToolButtonTip {
-                    action: next_page_action
-                }
-                Widgets.ToolButtonTip {
-                    icon.source: 'qrc:/icons/last-page-black.png'
-                    onClicked: page_viewer.last_page()
-                }
-                SpinBox {
-                    id: page_number
-                    editable: true
-                    from: 1
-                    to: book.number_of_pages
-                    value: page_viewer.book_page ? page_viewer.book_page.page_number: 0
-
-                    onValueModified: page_viewer.to_page(value)
-                }
-                Label {
-                    text: '/' + book.number_of_pages
-                }
-
-                Widgets.ToolButtonTip {
-                    icon.source: 'qrc:/icons/grid-on-black.png'
-                    tip: qsTr('Show grid')
-                    checkable: true
-                    onClicked: grid.visible = !grid.visible
-                }
-
-                Widgets.ToolButtonTip {
-                    action: flip_action
-                    tip: qsTr('Flip page')
-                }
-
-                Widgets.ToolButtonTip {
-                    icon.source: 'qrc:/icons/recto-page.png'
-                    tip: qsTr('Flip page as recto')
-                    onClicked: page_viewer.set_recto()
-                }
-
-                Widgets.ToolButtonTip {
-                    icon.source: 'qrc:/icons/verso-page.png'
-                    tip: qsTr('Flip page as verso')
-                    onClicked: page_viewer.set_verso()
-                }
-
-                Widgets.ToolButtonTip {
-                    icon.source: 'qrc:/icons/flip-from-page.png'
-                    tip: qsTr('Flip page from this page')
-                    onClicked: page_viewer.flip_from_page()
-                }
-            }
-
-            Item {
-                Layout.fillWidth: true
-            }
-        }
+    header: Ui.HeaderToolBar {
+        id: header_tool_bar
+        actions: actions
+        grid: grid
+        page_viewer: page_viewer
+        page_viewer_page: page_viewer_page
+        scanner_ui: scanner_ui
+        stack_layout: stack_layout
     }
 
     /***********************************************************************************************
