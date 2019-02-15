@@ -56,6 +56,7 @@ import BookBrowser
 from BookBrowser.Common.ArgparseAction import PathAction
 from BookBrowser.Common.Platform import QtPlatform
 from .ApplicationMetadata import ApplicationMetadata
+from .KeySequenceEditor import KeySequenceEditor
 from .QmlBook import QmlBook, QmlBookPage
 from .QmlScanner import ScannerImageProvider, QmlScanner, QmlScannerConfig
 from .Runnable import Worker
@@ -407,6 +408,8 @@ class Application(QObject):
     ##############################################
 
     def _register_qml_types(self):
+
+        qmlRegisterType(KeySequenceEditor, 'BookBrowser', 1, 0, 'KeySequenceEditor')
 
         qmlRegisterUncreatableType(QmlApplication, 'BookBrowser', 1, 0, 'QmlApplication', 'Cannot create QmlApplication')
         qmlRegisterUncreatableType(QmlBook, 'BookBrowser', 1, 0, 'QmlBook', 'Cannot create QmlBook')

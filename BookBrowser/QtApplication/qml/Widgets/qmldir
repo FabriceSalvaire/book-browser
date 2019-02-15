@@ -9,5 +9,6 @@ ImageViewer 1.0 ImageViewer.qml
 NativeBookFolderDialog 1.0 NativeBookFolderDialog.qml
 PageViewer 1.0 PageViewer.qml
 ScannerUI 1.0 ScannerUI.qml
+ShortcutRow 1.0 ShortcutRow.qml
 ThumbnailViewer 1.0 ThumbnailViewer.qml
 ToolButtonTip 1.0 ToolButtonTip.qml

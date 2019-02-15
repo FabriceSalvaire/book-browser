@@ -34,6 +34,7 @@ MenuBar {
 
     property var about_dialog
     property var book_folder_dialog
+    property var options_dialog
     // application_window.close_application()
 
     /******************************************************/
@@ -55,7 +56,16 @@ MenuBar {
             text: qsTr('Open a book')
             onTriggered: book_folder_dialog.open()
         }
+
         MenuSeparator { }
+
+        MenuItem {
+            text: "Options"
+            onTriggered: options_dialog.open()
+        }
+
+        MenuSeparator { }
+
         Action {
             text: qsTr('Quit')
             onTriggered: close_application()
@@ -66,7 +76,7 @@ MenuBar {
         title: qsTr('Help')
 
         Action {
-            text: qsTr('Online Documentation...')
+            text: qsTr('Documentation')
             onTriggered: Qt.openUrlExternally(application.application_url)
         }
 

@@ -98,6 +98,10 @@ ApplicationWindow {
         onAccepted: load_book(selected_path())
     }
 
+    Ui.OptionsDialog {
+        id: options_dialog
+    }
+
     /*******************************************************
      *
      * Actions
@@ -120,6 +124,7 @@ ApplicationWindow {
         id: menu_bar
         about_dialog: about_dialog
         book_folder_dialog: book_folder_dialog
+        options_dialog: options_dialog
     }
 
     /*******************************************************
