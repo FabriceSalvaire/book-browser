@@ -37,15 +37,11 @@ Page {
 
     /******************************************************/
 
-    property var book: application.book
-
-    /******************************************************/
-
     Widgets.ThumbnailViewer {
         id: thumbnail_viewer
         anchors.fill: parent
 
-        thumbnail_model: book.pages
+        thumbnail_model: application.book.pages
 
         onShow_page: {
             page_viewer.to_page(page_number)

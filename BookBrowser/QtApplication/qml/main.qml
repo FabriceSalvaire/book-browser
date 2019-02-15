@@ -35,6 +35,7 @@ ApplicationWindow {
     width: 1000
     height: 500
 
+    /******************************************************/
 
     Component.onCompleted: {
         console.info('ApplicationWindow.onCompleted')
@@ -42,11 +43,21 @@ ApplicationWindow {
         page_viewer_page.page_viewer.first_page()
     }
 
-    /***********************************************************************************************
+    /*******************************************************
      *
      * API
      *
      */
+
+    function close_application(close) {
+        console.info('Close application')
+        show_message(qsTr('Close ...'))
+        scanner_page.scanner_ui.save()
+        if (!close)
+            Qt.quit()
+        // else
+        //    close.accepted = false
+    }
 
     function clear_message() {
         footer_tool_bar.message = ''
@@ -61,17 +72,7 @@ ApplicationWindow {
         show_message(qsTr('Loaded book at %1'.arg(path)))
     }
 
-    function close_application(close) {
-        console.info('Close application')
-        show_message(qsTr('Close ...'))
-        scanner_page.scanner_ui.save()
-        if (!close)
-            Qt.quit()
-        // else
-        //    close.accepted = false
-    }
-
-    /***********************************************************************************************
+    /*******************************************************
      *
      * Slots
      *
@@ -79,7 +80,7 @@ ApplicationWindow {
 
     onClosing: close_application(close)
 
-    /***********************************************************************************************
+    /*******************************************************
      *
      * Dialogs
      *
@@ -94,13 +95,10 @@ ApplicationWindow {
     // Widgets.BookFolderDialog {
     Widgets.NativeBookFolderDialog {
         id: book_folder_dialog
-        onAccepted: {
-            var path = selected_path()
-            load_book(path)
-        }
+        onAccepted: load_book(selected_path())
     }
 
-    /***********************************************************************************************
+    /*******************************************************
      *
      * Actions
      *
@@ -111,7 +109,7 @@ ApplicationWindow {
         page_viewer: page_viewer_page.page_viewer
     }
 
-    /***********************************************************************************************
+    /*******************************************************
      *
      * Menu
      *
@@ -124,7 +122,7 @@ ApplicationWindow {
         book_folder_dialog: book_folder_dialog
     }
 
-    /***********************************************************************************************
+    /*******************************************************
      *
      * Header
      *
@@ -139,7 +137,7 @@ ApplicationWindow {
         stack_layout: stack_layout
     }
 
-    /***********************************************************************************************
+    /*******************************************************
      *
      * Items
      *
@@ -148,11 +146,14 @@ ApplicationWindow {
     StackLayout {
         id: stack_layout
         anchors.fill: parent
-        currentIndex: 0
 
         function set_thumbnail_page() { currentIndex = 0 }
         function set_viewer_page() { currentIndex = 1 }
         function set_scanner_page() { currentIndex = 2 }
+
+        Component.onCompleted: {
+            set_thumbnail_page()
+        }
 
         Ui.ThumbnailPage {
             id: thumbnail_page
@@ -168,7 +169,7 @@ ApplicationWindow {
         }
     }
 
-    /***********************************************************************************************
+    /*******************************************************
      *
      * Footer
      *
