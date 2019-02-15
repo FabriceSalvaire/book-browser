@@ -4,5 +4,6 @@ FooterToolBar 1.0 FooterToolBar.qml
 HeaderToolBar 1.0 HeaderToolBar.qml
 MenuBar 1.0 MenuBar.qml
 PageViewerPage 1.0 PageViewerPage.qml
+PageViewerToolBar 1.0 PageViewerToolBar.qml
 ScannerPage 1.0 ScannerPage.qml
 ThumbnailPage 1.0 ThumbnailPage.qml

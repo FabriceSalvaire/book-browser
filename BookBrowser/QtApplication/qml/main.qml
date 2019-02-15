@@ -131,7 +131,6 @@ ApplicationWindow {
     header: Ui.HeaderToolBar {
         id: header_tool_bar
         actions: actions
-        page_viewer: page_viewer_page.page_viewer
         page_viewer_page: page_viewer_page
         scanner_ui: scanner_page.scanner_ui
         stack_layout: stack_layout
@@ -155,6 +154,7 @@ ApplicationWindow {
             set_thumbnail_page()
         }
 
+        // Fixme: simplify with Page { Widget{} } ???
         Ui.ThumbnailPage {
             id: thumbnail_page
             page_viewer: page_viewer_page.page_viewer

@@ -47,6 +47,7 @@ Page {
         book: application.book
     }
 
+    // Fixme: move in page_viewer
     Widgets.Grid {
         id: grid
         anchors.fill: parent
