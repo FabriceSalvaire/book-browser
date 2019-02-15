@@ -34,6 +34,15 @@ MenuBar {
 
     property var about_dialog
     property var book_folder_dialog
+    // application_window.close_application()
+
+    /******************************************************/
+
+    Action {
+        id: toggle_menu_bar_action
+        shortcut: 'm'
+        onTriggered: visible = !visible
+    }
 
     /******************************************************/
 
@@ -49,7 +58,7 @@ MenuBar {
         MenuSeparator { }
         Action {
             text: qsTr('Quit')
-            onTriggered: Qt.quit()
+            onTriggered: close_application()
         }
     }
 

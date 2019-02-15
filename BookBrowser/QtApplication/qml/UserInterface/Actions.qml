@@ -29,7 +29,6 @@ Item {
      *
      */
 
-    property var menu_bar
     property var page_viewer
     // application_window.load_book
 
@@ -43,12 +42,6 @@ Item {
     property alias zoom_full_action:zoom_full_action
 
     /******************************************************/
-
-    Action {
-        id: toggle_menu_bar_action
-        shortcut: 'm'
-        onTriggered: menu_bar.visible = !menu_bar.visible
-    }
 
     Action {
         id: reload_action

@@ -62,16 +62,13 @@ ApplicationWindow {
         show_message(qsTr('Loaded book at %1'.arg(path)))
     }
 
-    /***********************************************************************************************
-     *
-     * Actions
-     *
-     */
-
-    Ui.Actions {
-        id: actions
-        // menu_bar: menu_bar
-        page_viewer: page_viewer
+    function close_application(close) {
+        console.info('Close application')
+        scanner_ui.save()
+        if (!close)
+            Qt.quit()
+        // else
+        //    close.accepted = false
     }
 
     /***********************************************************************************************
@@ -80,10 +77,7 @@ ApplicationWindow {
      *
      */
 
-    onClosing: {
-        console.info('Close', close)
-        scanner_ui.save()
-    }
+    onClosing: close_application(close)
 
     /***********************************************************************************************
      *
@@ -104,6 +98,17 @@ ApplicationWindow {
             var path = selected_path()
             load_book(path)
         }
+    }
+
+    /***********************************************************************************************
+     *
+     * Actions
+     *
+     */
+
+    Ui.Actions {
+        id: actions
+        page_viewer: page_viewer
     }
 
     /***********************************************************************************************
