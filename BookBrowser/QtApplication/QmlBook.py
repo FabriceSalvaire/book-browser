@@ -246,6 +246,7 @@ class QmlBookMetadata(QObject):
     @Slot()
     def update_from_isbn(self):
 
+        # Fixme: run in a thread ???
         self._metadata.update_from_isbn()
 
         self.authors_changed.emit()
@@ -288,6 +289,12 @@ class QmlBookPage(QObject):
     @property
     def page(self):
         return self._page
+
+    ##############################################
+
+    @Property(bool, constant=True)
+    def is_empty(self):
+        return self._page.is_empty
 
     ##############################################
 

@@ -68,21 +68,23 @@ Item {
 
                     BusyIndicator {
                         anchors.centerIn: parent
-                        running: !image_ready
+                        running: !(book_page.is_empty || image_ready)
                     }
 
                     Text {
-                        visible: thumbnail.status !== Image.Ready
+                        // visible: thumbnail.status !== Image.Ready
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.top: parent.top
                         anchors.topMargin: 20
                         font.pixelSize: image_size * .10
                         text: 'P' + book_page.page_number
+                        z: 100
                     }
 
                     Image {
                         id: thumbnail
                         anchors.centerIn: parent
+                        visible: ! book_page.is_empty
 
                         asynchronous: true
                         rotation: book_page.orientation
@@ -98,7 +100,8 @@ Item {
                         }
 
                         Component.onCompleted: {
-                            source = book_page.large_thumbnail_path
+                            if (!book_page.is_empty)
+                                source = book_page.large_thumbnail_path
                         }
 
                         function on_thumbnail_ready() {

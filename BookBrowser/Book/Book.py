@@ -30,7 +30,7 @@ import os
 
 from BookBrowser.Common.FileTools import rename_file
 from .BookMetadata import BookMetadata
-from .BookPage import BookPage
+from .BookPage import BookPage, EmptyBookPage
 
 ####################################################################################################
 
@@ -257,7 +257,7 @@ class Book:
             if page.page_number is not None and page_number < page.page_number:
                 for i in range(page.page_number - page_number):
                     self._logger.warning('Missing page {}'.format(page_number))
-                    pages.append(None)
+                    pages.append(EmptyBookPage(page_number))
                     page_number += 1
             pages.append(page)
         self._pages = pages

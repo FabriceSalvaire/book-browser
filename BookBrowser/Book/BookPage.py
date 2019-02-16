@@ -18,7 +18,10 @@
 #
 ####################################################################################################
 
-__all__ = ['BookPage']
+__all__ = [
+    'BookPage'
+    'EmptyBookPage,'
+]
 
 ####################################################################################################
 
@@ -37,6 +40,36 @@ _module_logger = logging.getLogger(__name__)
 
 ####################################################################################################
 
+class EmptyBookPage:
+
+    ##############################################
+
+    def __init__(self, page_number):
+        self._page_number = page_number
+
+    ##############################################
+
+    @property
+    def is_empty(self):
+        return True
+
+    ##############################################
+
+    def __int__(self):
+        return self._page_number
+
+    ##############################################
+
+    @property
+    def page_number(self):
+        return self._page_number
+
+    @property
+    def orientation(self):
+        return 'r'
+
+####################################################################################################
+
 class BookPage:
 
     _logger = _module_logger.getChild('BookPage')
@@ -52,6 +85,12 @@ class BookPage:
         self.release_image()
 
         self._mtime = os.stat(self.path)[stat.ST_MTIME]
+
+    ##############################################
+
+    @property
+    def is_empty(self):
+        return False
 
     ##############################################
 
