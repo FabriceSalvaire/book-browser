@@ -22,18 +22,19 @@
 
 """
 
+
+# Fixme: implement a shell ???
+
 ####################################################################################################
 
-__all__ = [
-    'ToolApplication',
-]
+__all__ = ['ToolApplication']
 
 ####################################################################################################
 
 import logging
 
 from .BasicApplication import BasicApplication
-from BookBrowser.Book import Book
+from BookBrowser.Book import Book, BookLibrary
 from BookBrowser.Common.ArgparseAction import PathAction
 
 ####################################################################################################
@@ -120,6 +121,13 @@ class ToolApplication(BasicApplication):
             help='remove page numbers',
         )
 
+        self._parser.add_argument(
+            '--dump-library',
+            action='store_true',
+            default=False,
+            help='Dump library',
+        )
+
     ##############################################
 
     def run(self):
@@ -142,3 +150,10 @@ class ToolApplication(BasicApplication):
 
         if self._args.remove_page_number:
             self._book.remove_page_number()
+
+        if self._args.remove_page_number:
+            self._book.remove_page_number()
+
+        if self._args.dump_library:
+            library = BookLibrary(self._args.book_path)
+            library.scan()

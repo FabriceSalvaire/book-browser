@@ -19,4 +19,6 @@
 ####################################################################################################
 
 from .Book import Book
+from .BookLibrary import BookLibrary
+from .BookMetadata import BookMetadata
 from .BookPage import BookPage

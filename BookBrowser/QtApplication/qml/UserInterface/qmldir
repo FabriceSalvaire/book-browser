@@ -3,6 +3,7 @@ Actions 1.0 Actions.qml
 FooterToolBar 1.0 FooterToolBar.qml
 HeaderToolBar 1.0 HeaderToolBar.qml
 MenuBar 1.0 MenuBar.qml
+MetadataPage 1.0 MetadataPage.qml
 OptionsDialog 1.0 OptionsDialog.qml
 PageViewerPage 1.0 PageViewerPage.qml
 PageViewerToolBar 1.0 PageViewerToolBar.qml

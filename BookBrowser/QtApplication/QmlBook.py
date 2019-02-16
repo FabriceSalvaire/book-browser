@@ -50,6 +50,40 @@ thumbnail_cache = FreeDesktopThumbnailCache()
 
 ####################################################################################################
 
+class QmlBookMetadata(QObject):
+
+    _logger = _module_logger.getChild('QmlBookMetadata')
+
+    ##############################################
+
+    def __init__(self, book_metadata):
+
+        super().__init__()
+
+        self._metadata = book_metadata
+
+    ##############################################
+
+    @Property(str, constant=True)
+    def path(self):
+        return self._metadata.path_str
+
+    ##############################################
+
+    number_of_pages_changed = Signal()
+
+    @Property(int, notify=number_of_pages_changed)
+    def number_of_pages(self):
+        return self._metadata.number_of_pages
+
+    @number_of_pages.setter
+    def number_of_pages(self, value):
+        if self.number_of_pages != value:
+            self._metadata.number_of_pages == value
+            self.number_of_pages_changed.emit()
+
+####################################################################################################
+
 class QmlBookPage(QObject):
 
     _logger = _module_logger.getChild('QmlBookPage')
@@ -153,6 +187,8 @@ class QmlBook(QObject):
         self._book = Book(path)
         self._book.fix_empty_pages()
 
+        self._metadata = QmlBookMetadata(self._book.metadata)
+
         # We must prevent garbage collection
         self._pages = [QmlBookPage(page) for page in self._book]
 
@@ -161,6 +197,12 @@ class QmlBook(QObject):
     @Property(str)
     def path(self):
         return str(self._book.path)
+
+    ##############################################
+
+    @Property(QmlBookMetadata)
+    def metadata(self):
+        return self._metadata
 
     ##############################################
 

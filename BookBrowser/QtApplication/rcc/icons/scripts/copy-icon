@@ -16,9 +16,11 @@ function copy_link() {
   subdir_dest="${dp}x${dp}"
   src="ic_${name}_${colour}_${dp}dp.png"
   target=$(tr "_" "-" <<<"${name}-${colour}${scale}.png")
-  echo "${mdi_path}/${subdir}/${src} -> ${subdir_dest}/${target}"
-  mkdir -p ${subdir_dest}
-  cp ${mdi_path}/${subdir}/${src} ${subdir_dest}/${target}
+  if [ ! -e ${subdir_dest}/${target} ]; then
+    echo "${mdi_path}/${subdir}/${src} -> ${subdir_dest}/${target}"
+    mkdir -p ${subdir_dest}
+    cp ${mdi_path}/${subdir}/${src} ${subdir_dest}/${target}
+  fi
   # pushd ${subdir_dest}
   # rm -f ${target}
   # ln -sf ${src} ${target}

@@ -1,5 +1,7 @@
 Pillow>=5.4
 PyQt5>=5.11
 PyYAML>=3.10
+isbnlib>=3.9.5
+langcodes>=1.4.1
 numpy>=1.16
 pyinsane2>=2.0

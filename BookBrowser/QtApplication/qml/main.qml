@@ -151,12 +151,24 @@ ApplicationWindow {
         id: stack_layout
         anchors.fill: parent
 
-        function set_thumbnail_page() { currentIndex = 0 }
-        function set_viewer_page() { currentIndex = 1 }
-        function set_scanner_page() { currentIndex = 2 }
+        // enum ApplicationPage {
+        //     MetadataPage,
+        //     ThumbnailPage,
+        //     ViewerPage,
+        //     ScannerPage
+        // }
+
+        function set_metadata_page() { currentIndex = 0 }
+        function set_thumbnail_page() { currentIndex = 1 }
+        function set_viewer_page() { currentIndex = 2 }
+        function set_scanner_page() { currentIndex = 3 }
 
         Component.onCompleted: {
             set_thumbnail_page()
+        }
+
+        Ui.MetadataPage {
+            id: metadata_page
         }
 
         // Fixme: simplify with Page { Widget{} } ???

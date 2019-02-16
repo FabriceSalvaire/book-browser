@@ -52,12 +52,21 @@ ToolBar {
             }
 
             Widgets.ToolButtonTip {
+                icon.source: 'qrc:/icons/create-black.png'
+                tip: qsTr('Edit metadata')
+                onClicked: {
+                    stack_layout.set_metadata_page()
+                }
+            }
+
+            Widgets.ToolButtonTip {
                 icon.source: 'qrc:/icons/view-comfy-black.png'
                 tip: qsTr('Show page thumbnails')
                 onClicked: {
                     stack_layout.set_thumbnail_page()
                 }
             }
+
             Widgets.ToolButtonTip {
                 icon.source: 'qrc:/icons/image-black.png'
                 tip: qsTr('Show page viewer')
@@ -65,6 +74,7 @@ ToolBar {
                     stack_layout.set_viewer_page()
                 }
             }
+
             Widgets.ToolButtonTip {
                 icon.source: 'qrc:/icons/scanner-black.png'
                 tip: qsTr('Show scanner interface')

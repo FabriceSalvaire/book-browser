@@ -57,7 +57,7 @@ from BookBrowser.Common.ArgparseAction import PathAction
 from BookBrowser.Common.Platform import QtPlatform
 from .ApplicationMetadata import ApplicationMetadata
 from .KeySequenceEditor import KeySequenceEditor
-from .QmlBook import QmlBook, QmlBookPage
+from .QmlBook import QmlBook, QmlBookPage, QmlBookMetadata
 from .QmlScanner import ScannerImageProvider, QmlScanner, QmlScannerConfig
 from .Runnable import Worker
 
@@ -414,6 +414,7 @@ class Application(QObject):
         qmlRegisterUncreatableType(QmlApplication, 'BookBrowser', 1, 0, 'QmlApplication', 'Cannot create QmlApplication')
         qmlRegisterUncreatableType(QmlBook, 'BookBrowser', 1, 0, 'QmlBook', 'Cannot create QmlBook')
         qmlRegisterUncreatableType(QmlBookPage, 'BookBrowser', 1, 0, 'QmlBookPage', 'Cannot create QmlBookPage')
+        qmlRegisterUncreatableType(QmlBookMetadata, 'BookBrowser', 1, 0, 'QmlBookMetadata', 'Cannot create QmlBookMetadata')
         qmlRegisterUncreatableType(QmlScannerConfig, 'BookBrowser', 1, 0, 'QmlScannerConfig', 'Cannot create QmlScannerConfig')
         qmlRegisterUncreatableType(QmlScanner, 'BookBrowser', 1, 0, 'QmlScanner', 'Cannot create QmlScanner')
 
