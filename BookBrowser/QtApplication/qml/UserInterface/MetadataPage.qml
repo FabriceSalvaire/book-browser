@@ -80,7 +80,6 @@ Page {
         anchors.margins: 20
 
         ColumnLayout {
-            width: Math.min(parent.width, 600)
 
             Widgets.WarnedToolButton {
                 id: save_button
@@ -96,7 +95,7 @@ Page {
 
             Item {
                 id: container
-                Layout.fillWidth: true
+                Layout.preferredWidth: 800
                 Layout.fillHeight: true
 
                 ScrollView {
