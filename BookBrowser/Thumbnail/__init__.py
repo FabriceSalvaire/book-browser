@@ -129,8 +129,10 @@ class FreeDesktopThumbnail:
     def has_thumbnail(self, is_normal=True):
         path = self.thumbnail_path(is_normal)
         if path.exists():
-            thumbnail_mtime = int(path.stat().st_mtime)
-            if thumbnail_mtime < self.mtime:
+            stat = path.stat()
+            thumbnail_size = int(stat.st_size)
+            thumbnail_mtime = int(stat.st_mtime) # Fixme: int ???
+            if not thumbnail_size or thumbnail_mtime < self.mtime:
                 self.delete_thumbnail()
             else:
                 return True
