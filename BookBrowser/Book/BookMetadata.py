@@ -90,14 +90,19 @@ class BookMetadata:
 
     def to_json(self):
         data = self.to_dict()
+        # Fixme:
         data['path'] = str(data['path'])
+        data['language'] = self.language
+        data['isbn'] = self.isbn_str
         return json.dumps(data, sort_keys=True, indent=4)
 
     ##############################################
 
     def save_json(self, path):
         with open(str(path), 'w') as fh:
-            fh.write(self.to_json())
+            data_json = self.to_json()
+            self._logger.info(str(data_json))
+            fh.write(data_json)
 
     ##############################################
 
@@ -141,9 +146,20 @@ class BookMetadata:
 
     @language.setter
     def language(self, value):
+
+        # Fixme: better ???
+        invalid = False
         try:
             self._language = langcodes.find(value)
-        except (LookupError, AttributeError):
+        except LookupError:
+            try:
+                self._language = langcodes.get(value)
+            except:
+               invalid = True
+        except:
+            invalid = True
+
+        if invalid:
             self._language = ''
             if value:
                 self._logger.warning('Unknown language {}'.format(value))
@@ -220,6 +236,7 @@ class BookMetadata:
 
         if self._isbn:
             meta = isbnlib.meta(self._isbn)
+            self._logger.info('ISBN Query result {}'.format(meta))
             self.authors = meta.get('Authors', ())
             self.language = meta.get('Langage', '')
             self.publisher = meta.get('Publisher', '')

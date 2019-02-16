@@ -62,6 +62,7 @@ class QmlBookMetadata(QObject):
 
         self._book = book
         self._metadata = book.metadata
+        self._dirty = False
 
     ##############################################
 
@@ -77,6 +78,19 @@ class QmlBookMetadata(QObject):
 
     ##############################################
 
+    dirty_changed = Signal()
+
+    @Property(bool, notify=dirty_changed)
+    def dirty(self):
+        return self._dirty
+
+    def _set_dirty(self, value=True):
+        if self._dirty != value:
+            self._dirty = value
+            self.dirty_changed.emit()
+
+    ##############################################
+
     authors_changed = Signal()
 
     @Property(str, notify=authors_changed)
@@ -89,6 +103,7 @@ class QmlBookMetadata(QObject):
         if self.authors != value:
             self._metadata.authors = value
             self.authors_changed.emit()
+            self._set_dirty()
 
     ##############################################
 
@@ -96,13 +111,14 @@ class QmlBookMetadata(QObject):
 
     @Property(str, notify=isbn_changed)
     def isbn(self):
-        return self._metadata.isbn
+        return self._metadata.isbn_str
 
     @isbn.setter
     def isbn(self, value):
         if self.isbn != value:
             self._metadata.isbn = value
             self.isbn_changed.emit()
+            self._set_dirty()
 
     ##############################################
 
@@ -117,6 +133,7 @@ class QmlBookMetadata(QObject):
         if self.language != value:
             self._metadata.language = value
             self.language_changed.emit()
+            self._set_dirty()
 
     ##############################################
 
@@ -131,6 +148,7 @@ class QmlBookMetadata(QObject):
         if self.number_of_pages != value:
             self._metadata.number_of_pages = value
             self.number_of_pages_changed.emit()
+            self._set_dirty()
 
     ##############################################
 
@@ -145,6 +163,7 @@ class QmlBookMetadata(QObject):
         if self.publisher != value:
             self._metadata.publisher = value
             self.publisher_changed.emit()
+            self._set_dirty()
 
     ##############################################
 
@@ -159,6 +178,7 @@ class QmlBookMetadata(QObject):
         if self.title != value:
             self._metadata.title = value
             self.title_changed.emit()
+            self._set_dirty()
 
     ##############################################
 
@@ -173,6 +193,7 @@ class QmlBookMetadata(QObject):
         if self.year != value:
             self._metadata.year = value
             self.year_changed.emit()
+            self._set_dirty()
 
     ##############################################
 
@@ -187,6 +208,7 @@ class QmlBookMetadata(QObject):
         if self.page_offset != value:
             self._metadata.page_offset = value
             self.page_offset_changed.emit()
+            self._set_dirty()
 
     ##############################################
 
@@ -202,6 +224,7 @@ class QmlBookMetadata(QObject):
         if self.keywords != value:
             self._metadata.keywords = value
             self.keywords_changed.emit()
+            self._set_dirty()
 
     ##############################################
 
@@ -216,6 +239,7 @@ class QmlBookMetadata(QObject):
         if self.description != value:
             self._metadata.description = value
             self.description_changed.emit()
+            self._set_dirty()
 
     ##############################################
 
@@ -229,12 +253,14 @@ class QmlBookMetadata(QObject):
         self.publisher_changed.emit()
         self.title_changed.emit()
         self.year_changed.emit()
+        self._set_dirty()
 
     ##############################################
 
     @Slot()
     def save(self):
         self._book.save_metadata()
+        self._set_dirty(False)
 
 ####################################################################################################
 
