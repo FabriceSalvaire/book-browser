@@ -181,6 +181,7 @@ Page {
                         id: number_of_pages_spin_box
                         from: 0
                         to: 1000
+                        editable: true
                         onValueModified: metadata.number_of_pages = value
                     }
                     // Binding { target: metadata; property: 'number_of_pages'; value: number_of_pages_spin_box.value }
@@ -192,6 +193,7 @@ Page {
                         id: page_offset_spinbox
                         from: 1
                         to: 1000
+                        editable: true
                         onValueModified: metadata.page_offset = value
                     }
                     // Binding { target: metadata; property: 'page_offset'; value: page_offset_spinbox.value }
@@ -203,6 +205,7 @@ Page {
                         id: year_spinbox
                         from: 0
                         to: 2100
+                        editable: true
                         // Redefine textFromValue else it shows '2 019'
                         textFromValue: function(value, locale) { return value.toString(); }
                         onValueModified: metadata.year = value
