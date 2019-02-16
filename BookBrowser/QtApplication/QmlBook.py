@@ -56,17 +56,67 @@ class QmlBookMetadata(QObject):
 
     ##############################################
 
-    def __init__(self, book_metadata):
+    def __init__(self, book):
 
         super().__init__()
 
-        self._metadata = book_metadata
+        self._book = book
+        self._metadata = book.metadata
+
+    ##############################################
+
+    @staticmethod
+    def _to_list(value):
+        return [x.strip() for x in value.split(',')]
 
     ##############################################
 
     @Property(str, constant=True)
     def path(self):
         return self._metadata.path_str
+
+    ##############################################
+
+    authors_changed = Signal()
+
+    @Property(str, notify=authors_changed)
+    def authors(self):
+        return self._metadata.authors_str
+
+    @authors.setter
+    def authors(self, value):
+        value = self._to_list(value)
+        if self.authors != value:
+            self._metadata.authors = value
+            self.authors_changed.emit()
+
+    ##############################################
+
+    isbn_changed = Signal()
+
+    @Property(str, notify=isbn_changed)
+    def isbn(self):
+        return self._metadata.isbn
+
+    @isbn.setter
+    def isbn(self, value):
+        if self.isbn != value:
+            self._metadata.isbn = value
+            self.isbn_changed.emit()
+
+    ##############################################
+
+    language_changed = Signal()
+
+    @Property(str, notify=language_changed)
+    def language(self):
+        return self._metadata.language
+
+    @language.setter
+    def language(self, value):
+        if self.language != value:
+            self._metadata.language = value
+            self.language_changed.emit()
 
     ##############################################
 
@@ -79,8 +129,112 @@ class QmlBookMetadata(QObject):
     @number_of_pages.setter
     def number_of_pages(self, value):
         if self.number_of_pages != value:
-            self._metadata.number_of_pages == value
+            self._metadata.number_of_pages = value
             self.number_of_pages_changed.emit()
+
+    ##############################################
+
+    publisher_changed = Signal()
+
+    @Property(str, notify=publisher_changed)
+    def publisher(self):
+        return self._metadata.publisher
+
+    @publisher.setter
+    def publisher(self, value):
+        if self.publisher != value:
+            self._metadata.publisher = value
+            self.publisher_changed.emit()
+
+    ##############################################
+
+    title_changed = Signal()
+
+    @Property(str, notify=title_changed)
+    def title(self):
+        return self._metadata.title
+
+    @title.setter
+    def title(self, value):
+        if self.title != value:
+            self._metadata.title = value
+            self.title_changed.emit()
+
+    ##############################################
+
+    year_changed = Signal()
+
+    @Property(int, notify=year_changed)
+    def year(self):
+        return self._metadata.year
+
+    @year.setter
+    def year(self, value):
+        if self.year != value:
+            self._metadata.year = value
+            self.year_changed.emit()
+
+    ##############################################
+
+    page_offset_changed = Signal()
+
+    @Property(int, notify=page_offset_changed)
+    def page_offset(self):
+        return self._metadata.page_offset
+
+    @page_offset.setter
+    def page_offset(self, value):
+        if self.page_offset != value:
+            self._metadata.page_offset = value
+            self.page_offset_changed.emit()
+
+    ##############################################
+
+    keywords_changed = Signal()
+
+    @Property(str, notify=keywords_changed)
+    def keywords(self):
+        return self._metadata.keywords_str
+
+    @keywords.setter
+    def keywords(self, value):
+        value = self._to_list(value)
+        if self.keywords != value:
+            self._metadata.keywords = value
+            self.keywords_changed.emit()
+
+    ##############################################
+
+    description_changed = Signal()
+
+    @Property(str, notify=description_changed)
+    def description(self):
+        return self._metadata.description
+
+    @description.setter
+    def description(self, value):
+        if self.description != value:
+            self._metadata.description = value
+            self.description_changed.emit()
+
+    ##############################################
+
+    @Slot()
+    def update_from_isbn(self):
+
+        self._metadata.update_from_isbn()
+
+        self.authors_changed.emit()
+        self.language_changed.emit()
+        self.publisher_changed.emit()
+        self.title_changed.emit()
+        self.year_changed.emit()
+
+    ##############################################
+
+    @Slot()
+    def save(self):
+        self._book.save_metadata()
 
 ####################################################################################################
 
@@ -187,20 +341,20 @@ class QmlBook(QObject):
         self._book = Book(path)
         self._book.fix_empty_pages()
 
-        self._metadata = QmlBookMetadata(self._book.metadata)
+        self._metadata = QmlBookMetadata(self._book)
 
         # We must prevent garbage collection
         self._pages = [QmlBookPage(page) for page in self._book]
 
     ##############################################
 
-    @Property(str)
+    @Property(str, constant=True)
     def path(self):
         return str(self._book.path)
 
     ##############################################
 
-    @Property(QmlBookMetadata)
+    @Property(QmlBookMetadata, constant=True)
     def metadata(self):
         return self._metadata
 

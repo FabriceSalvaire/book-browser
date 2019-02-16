@@ -100,6 +100,7 @@ Widgets.CentredDialog {
                     anchors.bottom: parent.bottom
                 }
 
+                // Fixme: ???
                 Rectangle {
                     width: parent.width
                     height: 1

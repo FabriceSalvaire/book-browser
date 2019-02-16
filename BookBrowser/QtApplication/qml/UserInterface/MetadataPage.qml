@@ -17,6 +17,7 @@
  *
  ***************************************************************************************************/
 
+import QtQml 2.11
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.11
@@ -50,6 +51,7 @@ Page {
         Widgets.ToolButtonTip {
             icon.source: 'qrc:/icons/save-black.png'
             tip: qsTr('Save')
+            onClicked: metadata.save()
         }
 
         ScrollView {
@@ -67,16 +69,19 @@ Page {
                     text: qsTr('ISBN')
                 }
                 RowLayout {
-                    TextEdit {
+                    TextField {
+                        id: isbn_textfield
                         Layout.fillWidth: true
-                        // id:
+                        text: metadata.isbn
                     }
 
                     Widgets.ToolButtonTip {
                         icon.source: 'qrc:/icons/refresh-black.png'
-                        tip: qsTr('Reload book')
+                        tip: qsTr('Query ISBN')
+                        onClicked: metadata.query_isbn()
                     }
                 }
+                Binding { target: metadata; property: 'isbn'; value: isbn_textfield.text }
 
                 Label {
                     text: qsTr('Path')
@@ -88,72 +93,89 @@ Page {
                 Label {
                     text: qsTr('Title')
                 }
-                TextEdit {
-                    // id:
+                TextField {
+                    id: title_textfield
+                    text: metadata.title
                 }
+                Binding { target: metadata; property: 'title'; value: title_textfield.text }
 
                 Label {
                     text: qsTr('Authors')
                 }
-                TextEdit {
-                    // id:
+                TextField {
+                    id: authors_textfield
+                    text: metadata.authors
                 }
+                Binding { target: metadata; property: 'authors'; value: authors_textfield.text }
 
                 Label {
                     text: qsTr('Publisher')
                 }
-                TextEdit {
-                    // id:
+                TextField {
+                    id: publisher_textfield
+                    text: metadata.publisher
                 }
+                Binding { target: metadata; property: 'publisher'; value: publisher_textfield.text }
 
                 Label {
                     text: qsTr('Language')
                 }
-                TextEdit {
-                    // id:
+                TextField {
+                    id: language_textfield
+                    text: metadata.language
                 }
+                Binding { target: metadata; property: 'language'; value: language_textfield.text }
 
                 Label {
                     text: qsTr('Number of pages')
                 }
                 SpinBox {
-                    // id:
-                    from: 1
+                    id: number_of_pages_spin_box
+                    from: 0
                     to: 1000
-                    // value: metadata.number_of_pages
+                    value: metadata.number_of_pages
                 }
+                Binding { target: metadata; property: 'number_of_pages'; value: number_of_pages_spin_box.value }
 
                 Label {
                     text: qsTr('Page Offset')
                 }
                 SpinBox {
-                    // id:
+                    id: page_offset_spinbox
                     from: 1
                     to: 1000
+                    value: metadata.page_offset
                 }
+                Binding { target: metadata; property: 'page_offset'; value: page_offset_spinbox.value }
 
                 Label {
                     text: qsTr('Year')
                 }
                 SpinBox {
-                    // id:
+                    id: year_spinbox
                     from: 0
                     to: 2100
+                    value: metadata.year
                 }
+                Binding { target: metadata; property: 'year'; value: year_spinbox.value }
 
                 Label {
                     text: qsTr('Keywords')
                 }
-                TextEdit {
-                    // id:
+                TextField {
+                    id: keywords_textfield
+                    text: metadata.keywords
                 }
+                Binding { target: metadata; property: 'keywords'; value: keywords_textfield.text }
 
                 Label {
                     text: qsTr('Description')
                 }
-                TextEdit {
-                    // id:
+                TextField {
+                    id: description_textfield
+                    text: metadata.description
                 }
+                Binding { target: metadata; property: 'description'; value: description_textfield.text }
             }
         }
     }

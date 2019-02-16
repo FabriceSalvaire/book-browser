@@ -60,18 +60,18 @@ class BookMetadata:
     def __init__(self, **kwargs):
 
         self.authors = kwargs.get('authors', ())
-        self.isbn = kwargs.get('isbn', None)
-        self.language = kwargs.get('language', None)
-        self.number_of_pages = kwargs.get('number_of_pages', None)
-        self.publisher = kwargs.get('publisher', None)
-        self.title = kwargs.get('title', None)
-        self.year = kwargs.get('year', None)
+        self.isbn = kwargs.get('isbn', '')
+        self.language = kwargs.get('language', '')
+        self.number_of_pages = kwargs.get('number_of_pages', 0)
+        self.publisher = kwargs.get('publisher', '')
+        self.title = kwargs.get('title', '')
+        self.year = kwargs.get('year', 0)
 
-        self.path = kwargs.get('path', None)
+        self.path = kwargs.get('path', '')
         self.page_offset = kwargs.get('page_offset', 0)
 
         self.keywords = kwargs.get('keywords', ())
-        self.description = kwargs.get('description', None)
+        self.description = kwargs.get('description', '')
 
     ##############################################
 
@@ -103,10 +103,7 @@ class BookMetadata:
 
     @staticmethod
     def _check(value, ctor):
-        if value is None:
-            return None
-        else:
-            return ctor(value)
+        return ctor(value)
 
     @classmethod
     def _check_int(cls, value):
@@ -137,18 +134,18 @@ class BookMetadata:
 
     @property
     def language(self):
-        if self._language is not None:
+        if self._language:
             return self._language.language_name()
         else:
-            return None
+            return ''
 
     @language.setter
     def language(self, value):
         try:
             self._language = langcodes.find(value)
         except (LookupError, AttributeError):
-            self._language = None
-            if value is not None:
+            self._language = ''
+            if value:
                 self._logger.warning('Unknown language {}'.format(value))
 
     ##############################################
@@ -199,15 +196,15 @@ class BookMetadata:
 
     @property
     def isbn_str(self):
-        if self._isbn is not None:
+        if self._isbn:
             return isbnlib.mask(self._isbn)
         else:
-            return None
+            return ''
 
     @isbn.setter
     def isbn(self, value):
-        if value is None:
-            self._isbn = None
+        if not value:
+            self._isbn = ''
         else:
             try:
                 if isbnlib.is_isbn13(value):
@@ -219,15 +216,15 @@ class BookMetadata:
 
     ##############################################
 
-    def init_from_isbn(self):
+    def update_from_isbn(self):
 
-        if self._isbn is not None:
+        if self._isbn:
             meta = isbnlib.meta(self._isbn)
-            self.authors = meta.get('Authors', None)
-            self.language = meta.get('Langage', None)
-            self.publisher = meta.get('Publisher', None)
-            self.title = meta.get('Title', None)
-            self.year = meta.get('Year', None)
+            self.authors = meta.get('Authors', ())
+            self.language = meta.get('Langage', '')
+            self.publisher = meta.get('Publisher', '')
+            self.title = meta.get('Title', '')
+            self.year = meta.get('Year', 0)
 
     ##############################################
 
@@ -241,10 +238,10 @@ class BookMetadata:
 
     @path.setter
     def path(self, value):
-        if value is not None:
+        if value:
             self._path = Path(str(value))
         else:
-            self._path = None
+            self._path = ''
 
     ##############################################
 
