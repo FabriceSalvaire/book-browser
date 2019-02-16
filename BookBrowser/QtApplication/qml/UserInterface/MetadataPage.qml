@@ -59,6 +59,8 @@ Page {
         year_spinbox.value = metadata.year
         keywords_textfield.text = metadata.keywords
         description_textfield.text = metadata.description
+        notes_editor.text = metadata.notes
+        notes_textarea.text = metadata.notes_html
     }
 
     function update_from_isbn() {
@@ -94,6 +96,7 @@ Page {
             }
 
             ScrollView {
+                // Fixme:
                 id: container
                 Layout.preferredWidth: 800
                 Layout.fillHeight: true
@@ -231,6 +234,80 @@ Page {
                         onEditingFinished: metadata.description = text
                     }
                     // Binding { target: metadata; property: 'description'; value: description_textfield.text }
+
+
+                    Label {
+                        text: qsTr('Notes')
+                    }
+                    RowLayout {
+                        Layout.fillWidth: true
+
+                        TextArea {
+                            id: notes_textarea
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: contentHeight // Fixme:
+                            Layout.minimumHeight: 200
+                            wrapMode: TextEdit.Wrap
+                            textFormat: TextEdit.RichText
+                            readOnly: true
+
+                            // Fixme:
+                            background: Rectangle {
+                                border.color: control.enabled ? "#21be2b" : "transparent"
+                            }
+                        }
+
+                        TextArea {
+                            id: notes_editor
+                            visible: false
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: contentHeight
+                            Layout.minimumHeight: 200
+                            wrapMode: TextEdit.Wrap
+                            textFormat: TextEdit.PlainText
+
+                            background: Rectangle {
+                                border.color: Style.color.danger
+                            }
+
+                            Keys.onEscapePressed: {
+                                focus = false
+                                event.accepted = true
+                            }
+
+                            onEditingFinished: {
+                                metadata.notes = text
+                                notes_textarea.text = metadata.notes_html
+                                // swap
+                                notes_editor.visible = false
+                                notes_textarea.visible = true
+                            }
+                        }
+
+                        Widgets.WarnedToolButton {
+                            id: notes_edit_button
+                            Layout.alignment: Qt.AlignTop
+                            icon.source: 'qrc:/icons/create-black.png'
+                            tip: qsTr('Edit metadata')
+                            icon.color: warned ? Style.color.danger : 'black'
+
+                            warned: notes_editor.focus
+
+                            // When a user click on button while the editor has focus, signal order is
+                            //   1) editor.onEditingFinished !!!
+                            //   2) button.onFocuschanged
+                            //   3) editor.onFocuschanged
+                            //   4) button.onPressed
+                            //   5) button.onClicked
+
+                            onClicked: {
+                                // swap and set focus
+                                notes_textarea.visible = false
+                                notes_editor.visible = true
+                                notes_editor.focus = true
+                            }
+                        }
+                    }
                 }
             }
         }

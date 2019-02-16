@@ -47,6 +47,7 @@ class BookMetadata:
         'isbn',
         'keywords',
         'language',
+        'notes',
         'number_of_pages',
         'page_offset',
         'path',
@@ -72,6 +73,7 @@ class BookMetadata:
 
         self.keywords = kwargs.get('keywords', ())
         self.description = kwargs.get('description', '')
+        self.notes = kwargs.get('notes', '')
 
     ##############################################
 
@@ -283,6 +285,16 @@ class BookMetadata:
     @description.setter
     def description(self, value):
         self._description = self._check_str(value)
+
+    ##############################################
+
+    @property
+    def notes(self):
+        return self._notes
+
+    @notes.setter
+    def notes(self, value):
+        self._notes = self._check_str(value)
 
     ##############################################
 

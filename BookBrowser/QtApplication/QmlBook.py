@@ -36,6 +36,8 @@ from QtShim.QtCore import (
     Qt, QTimer, QUrl
 )
 
+import markdown
+
 from BookBrowser.Thumbnail import FreeDesktopThumbnailCache # Fixme: Linux only
 from BookBrowser.Book import Book
 from .Runnable import Worker
@@ -239,6 +241,27 @@ class QmlBookMetadata(QObject):
         if self.description != value:
             self._metadata.description = value
             self.description_changed.emit()
+            self._set_dirty()
+
+    ##############################################
+
+    notes_changed = Signal()
+    notes_html_changed = Signal()
+
+    @Property(str, notify=notes_changed)
+    def notes(self):
+        return self._metadata.notes
+
+    @Property(str, notify=notes_html_changed)
+    def notes_html(self):
+        return markdown.markdown(self._metadata.notes)
+
+    @notes.setter
+    def notes(self, value):
+        if self.notes != value:
+            self._metadata.notes = value
+            self.notes_changed.emit()
+            self.notes_html_changed.emit()
             self._set_dirty()
 
     ##############################################
