@@ -235,13 +235,17 @@ class BookMetadata:
     def update_from_isbn(self):
 
         if self._isbn:
-            meta = isbnlib.meta(self._isbn)
-            self._logger.info('ISBN Query result {}'.format(meta))
-            self.authors = meta.get('Authors', ())
-            self.language = meta.get('Langage', '')
-            self.publisher = meta.get('Publisher', '')
-            self.title = meta.get('Title', '')
-            self.year = meta.get('Year', 0)
+            try:
+                meta = isbnlib.meta(self._isbn)
+            except:
+                self._logger.info('ISBN Query failed {}'.format(self._isbn))
+            else:
+                self._logger.info('ISBN Query result {}'.format(meta))
+                self.authors = meta.get('Authors', ())
+                self.language = meta.get('Langage', '')
+                self.publisher = meta.get('Publisher', '')
+                self.title = meta.get('Title', '')
+                self.year = meta.get('Year', 0)
 
     ##############################################
 
