@@ -93,145 +93,141 @@ Page {
                 onClicked: metadata.save()
             }
 
-            Item {
+            ScrollView {
                 id: container
                 Layout.preferredWidth: 800
                 Layout.fillHeight: true
+                clip: true
+                ScrollBar.horizontal.policy: ScrollBar.AsNeeded
 
-                ScrollView {
+                GridLayout {
                     width: container.width
-                    clip: true
-                    ScrollBar.horizontal.policy: ScrollBar.AsNeeded
+                    columns: 2
+                    columnSpacing: 10
 
-                    GridLayout {
-                        width: container.width
-                        columns: 2
-                        columnSpacing: 10
-
-                        Label {
-                            text: qsTr('Path')
-                        }
-                        Widgets.TextField {
-                            id: path_label
-                            Layout.fillWidth: true
-                            readOnly: true
-                        }
-
-                        Label {
-                            text: qsTr('ISBN')
-                        }
-                        RowLayout {
-                            Layout.fillWidth: true
-
-                            Widgets.TextField {
-                                id: isbn_textfield
-                                Layout.fillWidth: true
-                                onEditingFinished: metadata.isbn = text
-                            }
-
-                            Widgets.ToolButtonTip {
-                                icon.source: 'qrc:/icons/refresh-black.png'
-                                tip: qsTr('Query ISBN')
-                                onClicked: update_from_isbn()
-                            }
-                        }
-                        // Binding { target: metadata; property: 'isbn'; value: isbn_textfield.text }
-
-                        Label {
-                            text: qsTr('Title')
-                        }
-                        Widgets.TextField {
-                            id: title_textfield
-                            Layout.fillWidth: true
-                            onEditingFinished: metadata.title = text
-                        }
-                        // Binding { target: metadata; property: 'title'; value: title_textfield.text }
-
-                        Label {
-                            text: qsTr('Authors')
-                        }
-                        Widgets.TextField {
-                            id: authors_textfield
-                            Layout.fillWidth: true
-                            onEditingFinished: metadata.authors = text
-                        }
-                        // Binding { target: metadata; property: 'authors'; value: authors_textfield.text }
-
-                        Label {
-                            text: qsTr('Publisher')
-                        }
-                        Widgets.TextField {
-                            id: publisher_textfield
-                            Layout.fillWidth: true
-                            onEditingFinished: metadata.publisher = text
-                        }
-                        // Binding { target: metadata; property: 'publisher'; value: publisher_textfield.text }
-
-                        Label {
-                            text: qsTr('Language')
-                        }
-                        Widgets.TextField {
-                            id: language_textfield
-                            Layout.fillWidth: true
-                            onEditingFinished: metadata.language = text
-                        }
-                        // Binding { target: metadata; property: 'language'; value: language_textfield.text }
-
-                        Label {
-                            text: qsTr('Number of pages')
-                        }
-                        SpinBox {
-                            id: number_of_pages_spin_box
-                            from: 0
-                            to: 1000
-                            onValueModified: metadata.number_of_pages = value
-                        }
-                        // Binding { target: metadata; property: 'number_of_pages'; value: number_of_pages_spin_box.value }
-
-                        Label {
-                            text: qsTr('Page Offset')
-                        }
-                        SpinBox {
-                            id: page_offset_spinbox
-                            from: 1
-                            to: 1000
-                            onValueModified: metadata.page_offset = value
-                        }
-                        // Binding { target: metadata; property: 'page_offset'; value: page_offset_spinbox.value }
-
-                        Label {
-                            text: qsTr('Year')
-                        }
-                        SpinBox {
-                            id: year_spinbox
-                            from: 0
-                            to: 2100
-                            // Redefine textFromValue else it shows '2 019'
-                            textFromValue: function(value, locale) { return value.toString(); }
-                            onValueModified: metadata.year = value
-                        }
-                        // Binding { target: metadata; property: 'year'; value: year_spinbox.value }
-
-                        Label {
-                            text: qsTr('Keywords')
-                        }
-                        Widgets.TextField {
-                            id: keywords_textfield
-                            Layout.fillWidth: true
-                            onEditingFinished: metadata.keywords = text
-                        }
-                        // Binding { target: metadata; property: 'keywords'; value: keywords_textfield.text }
-
-                        Label {
-                            text: qsTr('Description')
-                        }
-                        Widgets.TextField {
-                            id: description_textfield
-                            Layout.fillWidth: true
-                            onEditingFinished: metadata.description = text
-                        }
-                        // Binding { target: metadata; property: 'description'; value: description_textfield.text }
+                    Label {
+                        text: qsTr('Path')
                     }
+                    Widgets.TextField {
+                        id: path_label
+                        Layout.fillWidth: true
+                        readOnly: true
+                    }
+
+                    Label {
+                        text: qsTr('ISBN')
+                    }
+                    RowLayout {
+                        Layout.fillWidth: true
+
+                        Widgets.TextField {
+                            id: isbn_textfield
+                            Layout.fillWidth: true
+                            onEditingFinished: metadata.isbn = text
+                        }
+
+                        Widgets.ToolButtonTip {
+                            icon.source: 'qrc:/icons/refresh-black.png'
+                            tip: qsTr('Query ISBN')
+                            onClicked: update_from_isbn()
+                        }
+                    }
+                    // Binding { target: metadata; property: 'isbn'; value: isbn_textfield.text }
+
+                    Label {
+                        text: qsTr('Title')
+                    }
+                    Widgets.TextField {
+                        id: title_textfield
+                        Layout.fillWidth: true
+                        onEditingFinished: metadata.title = text
+                    }
+                    // Binding { target: metadata; property: 'title'; value: title_textfield.text }
+
+                    Label {
+                        text: qsTr('Authors')
+                    }
+                    Widgets.TextField {
+                        id: authors_textfield
+                        Layout.fillWidth: true
+                        onEditingFinished: metadata.authors = text
+                    }
+                    // Binding { target: metadata; property: 'authors'; value: authors_textfield.text }
+
+                    Label {
+                        text: qsTr('Publisher')
+                    }
+                    Widgets.TextField {
+                        id: publisher_textfield
+                        Layout.fillWidth: true
+                        onEditingFinished: metadata.publisher = text
+                    }
+                    // Binding { target: metadata; property: 'publisher'; value: publisher_textfield.text }
+
+                    Label {
+                        text: qsTr('Language')
+                    }
+                    Widgets.TextField {
+                        id: language_textfield
+                        Layout.fillWidth: true
+                        onEditingFinished: metadata.language = text
+                    }
+                    // Binding { target: metadata; property: 'language'; value: language_textfield.text }
+
+                    Label {
+                        text: qsTr('Number of pages')
+                    }
+                    SpinBox {
+                        id: number_of_pages_spin_box
+                        from: 0
+                        to: 1000
+                        onValueModified: metadata.number_of_pages = value
+                    }
+                    // Binding { target: metadata; property: 'number_of_pages'; value: number_of_pages_spin_box.value }
+
+                    Label {
+                        text: qsTr('Page Offset')
+                    }
+                    SpinBox {
+                        id: page_offset_spinbox
+                        from: 1
+                        to: 1000
+                        onValueModified: metadata.page_offset = value
+                    }
+                    // Binding { target: metadata; property: 'page_offset'; value: page_offset_spinbox.value }
+
+                    Label {
+                        text: qsTr('Year')
+                    }
+                    SpinBox {
+                        id: year_spinbox
+                        from: 0
+                        to: 2100
+                        // Redefine textFromValue else it shows '2 019'
+                        textFromValue: function(value, locale) { return value.toString(); }
+                        onValueModified: metadata.year = value
+                    }
+                    // Binding { target: metadata; property: 'year'; value: year_spinbox.value }
+
+                    Label {
+                        text: qsTr('Keywords')
+                    }
+                    Widgets.TextField {
+                        id: keywords_textfield
+                        Layout.fillWidth: true
+                        onEditingFinished: metadata.keywords = text
+                    }
+                    // Binding { target: metadata; property: 'keywords'; value: keywords_textfield.text }
+
+                    Label {
+                        text: qsTr('Description')
+                    }
+                    Widgets.TextField {
+                        id: description_textfield
+                        Layout.fillWidth: true
+                        onEditingFinished: metadata.description = text
+                    }
+                    // Binding { target: metadata; property: 'description'; value: description_textfield.text }
                 }
             }
         }
