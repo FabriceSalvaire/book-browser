@@ -1,0 +1,43 @@
+#! /bin/bash
+
+####################################################################################################
+#
+# Setup source for UNIX
+#
+#   Must be run after a fresh git clone to generate some files
+#
+#   Must be executed from source directory
+#
+####################################################################################################
+
+rule='--------------------------------------------------------------------------------'
+
+####################################################################################################
+
+echo
+echo $rule
+echo Generate book-browser.rcc and BookBrowserRessource.py
+echo
+
+pushd share # move to
+
+make # same as
+# rcc-qt5 -binary book-browser.qrc -o book-browser.rcc
+# pyrcc5 -o BookBrowserRessource.py book-browser.qrc
+
+popd # go back
+
+echo
+ls -l share/*{.rcc,ce.py}
+
+####################################################################################################
+
+echo
+echo $rule
+echo Generate .qm translations files
+echo
+
+./tools/translate --release
+
+echo
+ls -l share/translations/*.qm
