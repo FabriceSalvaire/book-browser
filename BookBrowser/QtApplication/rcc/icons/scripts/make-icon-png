@@ -35,11 +35,17 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
-svg_path = Path(args.svg_path).resolve()
-
 ####################################################################################################
 
-sizes = (36, 48)
+theme = 'material'
+DP = (36, 48)
+SCALE = (1, 2)
+
+svg_path = Path(args.svg_path).resolve()
+theme_path = svg_path.parents[1].joinpath(theme)
+print('Theme path:', theme_path)
+
+####################################################################################################
 
 inkscape_options = [
     '--export-area-page',
@@ -49,14 +55,19 @@ inkscape_options = [
 
 ####################################################################################################
 
-def run_inkscape(svg_path, size):
-    png_path = svg_path.parents[1].joinpath('{0}x{0}'.format(size), svg_path.name.replace('.svg', '.png'))
+def run_inkscape(svg_path, dp, scale):
+    filename = svg_path.name.replace('.svg', '.png')
+    if scale > 1:
+        size_directory = '{dp}x{dp}@{scale}'.format(dp=dp, scale=scale)
+    else:
+        size_directory = '{dp}x{dp}'.format(dp=dp)
+    png_path = theme_path.joinpath(size_directory, filename)
     command = (
         'inkscape',
         *inkscape_options,
         '--export-png={}'.format(png_path),
         # --export-width=
-        '--export-height={}'.format(size),
+        '--export-height={}'.format(dp*scale),
         str(svg_path),
     )
     print('>', ' '.join(command))
@@ -64,5 +75,6 @@ def run_inkscape(svg_path, size):
 
 ####################################################################################################
 
-for size in sizes:
-    run_inkscape(svg_path, size)
+for dp in DP:
+    for scale in SCALE:
+        run_inkscape(svg_path, dp, scale)

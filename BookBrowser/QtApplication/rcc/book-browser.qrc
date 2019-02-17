@@ -79,6 +79,9 @@
         <file>icons/material/36x36@2/first-page-black.png</file>
         <!-- <file>icons/material/48x48@2/first-page-black.png</file> -->
 
+	<file>icons/material/36x36/flip-from-page.png</file>
+	<file>icons/material/36x36@2/flip-from-page.png</file>
+
         <!-- G -->
         <!-- <file>icons/material/18x18/grid-on-black.png</file> -->
         <!-- <file>icons/material/24x24/grid-on-black.png</file> -->
@@ -120,6 +123,9 @@
         <!-- <file>icons/material/48x48@2/last-page-black.png</file> -->
 
 	<!-- R -->
+	<file>icons/material/36x36/recto-page.png</file>
+	<file>icons/material/36x36@2/recto-page.png</file>
+
 	<!-- <file>icons/material/18x18/refresh-black.png</file> -->
         <!-- <file>icons/material/24x24/refresh-black.png</file> -->
         <file>icons/material/36x36/refresh-black.png</file>
@@ -176,6 +182,9 @@
 	<!-- <file>icons/material/48x48@2/swap-vert-black.png</file> -->
 
 	<!-- V -->
+	<file>icons/material/36x36/verso-page.png</file>
+	<file>icons/material/36x36@2/verso-page.png</file>
+
 	<!-- <file>icons/material/18x18/view-comfy-black.png</file> -->
         <!-- <file>icons/material/24x24/view-comfy-black.png</file> -->
         <file>icons/material/36x36/view-comfy-black.png</file>
@@ -196,6 +205,9 @@
         <!-- <file>icons/material/48x48@2/warning-black.png</file> -->
 
 	<!-- Z -->
+	<file>icons/material/36x36/zoom-fit-width.png</file>
+	<file>icons/material/36x36@2/zoom-fit-width.png</file>
+
 	<!-- <file>icons/material/18x18/zoom-in-black.png</file> -->
         <!-- <file>icons/material/24x24/zoom-in-black.png</file> -->
         <file>icons/material/36x36/zoom-in-black.png</file>
@@ -213,19 +225,5 @@
         <!-- <file>icons/material/24x24@2/zoom-out-black.png</file> -->
         <file>icons/material/36x36@2/zoom-out-black.png</file>
         <!-- <file>icons/material/48x48@2/zoom-out-black.png</file> -->
-    </qresource>
-
-    <qresource prefix="/icons/">
-	<!-- F -->
-	<file alias='flip-from-page.png'>icons/36x36/flip-from-page.png</file>
-
-	<!-- R -->
-	<file alias='recto-page.png'>icons/36x36/recto-page.png</file>
-
-	<!-- V -->
-	<file alias='verso-page.png'>icons/36x36/verso-page.png</file>
-
-	<!-- Z -->
-        <file alias='zoom-fit-width.png'>icons/36x36/zoom-fit-width.png</file>
     </qresource>
 </RCC>

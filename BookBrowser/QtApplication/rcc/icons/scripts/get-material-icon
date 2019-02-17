@@ -160,10 +160,8 @@ class MaterialIconFetcher:
                 # print('Copy', src_path, dst_path)
                 shutil.copyfile(src_path, dst_path)
 
-                # rcc_pattern = '<file>icons/{}/{}/{}</file>'
-                # rcc_line = rcc_pattern.format(self._theme, size_directory, filename)
-                rcc_pattern = '<file>{}/{}</file>'
-                rcc_line = rcc_pattern.format(size_directory, filename)
+                rcc_pattern = '<file>icons/{}/{}/{}</file>'
+                rcc_line = rcc_pattern.format(self._theme, size_directory, filename)
                 if dp != 36:
                     rcc_line = '<!-- {} -->'.format(rcc_line)
                 rcc_line = ' '*8 + rcc_line

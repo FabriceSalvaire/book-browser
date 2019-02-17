@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.74902344"
-     inkscape:cx="525.81465"
-     inkscape:cy="467.712"
+     inkscape:cx="626.81617"
+     inkscape:cy="551.45928"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -65,14 +65,14 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:263.95440674px;line-height:412.42871094px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans, Normal';font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:20.62143707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers stroke fill"
-       x="50.132458"
+       x="43.043835"
        y="-67.58532"
        id="text883"
        transform="scale(0.98050414,-1.0198835)"><tspan
          sodipodi:role="line"
          id="tspan881"
-         x="50.132458"
+         x="43.043835"
          y="-67.58532"
-         style="fill:#ffffff;fill-opacity:1;stroke-width:20.62143707">A</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans Bold';fill:#ffffff;fill-opacity:1;stroke-width:20.62143707">A</tspan></text>
   </g>
 </svg>

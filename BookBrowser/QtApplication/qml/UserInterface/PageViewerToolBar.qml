@@ -106,19 +106,19 @@ RowLayout {
     }
 
     Widgets.ToolButtonTip {
-        icon.source: 'qrc:/icons/recto-page.png'
+        icon.name: 'recto-page'
         tip: qsTr('Flip page as recto')
         onClicked: page_viewer.set_recto()
     }
 
     Widgets.ToolButtonTip {
-        icon.source: 'qrc:/icons/verso-page.png'
+        icon.name: 'verso-page'
         tip: qsTr('Flip page as verso')
         onClicked: page_viewer.set_verso()
     }
 
     Widgets.ToolButtonTip {
-        icon.source: 'qrc:/icons/flip-from-page.png'
+        icon.name: 'flip-from-page'
         tip: qsTr('Flip page from this page')
         onClicked: page_viewer.flip_from_page()
     }

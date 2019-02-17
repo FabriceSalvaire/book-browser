@@ -82,7 +82,7 @@ Item {
 
     Action {
         id: zoom_full_action
-        icon.source: 'qrc:/icons/zoom-fit-width.png'
+        icon.name: 'zoom-fit-width'
         shortcut: 'z'
         onTriggered: page_viewer.zoom_full()
     }
