@@ -38,6 +38,8 @@ import os
 
 from PIL import Image, PngImagePlugin
 
+from BookBrowser.Common.Singleton import SingletonMetaClass
+
 ####################################################################################################
 
 _module_logger = logging.getLogger(__name__)
@@ -213,7 +215,7 @@ class FreeDesktopThumbnail:
 
 ####################################################################################################
 
-class FreeDesktopThumbnailCache:
+class FreeDesktopThumbnailCache(metaclass=SingletonMetaClass):
 
     """Class to import FreeDesktop Thumbnail Cache"""
 
