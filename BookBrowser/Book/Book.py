@@ -52,6 +52,7 @@ class Book:
 
         self._path = Path(str(path)).resolve()
 
+        # Fixme: will create a book even if it is a wrong path !
         self._load_metadta()
 
         if extension is not None:

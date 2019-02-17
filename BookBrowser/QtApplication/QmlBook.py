@@ -24,10 +24,18 @@ __all__ = [
 
 ####################################################################################################
 
+import logging
+_module_logger = logging.getLogger(__name__)
+
+####################################################################################################
+
+_module_logger.info('Import...')
+
 from pathlib import Path
 import glob
-import logging
 import time
+
+_module_logger.info('Python Done')
 
 from PyQt5.QtCore import QFileSystemWatcher
 from PyQt5.QtQml import QQmlListProperty
@@ -35,16 +43,16 @@ from QtShim.QtCore import (
     Property, Signal, Slot, QObject,
     Qt, QTimer, QUrl
 )
+_module_logger.info('Qt Done')
 
-import markdown
+# import markdown
+_module_logger.info('Markdown Done')
 
 from BookBrowser.Thumbnail import FreeDesktopThumbnailCache # Fixme: Linux only
 from BookBrowser.Book import Book
 from .Runnable import Worker
 
-####################################################################################################
-
-_module_logger = logging.getLogger(__name__)
+_module_logger.info('Import Done')
 
 ####################################################################################################
 
@@ -254,6 +262,7 @@ class QmlBookMetadata(QObject):
 
     @Property(str, notify=notes_html_changed)
     def notes_html(self):
+        import markdown
         return markdown.markdown(self._metadata.notes)
 
     @notes.setter

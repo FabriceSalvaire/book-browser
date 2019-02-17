@@ -30,12 +30,20 @@ __all__ = [
 
 ####################################################################################################
 
+import logging
+_module_logger = logging.getLogger(__name__)
+
+####################################################################################################
+
+_module_logger.info('Import...')
+
 import argparse
 # import datetime
-import logging
 import sys
 import traceback
 from pathlib import Path
+
+_module_logger.info('Python Done')
 
 # Fixme:
 from PyQt5 import QtCore
@@ -52,7 +60,9 @@ from QtShim.QtQml import qmlRegisterUncreatableType
 from QtShim.QtQuick import QQuickPaintedItem, QQuickView
 # from QtShim.QtQuickControls2 import QQuickStyle
 
-import BookBrowser
+_module_logger.info('Qt Done')
+
+# import BookBrowser
 from BookBrowser.Common.ArgparseAction import PathAction
 from BookBrowser.Common.Platform import QtPlatform
 from .ApplicationMetadata import ApplicationMetadata
@@ -63,9 +73,7 @@ from .Runnable import Worker
 
 from .rcc import BookBrowserRessource
 
-####################################################################################################
-
-_module_logger = logging.getLogger(__name__)
+_module_logger.info('Import Done')
 
 ####################################################################################################
 
@@ -198,6 +206,8 @@ class Application(QObject):
     ##############################################
 
     def __init__(self):
+
+        self._logger.info('Ctor')
 
         super().__init__()
 
@@ -428,6 +438,8 @@ class Application(QObject):
 
     def _load_qml_main(self):
 
+        self._logger.info('Load QML...')
+
         qml_path = Path(__file__).parent.joinpath('qml')
         # qml_path = 'qrc:///qml'
         self._engine.addImportPath(str(qml_path))
@@ -437,6 +449,8 @@ class Application(QObject):
         # QUrl('qrc:/qml/main.qml')
         self._engine.objectCreated.connect(self._check_qml_is_loaded)
         self._engine.load(self._qml_url)
+
+        self._logger.info('QML loaded')
 
     ##############################################
 
@@ -504,4 +518,6 @@ class Application(QObject):
     ##############################################
 
     def load_book(self, path):
+        self._logger.info('Load book {} ...'.format(path))
         self._book = QmlBook(path)
+        self._logger.info('Book loaded')
