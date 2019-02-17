@@ -253,7 +253,7 @@ Page {
 
                             // Fixme:
                             background: Rectangle {
-                                border.color: control.enabled ? "#21be2b" : "transparent"
+                                border.color: '#21be2b'
                             }
                         }
 
