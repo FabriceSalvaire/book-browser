@@ -5,6 +5,7 @@
 
 .. toctree::
     Common/ArgparseAction
+    Common/FileTools
     Common/Logging
     Common/Path
     Common/Platform

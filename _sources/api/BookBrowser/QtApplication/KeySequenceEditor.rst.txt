@@ -1,0 +1,8 @@
+
+===================
+ KeySequenceEditor
+===================
+
+.. automodule:: BookBrowser.QtApplication.KeySequenceEditor
+   :members:
+   :show-inheritance:

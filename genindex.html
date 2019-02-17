@@ -18,32 +18,35 @@
   
 
   
+  <script type="text/javascript" src="static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="static/documentation_options.js"></script>
+        <script type="text/javascript" src="static/jquery.js"></script>
+        <script type="text/javascript" src="static/underscore.js"></script>
+        <script type="text/javascript" src="static/doctools.js"></script>
+        <script type="text/javascript" src="static/language_data.js"></script>
+        <script type="text/javascript" src="static/getthecode.js"></script>
+    
+    <script type="text/javascript" src="static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="static/css/BookBrowser.css" type="text/css" />
   <link rel="stylesheet" href="static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" /> 
-
-  
-  <script src="static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -114,7 +117,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="design-notes.html">6. Design Notes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="design-notes.html#free-desktop-thumbnail-managing-standard">6.1. Free Desktop Thumbnail Managing Standard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design-notes.html#general-code-design">6.1. General Code Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design-notes.html#free-desktop-thumbnail-managing-standard">6.2. Free Desktop Thumbnail Managing Standard</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="reference-manual.html">7. API Documentation</a><ul>
@@ -124,14 +128,19 @@
 <li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/Application/ToolApplication.html">7.1.1.2. ToolApplication</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="api/BookBrowser/Book.html">7.1.2. Book</a><ul class="simple">
+<li class="toctree-l3"><a class="reference internal" href="api/BookBrowser/Book.html">7.1.2. Book</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/Book/Book.html">7.1.2.1. Book</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/Book/BookLibrary.html">7.1.2.2. BookLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/Book/BookMetadata.html">7.1.2.3. BookMetadata</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/Book/BookPage.html">7.1.2.4. BookPage</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api/BookBrowser/Common.html">7.1.3. Common</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/Common/ArgparseAction.html">7.1.3.1. ArgparseAction</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/Common/Logging.html">7.1.3.2. Logging</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/Common/Path.html">7.1.3.3. Path</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/Common/Platform.html">7.1.3.4. Platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/Common/FileTools.html">7.1.3.2. FileTools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/Common/Logging.html">7.1.3.3. Logging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/Common/Path.html">7.1.3.4. Path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/Common/Platform.html">7.1.3.5. Platform</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api/BookBrowser/Config.html">7.1.4. Config</a><ul>
@@ -139,12 +148,13 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api/BookBrowser/QtApplication.html">7.1.5. QtApplication</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/QtApplication/Message.html">7.1.5.1. Message</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/QtApplication/QmlApplication.html">7.1.5.2. QmlApplication</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/QtApplication/QmlBook.html">7.1.5.3. QmlBook</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/QtApplication/QmlScanner.html">7.1.5.4. QmlScanner</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/QtApplication/Runnable.html">7.1.5.5. Runnable</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/QtApplication/rcc.html">7.1.5.6. rcc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/QtApplication/ApplicationMetadata.html">7.1.5.1. ApplicationMetadata</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/QtApplication/KeySequenceEditor.html">7.1.5.2. KeySequenceEditor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/QtApplication/QmlApplication.html">7.1.5.3. QmlApplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/QtApplication/QmlBook.html">7.1.5.4. QmlBook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/QtApplication/QmlScanner.html">7.1.5.5. QmlScanner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/QtApplication/Runnable.html">7.1.5.6. Runnable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/BookBrowser/QtApplication/rcc.html">7.1.5.7. rcc</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api/BookBrowser/Scanner.html">7.1.6. Scanner</a><ul>
@@ -245,6 +255,7 @@
  | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#J"><strong>J</strong></a>
+ | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
@@ -257,6 +268,7 @@
  | <a href="#U"><strong>U</strong></a>
  | <a href="#V"><strong>V</strong></a>
  | <a href="#W"><strong>W</strong></a>
+ | <a href="#Y"><strong>Y</strong></a>
  
 </div>
 <h2 id="_">_</h2>
@@ -264,7 +276,7 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/BookBrowser/Scanner.html#BookBrowser.Scanner.FakeDevice.__area_constraint__">__area_constraint__ (BookBrowser.Scanner.FakeDevice attribute)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book.__book_page_cls__">__book_page_cls__ (BookBrowser.Book.Book attribute)</a>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.__book_page_cls__">__book_page_cls__ (BookBrowser.Book.Book.Book attribute)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScanner.__bool__">__bool__() (BookBrowser.QtApplication.QmlScanner.QmlScanner method)</a>
 
@@ -280,7 +292,7 @@
 </li>
       <li><a href="api/BookBrowser/Scanner.html#BookBrowser.Scanner.FakeScanner.__fake_device__">__fake_device__ (BookBrowser.Scanner.FakeScanner attribute)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book.__getitem__">__getitem__() (BookBrowser.Book.Book method)</a>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.__getitem__">__getitem__() (BookBrowser.Book.Book.Book method)</a>
 
       <ul>
         <li><a href="api/BookBrowser/Thumbnail.html#BookBrowser.Thumbnail.FreeDesktopThumbnailCache.__getitem__">(BookBrowser.Thumbnail.FreeDesktopThumbnailCache method)</a>
@@ -291,9 +303,15 @@
       <ul>
         <li><a href="api/BookBrowser/Application/ToolApplication.html#BookBrowser.Application.ToolApplication.ToolApplication.__init__">(BookBrowser.Application.ToolApplication.ToolApplication method)</a>
 </li>
-        <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book.__init__">(BookBrowser.Book.Book method)</a>
+        <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.__init__">(BookBrowser.Book.Book.Book method)</a>
 </li>
-        <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage.__init__">(BookBrowser.Book.BookPage method)</a>
+        <li><a href="api/BookBrowser/Book/BookLibrary.html#BookBrowser.Book.BookLibrary.BookLibrary.__init__">(BookBrowser.Book.BookLibrary.BookLibrary method)</a>
+</li>
+        <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata.__init__">(BookBrowser.Book.BookMetadata.BookMetadata method)</a>
+</li>
+        <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage.__init__">(BookBrowser.Book.BookPage.BookPage method)</a>
+</li>
+        <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.EmptyBookPage.__init__">(BookBrowser.Book.BookPage.EmptyBookPage method)</a>
 </li>
         <li><a href="api/BookBrowser/Common/Platform.html#BookBrowser.Common.Platform.Platform.__init__">(BookBrowser.Common.Platform.Platform method)</a>
 </li>
@@ -303,11 +321,15 @@
 </li>
         <li><a href="api/BookBrowser/Config/ConfigInstall.html#BookBrowser.Config.ConfigInstall.OsFactory.__init__">(BookBrowser.Config.ConfigInstall.OsFactory method)</a>
 </li>
+        <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor.__init__">(BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor method)</a>
+</li>
         <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application.__init__">(BookBrowser.QtApplication.QmlApplication.Application method)</a>
 </li>
         <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.QmlApplication.__init__">(BookBrowser.QtApplication.QmlApplication.QmlApplication method)</a>
 </li>
         <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBook.__init__">(BookBrowser.QtApplication.QmlBook.QmlBook method)</a>
+</li>
+        <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.__init__">(BookBrowser.QtApplication.QmlBook.QmlBookMetadata method)</a>
 </li>
         <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookPage.__init__">(BookBrowser.QtApplication.QmlBook.QmlBookPage method)</a>
 </li>
@@ -332,21 +354,29 @@
       </ul></li>
       <li><a href="api/BookBrowser/Scanner.html#BookBrowser.Scanner.Scanner.__initialised__">__initialised__ (BookBrowser.Scanner.Scanner attribute)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage.__int__">__int__() (BookBrowser.Book.BookPage method)</a>
+      <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage.__int__">__int__() (BookBrowser.Book.BookPage.BookPage method)</a>
+
+      <ul>
+        <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.EmptyBookPage.__int__">(BookBrowser.Book.BookPage.EmptyBookPage method)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book.__iter__">__iter__() (BookBrowser.Book.Book method)</a>
+      </ul></li>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.__iter__">__iter__() (BookBrowser.Book.Book.Book method)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScannerConfig.__json_filename__">__json_filename__ (BookBrowser.QtApplication.QmlScanner.QmlScannerConfig attribute)</a>
 </li>
-      <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScannerConfig.__json_keys__">__json_keys__ (BookBrowser.QtApplication.QmlScanner.QmlScannerConfig attribute)</a>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata.__json_keys__">__json_keys__ (BookBrowser.Book.BookMetadata.BookMetadata attribute)</a>
+
+      <ul>
+        <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScannerConfig.__json_keys__">(BookBrowser.QtApplication.QmlScanner.QmlScannerConfig attribute)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book.__len__">__len__() (BookBrowser.Book.Book method)</a>
+      </ul></li>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.__len__">__len__() (BookBrowser.Book.Book.Book method)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage.__lt__">__lt__() (BookBrowser.Book.BookPage method)</a>
+      <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage.__lt__">__lt__() (BookBrowser.Book.BookPage.BookPage method)</a>
 </li>
       <li><a href="api/BookBrowser/Scanner.html#BookBrowser.Scanner.FakeDevice.__mode_constraint__">__mode_constraint__ (BookBrowser.Scanner.FakeDevice attribute)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage.__repr__">__repr__() (BookBrowser.Book.BookPage method)</a>
+      <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage.__repr__">__repr__() (BookBrowser.Book.BookPage.BookPage method)</a>
 
       <ul>
         <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookPage.__repr__">(BookBrowser.QtApplication.QmlBook.QmlBookPage method)</a>
@@ -356,7 +386,7 @@
 </li>
       <li><a href="api/BookBrowser/Scanner.html#BookBrowser.Scanner.FakeScanner.__scan_count__">__scan_count__ (BookBrowser.Scanner.FakeScanner attribute)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage.__str__">__str__() (BookBrowser.Book.BookPage method)</a>
+      <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage.__str__">__str__() (BookBrowser.Book.BookPage.BookPage method)</a>
 
       <ul>
         <li><a href="api/BookBrowser/Common/Platform.html#BookBrowser.Common.Platform.Platform.__str__">(BookBrowser.Common.Platform.Platform method)</a>
@@ -372,7 +402,17 @@
 </li>
       <li><a href="api/BookBrowser/Scanner.html#BookBrowser.Scanner.FakeDevice.__y_max__">__y_max__ (BookBrowser.Scanner.FakeDevice attribute)</a>
 </li>
+      <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor._accept">_accept() (BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor method)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor._cancel">_cancel() (BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor method)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata._check">_check() (BookBrowser.Book.BookMetadata.BookMetadata static method)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata._check_int">_check_int() (BookBrowser.Book.BookMetadata.BookMetadata class method)</a>
+</li>
       <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application._check_qml_is_loaded">_check_qml_is_loaded() (BookBrowser.QtApplication.QmlApplication.Application method)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata._check_str">_check_str() (BookBrowser.Book.BookMetadata.BookMetadata class method)</a>
 </li>
       <li><a href="api/BookBrowser/Thumbnail.html#BookBrowser.Thumbnail.FreeDesktopThumbnail._delete_thumbnail">_delete_thumbnail() (BookBrowser.Thumbnail.FreeDesktopThumbnail method)</a>
 </li>
@@ -400,34 +440,50 @@
       </ul></li>
       <li><a href="api/BookBrowser/Common/Platform.html#BookBrowser.Common.Platform.Platform._get_os">_get_os() (BookBrowser.Common.Platform.Platform method)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book._get_pages">_get_pages() (BookBrowser.Book.Book method)</a>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book._get_pages">_get_pages() (BookBrowser.Book.Book.Book method)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBook._glob_files">_glob_files() (BookBrowser.QtApplication.QmlBook.QmlBook method)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book._guess_extension">_guess_extension() (BookBrowser.Book.Book method)</a>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book._guess_extension">_guess_extension() (BookBrowser.Book.Book.Book method)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application._init_application">_init_application() (BookBrowser.QtApplication.QmlApplication.Application method)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScannerConfig._json_path">_json_path() (BookBrowser.QtApplication.QmlScanner.QmlScannerConfig method)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book._list_dir">_list_dir (BookBrowser.Book.Book attribute)</a>
+      <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#BookBrowser.QtApplication.KeySequenceEditor._key_name">_key_name() (in module BookBrowser.QtApplication.KeySequenceEditor)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage._load_image">_load_image() (BookBrowser.Book.BookPage method)</a>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book._list_dir">_list_dir (BookBrowser.Book.Book.Book attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage._load_image">_load_image() (BookBrowser.Book.BookPage.BookPage method)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book._load_metadta">_load_metadta() (BookBrowser.Book.Book.Book method)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application._load_qml_main">_load_qml_main() (BookBrowser.QtApplication.QmlApplication.Application method)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application._load_translation">_load_translation() (BookBrowser.QtApplication.QmlApplication.Application method)</a>
 </li>
       <li><a href="api/BookBrowser/Application/BasicApplication.html#BookBrowser.Application.BasicApplication.BasicApplication._logger">_logger (BookBrowser.Application.BasicApplication.BasicApplication attribute)</a>
 
       <ul>
         <li><a href="api/BookBrowser/Application/ToolApplication.html#BookBrowser.Application.ToolApplication.ToolApplication._logger">(BookBrowser.Application.ToolApplication.ToolApplication attribute)</a>
 </li>
-        <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book._logger">(BookBrowser.Book.Book attribute)</a>
+        <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book._logger">(BookBrowser.Book.Book.Book attribute)</a>
 </li>
-        <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage._logger">(BookBrowser.Book.BookPage attribute)</a>
+        <li><a href="api/BookBrowser/Book/BookLibrary.html#BookBrowser.Book.BookLibrary.BookLibrary._logger">(BookBrowser.Book.BookLibrary.BookLibrary attribute)</a>
+</li>
+        <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata._logger">(BookBrowser.Book.BookMetadata.BookMetadata attribute)</a>
+</li>
+        <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage._logger">(BookBrowser.Book.BookPage.BookPage attribute)</a>
+</li>
+        <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor._logger">(BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor attribute)</a>
 </li>
         <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application._logger">(BookBrowser.QtApplication.QmlApplication.Application attribute)</a>
 </li>
         <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.QmlApplication._logger">(BookBrowser.QtApplication.QmlApplication.QmlApplication attribute)</a>
 </li>
         <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBook._logger">(BookBrowser.QtApplication.QmlBook.QmlBook attribute)</a>
+</li>
+        <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata._logger">(BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
 </li>
         <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookPage._logger">(BookBrowser.QtApplication.QmlBook.QmlBookPage attribute)</a>
 </li>
@@ -482,7 +538,7 @@
         <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application._parse_arguments">(BookBrowser.QtApplication.QmlApplication.Application method)</a>
 </li>
       </ul></li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage._parse_filename">_parse_filename() (BookBrowser.Book.BookPage method)</a>
+      <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage._parse_filename">_parse_filename() (BookBrowser.Book.BookPage.BookPage method)</a>
 </li>
       <li><a href="api/BookBrowser/Application/BasicApplication.html#BookBrowser.Application.BasicApplication.BasicApplication._post_init">_post_init() (BookBrowser.Application.BasicApplication.BasicApplication method)</a>
 
@@ -498,9 +554,15 @@
       </ul></li>
       <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application._register_qml_types">_register_qml_types() (BookBrowser.QtApplication.QmlApplication.Application method)</a>
 </li>
+      <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor._reset_keys_pressed">_reset_keys_pressed() (BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor method)</a>
+</li>
       <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScanner._set_area">_set_area() (BookBrowser.QtApplication.QmlScanner.QmlScanner method)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application._set_context_properties">_set_context_properties() (BookBrowser.QtApplication.QmlApplication.Application method)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor._set_current_sequence">_set_current_sequence() (BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor method)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata._set_dirty">_set_dirty() (BookBrowser.QtApplication.QmlBook.QmlBookMetadata method)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScanner._set_mode">_set_mode() (BookBrowser.QtApplication.QmlScanner.QmlScanner method)</a>
 </li>
@@ -512,7 +574,11 @@
       </ul></li>
       <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScanner._set_resolution">_set_resolution() (BookBrowser.QtApplication.QmlScanner.QmlScanner method)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book._test">_test() (BookBrowser.Book.Book method)</a>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book._test">_test() (BookBrowser.Book.Book.Book method)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata._to_list">_to_list() (BookBrowser.QtApplication.QmlBook.QmlBookMetadata static method)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor._validate">_validate() (BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -522,13 +588,19 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.QmlApplication.about_message">about_message (BookBrowser.QtApplication.QmlApplication.QmlApplication attribute)</a>
 </li>
-      <li><a href="api/BookBrowser/QtApplication/Message.html#BookBrowser.QtApplication.Message.about_message">about_message() (in module BookBrowser.QtApplication.Message)</a>
+      <li><a href="api/BookBrowser/QtApplication/ApplicationMetadata.html#BookBrowser.QtApplication.ApplicationMetadata.ApplicationMetadata.about_message">about_message() (BookBrowser.QtApplication.ApplicationMetadata.ApplicationMetadata class method)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book.add_page">add_page() (BookBrowser.Book.Book method)</a>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.add_page">add_page() (BookBrowser.Book.Book.Book method)</a>
 </li>
       <li><a href="api/BookBrowser/Thumbnail.html#BookBrowser.Thumbnail.FreeDesktopThumbnail.add_uri">add_uri() (BookBrowser.Thumbnail.FreeDesktopThumbnail class method)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application">Application (class in BookBrowser.QtApplication.QmlApplication)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.QmlApplication.application_name">application_name (BookBrowser.QtApplication.QmlApplication.QmlApplication attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.QmlApplication.application_url">application_url (BookBrowser.QtApplication.QmlApplication.QmlApplication attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/ApplicationMetadata.html#BookBrowser.QtApplication.ApplicationMetadata.ApplicationMetadata">ApplicationMetadata (class in BookBrowser.QtApplication.ApplicationMetadata)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScannerConfig.area">area (BookBrowser.QtApplication.QmlScanner.QmlScannerConfig attribute)</a>
 
@@ -542,14 +614,14 @@
       </ul></li>
       <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScannerConfig.area_changed">area_changed (BookBrowser.QtApplication.QmlScanner.QmlScannerConfig attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/BookBrowser/Scanner.html#BookBrowser.Scanner.FakeScanner.area_constraint">area_constraint (BookBrowser.Scanner.FakeScanner attribute)</a>
 
       <ul>
         <li><a href="api/BookBrowser/Scanner.html#BookBrowser.Scanner.Scanner.area_constraint">(BookBrowser.Scanner.Scanner attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/BookBrowser/Scanner.html#BookBrowser.Scanner.Scanner.area_constraint_x_inf">area_constraint_x_inf (BookBrowser.Scanner.Scanner attribute)</a>
 </li>
       <li><a href="api/BookBrowser/Scanner.html#BookBrowser.Scanner.Scanner.area_constraint_x_sup">area_constraint_x_sup (BookBrowser.Scanner.Scanner attribute)</a>
@@ -570,6 +642,16 @@
         <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application.args">(BookBrowser.QtApplication.QmlApplication.Application attribute)</a>
 </li>
       </ul></li>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata.authors">authors (BookBrowser.Book.BookMetadata.BookMetadata attribute)</a>
+
+      <ul>
+        <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.authors">(BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.authors_changed">authors_changed (BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata.authors_str">authors_str (BookBrowser.Book.BookMetadata.BookMetadata attribute)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -586,7 +668,7 @@
         <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.QmlApplication.book">(BookBrowser.QtApplication.QmlApplication.QmlApplication attribute)</a>
 </li>
       </ul></li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book">Book (class in BookBrowser.Book)</a>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book">Book (class in BookBrowser.Book.Book)</a>
 </li>
       <li><a href="api/BookBrowser/Config/ConfigInstall.html#BookBrowser.Config.ConfigInstall.Path.book_browser_module_directory">book_browser_module_directory (BookBrowser.Config.ConfigInstall.Path attribute)</a>
 </li>
@@ -606,12 +688,22 @@
 </li>
       <li><a href="api/BookBrowser/Book.html#module-BookBrowser.Book">BookBrowser.Book (module)</a>
 </li>
+      <li><a href="api/BookBrowser/Book/Book.html#module-BookBrowser.Book.Book">BookBrowser.Book.Book (module)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/BookLibrary.html#module-BookBrowser.Book.BookLibrary">BookBrowser.Book.BookLibrary (module)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#module-BookBrowser.Book.BookMetadata">BookBrowser.Book.BookMetadata (module)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/BookPage.html#module-BookBrowser.Book.BookPage">BookBrowser.Book.BookPage (module)</a>
+</li>
       <li><a href="api/BookBrowser/Common.html#module-BookBrowser.Common">BookBrowser.Common (module)</a>
 </li>
       <li><a href="api/BookBrowser/Common/ArgparseAction.html#module-BookBrowser.Common.ArgparseAction">BookBrowser.Common.ArgparseAction (module)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/BookBrowser/Common/FileTools.html#module-BookBrowser.Common.FileTools">BookBrowser.Common.FileTools (module)</a>
+</li>
       <li><a href="api/BookBrowser/Common/Logging.html#module-BookBrowser.Common.Logging">BookBrowser.Common.Logging (module)</a>
 </li>
       <li><a href="api/BookBrowser/Common/Logging/Logging.html#module-BookBrowser.Common.Logging.Logging">BookBrowser.Common.Logging.Logging (module)</a>
@@ -626,7 +718,9 @@
 </li>
       <li><a href="api/BookBrowser/QtApplication.html#module-BookBrowser.QtApplication">BookBrowser.QtApplication (module)</a>
 </li>
-      <li><a href="api/BookBrowser/QtApplication/Message.html#module-BookBrowser.QtApplication.Message">BookBrowser.QtApplication.Message (module)</a>
+      <li><a href="api/BookBrowser/QtApplication/ApplicationMetadata.html#module-BookBrowser.QtApplication.ApplicationMetadata">BookBrowser.QtApplication.ApplicationMetadata (module)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#module-BookBrowser.QtApplication.KeySequenceEditor">BookBrowser.QtApplication.KeySequenceEditor (module)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#module-BookBrowser.QtApplication.QmlApplication">BookBrowser.QtApplication.QmlApplication (module)</a>
 </li>
@@ -644,7 +738,11 @@
 </li>
       <li><a href="api/BookBrowser/Thumbnail.html#module-BookBrowser.Thumbnail">BookBrowser.Thumbnail (module)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage">BookPage (class in BookBrowser.Book)</a>
+      <li><a href="api/BookBrowser/Book/BookLibrary.html#BookBrowser.Book.BookLibrary.BookLibrary">BookLibrary (class in BookBrowser.Book.BookLibrary)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata">BookMetadata (class in BookBrowser.Book.BookMetadata)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage">BookPage (class in BookBrowser.Book.BookPage)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -652,11 +750,11 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book.check">check() (BookBrowser.Book.Book method)</a>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.check">check() (BookBrowser.Book.Book.Book method)</a>
 </li>
       <li><a href="api/BookBrowser/Thumbnail.html#BookBrowser.Thumbnail.FreeDesktopThumbnailCache.clear_cache">clear_cache() (BookBrowser.Thumbnail.FreeDesktopThumbnailCache method)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage.compare_histogram">compare_histogram() (BookBrowser.Book.BookPage method)</a>
+      <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage.compare_histogram">compare_histogram() (BookBrowser.Book.BookPage.BookPage method)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScanner.config">config (BookBrowser.QtApplication.QmlScanner.QmlScanner attribute)</a>
 </li>
@@ -689,7 +787,13 @@
       <ul>
         <li><a href="api/BookBrowser/Application/ToolApplication.html#BookBrowser.Application.ToolApplication.ToolApplication.description">(BookBrowser.Application.ToolApplication.ToolApplication attribute)</a>
 </li>
+        <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata.description">(BookBrowser.Book.BookMetadata.BookMetadata attribute)</a>
+</li>
+        <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.description">(BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
+</li>
       </ul></li>
+      <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.description_changed">description_changed (BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
+</li>
       <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScanner.device">device (BookBrowser.QtApplication.QmlScanner.QmlScanner attribute)</a>
 
       <ul>
@@ -710,7 +814,17 @@
       </ul></li>
       <li><a href="api/BookBrowser/Config/ConfigInstall.html#BookBrowser.Config.ConfigInstall.Logging.directories">directories (BookBrowser.Config.ConfigInstall.Logging attribute)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage.dual_image">dual_image (BookBrowser.Book.BookPage attribute)</a>
+      <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.dirty">dirty (BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.dirty_changed">dirty_changed (BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/ApplicationMetadata.html#BookBrowser.QtApplication.ApplicationMetadata.ApplicationMetadata.display_name">display_name (BookBrowser.QtApplication.ApplicationMetadata.ApplicationMetadata attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor.display_sequence">display_sequence (BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor.display_sequence_changed">display_sequence_changed (BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage.dual_image">dual_image (BookBrowser.Book.BookPage.BookPage attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -718,6 +832,8 @@
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.EmptyBookPage">EmptyBookPage (class in BookBrowser.Book.BookPage)</a>
+</li>
       <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScanner.end_time">end_time() (BookBrowser.QtApplication.QmlScanner.QmlScanner method)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/Runnable.html#BookBrowser.QtApplication.Runnable.WorkerSignals.error">error (BookBrowser.QtApplication.Runnable.WorkerSignals attribute)</a>
@@ -738,10 +854,10 @@
         <li><a href="api/BookBrowser/Scanner.html#BookBrowser.Scanner.Scanner.exit">(BookBrowser.Scanner.Scanner class method)</a>
 </li>
       </ul></li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book.extension">extension (BookBrowser.Book.Book attribute)</a>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.extension">extension (BookBrowser.Book.Book.Book attribute)</a>
 
       <ul>
-        <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage.extension">(BookBrowser.Book.BookPage attribute)</a>
+        <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage.extension">(BookBrowser.Book.BookPage.BookPage attribute)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -760,11 +876,11 @@
         <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScanner.file_exists_error">(BookBrowser.QtApplication.QmlScanner.QmlScanner attribute)</a>
 </li>
       </ul></li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage.file_index">file_index (BookBrowser.Book.BookPage attribute)</a>
+      <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage.file_index">file_index (BookBrowser.Book.BookPage.BookPage attribute)</a>
 </li>
       <li><a href="api/BookBrowser/Scanner.html#BookBrowser.Scanner.FileExistsError">FileExistsError</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage.filename">filename (BookBrowser.Book.BookPage attribute)</a>
+      <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage.filename">filename (BookBrowser.Book.BookPage.BookPage attribute)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScannerConfig.filename_pattern">filename_pattern (BookBrowser.QtApplication.QmlScanner.QmlScannerConfig attribute)</a>
 </li>
@@ -780,23 +896,27 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/BookBrowser/QtApplication/Runnable.html#BookBrowser.QtApplication.Runnable.WorkerSignals.finished">finished (BookBrowser.QtApplication.Runnable.WorkerSignals attribute)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book.first_page">first_page (BookBrowser.Book.Book attribute)</a>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.first_page">first_page (BookBrowser.Book.Book.Book attribute)</a>
 
       <ul>
         <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBook.first_page">(BookBrowser.QtApplication.QmlBook.QmlBook attribute)</a>
 </li>
       </ul></li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book.fix_empty_pages">fix_empty_pages() (BookBrowser.Book.Book method)</a>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.fix_empty_pages">fix_empty_pages() (BookBrowser.Book.Book.Book method)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage.flip">flip() (BookBrowser.Book.BookPage method)</a>
+      <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage.flip">flip() (BookBrowser.Book.BookPage.BookPage method)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book.flip_from_page">flip_from_page() (BookBrowser.Book.Book method)</a>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.flip_from_page">flip_from_page() (BookBrowser.Book.Book.Book method)</a>
 
       <ul>
         <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBook.flip_from_page">(BookBrowser.QtApplication.QmlBook.QmlBook method)</a>
 </li>
       </ul></li>
       <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookPage.flip_page">flip_page() (BookBrowser.QtApplication.QmlBook.QmlBookPage method)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor.focusInEvent">focusInEvent() (BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor method)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor.focusOutEvent">focusOutEvent() (BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor method)</a>
 </li>
       <li><a href="api/BookBrowser/Thumbnail.html#BookBrowser.Thumbnail.FreeDesktopThumbnail">FreeDesktopThumbnail (class in BookBrowser.Thumbnail)</a>
 </li>
@@ -808,11 +928,11 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage.get_histogram">get_histogram() (BookBrowser.Book.BookPage method)</a>
+      <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage.get_histogram">get_histogram() (BookBrowser.Book.BookPage.BookPage method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage.guess_orientation">guess_orientation() (BookBrowser.Book.BookPage method)</a>
+      <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage.guess_orientation">guess_orientation() (BookBrowser.Book.BookPage.BookPage method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -820,12 +940,16 @@
 <h2 id="H">H</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScanner.has_device">has_device (BookBrowser.QtApplication.QmlScanner.QmlScanner attribute)</a>
+      <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor.has_changed">has_changed (BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor attribute)</a>
 </li>
-      <li><a href="api/BookBrowser/Thumbnail.html#BookBrowser.Thumbnail.FreeDesktopThumbnail.has_large_thumbnail">has_large_thumbnail() (BookBrowser.Thumbnail.FreeDesktopThumbnail method)</a>
+      <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor.has_changed_changed">has_changed_changed (BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScanner.has_device">has_device (BookBrowser.QtApplication.QmlScanner.QmlScanner attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/BookBrowser/Thumbnail.html#BookBrowser.Thumbnail.FreeDesktopThumbnail.has_large_thumbnail">has_large_thumbnail() (BookBrowser.Thumbnail.FreeDesktopThumbnail method)</a>
+</li>
       <li><a href="api/BookBrowser/Thumbnail.html#BookBrowser.Thumbnail.FreeDesktopThumbnail.has_normal_thumbnail">has_normal_thumbnail() (BookBrowser.Thumbnail.FreeDesktopThumbnail method)</a>
 </li>
       <li><a href="api/BookBrowser/Thumbnail.html#BookBrowser.Thumbnail.FreeDesktopThumbnail.has_thumbnail">has_thumbnail() (BookBrowser.Thumbnail.FreeDesktopThumbnail method)</a>
@@ -836,7 +960,7 @@
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage.image">image (BookBrowser.Book.BookPage attribute)</a>
+      <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage.image">image (BookBrowser.Book.BookPage.BookPage attribute)</a>
 </li>
       <li><a href="api/BookBrowser/Thumbnail.html#BookBrowser.Thumbnail.FreeDesktopThumbnail.IMAGE_EXTENSION">IMAGE_EXTENSION (BookBrowser.Thumbnail.FreeDesktopThumbnail attribute)</a>
 </li>
@@ -858,8 +982,6 @@
         <li><a href="api/BookBrowser/Application/ToolApplication.html#BookBrowser.Application.ToolApplication.ToolApplication.init_arguments">(BookBrowser.Application.ToolApplication.ToolApplication method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application.init_scanner">init_scanner() (BookBrowser.QtApplication.QmlApplication.Application method)</a>
 
       <ul>
@@ -872,15 +994,35 @@
         <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application.instance">(BookBrowser.QtApplication.QmlApplication.Application attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage.is_empty">is_empty (BookBrowser.Book.BookPage.BookPage attribute)</a>
+
+      <ul>
+        <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.EmptyBookPage.is_empty">(BookBrowser.Book.BookPage.EmptyBookPage attribute)</a>
+</li>
+        <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookPage.is_empty">(BookBrowser.QtApplication.QmlBook.QmlBookPage attribute)</a>
+</li>
+      </ul></li>
       <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScannerConfig.is_maximized">is_maximized (BookBrowser.QtApplication.QmlScanner.QmlScannerConfig attribute)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScannerConfig.is_maximized_changed">is_maximized_changed (BookBrowser.QtApplication.QmlScanner.QmlScannerConfig attribute)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBook.is_valid_page_number">is_valid_page_number() (BookBrowser.QtApplication.QmlBook.QmlBook method)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book.iter_by_mtime">iter_by_mtime() (BookBrowser.Book.Book method)</a>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata.isbn">isbn (BookBrowser.Book.BookMetadata.BookMetadata attribute)</a>
+
+      <ul>
+        <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.isbn">(BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book.iter_by_page_number">iter_by_page_number() (BookBrowser.Book.Book method)</a>
+      </ul></li>
+      <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.isbn_changed">isbn_changed (BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata.isbn_str">isbn_str (BookBrowser.Book.BookMetadata.BookMetadata attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.iter_by_mtime">iter_by_mtime() (BookBrowser.Book.Book.Book method)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.iter_by_page_number">iter_by_page_number() (BookBrowser.Book.Book.Book method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -888,11 +1030,41 @@
 <h2 id="J">J</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book.joinpath">joinpath() (BookBrowser.Book.Book method)</a>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.joinpath">joinpath() (BookBrowser.Book.Book.Book method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata.JSON_FILENAME">JSON_FILENAME (BookBrowser.Book.BookMetadata.BookMetadata attribute)</a>
+</li>
       <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScannerConfig.json_path">json_path (BookBrowser.QtApplication.QmlScanner.QmlScannerConfig attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#BookBrowser.QtApplication.KeySequenceEditor.KeyHelper.key_name">key_name() (BookBrowser.QtApplication.KeySequenceEditor.KeyHelper method)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#BookBrowser.QtApplication.KeySequenceEditor.KeyHelper">KeyHelper (class in BookBrowser.QtApplication.KeySequenceEditor)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor.keyPressEvent">keyPressEvent() (BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor method)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor.keyReleaseEvent">keyReleaseEvent() (BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor">KeySequenceEditor (class in BookBrowser.QtApplication.KeySequenceEditor)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata.keywords">keywords (BookBrowser.Book.BookMetadata.BookMetadata attribute)</a>
+
+      <ul>
+        <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.keywords">(BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.keywords_changed">keywords_changed (BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata.keywords_str">keywords_str (BookBrowser.Book.BookMetadata.BookMetadata attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -900,6 +1072,14 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata.language">language (BookBrowser.Book.BookMetadata.BookMetadata attribute)</a>
+
+      <ul>
+        <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.language">(BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.language_changed">language_changed (BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
+</li>
       <li><a href="api/BookBrowser/Thumbnail.html#BookBrowser.Thumbnail.FreeDesktopThumbnail.large">large (BookBrowser.Thumbnail.FreeDesktopThumbnail attribute)</a>
 </li>
       <li><a href="api/BookBrowser/Thumbnail.html#BookBrowser.Thumbnail.FreeDesktopThumbnail.large_path">large_path (BookBrowser.Thumbnail.FreeDesktopThumbnail attribute)</a>
@@ -918,15 +1098,15 @@
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookPage.large_thumbnail_size">large_thumbnail_size (BookBrowser.QtApplication.QmlBook.QmlBookPage attribute)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book.last_page">last_page (BookBrowser.Book.Book attribute)</a>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.last_page">last_page (BookBrowser.Book.Book.Book attribute)</a>
 
       <ul>
         <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBook.last_page">(BookBrowser.QtApplication.QmlBook.QmlBook attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book.last_page_number">last_page_number (BookBrowser.Book.Book attribute)</a>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.last_page_number">last_page_number (BookBrowser.Book.Book.Book attribute)</a>
 
       <ul>
         <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBook.last_page_number">(BookBrowser.QtApplication.QmlBook.QmlBook attribute)</a>
@@ -944,6 +1124,8 @@
         <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.QmlApplication.load_book">(BookBrowser.QtApplication.QmlApplication.QmlApplication method)</a>
 </li>
       </ul></li>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata.load_json">load_json() (BookBrowser.Book.BookMetadata.BookMetadata class method)</a>
+</li>
       <li><a href="api/BookBrowser/Config/ConfigInstall.html#BookBrowser.Config.ConfigInstall.Logging">Logging (class in BookBrowser.Config.ConfigInstall)</a>
 </li>
   </ul></td>
@@ -961,6 +1143,14 @@
 </li>
       </ul></li>
       <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScannerConfig.maximized">maximized (BookBrowser.QtApplication.QmlScanner.QmlScannerConfig attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.metadata">metadata (BookBrowser.Book.Book.Book attribute)</a>
+
+      <ul>
+        <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBook.metadata">(BookBrowser.QtApplication.QmlBook.QmlBook attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.metadata_path">metadata_path (BookBrowser.Book.Book.Book attribute)</a>
 </li>
       <li><a href="api/BookBrowser/Thumbnail.html#BookBrowser.Thumbnail.FreeDesktopThumbnail.mime_type">mime_type (BookBrowser.Thumbnail.FreeDesktopThumbnail attribute)</a>
 </li>
@@ -984,7 +1174,7 @@
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScanner.modes">modes (BookBrowser.QtApplication.QmlScanner.QmlScanner attribute)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage.mtime">mtime (BookBrowser.Book.BookPage attribute)</a>
+      <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage.mtime">mtime (BookBrowser.Book.BookPage.BookPage attribute)</a>
 
       <ul>
         <li><a href="api/BookBrowser/Thumbnail.html#BookBrowser.Thumbnail.FreeDesktopThumbnail.mtime">(BookBrowser.Thumbnail.FreeDesktopThumbnail attribute)</a>
@@ -997,8 +1187,16 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/BookBrowser/Config/ConfigInstall.html#BookBrowser.Config.ConfigInstall.OsFactory.name">name (BookBrowser.Config.ConfigInstall.OsFactory attribute)</a>
+
+      <ul>
+        <li><a href="api/BookBrowser/QtApplication/ApplicationMetadata.html#BookBrowser.QtApplication.ApplicationMetadata.ApplicationMetadata.name">(BookBrowser.QtApplication.ApplicationMetadata.ApplicationMetadata attribute)</a>
 </li>
+      </ul></li>
       <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBook.new_page">new_page (BookBrowser.QtApplication.QmlBook.QmlBook attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor.new_sequence">new_sequence (BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor.new_sequence_changed">new_sequence_changed (BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor attribute)</a>
 </li>
       <li><a href="api/BookBrowser/Thumbnail.html#BookBrowser.Thumbnail.FreeDesktopThumbnail.normal">normal (BookBrowser.Thumbnail.FreeDesktopThumbnail attribute)</a>
 </li>
@@ -1012,14 +1210,30 @@
 </li>
       <li><a href="api/BookBrowser/Thumbnail.html#BookBrowser.Thumbnail.FreeDesktopThumbnailCache.normal_thumbnail_path">normal_thumbnail_path() (BookBrowser.Thumbnail.FreeDesktopThumbnailCache method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book.number_of_digits">number_of_digits (BookBrowser.Book.Book attribute)</a>
-</li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book.number_of_pages">number_of_pages (BookBrowser.Book.Book attribute)</a>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata.notes">notes (BookBrowser.Book.BookMetadata.BookMetadata attribute)</a>
 
       <ul>
+        <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.notes">(BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.notes_changed">notes_changed (BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.notes_html">notes_html (BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.notes_html_changed">notes_html_changed (BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.number_of_digits">number_of_digits (BookBrowser.Book.Book.Book attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.number_of_pages">number_of_pages (BookBrowser.Book.Book.Book attribute)</a>
+
+      <ul>
+        <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata.number_of_pages">(BookBrowser.Book.BookMetadata.BookMetadata attribute)</a>
+</li>
         <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBook.number_of_pages">(BookBrowser.QtApplication.QmlBook.QmlBook attribute)</a>
+</li>
+        <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.number_of_pages">(BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
 </li>
         <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScannerConfig.number_of_pages">(BookBrowser.QtApplication.QmlScanner.QmlScannerConfig attribute)</a>
 </li>
@@ -1027,6 +1241,8 @@
       <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBook.number_of_pages_changed">number_of_pages_changed (BookBrowser.QtApplication.QmlBook.QmlBook attribute)</a>
 
       <ul>
+        <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.number_of_pages_changed">(BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
+</li>
         <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScannerConfig.number_of_pages_changed">(BookBrowser.QtApplication.QmlScanner.QmlScannerConfig attribute)</a>
 </li>
       </ul></li>
@@ -1044,15 +1260,25 @@
 </li>
       <li><a href="api/BookBrowser/Config/ConfigInstall.html#BookBrowser.Config.ConfigInstall.OsFactory.on_windows">on_windows (BookBrowser.Config.ConfigInstall.OsFactory attribute)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage.orientation">orientation (BookBrowser.Book.BookPage attribute)</a>
+      <li><a href="api/BookBrowser/QtApplication/ApplicationMetadata.html#BookBrowser.QtApplication.ApplicationMetadata.ApplicationMetadata.organisation_domain">organisation_domain (BookBrowser.QtApplication.ApplicationMetadata.ApplicationMetadata attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/ApplicationMetadata.html#BookBrowser.QtApplication.ApplicationMetadata.ApplicationMetadata.organisation_name">organisation_name (BookBrowser.QtApplication.ApplicationMetadata.ApplicationMetadata attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage.orientation">orientation (BookBrowser.Book.BookPage.BookPage attribute)</a>
 
       <ul>
+        <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.EmptyBookPage.orientation">(BookBrowser.Book.BookPage.EmptyBookPage attribute)</a>
+</li>
         <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookPage.orientation">(BookBrowser.QtApplication.QmlBook.QmlBookPage attribute)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookPage.orientation_changed">orientation_changed (BookBrowser.QtApplication.QmlBook.QmlBookPage attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor.original_sequence">original_sequence (BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor.original_sequence_changed">original_sequence_changed (BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor attribute)</a>
 </li>
       <li><a href="api/BookBrowser/Config/ConfigInstall.html#BookBrowser.Config.ConfigInstall.OsFactory">OsFactory (class in BookBrowser.Config.ConfigInstall)</a>
 </li>
@@ -1070,13 +1296,23 @@
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBook.page">page() (BookBrowser.QtApplication.QmlBook.QmlBook method)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage.page_number">page_number (BookBrowser.Book.BookPage attribute)</a>
+      <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage.page_number">page_number (BookBrowser.Book.BookPage.BookPage attribute)</a>
 
       <ul>
+        <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.EmptyBookPage.page_number">(BookBrowser.Book.BookPage.EmptyBookPage attribute)</a>
+</li>
         <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookPage.page_number">(BookBrowser.QtApplication.QmlBook.QmlBookPage attribute)</a>
 </li>
       </ul></li>
       <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookPage.page_number_changed">page_number_changed (BookBrowser.QtApplication.QmlBook.QmlBookPage attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata.page_offset">page_offset (BookBrowser.Book.BookMetadata.BookMetadata attribute)</a>
+
+      <ul>
+        <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.page_offset">(BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.page_offset_changed">page_offset_changed (BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBook.pages">pages (BookBrowser.QtApplication.QmlBook.QmlBook attribute)</a>
 </li>
@@ -1084,12 +1320,16 @@
 </li>
       <li><a href="api/BookBrowser/Common/Path.html#BookBrowser.Common.Path.parent_directory_of">parent_directory_of() (in module BookBrowser.Common.Path)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book.path">path (BookBrowser.Book.Book attribute)</a>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.path">path (BookBrowser.Book.Book.Book attribute)</a>
 
       <ul>
-        <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage.path">(BookBrowser.Book.BookPage attribute)</a>
+        <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata.path">(BookBrowser.Book.BookMetadata.BookMetadata attribute)</a>
+</li>
+        <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage.path">(BookBrowser.Book.BookPage.BookPage attribute)</a>
 </li>
         <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBook.path">(BookBrowser.QtApplication.QmlBook.QmlBook attribute)</a>
+</li>
+        <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.path">(BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
 </li>
         <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookPage.path">(BookBrowser.QtApplication.QmlBook.QmlBookPage attribute)</a>
 </li>
@@ -1108,6 +1348,8 @@
         <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScannerConfig.path_changed">(BookBrowser.QtApplication.QmlScanner.QmlScannerConfig attribute)</a>
 </li>
       </ul></li>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata.path_str">path_str (BookBrowser.Book.BookMetadata.BookMetadata attribute)</a>
+</li>
       <li><a href="api/BookBrowser/Common/ArgparseAction.html#BookBrowser.Common.ArgparseAction.PathAction">PathAction (class in BookBrowser.Common.ArgparseAction)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application.platform">platform (BookBrowser.QtApplication.QmlApplication.Application attribute)</a>
@@ -1123,6 +1365,14 @@
 </li>
       </ul></li>
       <li><a href="api/BookBrowser/QtApplication/Runnable.html#BookBrowser.QtApplication.Runnable.WorkerSignals.progress">progress (BookBrowser.QtApplication.Runnable.WorkerSignals attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata.publisher">publisher (BookBrowser.Book.BookMetadata.BookMetadata attribute)</a>
+
+      <ul>
+        <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.publisher">(BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.publisher_changed">publisher_changed (BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1142,6 +1392,8 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata">QmlBookMetadata (class in BookBrowser.QtApplication.QmlBook)</a>
+</li>
       <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookPage">QmlBookPage (class in BookBrowser.QtApplication.QmlBook)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScanner">QmlScanner (class in BookBrowser.QtApplication.QmlScanner)</a>
@@ -1158,21 +1410,23 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage.release_image">release_image() (BookBrowser.Book.BookPage method)</a>
+      <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage.release_image">release_image() (BookBrowser.Book.BookPage.BookPage method)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book.remove_page_number">remove_page_number() (BookBrowser.Book.Book method)</a>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.remove_page_number">remove_page_number() (BookBrowser.Book.Book.Book method)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage.rename">rename() (BookBrowser.Book.BookPage method)</a>
+      <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage.rename">rename() (BookBrowser.Book.BookPage.BookPage method)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.rename_file">rename_file() (in module BookBrowser.Book)</a>
+      <li><a href="api/BookBrowser/Common/FileTools.html#BookBrowser.Common.FileTools.rename_file">rename_file() (in module BookBrowser.Common.FileTools)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book.renumerate_pages">renumerate_pages() (BookBrowser.Book.Book method)</a>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.renumerate_pages">renumerate_pages() (BookBrowser.Book.Book.Book method)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookPage.request_large_thumbnail">request_large_thumbnail() (BookBrowser.QtApplication.QmlBook.QmlBookPage method)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.ScannerImageProvider.requestImage">requestImage() (BookBrowser.QtApplication.QmlScanner.ScannerImageProvider method)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.ScannerImageProvider.requestPixmap">requestPixmap() (BookBrowser.QtApplication.QmlScanner.ScannerImageProvider method)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/KeySequenceEditor.html#BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor.reset">reset() (BookBrowser.QtApplication.KeySequenceEditor.KeySequenceEditor method)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScannerConfig.resolution">resolution (BookBrowser.QtApplication.QmlScanner.QmlScannerConfig attribute)</a>
 
@@ -1210,11 +1464,21 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/BookBrowser/Thumbnail.html#BookBrowser.Thumbnail.FreeDesktopThumbnail.SAMPLING">SAMPLING (BookBrowser.Thumbnail.FreeDesktopThumbnail attribute)</a>
 </li>
-      <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScannerConfig.save">save() (BookBrowser.QtApplication.QmlScanner.QmlScannerConfig method)</a>
-</li>
-      <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScanner.scan">scan() (BookBrowser.QtApplication.QmlScanner.QmlScanner method)</a>
+      <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.save">save() (BookBrowser.QtApplication.QmlBook.QmlBookMetadata method)</a>
 
       <ul>
+        <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScannerConfig.save">(BookBrowser.QtApplication.QmlScanner.QmlScannerConfig method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata.save_json">save_json() (BookBrowser.Book.BookMetadata.BookMetadata method)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.save_metadata">save_metadata() (BookBrowser.Book.Book.Book method)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/BookLibrary.html#BookBrowser.Book.BookLibrary.BookLibrary.scan">scan() (BookBrowser.Book.BookLibrary.BookLibrary method)</a>
+
+      <ul>
+        <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScanner.scan">(BookBrowser.QtApplication.QmlScanner.QmlScanner method)</a>
+</li>
         <li><a href="api/BookBrowser/Scanner.html#BookBrowser.Scanner.Scanner.scan">(BookBrowser.Scanner.Scanner method)</a>
 </li>
       </ul></li>
@@ -1238,12 +1502,12 @@
         <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.QmlApplication.scanner">(BookBrowser.QtApplication.QmlApplication.QmlApplication attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/BookBrowser/Scanner.html#BookBrowser.Scanner.Scanner">Scanner (class in BookBrowser.Scanner)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application.scanner_image_provider">scanner_image_provider (BookBrowser.QtApplication.QmlApplication.Application attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application.scanner_ready">scanner_ready (BookBrowser.QtApplication.QmlApplication.Application attribute)</a>
 
       <ul>
@@ -1256,7 +1520,7 @@
 </li>
       <li><a href="api/BookBrowser/Scanner.html#BookBrowser.Scanner.Scanner.set_area_as_scale">set_area_as_scale() (BookBrowser.Scanner.Scanner method)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.Book.set_orientation">set_orientation() (BookBrowser.Book.Book method)</a>
+      <li><a href="api/BookBrowser/Book/Book.html#BookBrowser.Book.Book.Book.set_orientation">set_orientation() (BookBrowser.Book.Book.Book method)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlApplication.html#BookBrowser.QtApplication.QmlApplication.Application.setup_gui_application">setup_gui_application() (BookBrowser.QtApplication.QmlApplication.Application class method)</a>
 </li>
@@ -1288,13 +1552,25 @@
         <li><a href="api/BookBrowser/Thumbnail.html#BookBrowser.Thumbnail.FreeDesktopThumbnailCache.thumbnail_path">(BookBrowser.Thumbnail.FreeDesktopThumbnailCache method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookPage.thumbnail_ready">thumbnail_ready (BookBrowser.QtApplication.QmlBook.QmlBookPage attribute)</a>
 </li>
-      <li><a href="api/BookBrowser/Book.html#BookBrowser.Book.BookPage.title">title (BookBrowser.Book.BookPage attribute)</a>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata.title">title (BookBrowser.Book.BookMetadata.BookMetadata attribute)</a>
+
+      <ul>
+        <li><a href="api/BookBrowser/Book/BookPage.html#BookBrowser.Book.BookPage.BookPage.title">(BookBrowser.Book.BookPage.BookPage attribute)</a>
+</li>
+        <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.title">(BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.title_changed">title_changed (BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
 </li>
       <li><a href="api/BookBrowser/Common/Path.html#BookBrowser.Common.Path.to_absolute_path">to_absolute_path() (in module BookBrowser.Common.Path)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata.to_dict">to_dict() (BookBrowser.Book.BookMetadata.BookMetadata method)</a>
+</li>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata.to_json">to_json() (BookBrowser.Book.BookMetadata.BookMetadata method)</a>
 </li>
       <li><a href="api/BookBrowser/Application/ToolApplication.html#BookBrowser.Application.ToolApplication.ToolApplication">ToolApplication (class in BookBrowser.Application.ToolApplication)</a>
 </li>
@@ -1304,7 +1580,17 @@
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata.update_from_isbn">update_from_isbn() (BookBrowser.Book.BookMetadata.BookMetadata method)</a>
+
+      <ul>
+        <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.update_from_isbn">(BookBrowser.QtApplication.QmlBook.QmlBookMetadata method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/BookBrowser/Thumbnail.html#BookBrowser.Thumbnail.FreeDesktopThumbnail.uri">uri (BookBrowser.Thumbnail.FreeDesktopThumbnail attribute)</a>
+</li>
+      <li><a href="api/BookBrowser/QtApplication/ApplicationMetadata.html#BookBrowser.QtApplication.ApplicationMetadata.ApplicationMetadata.url">url (BookBrowser.QtApplication.ApplicationMetadata.ApplicationMetadata attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1313,6 +1599,10 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/BookBrowser/Scanner.html#BookBrowser.Scanner.FakeDevice.vendor">vendor (BookBrowser.Scanner.FakeDevice attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/BookBrowser/QtApplication/ApplicationMetadata.html#BookBrowser.QtApplication.ApplicationMetadata.ApplicationMetadata.version">version (BookBrowser.QtApplication.ApplicationMetadata.ApplicationMetadata attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1329,6 +1619,24 @@
       <li><a href="api/BookBrowser/QtApplication/Runnable.html#BookBrowser.QtApplication.Runnable.WorkerSignals">WorkerSignals (class in BookBrowser.QtApplication.Runnable)</a>
 </li>
       <li><a href="api/BookBrowser/QtApplication/QmlScanner.html#BookBrowser.QtApplication.QmlScanner.QmlScanner.working_directory">working_directory (BookBrowser.QtApplication.QmlScanner.QmlScanner attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Y">Y</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/BookBrowser/Book/BookMetadata.html#BookBrowser.Book.BookMetadata.BookMetadata.year">year (BookBrowser.Book.BookMetadata.BookMetadata attribute)</a>
+
+      <ul>
+        <li><a href="api/BookBrowser/QtApplication/ApplicationMetadata.html#BookBrowser.QtApplication.ApplicationMetadata.ApplicationMetadata.year">(BookBrowser.QtApplication.ApplicationMetadata.ApplicationMetadata attribute)</a>
+</li>
+        <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.year">(BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookMetadata.year_changed">year_changed (BookBrowser.QtApplication.QmlBook.QmlBookMetadata attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1362,27 +1670,16 @@
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="static/documentation_options.js"></script>
-        <script type="text/javascript" src="static/jquery.js"></script>
-        <script type="text/javascript" src="static/underscore.js"></script>
-        <script type="text/javascript" src="static/doctools.js"></script>
-        <script type="text/javascript" src="static/language_data.js"></script>
-        <script type="text/javascript" src="static/getthecode.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(false);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

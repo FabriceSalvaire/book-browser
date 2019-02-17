@@ -1,0 +1,472 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.1.2.4. BookPage &mdash; BookBrowser 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../static/jquery.js"></script>
+        <script type="text/javascript" src="../../../static/underscore.js"></script>
+        <script type="text/javascript" src="../../../static/doctools.js"></script>
+        <script type="text/javascript" src="../../../static/language_data.js"></script>
+        <script type="text/javascript" src="../../../static/getthecode.js"></script>
+    
+    <script type="text/javascript" src="../../../static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../static/css/BookBrowser.css" type="text/css" />
+  <link rel="stylesheet" href="../../../static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="7.1.3. Common" href="../Common.html" />
+    <link rel="prev" title="7.1.2.3. BookMetadata" href="BookMetadata.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> BookBrowser
+          
+
+          
+            
+            <img src="../../../static/logo-64.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">1. Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#what-is-bookbrowser">1.1. What is BookBrowser ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#how-is-bookbrowser-licensed">1.2. How is BookBrowser licensed ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#going-further-with-bookbrowser">1.3. Going further with BookBrowser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#which-platforms-are-supported-by-bookbrowser">1.4. Which platforms are supported by BookBrowser ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#how-to-install-bookbrowser">1.5. How to install BookBrowser ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#which-version-of-python-is-required">1.6. Which version of Python is required ?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../news.html">2. News</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../news.html#v0-2019-01-01">2.1. V0 2019-01-01</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../roadmap.html">3. Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">4. Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#on-windows">4.1. On Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#on-linux">4.2. On Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#on-osx">4.3. On OSX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#installation-from-pypi-repository">4.4. Installation from PyPi Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install-a-more-recent-version-from-github">4.5. Install a more recent version from Github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#installation-from-source">4.6. Installation from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#dependencies">4.7. Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">5. User FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq.html#how-to-get-help-or-report-an-issue">5.1. How to get help or report an issue ?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../design-notes.html">6. Design Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../design-notes.html#general-code-design">6.1. General Code Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../design-notes.html#free-desktop-thumbnail-managing-standard">6.2. Free Desktop Thumbnail Managing Standard</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../reference-manual.html">7. API Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../BookBrowser.html">7.1. BookBrowser</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../Application.html">7.1.1. Application</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Application/BasicApplication.html">7.1.1.1. BasicApplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Application/ToolApplication.html">7.1.1.2. ToolApplication</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="../Book.html">7.1.2. Book</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="Book.html">7.1.2.1. Book</a></li>
+<li class="toctree-l4"><a class="reference internal" href="BookLibrary.html">7.1.2.2. BookLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="BookMetadata.html">7.1.2.3. BookMetadata</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">7.1.2.4. BookPage</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Common.html">7.1.3. Common</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Common/ArgparseAction.html">7.1.3.1. ArgparseAction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Common/FileTools.html">7.1.3.2. FileTools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Common/Logging.html">7.1.3.3. Logging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Common/Path.html">7.1.3.4. Path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Common/Platform.html">7.1.3.5. Platform</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Config.html">7.1.4. Config</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Config/ConfigInstall.html">7.1.4.1. ConfigInstall</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../QtApplication.html">7.1.5. QtApplication</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../QtApplication/ApplicationMetadata.html">7.1.5.1. ApplicationMetadata</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../QtApplication/KeySequenceEditor.html">7.1.5.2. KeySequenceEditor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../QtApplication/QmlApplication.html">7.1.5.3. QmlApplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../QtApplication/QmlBook.html">7.1.5.4. QmlBook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../QtApplication/QmlScanner.html">7.1.5.5. QmlScanner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../QtApplication/Runnable.html">7.1.5.6. Runnable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../QtApplication/rcc.html">7.1.5.7. rcc</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Scanner.html">7.1.6. Scanner</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Scanner.html#reference">7.1.6.1. Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Thumbnail.html">7.1.7. Thumbnail</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference-manual.html#indexes">7.2. Indexes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development.html">8. Development &amp; Community</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#how-you-can-help">8.1. How you can help ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#contributors">8.2. Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../how-to-refer.html">9. How to Refer to BookBrowser ?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../donate.html">10. How to Help Further ?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../related-projects.html">11. Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bibliography.html">12. Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">BookBrowser</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../reference-manual.html">7. API Documentation</a> &raquo;</li>
+        
+          <li><a href="../../BookBrowser.html">7.1. BookBrowser</a> &raquo;</li>
+        
+          <li><a href="../Book.html">7.1.2. Book</a> &raquo;</li>
+        
+      <li>7.1.2.4. BookPage</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/api/BookBrowser/Book/BookPage.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-BookBrowser.Book.BookPage">
+<span id="bookpage"></span><h1>7.1.2.4. BookPage<a class="headerlink" href="#module-BookBrowser.Book.BookPage" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="BookBrowser.Book.BookPage.BookPage">
+<em class="property">class </em><code class="descclassname">BookBrowser.Book.BookPage.</code><code class="descname">BookPage</code><span class="sig-paren">(</span><em>book</em>, <em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookPage.html#BookPage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="BookBrowser.Book.BookPage.BookPage.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>book</em>, <em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookPage.html#BookPage.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.Book.BookPage.BookPage.__int__">
+<code class="descname">__int__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookPage.html#BookPage.__int__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.__int__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.Book.BookPage.BookPage.__lt__">
+<code class="descname">__lt__</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookPage.html#BookPage.__lt__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.__lt__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sort by page number or index</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.Book.BookPage.BookPage.__repr__">
+<code class="descname">__repr__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookPage.html#BookPage.__repr__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.Book.BookPage.BookPage.__str__">
+<code class="descname">__str__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookPage.html#BookPage.__str__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return str(self).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.Book.BookPage.BookPage._load_image">
+<code class="descname">_load_image</code><span class="sig-paren">(</span><em>reload=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookPage.html#BookPage._load_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage._load_image" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookPage.BookPage._logger">
+<code class="descname">_logger</code><em class="property"> = &lt;Logger BookBrowser.Book.BookPage.BookPage (WARNING)&gt;</em><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage._logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.Book.BookPage.BookPage._parse_filename">
+<code class="descname">_parse_filename</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookPage.html#BookPage._parse_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage._parse_filename" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.Book.BookPage.BookPage.compare_histogram">
+<code class="descname">compare_histogram</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookPage.html#BookPage.compare_histogram"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.compare_histogram" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookPage.BookPage.dual_image">
+<code class="descname">dual_image</code><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.dual_image" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookPage.BookPage.extension">
+<code class="descname">extension</code><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.extension" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookPage.BookPage.file_index">
+<code class="descname">file_index</code><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.file_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookPage.BookPage.filename">
+<code class="descname">filename</code><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.filename" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.Book.BookPage.BookPage.flip">
+<code class="descname">flip</code><span class="sig-paren">(</span><em>orientation=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookPage.html#BookPage.flip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.flip" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.Book.BookPage.BookPage.get_histogram">
+<code class="descname">get_histogram</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookPage.html#BookPage.get_histogram"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.get_histogram" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.Book.BookPage.BookPage.guess_orientation">
+<code class="descname">guess_orientation</code><span class="sig-paren">(</span><em>height=100</em>, <em>c_inf=0</em>, <em>c_sup=400</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookPage.html#BookPage.guess_orientation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.guess_orientation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookPage.BookPage.image">
+<code class="descname">image</code><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.image" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookPage.BookPage.is_empty">
+<code class="descname">is_empty</code><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.is_empty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookPage.BookPage.mtime">
+<code class="descname">mtime</code><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.mtime" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookPage.BookPage.orientation">
+<code class="descname">orientation</code><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.orientation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookPage.BookPage.page_number">
+<code class="descname">page_number</code><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.page_number" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookPage.BookPage.path">
+<code class="descname">path</code><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.Book.BookPage.BookPage.release_image">
+<code class="descname">release_image</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookPage.html#BookPage.release_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.release_image" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.Book.BookPage.BookPage.rename">
+<code class="descname">rename</code><span class="sig-paren">(</span><em>file_index=None</em>, <em>page_number=None</em>, <em>orientation=None</em>, <em>suffix=''</em>, <em>dry_run=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookPage.html#BookPage.rename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.rename" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookPage.BookPage.title">
+<code class="descname">title</code><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.title" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="BookBrowser.Book.BookPage.EmptyBookPage">
+<em class="property">class </em><code class="descclassname">BookBrowser.Book.BookPage.</code><code class="descname">EmptyBookPage</code><span class="sig-paren">(</span><em>page_number</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookPage.html#EmptyBookPage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookPage.EmptyBookPage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="BookBrowser.Book.BookPage.EmptyBookPage.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>page_number</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookPage.html#EmptyBookPage.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookPage.EmptyBookPage.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.Book.BookPage.EmptyBookPage.__int__">
+<code class="descname">__int__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookPage.html#EmptyBookPage.__int__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookPage.EmptyBookPage.__int__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookPage.EmptyBookPage.is_empty">
+<code class="descname">is_empty</code><a class="headerlink" href="#BookBrowser.Book.BookPage.EmptyBookPage.is_empty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookPage.EmptyBookPage.orientation">
+<code class="descname">orientation</code><a class="headerlink" href="#BookBrowser.Book.BookPage.EmptyBookPage.orientation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookPage.EmptyBookPage.page_number">
+<code class="descname">page_number</code><a class="headerlink" href="#BookBrowser.Book.BookPage.EmptyBookPage.page_number" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Common.html" class="btn btn-neutral float-right" title="7.1.3. Common" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="BookMetadata.html" class="btn btn-neutral float-left" title="7.1.2.3. BookMetadata" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Fabrice Salvaire
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

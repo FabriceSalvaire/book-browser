@@ -1,0 +1,8 @@
+
+======
+ Book
+======
+
+.. automodule:: BookBrowser.Book.Book
+   :members:
+   :show-inheritance:

@@ -4,6 +4,10 @@
 ======
 
 .. toctree::
+    Book/Book
+    Book/BookLibrary
+    Book/BookMetadata
+    Book/BookPage
 
 .. automodule:: BookBrowser.Book
    :members:

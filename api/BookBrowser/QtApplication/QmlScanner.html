@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.1.5.4. QmlScanner &mdash; BookBrowser 1.0.0 documentation</title>
+  <title>7.1.5.5. QmlScanner &mdash; BookBrowser 1.0.0 documentation</title>
   
 
   
@@ -17,34 +17,37 @@
   
 
   
+  <script type="text/javascript" src="../../../static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../static/jquery.js"></script>
+        <script type="text/javascript" src="../../../static/underscore.js"></script>
+        <script type="text/javascript" src="../../../static/doctools.js"></script>
+        <script type="text/javascript" src="../../../static/language_data.js"></script>
+        <script type="text/javascript" src="../../../static/getthecode.js"></script>
+    
+    <script type="text/javascript" src="../../../static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../../../static/css/BookBrowser.css" type="text/css" />
   <link rel="stylesheet" href="../../../static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="7.1.5.5. Runnable" href="Runnable.html" />
-    <link rel="prev" title="7.1.5.3. QmlBook" href="QmlBook.html" /> 
-
-  
-  <script src="../../../static/js/modernizr.min.js"></script>
-
+    <link rel="next" title="7.1.5.6. Runnable" href="Runnable.html" />
+    <link rel="prev" title="7.1.5.4. QmlBook" href="QmlBook.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -115,7 +118,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../design-notes.html">6. Design Notes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../design-notes.html#free-desktop-thumbnail-managing-standard">6.1. Free Desktop Thumbnail Managing Standard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../design-notes.html#general-code-design">6.1. General Code Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../design-notes.html#free-desktop-thumbnail-managing-standard">6.2. Free Desktop Thumbnail Managing Standard</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../reference-manual.html">7. API Documentation</a><ul class="current">
@@ -125,14 +129,19 @@
 <li class="toctree-l4"><a class="reference internal" href="../Application/ToolApplication.html">7.1.1.2. ToolApplication</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../Book.html">7.1.2. Book</a><ul class="simple">
+<li class="toctree-l3"><a class="reference internal" href="../Book.html">7.1.2. Book</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Book/Book.html">7.1.2.1. Book</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Book/BookLibrary.html">7.1.2.2. BookLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Book/BookMetadata.html">7.1.2.3. BookMetadata</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Book/BookPage.html">7.1.2.4. BookPage</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../Common.html">7.1.3. Common</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../Common/ArgparseAction.html">7.1.3.1. ArgparseAction</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../Common/Logging.html">7.1.3.2. Logging</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../Common/Path.html">7.1.3.3. Path</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../Common/Platform.html">7.1.3.4. Platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Common/FileTools.html">7.1.3.2. FileTools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Common/Logging.html">7.1.3.3. Logging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Common/Path.html">7.1.3.4. Path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Common/Platform.html">7.1.3.5. Platform</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../Config.html">7.1.4. Config</a><ul>
@@ -140,12 +149,13 @@
 </ul>
 </li>
 <li class="toctree-l3 current"><a class="reference internal" href="../QtApplication.html">7.1.5. QtApplication</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="Message.html">7.1.5.1. Message</a></li>
-<li class="toctree-l4"><a class="reference internal" href="QmlApplication.html">7.1.5.2. QmlApplication</a></li>
-<li class="toctree-l4"><a class="reference internal" href="QmlBook.html">7.1.5.3. QmlBook</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">7.1.5.4. QmlScanner</a></li>
-<li class="toctree-l4"><a class="reference internal" href="Runnable.html">7.1.5.5. Runnable</a></li>
-<li class="toctree-l4"><a class="reference internal" href="rcc.html">7.1.5.6. rcc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ApplicationMetadata.html">7.1.5.1. ApplicationMetadata</a></li>
+<li class="toctree-l4"><a class="reference internal" href="KeySequenceEditor.html">7.1.5.2. KeySequenceEditor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QmlApplication.html">7.1.5.3. QmlApplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QmlBook.html">7.1.5.4. QmlBook</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">7.1.5.5. QmlScanner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Runnable.html">7.1.5.6. Runnable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rcc.html">7.1.5.7. rcc</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../Scanner.html">7.1.6. Scanner</a><ul>
@@ -220,7 +230,7 @@
         
           <li><a href="../QtApplication.html">7.1.5. QtApplication</a> &raquo;</li>
         
-      <li>7.1.5.4. QmlScanner</li>
+      <li>7.1.5.5. QmlScanner</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -240,7 +250,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="module-BookBrowser.QtApplication.QmlScanner">
-<span id="qmlscanner"></span><h1>7.1.5.4. QmlScanner<a class="headerlink" href="#module-BookBrowser.QtApplication.QmlScanner" title="Permalink to this headline">¶</a></h1>
+<span id="qmlscanner"></span><h1>7.1.5.5. QmlScanner<a class="headerlink" href="#module-BookBrowser.QtApplication.QmlScanner" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="BookBrowser.QtApplication.QmlScanner.QmlScanner">
 <em class="property">class </em><code class="descclassname">BookBrowser.QtApplication.QmlScanner.</code><code class="descname">QmlScanner</code><span class="sig-paren">(</span><em>fake=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/QtApplication/QmlScanner.html#QmlScanner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.QtApplication.QmlScanner.QmlScanner" title="Permalink to this definition">¶</a></dt>
@@ -537,10 +547,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Runnable.html" class="btn btn-neutral float-right" title="7.1.5.5. Runnable" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Runnable.html" class="btn btn-neutral float-right" title="7.1.5.6. Runnable" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="QmlBook.html" class="btn btn-neutral" title="7.1.5.3. QmlBook" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="QmlBook.html" class="btn btn-neutral float-left" title="7.1.5.4. QmlBook" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -566,27 +576,16 @@
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../static/jquery.js"></script>
-        <script type="text/javascript" src="../../../static/underscore.js"></script>
-        <script type="text/javascript" src="../../../static/doctools.js"></script>
-        <script type="text/javascript" src="../../../static/language_data.js"></script>
-        <script type="text/javascript" src="../../../static/getthecode.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../../../static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(false);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

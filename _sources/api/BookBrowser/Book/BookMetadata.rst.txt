@@ -1,0 +1,8 @@
+
+==============
+ BookMetadata
+==============
+
+.. automodule:: BookBrowser.Book.BookMetadata
+   :members:
+   :show-inheritance:

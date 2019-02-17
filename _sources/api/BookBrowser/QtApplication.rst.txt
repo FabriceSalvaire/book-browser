@@ -4,7 +4,8 @@
 ===============
 
 .. toctree::
-    QtApplication/Message
+    QtApplication/ApplicationMetadata
+    QtApplication/KeySequenceEditor
     QtApplication/QmlApplication
     QtApplication/QmlBook
     QtApplication/QmlScanner

@@ -1,0 +1,8 @@
+
+=====================
+ ApplicationMetadata
+=====================
+
+.. automodule:: BookBrowser.QtApplication.ApplicationMetadata
+   :members:
+   :show-inheritance:

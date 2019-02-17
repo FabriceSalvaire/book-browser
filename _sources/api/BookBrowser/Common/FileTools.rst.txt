@@ -1,0 +1,8 @@
+
+===========
+ FileTools
+===========
+
+.. automodule:: BookBrowser.Common.FileTools
+   :members:
+   :show-inheritance:
