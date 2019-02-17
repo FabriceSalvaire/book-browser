@@ -29,10 +29,6 @@ import logging
 import isbnlib
 import langcodes
 
-# import lazy_import
-# isbnlib = lazy_import.lazy_module('isbnlib')
-# langcodes = lazy_import.lazy_module('langcodes')
-
 ####################################################################################################
 
 _module_logger = logging.getLogger(__name__)
