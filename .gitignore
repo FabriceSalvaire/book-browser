@@ -13,25 +13,8 @@ BookBrowser.egg-info/
 
 BookBrowser/QtApplication/rcc/BookBrowserRessource.py
 BookBrowser/QtApplication/rcc/book-browser.rcc
-
-BookBrowser/QtApplication/rcc/icons/36x36/add-circle-black.png
-BookBrowser/QtApplication/rcc/icons/36x36/build-black.png
-BookBrowser/QtApplication/rcc/icons/36x36/chevron-left-black.png
-BookBrowser/QtApplication/rcc/icons/36x36/chevron-right-black.png
-BookBrowser/QtApplication/rcc/icons/36x36/delete-black.png
-BookBrowser/QtApplication/rcc/icons/36x36/done-black.png
-BookBrowser/QtApplication/rcc/icons/36x36/find-in-page-black.png
-BookBrowser/QtApplication/rcc/icons/36x36/font-download-black.png
-BookBrowser/QtApplication/rcc/icons/36x36/grade-black.png
-BookBrowser/QtApplication/rcc/icons/36x36/grid-off-black.png
-BookBrowser/QtApplication/rcc/icons/36x36/home-black.png
-BookBrowser/QtApplication/rcc/icons/36x36/hourglass-empty-black.png
-BookBrowser/QtApplication/rcc/icons/36x36/info-black.png
-BookBrowser/QtApplication/rcc/icons/36x36/list-black.png
-BookBrowser/QtApplication/rcc/icons/36x36/mode-edit-black.png
-BookBrowser/QtApplication/rcc/icons/36x36/remove-circle-black.png
-BookBrowser/QtApplication/rcc/icons/36x36/view-module-black.png
-BookBrowser/QtApplication/rcc/icons/48x48/
+*.po
+*.qm
 
 BookBrowser/QtApplication/qml/Widgets/QTBUG.txt
 BookBrowser/QtApplication/qml/Widgets/pinch-area.qml

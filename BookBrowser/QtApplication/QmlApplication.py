@@ -221,7 +221,7 @@ class Application(QObject):
         self._platform = QtPlatform()
         # self._logger.info('\n' + str(self._platform))
 
-        # self._load_translation()
+        self._load_translation()
         self._register_qml_types()
         self._set_context_properties()
         self._load_qml_main()
@@ -369,6 +369,13 @@ class Application(QObject):
         )
 
         parser.add_argument(
+            '--dont-translate',
+            action='store_true',
+            default=False,
+            help="Don't translate application",
+        )
+
+        parser.add_argument(
             '--watcher',
             action='store_true',
             default=False,
@@ -399,14 +406,21 @@ class Application(QObject):
 
     ##############################################
 
-    # def _load_translationt(self):
+    def _load_translation(self):
 
-    #     locale = QLocale()
+        if self._args.dont_translate:
+            return
 
-    #     if m_translator.load(locale, '...', '.', ':/translations', '.qm'):
-    #         m_application.installTranslator(m_translator)
-    #     else:
-    #         raise "No translator for locale" locale.name()
+        # Fixme: ConfigInstall
+        # directory = ':/translations'
+        directory = str(Path(__file__).parent.joinpath('rcc', 'translations'))
+
+        locale = QtCore.QLocale()
+        self._translator = QtCore.QTranslator()
+        if self._translator.load(locale, 'book-browser', '.', directory, '.qm'):
+            self._application.installTranslator(self._translator)
+        else:
+            raise NameError('No translator for locale {}'.format(locale.name()))
 
     ##############################################
 

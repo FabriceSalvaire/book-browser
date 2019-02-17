@@ -26,6 +26,8 @@ from pathlib import Path
 import logging
 import os
 
+from .BookMetadata import BookMetadata
+
 ####################################################################################################
 
 _module_logger = logging.getLogger(__name__)
@@ -50,4 +52,6 @@ class BookLibrary:
         for path, directories, files in os.walk(root_path):
             for directory in directories:
                 book_path = Path(path).joinpath(directory)
-                self._logger.info('Directory {}'.format(book_path))
+                json_path = book_path.joinpath(BookMetadata.JSON_FILENAME)
+                if json_path.exists():
+                    self._logger.info('Book {}'.format(book_path))

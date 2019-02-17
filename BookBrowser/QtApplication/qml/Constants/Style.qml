@@ -19,6 +19,7 @@
 
 // cf. http://wiki.qt.io/Qml_Styling
 
+// Fixme: lupdate
 pragma Singleton
 import QtQml 2.11
 import QtQuick 2.6
