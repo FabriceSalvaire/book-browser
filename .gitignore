@@ -35,18 +35,8 @@ BookBrowser/QtApplication/rcc/icons/48x48/
 
 BookBrowser/QtApplication/qml/Widgets/QTBUG.txt
 BookBrowser/QtApplication/qml/Widgets/pinch-area.qml
-TODO.txt
-TOFIX.txt
-bug.txt
-crash-*.txt
-crash-segfault.txt
-delta_hist.txt
 devel/
-foo.png
-notes.txt
-qt-qml-issue.txt
+notes/
 resources/
-template-variables.txt
 test-directory/
-topics.txt
 trash/
