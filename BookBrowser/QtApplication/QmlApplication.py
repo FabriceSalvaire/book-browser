@@ -30,20 +30,12 @@ __all__ = [
 
 ####################################################################################################
 
-import logging
-_module_logger = logging.getLogger(__name__)
-
-####################################################################################################
-
-_module_logger.info('Import...')
-
-import argparse
 # import datetime
+from pathlib import Path
+import argparse
+import logging
 import sys
 import traceback
-from pathlib import Path
-
-_module_logger.info('Python Done')
 
 # Fixme:
 from PyQt5 import QtCore
@@ -60,9 +52,6 @@ from QtShim.QtQml import qmlRegisterUncreatableType
 from QtShim.QtQuick import QQuickPaintedItem, QQuickView
 # from QtShim.QtQuickControls2 import QQuickStyle
 
-_module_logger.info('Qt Done')
-
-# import BookBrowser
 from BookBrowser.Common.ArgparseAction import PathAction
 from BookBrowser.Common.Platform import QtPlatform
 from .ApplicationMetadata import ApplicationMetadata
@@ -73,7 +62,9 @@ from .Runnable import Worker
 
 from .rcc import BookBrowserRessource
 
-_module_logger.info('Import Done')
+####################################################################################################
+
+_module_logger = logging.getLogger(__name__)
 
 ####################################################################################################
 
@@ -463,6 +454,7 @@ class Application(QObject):
 
     def exec_(self):
         # self._view.show()
+        self._logger.info('Start event loop')
         sys.exit(self._application.exec_())
 
     ##############################################
@@ -470,7 +462,8 @@ class Application(QObject):
     def _post_init(self):
 
         # Fixme: ui refresh ???
-        self._logger.info('post init')
+
+        self._logger.info('post Init...')
 
         if self._args.watcher:
             self._logger.info('Start watcher')
@@ -478,6 +471,8 @@ class Application(QObject):
 
         if self._args.user_script is not None:
             self.execute_user_script(self._args.user_script)
+
+        self._logger.info('Post Init Done')
 
     ##############################################
 

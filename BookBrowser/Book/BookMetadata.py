@@ -22,17 +22,9 @@ __all__ = ['BookMetadata']
 
 ####################################################################################################
 
-import logging
-_module_logger = logging.getLogger(__name__)
-
-####################################################################################################
-
-_module_logger.info('Import...')
-
 from pathlib import Path
 import json
-
-_module_logger.info('Python Done')
+import logging
 
 import isbnlib
 import langcodes
@@ -41,7 +33,9 @@ import langcodes
 # isbnlib = lazy_import.lazy_module('isbnlib')
 # langcodes = lazy_import.lazy_module('langcodes')
 
-_module_logger.info('Import Done')
+####################################################################################################
+
+_module_logger = logging.getLogger(__name__)
 
 ####################################################################################################
 
