@@ -341,7 +341,7 @@ Item {
 
             RowLayout {
                 ToolButton {
-                    icon.source: 'qrc:/icons/folder-black.png'
+                    icon.name: 'folder-black'
                     onClicked: book_folder_dialog.open()
                 }
                 TextField {
@@ -447,7 +447,7 @@ Item {
 
                     RowLayout {
                         Widgets.ToolButtonTip {
-                            icon.source: 'qrc:/icons/alarm-black.png'
+                            icon.name: 'alarm-black'
                             size: 36
                             onClicked: {
                                 end_time_label.text = '...'
@@ -455,7 +455,7 @@ Item {
                             }
                         }
                         // Image {
-                        //     source: 'qrc:/icons/alarm-black.png'
+                        //     source: 'qrc:/icons/alarm-black'
                         // }
                         // Label {
                         //     text: qsTr('End Time')
@@ -470,8 +470,8 @@ Item {
 
                     // Widgets.ToolButtonTip {
                     //     // text: qsTr('Reset Timer')
-                    //     // icon.source: 'qrc:/icons/hourglass-empty-black.png'
-                    //     icon.source: 'qrc:/icons/refresh-black.png'
+                    //     // icon.name: 'hourglass-empty-black'
+                    //     icon.name: 'refresh-black'
                     //     onClicked: scanner.start_timer()
                     // }
                 }

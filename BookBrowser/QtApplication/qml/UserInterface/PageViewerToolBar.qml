@@ -44,7 +44,7 @@ RowLayout {
     /******************************************************/
 
     Widgets.ToolButtonTip {
-        icon.source: 'qrc:/icons/zoom-out-black.png'
+        icon.name: 'zoom-out-black'
         onClicked: page_viewer.zoom_out()
     }
 
@@ -57,12 +57,12 @@ RowLayout {
     }
 
     Widgets.ToolButtonTip {
-        icon.source: 'qrc:/icons/zoom-in-black.png'
+        icon.name: 'zoom-in-black'
         onClicked: page_viewer.zoom_in()
     }
 
     Widgets.ToolButtonTip {
-        icon.source: 'qrc:/icons/first-page-black.png'
+        icon.name: 'first-page-black'
         onClicked: page_viewer.first_page()
     }
 
@@ -75,7 +75,7 @@ RowLayout {
     }
 
     Widgets.ToolButtonTip {
-        icon.source: 'qrc:/icons/last-page-black.png'
+        icon.name: 'last-page-black'
         onClicked: page_viewer.last_page()
     }
 
@@ -94,7 +94,7 @@ RowLayout {
     }
 
     Widgets.ToolButtonTip {
-        icon.source: 'qrc:/icons/grid-on-black.png'
+        icon.name: 'grid-on-black'
         tip: qsTr('Show grid')
         checkable: true
         onClicked: page_viewer_page.toggle_grid()

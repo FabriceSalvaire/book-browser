@@ -47,35 +47,35 @@ Item {
 
     Action {
         id: reload_action
-        icon.source: 'qrc:/icons/refresh-black.png'
+        icon.name: 'refresh-black'
         // shortcut: ''
         onTriggered: load_book(application.book.path)
     }
 
     Action {
         id: prev_page_action
-        icon.source: 'qrc:/icons/arrow-back-black.png'
+        icon.name: 'arrow-back-black'
         shortcut: 'Backspace'
         onTriggered: page_viewer.prev_page()
     }
 
     Action {
         id: next_page_action
-        icon.source: 'qrc:/icons/arrow-forward-black.png'
+        icon.name: 'arrow-forward-black'
         shortcut: 'n' //'Space'
         onTriggered: page_viewer.next_page()
     }
 
     Action {
         id: flip_action
-        icon.source: 'qrc:/icons/swap-vert-black.png'
+        icon.name: 'swap-vert-black'
         shortcut: 'r'
         onTriggered: page_viewer.flip()
     }
 
     Action {
         id: fit_to_screen_action
-        icon.source: 'qrc:/icons/settings-overscan-black.png'
+        icon.name: 'settings-overscan-black'
         shortcut: 'f'
         onTriggered: page_viewer.fit_to_screen()
     }

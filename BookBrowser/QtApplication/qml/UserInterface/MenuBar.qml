@@ -60,7 +60,7 @@ MenuBar {
         MenuSeparator { }
 
         MenuItem {
-            icon.source: 'qrc:/icons/settings-black.png'
+            icon.name: 'settings-black'
             text: "Options"
             onTriggered: options_dialog.open()
         }

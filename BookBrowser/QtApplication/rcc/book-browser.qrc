@@ -3,64 +3,229 @@
     <qresource prefix="/">
         <file>qtquickcontrols2.conf</file>
     </qresource>
+
     <qresource prefix="/">
-	<file>icons/svg/logo.svg</file>
-	<file>icons/logo-256.png</file>
+	<file>icons/logo/logo.svg</file>
+	<file>icons/logo/logo-256.png</file>
     </qresource>
-    <qresource prefix="/icons">
-	<!-- <file>icons/36x36/grid-off-black.png</file> -->
+
+    <qresource prefix="/">
+	<file>icons/material/index.theme</file>
 
 	<!-- A -->
-	<file alias='alarm-black.png'>icons/36x36/alarm-black.png</file>
-	<file alias='arrow-back-black.png'>icons/36x36/arrow-back-black.png</file>
-	<file alias='arrow-forward-black.png'>icons/36x36/arrow-forward-black.png</file>
+        <!-- <file>icons/material/18x18/alarm-black.png</file> -->
+        <!-- <file>icons/material/24x24/alarm-black.png</file> -->
+        <file>icons/material/36x36/alarm-black.png</file>
+        <!-- <file>icons/material/48x48/alarm-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/alarm-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/alarm-black.png</file> -->
+        <file>icons/material/36x36@2/alarm-black.png</file>
+        <!-- <file>icons/material/48x48@2/alarm-black.png</file> -->
+
+        <!-- <file>icons/material/18x18/arrow-back-black.png</file> -->
+        <!-- <file>icons/material/24x24/arrow-back-black.png</file> -->
+        <file>icons/material/36x36/arrow-back-black.png</file>
+        <!-- <file>icons/material/48x48/arrow-back-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/arrow-back-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/arrow-back-black.png</file> -->
+        <file>icons/material/36x36@2/arrow-back-black.png</file>
+        <!-- <file>icons/material/48x48@2/arrow-back-black.png</file> -->
+
+        <!-- <file>icons/material/18x18/arrow-forward-black.png</file> -->
+        <!-- <file>icons/material/24x24/arrow-forward-black.png</file> -->
+        <file>icons/material/36x36/arrow-forward-black.png</file>
+        <!-- <file>icons/material/48x48/arrow-forward-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/arrow-forward-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/arrow-forward-black.png</file> -->
+        <file>icons/material/36x36@2/arrow-forward-black.png</file>
+        <!-- <file>icons/material/48x48@2/arrow-forward-black.png</file> -->
 
 	<!-- C -->
-        <file alias='create-black.png'>icons/36x36/create-black.png</file>
-        <file alias='crop-black.png'>icons/36x36/crop-black.png</file>
+        <!-- <file>icons/material/18x18/crop-black.png</file> -->
+        <!-- <file>icons/material/24x24/crop-black.png</file> -->
+        <file>icons/material/36x36/crop-black.png</file>
+        <!-- <file>icons/material/48x48/crop-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/crop-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/crop-black.png</file> -->
+        <file>icons/material/36x36@2/crop-black.png</file>
+        <!-- <file>icons/material/48x48@2/crop-black.png</file> -->
 
 	<!-- E -->
-        <file alias='error-black.png'>icons/36x36/error-black.png</file>
+        <!-- <file>icons/material/18x18/edit-black.png</file> -->
+        <!-- <file>icons/material/24x24/edit-black.png</file> -->
+        <file>icons/material/36x36/edit-black.png</file>
+        <!-- <file>icons/material/48x48/edit-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/edit-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/edit-black.png</file> -->
+        <file>icons/material/36x36@2/edit-black.png</file>
+        <!-- <file>icons/material/48x48@2/edit-black.png</file> -->
+
+        <!-- <file>icons/material/18x18/error-black.png</file> -->
+        <!-- <file>icons/material/24x24/error-black.png</file> -->
+        <file>icons/material/36x36/error-black.png</file>
+        <!-- <file>icons/material/48x48/error-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/error-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/error-black.png</file> -->
+        <file>icons/material/36x36@2/error-black.png</file>
+        <!-- <file>icons/material/48x48@2/error-black.png</file> -->
 
 	<!-- F -->
-	<file alias='first-page-black.png'>icons/36x36/first-page-black.png</file>
-	<file alias='flip-from-page.png'>icons/36x36/flip-from-page.png</file>
-	<file alias='folder-black.png'>icons/36x36/folder-black.png</file>
+        <!-- <file>icons/material/18x18/first-page-black.png</file> -->
+        <!-- <file>icons/material/24x24/first-page-black.png</file> -->
+        <file>icons/material/36x36/first-page-black.png</file>
+        <!-- <file>icons/material/48x48/first-page-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/first-page-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/first-page-black.png</file> -->
+        <file>icons/material/36x36@2/first-page-black.png</file>
+        <!-- <file>icons/material/48x48@2/first-page-black.png</file> -->
 
         <!-- G -->
-	<file alias='grid-on-black.png'>icons/36x36/grid-on-black.png</file>
-        <file alias='help-black.png'>icons/36x36/help-black.png</file>
+        <!-- <file>icons/material/18x18/grid-on-black.png</file> -->
+        <!-- <file>icons/material/24x24/grid-on-black.png</file> -->
+        <file>icons/material/36x36/grid-on-black.png</file>
+        <!-- <file>icons/material/48x48/grid-on-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/grid-on-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/grid-on-black.png</file> -->
+        <file>icons/material/36x36@2/grid-on-black.png</file>
+        <!-- <file>icons/material/48x48@2/grid-on-black.png</file> -->
 
         <!-- H -->
-	<file alias='hourglass-empty-black.png'>icons/36x36/hourglass-empty-black.png</file>
+        <!-- <file>icons/material/18x18/help-black.png</file> -->
+        <!-- <file>icons/material/24x24/help-black.png</file> -->
+        <file>icons/material/36x36/help-black.png</file>
+        <!-- <file>icons/material/48x48/help-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/help-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/help-black.png</file> -->
+        <file>icons/material/36x36@2/help-black.png</file>
+        <!-- <file>icons/material/48x48@2/help-black.png</file> -->
 
 	<!-- I -->
-	<file alias='image-black.png'>icons/36x36/image-black.png</file>
+	<!-- <file>icons/material/18x18/image-black.png</file> -->
+        <!-- <file>icons/material/24x24/image-black.png</file> -->
+        <file>icons/material/36x36/image-black.png</file>
+        <!-- <file>icons/material/48x48/image-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/image-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/image-black.png</file> -->
+        <file>icons/material/36x36@2/image-black.png</file>
+        <!-- <file>icons/material/48x48@2/image-black.png</file> -->
 
 	<!-- L -->
-	<file alias='last-page-black.png'>icons/36x36/last-page-black.png</file>
+	<!-- <file>icons/material/18x18/last-page-black.png</file> -->
+        <!-- <file>icons/material/24x24/last-page-black.png</file> -->
+        <file>icons/material/36x36/last-page-black.png</file>
+        <!-- <file>icons/material/48x48/last-page-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/last-page-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/last-page-black.png</file> -->
+        <file>icons/material/36x36@2/last-page-black.png</file>
+        <!-- <file>icons/material/48x48@2/last-page-black.png</file> -->
+
+	<!-- R -->
+	<!-- <file>icons/material/18x18/refresh-black.png</file> -->
+        <!-- <file>icons/material/24x24/refresh-black.png</file> -->
+        <file>icons/material/36x36/refresh-black.png</file>
+        <!-- <file>icons/material/48x48/refresh-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/refresh-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/refresh-black.png</file> -->
+        <file>icons/material/36x36@2/refresh-black.png</file>
+        <!-- <file>icons/material/48x48@2/refresh-black.png</file> -->
+
+	<!-- S -->
+	<!-- <file>icons/material/18x18/save-black.png</file> -->
+	<!-- <file>icons/material/24x24/save-black.png</file> -->
+	<file>icons/material/36x36/save-black.png</file>
+	<!-- <file>icons/material/48x48/save-black.png</file> -->
+	<!-- <file>icons/material/18x18@2/save-black.png</file> -->
+	<!-- <file>icons/material/24x24@2/save-black.png</file> -->
+	<file>icons/material/36x36@2/save-black.png</file>
+	<!-- <file>icons/material/48x48@2/save-black.png</file> -->
+
+	<!-- <file>icons/material/18x18/scanner-black.png</file> -->
+	<!-- <file>icons/material/24x24/scanner-black.png</file> -->
+	<file>icons/material/36x36/scanner-black.png</file>
+	<!-- <file>icons/material/48x48/scanner-black.png</file> -->
+	<!-- <file>icons/material/18x18@2/scanner-black.png</file> -->
+	<!-- <file>icons/material/24x24@2/scanner-black.png</file> -->
+	<file>icons/material/36x36@2/scanner-black.png</file>
+	<!-- <file>icons/material/48x48@2/scanner-black.png</file> -->
+
+	<!-- <file>icons/material/18x18/settings-black.png</file> -->
+	<!-- <file>icons/material/24x24/settings-black.png</file> -->
+	<file>icons/material/36x36/settings-black.png</file>
+	<!-- <file>icons/material/48x48/settings-black.png</file> -->
+	<!-- <file>icons/material/18x18@2/settings-black.png</file> -->
+	<!-- <file>icons/material/24x24@2/settings-black.png</file> -->
+	<file>icons/material/36x36@2/settings-black.png</file>
+	<!-- <file>icons/material/48x48@2/settings-black.png</file> -->
+
+        <!-- <file>icons/material/18x18/settings-overscan-black.png</file> -->
+        <!-- <file>icons/material/24x24/settings-overscan-black.png</file> -->
+        <file>icons/material/36x36/settings-overscan-black.png</file>
+        <!-- <file>icons/material/48x48/settings-overscan-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/settings-overscan-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/settings-overscan-black.png</file> -->
+        <file>icons/material/36x36@2/settings-overscan-black.png</file>
+        <!-- <file>icons/material/48x48@2/settings-overscan-black.png</file> -->
+
+	<!-- <file>icons/material/18x18/swap-vert-black.png</file> -->
+	<!-- <file>icons/material/24x24/swap-vert-black.png</file> -->
+        <file>icons/material/36x36/swap-vert-black.png</file>
+	<!-- <file>icons/material/48x48/swap-vert-black.png</file> -->
+	<!-- <file>icons/material/18x18@2/swap-vert-black.png</file> -->
+	<!-- <file>icons/material/24x24@2/swap-vert-black.png</file> -->
+        <file>icons/material/36x36@2/swap-vert-black.png</file>
+	<!-- <file>icons/material/48x48@2/swap-vert-black.png</file> -->
+
+	<!-- V -->
+	<!-- <file>icons/material/18x18/view-comfy-black.png</file> -->
+        <!-- <file>icons/material/24x24/view-comfy-black.png</file> -->
+        <file>icons/material/36x36/view-comfy-black.png</file>
+        <!-- <file>icons/material/48x48/view-comfy-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/view-comfy-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/view-comfy-black.png</file> -->
+        <file>icons/material/36x36@2/view-comfy-black.png</file>
+        <!-- <file>icons/material/48x48@2/view-comfy-black.png</file> -->
+
+	<!-- W -->
+	<!-- <file>icons/material/18x18/warning-black.png</file> -->
+        <!-- <file>icons/material/24x24/warning-black.png</file> -->
+	<file>icons/material/36x36/warning-black.png</file>
+        <!-- <file>icons/material/48x48/warning-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/warning-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/warning-black.png</file> -->
+	<file>icons/material/36x36@2/warning-black.png</file>
+        <!-- <file>icons/material/48x48@2/warning-black.png</file> -->
+
+	<!-- Z -->
+	<!-- <file>icons/material/18x18/zoom-in-black.png</file> -->
+        <!-- <file>icons/material/24x24/zoom-in-black.png</file> -->
+        <file>icons/material/36x36/zoom-in-black.png</file>
+        <!-- <file>icons/material/48x48/zoom-in-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/zoom-in-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/zoom-in-black.png</file> -->
+        <file>icons/material/36x36@2/zoom-in-black.png</file>
+        <!-- <file>icons/material/48x48@2/zoom-in-black.png</file> -->
+
+	<!-- <file>icons/material/18x18/zoom-out-black.png</file> -->
+        <!-- <file>icons/material/24x24/zoom-out-black.png</file> -->
+        <file>icons/material/36x36/zoom-out-black.png</file>
+        <!-- <file>icons/material/48x48/zoom-out-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/zoom-out-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/zoom-out-black.png</file> -->
+        <file>icons/material/36x36@2/zoom-out-black.png</file>
+        <!-- <file>icons/material/48x48@2/zoom-out-black.png</file> -->
+    </qresource>
+
+    <qresource prefix="/icons/">
+	<!-- F -->
+	<file alias='flip-from-page.png'>icons/36x36/flip-from-page.png</file>
 
 	<!-- R -->
 	<file alias='recto-page.png'>icons/36x36/recto-page.png</file>
-	<file alias='refresh-black.png'>icons/36x36/refresh-black.png</file>
-
-	<!-- S -->
-        <file alias='save-black.png'>icons/36x36/save-black.png</file>
-	<file alias='scanner-black.png'>icons/36x36/scanner-black.png</file>
-        <file alias='settings-black.png'>icons/36x36/settings-black.png</file>
-        <file alias='settings-overscan-black.png'>icons/36x36/settings-overscan-black.png</file>
-	<file alias='swap-vert-black.png'>icons/36x36/swap-vert-black.png</file>
 
 	<!-- V -->
 	<file alias='verso-page.png'>icons/36x36/verso-page.png</file>
-        <file alias='view-comfy-black.png'>icons/36x36/view-comfy-black.png</file>
-
-	<!-- W -->
-        <file alias='warning-black.png'>icons/36x36/warning-black.png</file>
 
 	<!-- Z -->
         <file alias='zoom-fit-width.png'>icons/36x36/zoom-fit-width.png</file>
-	<file alias='zoom-in-black.png'>icons/36x36/zoom-in-black.png</file>
-	<file alias='zoom-out-black.png'>icons/36x36/zoom-out-black.png</file>
     </qresource>
 </RCC>

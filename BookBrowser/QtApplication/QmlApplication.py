@@ -328,8 +328,10 @@ class Application(QObject):
         self._application.setApplicationDisplayName(ApplicationMetadata.display_name)
         self._application.setApplicationVersion(ApplicationMetadata.version)
 
-        logo_path = ':/icons/logo-256.png'
+        logo_path = ':/icons/logo/logo-256.png'
         self._application.setWindowIcon(QIcon(logo_path))
+
+        QIcon.setThemeName('material')
 
     ##############################################
 

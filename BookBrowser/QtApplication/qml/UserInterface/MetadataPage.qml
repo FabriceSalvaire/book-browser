@@ -85,7 +85,7 @@ Page {
 
             Widgets.WarnedToolButton {
                 id: save_button
-                icon.source: 'qrc:/icons/save-black.png'
+                icon.name: 'save-black'
                 size: 64
                 tip: qsTr('Save')
 
@@ -130,7 +130,7 @@ Page {
                         }
 
                         Widgets.ToolButtonTip {
-                            icon.source: 'qrc:/icons/refresh-black.png'
+                            icon.name: 'refresh-black'
                             tip: qsTr('Query ISBN')
                             onClicked: update_from_isbn()
                         }
@@ -287,7 +287,7 @@ Page {
                         Widgets.WarnedToolButton {
                             id: notes_edit_button
                             Layout.alignment: Qt.AlignTop
-                            icon.source: 'qrc:/icons/create-black.png'
+                            icon.name: 'edit-black'
                             tip: qsTr('Edit metadata')
                             icon.color: warned ? Style.color.danger : 'black'
 
