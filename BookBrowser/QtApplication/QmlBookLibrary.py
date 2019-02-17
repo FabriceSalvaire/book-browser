@@ -61,11 +61,15 @@ class QmlBookCover(QObject):
 
     @Property(str, constant=True)
     def path(self):
-        return self._book_cover.path
+        return str(self._book_cover.path)
 
     @Property(str, constant=True)
     def cover_path(self):
-        return self._book_cover.cover_path or ''
+        cover_path = self._book_cover.cover_path
+        if cover_path:
+            return str(cover_path)
+        else:
+            return ''
 
     ##############################################
 
@@ -129,6 +133,10 @@ class QmlBookLibrary(QObject):
     def _make_book_covers(self):
         # We must prevent garbage collection
         self._book_covers = [QmlBookCover(book_cover) for book_cover in self._book_library]
+
+    @Property(str, constant=True)
+    def path(self):
+        return str(self._book_library.path)
 
     ##############################################
 

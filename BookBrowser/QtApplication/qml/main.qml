@@ -71,6 +71,7 @@ ApplicationWindow {
 
     function load_book(path) {
         application.load_book(path)
+        stack_layout.set_thumbnail_page()
         show_message(qsTr('Loaded book at %1'.arg(path)))
     }
 

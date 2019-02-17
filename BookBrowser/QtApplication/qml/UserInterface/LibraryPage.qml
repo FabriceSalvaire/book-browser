@@ -40,9 +40,6 @@ Page {
 
         books_model: application.library.books
 
-       // onShow_page: {
-       //     page_viewer.to_page(page_number)
-       //     stack_layout.set_viewer_page()
-       // }
+        onLoad_book: application_window.load_book(path)
     }
 }

@@ -92,9 +92,7 @@ Item {
                         MouseArea {
                             anchors.fill: parent
                             hoverEnabled: true
-                            onClicked: {
-                                thumbnail_container.show_page(book_page.page_number)
-                            }
+                            onClicked: thumbnail_container.show_page(book_page.page_number)
                             onEntered: selected = true
                             onExited: selected = false
                         }

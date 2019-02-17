@@ -27,7 +27,7 @@ Item {
     id: thumbnail_container
     anchors.margins: 20
 
-    signal show_page(int page_number)
+    signal load_book(string path)
 
     property var books_model
 
@@ -83,7 +83,7 @@ Item {
                         MouseArea {
                             anchors.fill: parent
                             hoverEnabled: true
-                            // onClicked: {}
+                            onClicked: thumbnail_container.load_book(book_cover.path)
                             onEntered: selected = true
                             onExited: selected = false
                         }
