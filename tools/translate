@@ -20,6 +20,19 @@
 #
 ####################################################################################################
 
+"""Program to manage and translate Qt translation files.
+
+It features:
+
+* lupdate, linguist, lrelease
+* conversion to/from .po file
+* poedit
+* translation using Google Translation
+
+Actions are run in the right order.
+
+"""
+
 ####################################################################################################
 
 from pathlib import Path
@@ -35,6 +48,12 @@ from googletrans import Translator
 DEFAULT_LANGUAGES = (
     'fr_FR',
 )
+
+# Fixme: project dependent
+source_path = Path(__file__).resolve().parents[1]
+qml_path = source_path.joinpath('qml')
+translation_path = source_path.joinpath('share', 'translations')
+base_name = 'book-browser'
 
 ####################################################################################################
 
@@ -57,14 +76,21 @@ parser.add_argument(
     '--translate',
     default=False,
     action='store_true',
-    help='translate',
+    help='translate using Google Translate',
 )
 
 parser.add_argument(
     '--convert-to-po',
     default=False,
     action='store_true',
-    help='convert to po file',
+    help='convert to .po file',
+)
+
+parser.add_argument(
+    '--convert-from-po',
+    default=False,
+    action='store_true',
+    help='convert from .po file',
 )
 
 parser.add_argument(
@@ -72,13 +98,6 @@ parser.add_argument(
     default=False,
     action='store_true',
     help='run poedit',
-)
-
-parser.add_argument(
-    '--convert-from-po',
-    default=False,
-    action='store_true',
-    help='convert from po file',
 )
 
 parser.add_argument(
@@ -426,11 +445,6 @@ class TanslationManager:
 
 ####################################################################################################
 
-source_path = Path(__file__).resolve().parents[1]
-qml_path = source_path.joinpath('qml')
-translation_path = source_path.joinpath('share', 'translations')
-base_name = 'book-browser'
-
 manager = TanslationManager(
     translation_path,
     base_name,
@@ -440,8 +454,7 @@ manager = TanslationManager(
 if not args.language:
     languages = DEFAULT_LANGUAGES
 else:
-    # Fixem: cleanup
-    languages = [x.strip() for x in args.languages.split(',')]
+    languages = [x for x in [x.strip() for x in args.languages.split(',')] if x]
 
 if args.update:
     for language in languages:
@@ -457,7 +470,7 @@ if args.poedit:
         manager.run_poedit(language)
 if args.convert_from_po:
     for language in languages:
-        manager.run_lconvert(language, 'tq')
+        manager.run_lconvert(language, 'ts')
 if args.linguist:
     for language in languages:
         manager.run_linguist(language)
