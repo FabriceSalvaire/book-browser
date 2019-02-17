@@ -134,7 +134,10 @@ class ToolApplication(BasicApplication):
 
         super().run()
 
-        self._book = self.book_cls(self._args.book_path)
+        if self._args.dump_library:
+            self._book = None
+        else:
+            self._book = self.book_cls(self._args.book_path)
 
         if self._args.dump:
             print(self._book.path)
@@ -156,4 +159,4 @@ class ToolApplication(BasicApplication):
 
         if self._args.dump_library:
             library = BookLibrary(self._args.book_path)
-            library.scan()
+            library.dump()

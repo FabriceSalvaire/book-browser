@@ -52,11 +52,13 @@ from QtShim.QtQml import qmlRegisterUncreatableType
 from QtShim.QtQuick import QQuickPaintedItem, QQuickView
 # from QtShim.QtQuickControls2 import QQuickStyle
 
+from BookBrowser.Book import BookLibrary
 from BookBrowser.Common.ArgparseAction import PathAction
 from BookBrowser.Common.Platform import QtPlatform
 from .ApplicationMetadata import ApplicationMetadata
 from .KeySequenceEditor import KeySequenceEditor
 from .QmlBook import QmlBook, QmlBookPage, QmlBookMetadata
+from .QmlBookLibrary import QmlBookCover, QmlBookLibrary
 from .QmlScanner import ScannerImageProvider, QmlScanner, QmlScannerConfig
 from .Runnable import Worker
 
@@ -104,10 +106,28 @@ class QmlApplication(QObject):
 
     ##############################################
 
+    library_changed = Signal()
+
+    @Property(QmlBookLibrary, notify=library_changed)
+    def library(self):
+        # return null if None
+        return self._application.library
+
+    ##############################################
+
+    @Slot('QUrl')
+    def load_library(self, url):
+        path = url.toString(QUrl.RemoveScheme)
+        self._application.load_library(path)
+        self.library_changed.emit()
+
+    ##############################################
+
     book_changed = Signal()
 
     @Property(QmlBook, notify=book_changed)
     def book(self):
+        # return null if None
         return self._application.book
 
     ##############################################
@@ -206,9 +226,13 @@ class Application(QObject):
 
         self._parse_arguments()
 
+        self._library = None
         self._book = None
         # Fixme: must be defined before QML
-        self.load_book(self._args.book_path)
+        if BookLibrary.is_library(self._args.path):
+            self.load_library(self._args.path)
+        else:
+            self.load_book(self._args.path)
 
         # For Qt Labs Platform native widgets
         # self._application = QGuiApplication(sys.argv)
@@ -271,9 +295,13 @@ class Application(QObject):
     def book(self):
         return self._book
 
+    # @property
+    # def book_path(self):
+    #     return self._book.path
+
     @property
-    def book_path(self):
-        return self._book.path
+    def library(self):
+        return self._library
 
     ##############################################
 
@@ -363,9 +391,9 @@ class Application(QObject):
 
         # Fixme: should be able to start application without !!!
         parser.add_argument(
-            'book_path', metavar='BookPath',
+            'path', metavar='PATH',
             action=PathAction,
-            help='Book path',
+            help='book or library path',
         )
 
         parser.add_argument(
@@ -429,6 +457,8 @@ class Application(QObject):
         qmlRegisterType(KeySequenceEditor, 'BookBrowser', 1, 0, 'KeySequenceEditor')
 
         qmlRegisterUncreatableType(QmlApplication, 'BookBrowser', 1, 0, 'QmlApplication', 'Cannot create QmlApplication')
+        qmlRegisterUncreatableType(QmlBookCover, 'BookBrowser', 1, 0, 'QmlBookCover', 'Cannot create QmlBookCover')
+        qmlRegisterUncreatableType(QmlBookLibrary, 'BookBrowser', 1, 0, 'QmlBookLibrary', 'Cannot create QmlBookLi')
         qmlRegisterUncreatableType(QmlBook, 'BookBrowser', 1, 0, 'QmlBook', 'Cannot create QmlBook')
         qmlRegisterUncreatableType(QmlBookPage, 'BookBrowser', 1, 0, 'QmlBookPage', 'Cannot create QmlBookPage')
         qmlRegisterUncreatableType(QmlBookMetadata, 'BookBrowser', 1, 0, 'QmlBookMetadata', 'Cannot create QmlBookMetadata')
@@ -532,3 +562,10 @@ class Application(QObject):
         self._logger.info('Load book {} ...'.format(path))
         self._book = QmlBook(path)
         self._logger.info('Book loaded')
+
+    ##############################################
+
+    def load_library(self, path):
+        self._logger.info('Load library {} ...'.format(path))
+        self._library = QmlBookLibrary(path)
+        self._logger.info('library loaded')

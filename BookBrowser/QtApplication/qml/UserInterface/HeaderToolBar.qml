@@ -52,6 +52,12 @@ ToolBar {
             }
 
             Widgets.ToolButtonTip {
+                icon.name: 'library-books-black'
+                tip: qsTr('Show Book Library')
+                onClicked: stack_layout.set_library_page()
+            }
+
+            Widgets.ToolButtonTip {
                 icon.name: 'edit-black'
                 tip: qsTr('Edit metadata')
                 onClicked: stack_layout.set_metadata_page()
@@ -64,7 +70,8 @@ ToolBar {
             }
 
             Widgets.ToolButtonTip {
-                icon.name: 'image-black'
+                // icon.name: 'image-black'
+                icon.name: 'pageview-black'
                 tip: qsTr('Show page viewer')
                 onClicked: stack_layout.set_viewer_page()
             }

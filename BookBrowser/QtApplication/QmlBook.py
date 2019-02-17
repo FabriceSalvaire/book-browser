@@ -292,8 +292,6 @@ class QmlBookPage(QObject):
 
     _logger = _module_logger.getChild('QmlBookPage')
 
-    thumbnail_ready = Signal()
-
     ##############################################
 
     def __init__(self, book_page):
@@ -342,6 +340,8 @@ class QmlBookPage(QObject):
 
     ##############################################
 
+    thumbnail_ready = Signal()
+    
     @Slot()
     def request_large_thumbnail(self):
 

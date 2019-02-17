@@ -39,6 +39,8 @@ ApplicationWindow {
 
     Component.onCompleted: {
         console.info('ApplicationWindow.onCompleted')
+        console.info(application.book)
+        console.info(application.library)
         application_window.showMaximized()
         page_viewer_page.page_viewer.first_page()
     }
@@ -158,13 +160,21 @@ ApplicationWindow {
         //     ScannerPage
         // }
 
-        function set_metadata_page() { currentIndex = 0 }
-        function set_thumbnail_page() { currentIndex = 1 }
-        function set_viewer_page() { currentIndex = 2 }
-        function set_scanner_page() { currentIndex = 3 }
+        function set_library_page() { currentIndex = 0 }
+        function set_metadata_page() { currentIndex = 1 }
+        function set_thumbnail_page() { currentIndex = 2 }
+        function set_viewer_page() { currentIndex = 3 }
+        function set_scanner_page() { currentIndex = 4 }
 
         Component.onCompleted: {
-            set_thumbnail_page()
+            if (application.library)
+                set_library_page()
+            else
+                set_thumbnail_page()
+        }
+
+        Ui.LibraryPage {
+            id: library_page
         }
 
         Ui.MetadataPage {

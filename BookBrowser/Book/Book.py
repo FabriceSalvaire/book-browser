@@ -42,6 +42,8 @@ class Book:
 
     __book_page_cls__ = BookPage
 
+    EXTENSIONS = ('.png', '.jpg', '.jpeg', '.webp', '.tiff')
+
     _logger = _module_logger.getChild('Book')
 
     ##############################################
@@ -92,9 +94,14 @@ class Book:
     ##############################################
 
     def save_metadata(self):
-        json_path = self.metadata_path
-        self._logger.info('Save book metadata {}'.format(json_path))
-        self._metadata.save_json(json_path)
+
+        from .BookLibrary import BookLibrary
+        if BookLibrary.is_library(self._path):
+            self._logger.warning('{} is a library'.format(self._path))
+        else:
+            json_path = self.metadata_path
+            self._logger.info('Save book metadata {}'.format(json_path))
+            self._metadata.save_json(json_path)
 
     ##############################################
 
@@ -124,7 +131,7 @@ class Book:
             extension = '.png'
         # Check for supported image format
         # https://doc.qt.io/qt-5/qtimageformats-index.html
-        if extension not in ('.png', '.jpg', '.jpeg', '.webp', '.tiff'):
+        if extension not in self.EXTENSIONS:
             extension = '.png'
         self._logger.info('Guessed extension {}'.format(extension))
 

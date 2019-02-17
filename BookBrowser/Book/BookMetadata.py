@@ -58,6 +58,20 @@ class BookMetadata:
 
     ##############################################
 
+    @classmethod
+    def make_json_path(cls, book_path):
+        # Fixme: func
+        # book_path = Path(str(book_path)).resolve()
+        return book_path.joinpath(cls.JSON_FILENAME)
+
+    ##############################################
+
+    @classmethod
+    def is_book(cls, path):
+        return cls.make_json_path(path).exists()
+
+    ##############################################
+
     def __init__(self, **kwargs):
 
         self.authors = kwargs.get('authors', ())

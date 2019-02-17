@@ -23,9 +23,12 @@ __all__ = ['BookLibrary']
 ####################################################################################################
 
 from pathlib import Path
+import glob
+import json
 import logging
 import os
 
+from .Book import Book
 from .BookMetadata import BookMetadata
 
 ####################################################################################################
@@ -34,15 +37,94 @@ _module_logger = logging.getLogger(__name__)
 
 ####################################################################################################
 
+class BookCover:
+
+    __json_keys__ = (
+        ('path', str),
+        ('cover_path', str),
+    )
+
+    ##############################################
+
+    def __init__(self, path, cover_path=None):
+
+        self._path = path
+        self._metadata = None
+        self._cover_path = cover_path
+
+    ##############################################
+
+    @property
+    def path(self):
+        return self._path
+
+    @property
+    def metadata(self):
+        if self._metadata is None:
+            json_path = BookMetadata.make_json_path(self._path)
+            self._metadata = BookMetadata.load_json(json_path)
+        return self._metadata
+
+    ##############################################
+
+    @property
+    def cover_path(self):
+        if self._cover_path is None:
+            # files = os.listdir(self._path)
+            images = []
+            for extension in Book.EXTENSIONS:
+                pattern = str(self._path.joinpath('*' + extension))
+                images += glob.glob(pattern)
+            images.sort()
+            self._cover_path = images[0] # Fixme: full proof ???
+        return self._cover_path
+
+    ##############################################
+
+    def to_dict(self):
+        return {key:ctor(getattr(self, '_' + key)) for key, ctor in self.__json_keys__}
+
+    ##############################################
+
+    @classmethod
+    def load_from_json(cls, json_data):
+        return cls(**json_data)
+
+####################################################################################################
+
 class BookLibrary:
 
     _logger = _module_logger.getChild('BookLibrary')
+
+    JSON_FILENAME = '.book-library-metadata.json'
+
+    ##############################################
+
+    @classmethod
+    def make_json_path(cls, library_path):
+        # Fixme: func
+        # library_path = Path(str(library_path)).resolve()
+        return library_path.joinpath(cls.JSON_FILENAME)
+
+    ##############################################
+
+    @classmethod
+    def is_library(cls, library_path):
+        return cls.make_json_path(library_path).exists()
 
     ##############################################
 
     def __init__(self, path):
 
         self._path = Path(str(path)).resolve()
+
+        self._books = []
+
+    ##############################################
+
+    @property
+    def path(self):
+        return self._path
 
     ##############################################
 
@@ -52,6 +134,68 @@ class BookLibrary:
         for path, directories, files in os.walk(root_path):
             for directory in directories:
                 book_path = Path(path).joinpath(directory)
-                json_path = book_path.joinpath(BookMetadata.JSON_FILENAME)
+                json_path = BookMetadata.make_json_path(book_path)
                 if json_path.exists():
-                    self._logger.info('Book {}'.format(book_path))
+                    # self._logger.info('Book {}'.format(book_path))
+                    book_cover = BookCover(book_path)
+                    self._books.append(book_cover)
+
+    ##############################################
+
+    def __len__(self):
+        return len(self._books)
+
+    def __iter__(self):
+        return iter(self._books)
+
+    def __getitemm__(self, slice_):
+        return self._books[slice_]
+
+    ##############################################
+
+    def dump(self):
+
+        self.scan()
+        for book in self:
+            print('-'*80)
+            print(book.path)
+            print(book.metadata.title)
+            print(book.cover_path)
+        self.save_json()
+
+    ##############################################
+
+    @property
+    def json_path(self):
+        return self.make_json_path(self._path)
+
+    ##############################################
+
+    def load_from_json(self):
+
+        path = self.json_path
+        with open(str(path), 'r') as fh:
+            json_data = json.loads(fh.read())
+
+        for json_book_cover in json_data:
+            book_cover = BookCover.load_from_json(json_book_cover)
+            self._books.append(book_cover)
+
+    ##############################################
+
+    def to_json(self):
+        data = [book_cover.to_dict() for book_cover in self._books]
+        return json.dumps(data, sort_keys=True, indent=4)
+
+    ##############################################
+
+    def save_json(self):
+
+        if BookMetadata.is_book(self._path):
+            self._logger.warning('{} is a book'.format(self._path))
+        else:
+            path = self.json_path
+            with open(str(path), 'w') as fh:
+                data_json = self.to_json()
+                self._logger.info(str(data_json))
+                fh.write(data_json)
