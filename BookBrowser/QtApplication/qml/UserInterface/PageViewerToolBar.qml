@@ -125,9 +125,8 @@ RowLayout {
 
 
     Widgets.ToolButtonTip {
-        // icon.name: 'flip-from-page'
-        text: 'To text'
-        tip: qsTr('Convert to text')
+        icon.name: 'subject-black'
+        tip: qsTr('Convert to text using OCR engine')
         onClicked: page_viewer_page.convert_to_text()
     }
 }
