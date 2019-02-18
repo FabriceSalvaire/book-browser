@@ -33,3 +33,18 @@
 .. |Qt| replace:: Qt
 .. _Qt: https://www.qt.io
 
+.. |HDF5| replace:: HDF5
+.. _HDF5: https://www.hdfgroup.org/solutions/hdf5
+
+.. |PDF| replace:: PDF
+.. _PDF: https://en.wikipedia.org/wiki/PDF
+.. https://www.iso.org/standard/63534.html
+
+.. |JSON| replace:: JSON
+.. _JSON: https://www.json.org
+
+.. |NoSQL| replace:: NoSQL
+.. _NoSQL: https://en.wikipedia.org/wiki/NoSQL
+
+.. |SQLite| replace:: SQLite
+.. _SQLite: https://www.sqlite.org
