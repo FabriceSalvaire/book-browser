@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>BookBrowser.Config.ConfigInstall &mdash; BookBrowser 1.0.0 documentation</title>
+  <title>BookBrowser.Common.Singleton &mdash; BookBrowser 1.0.0 documentation</title>
   
 
   
@@ -235,7 +235,7 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>BookBrowser.Config.ConfigInstall</li>
+      <li>BookBrowser.Common.Singleton</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -250,94 +250,144 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for BookBrowser.Config.ConfigInstall</h1><div class="highlight"><pre>
+  <h1>Source code for BookBrowser.Common.Singleton</h1><div class="highlight"><pre>
 <span></span><span class="c1">####################################################################################################</span>
 <span class="c1">#</span>
 <span class="c1"># BookBrowser - A book browser</span>
 <span class="c1"># Copyright (C) 2019 Fabrice Salvaire</span>
 <span class="c1">#</span>
 <span class="c1"># This program is free software: you can redistribute it and/or modify</span>
-<span class="c1"># it under the terms of the GNU General Public License as published by</span>
-<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
-<span class="c1"># (at your option) any later version.</span>
+<span class="c1"># it under the terms of the GNU Affero General Public License as</span>
+<span class="c1"># published by the Free Software Foundation, either version 3 of the</span>
+<span class="c1"># License, or (at your option) any later version.</span>
 <span class="c1">#</span>
 <span class="c1"># This program is distributed in the hope that it will be useful,</span>
 <span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
 <span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
-<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1"># GNU Affero General Public License for more details.</span>
 <span class="c1">#</span>
-<span class="c1"># You should have received a copy of the GNU General Public License</span>
-<span class="c1"># along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="c1"># You should have received a copy of the GNU Affero General Public License</span>
+<span class="c1"># along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
 <span class="c1">#</span>
 <span class="c1">####################################################################################################</span>
 
 <span class="c1">####################################################################################################</span>
 
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sys</span>
+<span class="sd">&quot;&quot;&quot;Implement Singleton</span>
 
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
-
-<span class="c1"># Fixme: why ?</span>
-<span class="kn">import</span> <span class="nn">BookBrowser.Common.Path</span> <span class="k">as</span> <span class="nn">PathTools</span> <span class="c1"># due to Path class</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="c1">####################################################################################################</span>
 
-<div class="viewcode-block" id="OsFactory"><a class="viewcode-back" href="../../../api/BookBrowser/Config/ConfigInstall.html#BookBrowser.Config.ConfigInstall.OsFactory">[docs]</a><span class="k">class</span> <span class="nc">OsFactory</span><span class="p">:</span>
-
-    <span class="c1">##############################################</span>
-
-<div class="viewcode-block" id="OsFactory.__init__"><a class="viewcode-back" href="../../../api/BookBrowser/Config/ConfigInstall.html#BookBrowser.Config.ConfigInstall.OsFactory.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
-        <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;linux&#39;</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="s1">&#39;linux&#39;</span>
-        <span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;win&#39;</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="s1">&#39;windows&#39;</span>
-        <span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;darwin&#39;</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="s1">&#39;osx&#39;</span></div>
-
-    <span class="c1">##############################################</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">on_linux</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">==</span> <span class="s1">&#39;linux&#39;</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">on_windows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">==</span> <span class="s1">&#39;windows&#39;</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">on_osx</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">==</span> <span class="s1">&#39;osx&#39;</span></div>
-
-<span class="n">OS</span> <span class="o">=</span> <span class="n">OsFactory</span><span class="p">()</span>
+<span class="kn">import</span> <span class="nn">threading</span>
 
 <span class="c1">####################################################################################################</span>
 
-<span class="n">_this_file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+<div class="viewcode-block" id="SingletonMetaClass"><a class="viewcode-back" href="../../../api/BookBrowser/Common/Singleton.html#BookBrowser.Common.Singleton.SingletonMetaClass">[docs]</a><span class="k">class</span> <span class="nc">SingletonMetaClass</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
 
-<div class="viewcode-block" id="Path"><a class="viewcode-back" href="../../../api/BookBrowser/Config/ConfigInstall.html#BookBrowser.Config.ConfigInstall.Path">[docs]</a><span class="k">class</span> <span class="nc">Path</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A singleton metaclass.</span>
 
-    <span class="n">book_browser_module_directory</span> <span class="o">=</span> <span class="n">_this_file</span><span class="o">.</span><span class="n">parents</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">config_directory</span> <span class="o">=</span> <span class="n">_this_file</span><span class="o">.</span><span class="n">parent</span></div>
+<span class="sd">    This implementation supports subclassing and is thread safe.</span>
 
-<span class="c1">####################################################################################################</span>
-
-<div class="viewcode-block" id="Logging"><a class="viewcode-back" href="../../../api/BookBrowser/Config/ConfigInstall.html#BookBrowser.Config.ConfigInstall.Logging">[docs]</a><span class="k">class</span> <span class="nc">Logging</span><span class="p">:</span>
-
-    <span class="n">default_config_file</span> <span class="o">=</span> <span class="s1">&#39;logging.yml&#39;</span>
-    <span class="n">directories</span> <span class="o">=</span> <span class="p">(</span><span class="n">Path</span><span class="o">.</span><span class="n">config_directory</span><span class="p">,)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1">##############################################</span>
 
-<div class="viewcode-block" id="Logging.find"><a class="viewcode-back" href="../../../api/BookBrowser/Config/ConfigInstall.html#BookBrowser.Config.ConfigInstall.Logging.find">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="n">config_file</span><span class="p">):</span>
+<div class="viewcode-block" id="SingletonMetaClass.__init__"><a class="viewcode-back" href="../../../api/BookBrowser/Common/Singleton.html#BookBrowser.Common.Singleton.SingletonMetaClass.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">super_classes</span><span class="p">,</span> <span class="n">class_attribute_dict</span><span class="p">):</span>
 
-        <span class="k">return</span> <span class="n">PathTools</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">config_file</span><span class="p">,</span> <span class="n">Logging</span><span class="o">.</span><span class="n">directories</span><span class="p">)</span></div></div>
+        <span class="c1"># It is called just after cls creation in order to complete cls.</span>
+
+        <span class="c1"># print(&#39;MetaSingleton __init__:&#39;, cls, class_name, super_classes, class_attribute_dict, sep=&#39;\n... &#39;)</span>
+
+        <span class="nb">type</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">super_classes</span><span class="p">,</span> <span class="n">class_attribute_dict</span><span class="p">)</span>
+
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_instance</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_rlock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">RLock</span><span class="p">()</span> <span class="c1"># A factory function that returns a new reentrant lock object.</span></div>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="SingletonMetaClass.__call__"><a class="viewcode-back" href="../../../api/BookBrowser/Common/Singleton.html#BookBrowser.Common.Singleton.SingletonMetaClass.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="c1"># It is called when cls is instantiated: cls(...).</span>
+        <span class="c1"># type.__call__ dispatches to the cls.__new__ and cls.__init__ methods.</span>
+
+        <span class="c1"># print(&#39;MetaSingleton __call__:&#39;, cls, args, kwargs, sep=&#39;\n... &#39;)</span>
+
+        <span class="k">with</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_rlock</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_instance</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">_instance</span> <span class="o">=</span> <span class="nb">type</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_instance</span></div></div>
+
+<span class="c1">####################################################################################################</span>
+
+<div class="viewcode-block" id="singleton"><a class="viewcode-back" href="../../../api/BookBrowser/Common/Singleton.html#BookBrowser.Common.Singleton.singleton">[docs]</a><span class="k">class</span> <span class="nc">singleton</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot; A singleton class decorator.</span>
+
+<span class="sd">    This implementation doesn&#39;t support subclassing.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="singleton.__init__"><a class="viewcode-back" href="../../../api/BookBrowser/Common/Singleton.html#BookBrowser.Common.Singleton.singleton.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">cls</span><span class="p">):</span>
+
+        <span class="c1"># print(&#39;singleton __init__: On @ decoration&#39;, cls, sep=&#39;\n... &#39;)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cls</span> <span class="o">=</span> <span class="bp">cls</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_instance</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="singleton.__call__"><a class="viewcode-back" href="../../../api/BookBrowser/Common/Singleton.html#BookBrowser.Common.Singleton.singleton.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="c1"># print(&#39;singleton __call__: On instance creation&#39;, self, args, kwargs, sep=&#39;\n... &#39;)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instance</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cls</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instance</span></div></div>
+
+<span class="c1">####################################################################################################</span>
+
+<div class="viewcode-block" id="singleton_func"><a class="viewcode-back" href="../../../api/BookBrowser/Common/Singleton.html#BookBrowser.Common.Singleton.singleton_func">[docs]</a><span class="k">def</span> <span class="nf">singleton_func</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot; A singleton function decorator.</span>
+
+<span class="sd">    This implementation doesn&#39;t support subclassing.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># print(&#39;singleton_func: On @ decoration&#39;, cls, sep=&#39;\n... &#39;)</span>
+
+    <span class="n">instances</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">get_instance</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># print(&#39;singleton_func: On instance creation&#39;, cls, sep=&#39;\n... &#39;)</span>
+        <span class="k">if</span> <span class="bp">cls</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">instances</span><span class="p">:</span>
+            <span class="n">instances</span><span class="p">[</span><span class="bp">cls</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">instances</span><span class="p">[</span><span class="bp">cls</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">get_instance</span></div>
+
+<span class="c1">####################################################################################################</span>
+
+<div class="viewcode-block" id="monostate"><a class="viewcode-back" href="../../../api/BookBrowser/Common/Singleton.html#BookBrowser.Common.Singleton.monostate">[docs]</a><span class="k">class</span> <span class="nc">monostate</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot; A monostate base class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_shared_state</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1">##############################################</span>
+
+<div class="viewcode-block" id="monostate.__new__"><a class="viewcode-back" href="../../../api/BookBrowser/Common/Singleton.html#BookBrowser.Common.Singleton.monostate.__new__">[docs]</a>    <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="c1"># print(&#39;monostate __new__:&#39;, cls, args, kwargs, sep=&#39;\n... &#39;)</span>
+
+        <span class="n">obj</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">monostate</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_shared_state</span>
+
+        <span class="k">return</span> <span class="n">obj</span></div></div>
 </pre></div>
 
            </div>

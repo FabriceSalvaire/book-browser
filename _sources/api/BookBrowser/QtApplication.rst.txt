@@ -8,6 +8,7 @@
     QtApplication/KeySequenceEditor
     QtApplication/QmlApplication
     QtApplication/QmlBook
+    QtApplication/QmlBookLibrary
     QtApplication/QmlScanner
     QtApplication/Runnable
     QtApplication/rcc

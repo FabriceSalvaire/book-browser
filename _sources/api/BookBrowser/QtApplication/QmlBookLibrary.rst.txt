@@ -1,0 +1,8 @@
+
+================
+ QmlBookLibrary
+================
+
+.. automodule:: BookBrowser.QtApplication.QmlBookLibrary
+   :members:
+   :show-inheritance:

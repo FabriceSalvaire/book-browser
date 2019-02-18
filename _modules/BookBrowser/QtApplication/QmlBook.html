@@ -113,11 +113,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq.html">5. User FAQ</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../faq.html#how-to-get-help-or-report-an-issue">5.1. How to get help or report an issue ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq.html#why-a-qt-user-interface-instead-of-a-web-application">5.2. Why a Qt User Interface instead of a web application ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq.html#why-python-instead-of-c">5.3. Why Python instead of C++ ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq.html#why-not-store-digitised-book-in-a-pdf">5.4. Why not store digitised book in a PDF ?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../design-notes.html">6. Design Notes</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../design-notes.html#general-code-design">6.1. General Code Design</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../design-notes.html#free-desktop-thumbnail-managing-standard">6.2. Free Desktop Thumbnail Managing Standard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../design-notes.html#discussion-on-data-storage">6.2. Discussion on data storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../design-notes.html#page-image-format">6.3. Page Image Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../design-notes.html#free-desktop-thumbnail-managing-standard">6.4. Free Desktop Thumbnail Managing Standard</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference-manual.html">7. API Documentation</a><ul>
@@ -138,29 +143,35 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/Common/ArgparseAction.html">7.1.3.1. ArgparseAction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/Common/FileTools.html">7.1.3.2. FileTools</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/Common/Logging.html">7.1.3.3. Logging</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/Common/Path.html">7.1.3.4. Path</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/Common/Platform.html">7.1.3.5. Platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/Common/LoremIpsum.html">7.1.3.4. LoremIpsum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/Common/Path.html">7.1.3.5. Path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/Common/Platform.html">7.1.3.6. Platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/Common/Singleton.html">7.1.3.7. Singleton</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../api/BookBrowser/Config.html">7.1.4. Config</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/Config/ConfigInstall.html">7.1.4.1. ConfigInstall</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../../api/BookBrowser/QtApplication.html">7.1.5. QtApplication</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/QtApplication/ApplicationMetadata.html">7.1.5.1. ApplicationMetadata</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/QtApplication/KeySequenceEditor.html">7.1.5.2. KeySequenceEditor</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/QtApplication/QmlApplication.html">7.1.5.3. QmlApplication</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/QtApplication/QmlBook.html">7.1.5.4. QmlBook</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/QtApplication/QmlScanner.html">7.1.5.5. QmlScanner</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/QtApplication/Runnable.html">7.1.5.6. Runnable</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/QtApplication/rcc.html">7.1.5.7. rcc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/BookBrowser/OCR.html">7.1.5. OCR</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../../api/BookBrowser/Scanner.html">7.1.6. Scanner</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/Scanner.html#reference">7.1.6.1. Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/BookBrowser/QtApplication.html">7.1.6. QtApplication</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/QtApplication/ApplicationMetadata.html">7.1.6.1. ApplicationMetadata</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/QtApplication/KeySequenceEditor.html">7.1.6.2. KeySequenceEditor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/QtApplication/QmlApplication.html">7.1.6.3. QmlApplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/QtApplication/QmlBook.html">7.1.6.4. QmlBook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/QtApplication/QmlBookLibrary.html">7.1.6.5. QmlBookLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/QtApplication/QmlScanner.html">7.1.6.6. QmlScanner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/QtApplication/Runnable.html">7.1.6.7. Runnable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/QtApplication/rcc.html">7.1.6.8. rcc</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../../api/BookBrowser/Thumbnail.html">7.1.7. Thumbnail</a><ul class="simple">
+<li class="toctree-l3"><a class="reference internal" href="../../../api/BookBrowser/Scanner.html">7.1.7. Scanner</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/BookBrowser/Scanner.html#reference">7.1.7.1. Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/BookBrowser/Thumbnail.html">7.1.8. Thumbnail</a><ul class="simple">
 </ul>
 </li>
 </ul>
@@ -534,15 +545,17 @@
 
     <span class="n">_logger</span> <span class="o">=</span> <span class="n">_module_logger</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="s1">&#39;QmlBookPage&#39;</span><span class="p">)</span>
 
-    <span class="n">thumbnail_ready</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
-
     <span class="c1">##############################################</span>
 
 <div class="viewcode-block" id="QmlBookPage.__init__"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookPage.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">book_page</span><span class="p">):</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_page</span> <span class="o">=</span> <span class="n">book_page</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_page</span> <span class="o">=</span> <span class="n">book_page</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_text</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ocr_running</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">text_ready</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ocr_cleanup</span><span class="p">)</span></div>
 
     <span class="c1">##############################################</span>
 
@@ -584,6 +597,8 @@
 
     <span class="c1">##############################################</span>
 
+    <span class="n">thumbnail_ready</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+
 <div class="viewcode-block" id="QmlBookPage.request_large_thumbnail"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookPage.request_large_thumbnail">[docs]</a>    <span class="nd">@Slot</span><span class="p">()</span>
     <span class="k">def</span> <span class="nf">request_large_thumbnail</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
@@ -592,10 +607,7 @@
             <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">thumbnail_cache</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_page</span><span class="o">.</span><span class="n">path</span><span class="p">]</span><span class="o">.</span><span class="n">large</span><span class="p">)</span>
 
         <span class="n">worker</span> <span class="o">=</span> <span class="n">Worker</span><span class="p">(</span><span class="n">job</span><span class="p">)</span>
-        <span class="c1"># worker.signals.result.connect(self.print_output)</span>
         <span class="n">worker</span><span class="o">.</span><span class="n">signals</span><span class="o">.</span><span class="n">finished</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">thumbnail_ready</span><span class="p">)</span>
-        <span class="c1"># worker.signals.progress.connect(self.progress_fn)</span>
-
         <span class="kn">from</span> <span class="nn">.QmlApplication</span> <span class="k">import</span> <span class="n">Application</span>
         <span class="n">Application</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="n">thread_pool</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">worker</span><span class="p">)</span></div>
 
@@ -620,7 +632,36 @@
 <div class="viewcode-block" id="QmlBookPage.flip_page"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookPage.flip_page">[docs]</a>    <span class="nd">@Slot</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">flip_page</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">orientation</span><span class="p">):</span>
         <span class="c1"># don&#39;t emit orientation_changed</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_page</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">orientation</span><span class="p">)</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_page</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">orientation</span><span class="p">)</span></div>
+
+    <span class="c1">##############################################</span>
+
+    <span class="n">text_ready</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+
+    <span class="nd">@Property</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ocr_running</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_text</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_page</span><span class="o">.</span><span class="n">book</span><span class="o">.</span><span class="n">metadata</span>
+            <span class="n">language</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">language</span> <span class="ow">or</span> <span class="kc">None</span>
+
+            <span class="k">def</span> <span class="nf">job</span><span class="p">():</span>
+                <span class="c1"># Set fake to debug and receive a large lorem ipsum</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_page</span><span class="o">.</span><span class="n">to_text</span><span class="p">(</span><span class="n">language</span><span class="p">,</span> <span class="n">fake</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="c1"># use result signal ???</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_text</span> <span class="o">=</span> <span class="n">text</span>
+                <span class="c1"># return text</span>
+
+            <span class="n">worker</span> <span class="o">=</span> <span class="n">Worker</span><span class="p">(</span><span class="n">job</span><span class="p">)</span>
+            <span class="n">worker</span><span class="o">.</span><span class="n">signals</span><span class="o">.</span><span class="n">finished</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text_ready</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ocr_running</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="kn">from</span> <span class="nn">.QmlApplication</span> <span class="k">import</span> <span class="n">Application</span>
+            <span class="n">Application</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="n">thread_pool</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">worker</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_text</span>
+
+<div class="viewcode-block" id="QmlBookPage._ocr_cleanup"><a class="viewcode-back" href="../../../api/BookBrowser/QtApplication/QmlBook.html#BookBrowser.QtApplication.QmlBook.QmlBookPage._ocr_cleanup">[docs]</a>    <span class="k">def</span> <span class="nf">_ocr_cleanup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ocr_running</span> <span class="o">=</span> <span class="kc">False</span></div></div>
 
 <span class="c1">####################################################################################################</span>
 

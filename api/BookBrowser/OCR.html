@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.1.2. Book &mdash; BookBrowser 1.0.0 documentation</title>
+  <title>7.1.5. OCR &mdash; BookBrowser 1.0.0 documentation</title>
   
 
   
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="7.1.2.1. Book" href="Book/Book.html" />
-    <link rel="prev" title="7.1.1.2. ToolApplication" href="Application/ToolApplication.html" /> 
+    <link rel="next" title="7.1.6. QtApplication" href="QtApplication.html" />
+    <link rel="prev" title="7.1.4.1. ConfigInstall" href="Config/ConfigInstall.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -134,7 +134,7 @@
 <li class="toctree-l4"><a class="reference internal" href="Application/ToolApplication.html">7.1.1.2. ToolApplication</a></li>
 </ul>
 </li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">7.1.2. Book</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Book.html">7.1.2. Book</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="Book/Book.html">7.1.2.1. Book</a></li>
 <li class="toctree-l4"><a class="reference internal" href="Book/BookLibrary.html">7.1.2.2. BookLibrary</a></li>
 <li class="toctree-l4"><a class="reference internal" href="Book/BookMetadata.html">7.1.2.3. BookMetadata</a></li>
@@ -155,7 +155,7 @@
 <li class="toctree-l4"><a class="reference internal" href="Config/ConfigInstall.html">7.1.4.1. ConfigInstall</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="OCR.html">7.1.5. OCR</a><ul class="simple">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">7.1.5. OCR</a><ul class="simple">
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="QtApplication.html">7.1.6. QtApplication</a><ul>
@@ -239,13 +239,13 @@
         
           <li><a href="../BookBrowser.html">7.1. BookBrowser</a> &raquo;</li>
         
-      <li>7.1.2. Book</li>
+      <li>7.1.5. OCR</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../_sources/api/BookBrowser/Book.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/api/BookBrowser/OCR.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -258,17 +258,43 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="book">
-<h1>7.1.2. Book<a class="headerlink" href="#book" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="ocr">
+<h1>7.1.5. OCR<a class="headerlink" href="#ocr" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="Book/Book.html">7.1.2.1. Book</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Book/BookLibrary.html">7.1.2.2. BookLibrary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Book/BookMetadata.html">7.1.2.3. BookMetadata</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Book/BookPage.html">7.1.2.4. BookPage</a></li>
-</ul>
 </div>
-<span class="target" id="module-BookBrowser.Book"></span></div>
+<span class="target" id="module-BookBrowser.OCR"></span><dl class="class">
+<dt id="BookBrowser.OCR.OcrEngine">
+<em class="property">class </em><code class="descclassname">BookBrowser.OCR.</code><code class="descname">OcrEngine</code><span class="sig-paren">(</span><em>data_path=PosixPath('/usr/local/stow/tesseract/data')</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/BookBrowser/OCR.html#OcrEngine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.OCR.OcrEngine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="BookBrowser.OCR.OcrEngine.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>data_path=PosixPath('/usr/local/stow/tesseract/data')</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/BookBrowser/OCR.html#OcrEngine.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.OCR.OcrEngine.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.OCR.OcrEngine._instance">
+<code class="descname">_instance</code><em class="property"> = None</em><a class="headerlink" href="#BookBrowser.OCR.OcrEngine._instance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.OCR.OcrEngine._logger">
+<code class="descname">_logger</code><em class="property"> = &lt;Logger BookBrowser.OCR.OcrEngine (WARNING)&gt;</em><a class="headerlink" href="#BookBrowser.OCR.OcrEngine._logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.OCR.OcrEngine._rlock">
+<code class="descname">_rlock</code><em class="property"> = &lt;unlocked _thread.RLock object owner=0 count=0&gt;</em><a class="headerlink" href="#BookBrowser.OCR.OcrEngine._rlock" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.OCR.OcrEngine.image_to_text">
+<code class="descname">image_to_text</code><span class="sig-paren">(</span><em>image</em>, <em>language</em>, <em>fake=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/BookBrowser/OCR.html#OcrEngine.image_to_text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.OCR.OcrEngine.image_to_text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
 
 
            </div>
@@ -278,10 +304,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Book/Book.html" class="btn btn-neutral float-right" title="7.1.2.1. Book" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="QtApplication.html" class="btn btn-neutral float-right" title="7.1.6. QtApplication" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="Application/ToolApplication.html" class="btn btn-neutral float-left" title="7.1.1.2. ToolApplication" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="Config/ConfigInstall.html" class="btn btn-neutral float-left" title="7.1.4.1. ConfigInstall" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

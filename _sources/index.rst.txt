@@ -37,9 +37,9 @@
 
    <div class="reduced-width">
 
-#########################################
- BookBrowser — A Book Scanner and Reader
-#########################################
+##########################################
+ BookBrowser — A Digitised Book Solution
+##########################################
 
 .. image:: /_static/logo.png
    :alt: BookBrowser logo
@@ -50,9 +50,9 @@
 Overview
 ********
 
-BookBrowser is a small application to read scanned books where the pages are stored as an image on
-disk.  It is an alternative to pack the images to a huge PDF file.  It also acts as a post-scanning
-tool to fix orientation, skipped and rescanned pages.
+**BookBrowser** is a full solution for **book digitalisation**.  The desktop application provides an
+**interface to digitise a book** using any scanner device, an **interface to manage a digitised book
+library** and **an interface to read digitised books** on screen.
 
 BookBrowser is licensed under GPLv3 therms.
 

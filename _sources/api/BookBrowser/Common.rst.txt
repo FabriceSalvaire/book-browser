@@ -7,8 +7,10 @@
     Common/ArgparseAction
     Common/FileTools
     Common/Logging
+    Common/LoremIpsum
     Common/Path
     Common/Platform
+    Common/Singleton
 
 .. automodule:: BookBrowser.Common
    :members:

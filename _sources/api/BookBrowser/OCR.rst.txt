@@ -1,0 +1,10 @@
+
+=====
+ OCR
+=====
+
+.. toctree::
+
+.. automodule:: BookBrowser.OCR
+   :members:
+   :show-inheritance:

@@ -115,11 +115,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq.html">5. User FAQ</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../faq.html#how-to-get-help-or-report-an-issue">5.1. How to get help or report an issue ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq.html#why-a-qt-user-interface-instead-of-a-web-application">5.2. Why a Qt User Interface instead of a web application ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq.html#why-python-instead-of-c">5.3. Why Python instead of C++ ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq.html#why-not-store-digitised-book-in-a-pdf">5.4. Why not store digitised book in a PDF ?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../design-notes.html">6. Design Notes</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../design-notes.html#general-code-design">6.1. General Code Design</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../design-notes.html#free-desktop-thumbnail-managing-standard">6.2. Free Desktop Thumbnail Managing Standard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../design-notes.html#discussion-on-data-storage">6.2. Discussion on data storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../design-notes.html#page-image-format">6.3. Page Image Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../design-notes.html#free-desktop-thumbnail-managing-standard">6.4. Free Desktop Thumbnail Managing Standard</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../reference-manual.html">7. API Documentation</a><ul class="current">
@@ -140,29 +145,35 @@
 <li class="toctree-l4"><a class="reference internal" href="../Common/ArgparseAction.html">7.1.3.1. ArgparseAction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../Common/FileTools.html">7.1.3.2. FileTools</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../Common/Logging.html">7.1.3.3. Logging</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../Common/Path.html">7.1.3.4. Path</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../Common/Platform.html">7.1.3.5. Platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Common/LoremIpsum.html">7.1.3.4. LoremIpsum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Common/Path.html">7.1.3.5. Path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Common/Platform.html">7.1.3.6. Platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Common/Singleton.html">7.1.3.7. Singleton</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../Config.html">7.1.4. Config</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../Config/ConfigInstall.html">7.1.4.1. ConfigInstall</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../QtApplication.html">7.1.5. QtApplication</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../QtApplication/ApplicationMetadata.html">7.1.5.1. ApplicationMetadata</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../QtApplication/KeySequenceEditor.html">7.1.5.2. KeySequenceEditor</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../QtApplication/QmlApplication.html">7.1.5.3. QmlApplication</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../QtApplication/QmlBook.html">7.1.5.4. QmlBook</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../QtApplication/QmlScanner.html">7.1.5.5. QmlScanner</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../QtApplication/Runnable.html">7.1.5.6. Runnable</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../QtApplication/rcc.html">7.1.5.7. rcc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../OCR.html">7.1.5. OCR</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../Scanner.html">7.1.6. Scanner</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../Scanner.html#reference">7.1.6.1. Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../QtApplication.html">7.1.6. QtApplication</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../QtApplication/ApplicationMetadata.html">7.1.6.1. ApplicationMetadata</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../QtApplication/KeySequenceEditor.html">7.1.6.2. KeySequenceEditor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../QtApplication/QmlApplication.html">7.1.6.3. QmlApplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../QtApplication/QmlBook.html">7.1.6.4. QmlBook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../QtApplication/QmlBookLibrary.html">7.1.6.5. QmlBookLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../QtApplication/QmlScanner.html">7.1.6.6. QmlScanner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../QtApplication/Runnable.html">7.1.6.7. Runnable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../QtApplication/rcc.html">7.1.6.8. rcc</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../Thumbnail.html">7.1.7. Thumbnail</a><ul class="simple">
+<li class="toctree-l3"><a class="reference internal" href="../Scanner.html">7.1.7. Scanner</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Scanner.html#reference">7.1.7.1. Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Thumbnail.html">7.1.8. Thumbnail</a><ul class="simple">
 </ul>
 </li>
 </ul>
@@ -285,6 +296,11 @@
 </dd></dl>
 
 <dl class="method">
+<dt id="BookBrowser.Book.BookPage.BookPage._load_dual_image">
+<code class="descname">_load_dual_image</code><span class="sig-paren">(</span><em>reload=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookPage.html#BookPage._load_dual_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage._load_dual_image" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="BookBrowser.Book.BookPage.BookPage._load_image">
 <code class="descname">_load_image</code><span class="sig-paren">(</span><em>reload=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookPage.html#BookPage._load_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage._load_image" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -297,6 +313,11 @@
 <dl class="method">
 <dt id="BookBrowser.Book.BookPage.BookPage._parse_filename">
 <code class="descname">_parse_filename</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookPage.html#BookPage._parse_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage._parse_filename" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookPage.BookPage.book">
+<code class="descname">book</code><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.book" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -330,6 +351,11 @@
 <dd></dd></dl>
 
 <dl class="method">
+<dt id="BookBrowser.Book.BookPage.BookPage.flip_image">
+<code class="descname">flip_image</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookPage.html#BookPage.flip_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.flip_image" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="BookBrowser.Book.BookPage.BookPage.get_histogram">
 <code class="descname">get_histogram</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookPage.html#BookPage.get_histogram"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.get_histogram" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -347,6 +373,16 @@
 <dl class="attribute">
 <dt id="BookBrowser.Book.BookPage.BookPage.is_empty">
 <code class="descname">is_empty</code><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.is_empty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookPage.BookPage.is_recto">
+<code class="descname">is_recto</code><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.is_recto" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookPage.BookPage.is_verso">
+<code class="descname">is_verso</code><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.is_verso" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -382,6 +418,11 @@
 <dl class="attribute">
 <dt id="BookBrowser.Book.BookPage.BookPage.title">
 <code class="descname">title</code><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.title" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.Book.BookPage.BookPage.to_text">
+<code class="descname">to_text</code><span class="sig-paren">(</span><em>language</em>, <em>fake=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookPage.html#BookPage.to_text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookPage.BookPage.to_text" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

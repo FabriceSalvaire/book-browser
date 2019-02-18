@@ -1,0 +1,8 @@
+
+============
+ LoremIpsum
+============
+
+.. automodule:: BookBrowser.Common.LoremIpsum
+   :members:
+   :show-inheritance:

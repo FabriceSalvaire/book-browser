@@ -1,0 +1,8 @@
+
+===========
+ Singleton
+===========
+
+.. automodule:: BookBrowser.Common.Singleton
+   :members:
+   :show-inheritance:

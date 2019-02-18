@@ -115,11 +115,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq.html">5. User FAQ</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../faq.html#how-to-get-help-or-report-an-issue">5.1. How to get help or report an issue ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq.html#why-a-qt-user-interface-instead-of-a-web-application">5.2. Why a Qt User Interface instead of a web application ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq.html#why-python-instead-of-c">5.3. Why Python instead of C++ ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq.html#why-not-store-digitised-book-in-a-pdf">5.4. Why not store digitised book in a PDF ?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../design-notes.html">6. Design Notes</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../design-notes.html#general-code-design">6.1. General Code Design</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../design-notes.html#free-desktop-thumbnail-managing-standard">6.2. Free Desktop Thumbnail Managing Standard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../design-notes.html#discussion-on-data-storage">6.2. Discussion on data storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../design-notes.html#page-image-format">6.3. Page Image Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../design-notes.html#free-desktop-thumbnail-managing-standard">6.4. Free Desktop Thumbnail Managing Standard</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../reference-manual.html">7. API Documentation</a><ul class="current">
@@ -140,29 +145,35 @@
 <li class="toctree-l4"><a class="reference internal" href="../Common/ArgparseAction.html">7.1.3.1. ArgparseAction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../Common/FileTools.html">7.1.3.2. FileTools</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../Common/Logging.html">7.1.3.3. Logging</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../Common/Path.html">7.1.3.4. Path</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../Common/Platform.html">7.1.3.5. Platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Common/LoremIpsum.html">7.1.3.4. LoremIpsum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Common/Path.html">7.1.3.5. Path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Common/Platform.html">7.1.3.6. Platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Common/Singleton.html">7.1.3.7. Singleton</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../Config.html">7.1.4. Config</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../Config/ConfigInstall.html">7.1.4.1. ConfigInstall</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../QtApplication.html">7.1.5. QtApplication</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../QtApplication/ApplicationMetadata.html">7.1.5.1. ApplicationMetadata</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../QtApplication/KeySequenceEditor.html">7.1.5.2. KeySequenceEditor</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../QtApplication/QmlApplication.html">7.1.5.3. QmlApplication</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../QtApplication/QmlBook.html">7.1.5.4. QmlBook</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../QtApplication/QmlScanner.html">7.1.5.5. QmlScanner</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../QtApplication/Runnable.html">7.1.5.6. Runnable</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../QtApplication/rcc.html">7.1.5.7. rcc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../OCR.html">7.1.5. OCR</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../Scanner.html">7.1.6. Scanner</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../Scanner.html#reference">7.1.6.1. Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../QtApplication.html">7.1.6. QtApplication</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../QtApplication/ApplicationMetadata.html">7.1.6.1. ApplicationMetadata</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../QtApplication/KeySequenceEditor.html">7.1.6.2. KeySequenceEditor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../QtApplication/QmlApplication.html">7.1.6.3. QmlApplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../QtApplication/QmlBook.html">7.1.6.4. QmlBook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../QtApplication/QmlBookLibrary.html">7.1.6.5. QmlBookLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../QtApplication/QmlScanner.html">7.1.6.6. QmlScanner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../QtApplication/Runnable.html">7.1.6.7. Runnable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../QtApplication/rcc.html">7.1.6.8. rcc</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../Thumbnail.html">7.1.7. Thumbnail</a><ul class="simple">
+<li class="toctree-l3"><a class="reference internal" href="../Scanner.html">7.1.7. Scanner</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Scanner.html#reference">7.1.7.1. Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Thumbnail.html">7.1.8. Thumbnail</a><ul class="simple">
 </ul>
 </li>
 </ul>
@@ -252,14 +263,76 @@
   <div class="section" id="module-BookBrowser.Book.BookLibrary">
 <span id="booklibrary"></span><h1>7.1.2.2. BookLibrary<a class="headerlink" href="#module-BookBrowser.Book.BookLibrary" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
+<dt id="BookBrowser.Book.BookLibrary.BookCover">
+<em class="property">class </em><code class="descclassname">BookBrowser.Book.BookLibrary.</code><code class="descname">BookCover</code><span class="sig-paren">(</span><em>path</em>, <em>cover_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookLibrary.html#BookCover"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookLibrary.BookCover" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="BookBrowser.Book.BookLibrary.BookCover.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>path</em>, <em>cover_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookLibrary.html#BookCover.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookLibrary.BookCover.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookLibrary.BookCover.__json_keys__">
+<code class="descname">__json_keys__</code><em class="property"> = (('path', &lt;class 'str'&gt;), ('cover_path', &lt;class 'str'&gt;))</em><a class="headerlink" href="#BookBrowser.Book.BookLibrary.BookCover.__json_keys__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookLibrary.BookCover.cover_path">
+<code class="descname">cover_path</code><a class="headerlink" href="#BookBrowser.Book.BookLibrary.BookCover.cover_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="BookBrowser.Book.BookLibrary.BookCover.load_from_json">
+<em class="property">classmethod </em><code class="descname">load_from_json</code><span class="sig-paren">(</span><em>json_data</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookLibrary.html#BookCover.load_from_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookLibrary.BookCover.load_from_json" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookLibrary.BookCover.metadata">
+<code class="descname">metadata</code><a class="headerlink" href="#BookBrowser.Book.BookLibrary.BookCover.metadata" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookLibrary.BookCover.path">
+<code class="descname">path</code><a class="headerlink" href="#BookBrowser.Book.BookLibrary.BookCover.path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.Book.BookLibrary.BookCover.to_dict">
+<code class="descname">to_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookLibrary.html#BookCover.to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookLibrary.BookCover.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="BookBrowser.Book.BookLibrary.BookLibrary">
 <em class="property">class </em><code class="descclassname">BookBrowser.Book.BookLibrary.</code><code class="descname">BookLibrary</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookLibrary.html#BookLibrary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookLibrary.BookLibrary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookLibrary.BookLibrary.JSON_FILENAME">
+<code class="descname">JSON_FILENAME</code><em class="property"> = '.book-library-metadata.json'</em><a class="headerlink" href="#BookBrowser.Book.BookLibrary.BookLibrary.JSON_FILENAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.Book.BookLibrary.BookLibrary.__getitemm__">
+<code class="descname">__getitemm__</code><span class="sig-paren">(</span><em>slice_</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookLibrary.html#BookLibrary.__getitemm__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookLibrary.BookLibrary.__getitemm__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="BookBrowser.Book.BookLibrary.BookLibrary.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookLibrary.html#BookLibrary.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookLibrary.BookLibrary.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.Book.BookLibrary.BookLibrary.__iter__">
+<code class="descname">__iter__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookLibrary.html#BookLibrary.__iter__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookLibrary.BookLibrary.__iter__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.Book.BookLibrary.BookLibrary.__len__">
+<code class="descname">__len__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookLibrary.html#BookLibrary.__len__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookLibrary.BookLibrary.__len__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="attribute">
 <dt id="BookBrowser.Book.BookLibrary.BookLibrary._logger">
@@ -267,8 +340,48 @@
 <dd></dd></dl>
 
 <dl class="method">
+<dt id="BookBrowser.Book.BookLibrary.BookLibrary.dump">
+<code class="descname">dump</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookLibrary.html#BookLibrary.dump"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookLibrary.BookLibrary.dump" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="BookBrowser.Book.BookLibrary.BookLibrary.is_library">
+<em class="property">classmethod </em><code class="descname">is_library</code><span class="sig-paren">(</span><em>library_path</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookLibrary.html#BookLibrary.is_library"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookLibrary.BookLibrary.is_library" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookLibrary.BookLibrary.json_path">
+<code class="descname">json_path</code><a class="headerlink" href="#BookBrowser.Book.BookLibrary.BookLibrary.json_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.Book.BookLibrary.BookLibrary.load_from_json">
+<code class="descname">load_from_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookLibrary.html#BookLibrary.load_from_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookLibrary.BookLibrary.load_from_json" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="BookBrowser.Book.BookLibrary.BookLibrary.make_json_path">
+<em class="property">classmethod </em><code class="descname">make_json_path</code><span class="sig-paren">(</span><em>library_path</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookLibrary.html#BookLibrary.make_json_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookLibrary.BookLibrary.make_json_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="BookBrowser.Book.BookLibrary.BookLibrary.path">
+<code class="descname">path</code><a class="headerlink" href="#BookBrowser.Book.BookLibrary.BookLibrary.path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.Book.BookLibrary.BookLibrary.save_json">
+<code class="descname">save_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookLibrary.html#BookLibrary.save_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookLibrary.BookLibrary.save_json" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="BookBrowser.Book.BookLibrary.BookLibrary.scan">
 <code class="descname">scan</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookLibrary.html#BookLibrary.scan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookLibrary.BookLibrary.scan" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="BookBrowser.Book.BookLibrary.BookLibrary.to_json">
+<code class="descname">to_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/BookBrowser/Book/BookLibrary.html#BookLibrary.to_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#BookBrowser.Book.BookLibrary.BookLibrary.to_json" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

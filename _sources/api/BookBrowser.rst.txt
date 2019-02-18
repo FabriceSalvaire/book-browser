@@ -8,6 +8,7 @@
     BookBrowser/Book
     BookBrowser/Common
     BookBrowser/Config
+    BookBrowser/OCR
     BookBrowser/QtApplication
     BookBrowser/Scanner
     BookBrowser/Thumbnail
