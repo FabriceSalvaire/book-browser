@@ -29,6 +29,7 @@ There is no mailing list or forum actually, so you can either contact me or fill
 .. (*) Despite Google Groups has many drawbacks, I don't have actually enough resources to run GNU Mailman or
    Discourse on my own IT infrastructure.
 
+
 Why a Qt User Interface instead of a web application ?
 ------------------------------------------------------
 
@@ -46,6 +47,20 @@ Desktop applications also have the advantage of being less open, while web brows
 development interface.  It is a nice feature if you want to prevent lambda users from distributing
 digitised books, because it is necessary to hack the frontend to save data.
 
+
+What about desktop integration ?
+--------------------------------
+
+I prefer a multi-platform application and a nice user interface rather than an application tied to a
+particular universe or a messed interface due to desktop theme issues.  Qt should be able to achieve
+theses requirements.
+
+Despite BookBrowser is based on Qt, it is not meant to be a `KDE <https://www.kde.org/>`_
+application.
+
+**Desktop integration must be implemented case by case.**
+
+
 Why Python instead of C++ ?
 ---------------------------
 
@@ -53,8 +68,9 @@ Simply because it is faster to develop and maintain a Python code, at the cost o
 less portable application.  However parts of the Python code could be rewritten in modern C++
 without much difficulty.
 
-Why not store digitised book in a PDF ?
----------------------------------------
+
+Why not store digitised book as PDF ?
+-------------------------------------
 
 PDF format is able to store page as image at the cost of a large file.  But it has the advantage of
 being a portable container.
