@@ -21,29 +21,31 @@ Overview
 What is BookBrowser ?
 ---------------------
 
-**BookBrowser** is an application to **digitise** books using a scanner device, to manage a
+**BookBrowser** is an application **to digitise books** using a scanner device, to manage a
 **digitised book library** and **read digitised books** on screen.
 
-BookBrowser can be used to archive any paper documents or simply transform some kilo of papers to Go
-of space disks.
+BookBrowser can be used to archive any paper documents to a numerical support or simply transform
+some kilo of papers to Go of space disks.
 
 **BookBrowser is multi-platforms and features:**
 
 * A **digitised book library** manager showing book covers
 * A **scanner interface** similar to XSane and featuring a timer to estimate the scan process time (supports |Sane|_ and |WIA|_)
-* A book metadata editor
-* A summary pane showing **page thumbnails** (supporting |FreeDesktopThumbnail|_)
+* A book metadata editor to define title etc.
+* A summary pane showing **page thumbnails** (supports |FreeDesktopThumbnail|_)
 * A **page viewer** which permits to navigate, zoom and fix page orientation
-* It implements a file system watcher in order to show a newer page.
+* Pages can be converted to text using the |Tesseract| Open Source OCR Engine
+
+..  It also implements a file system watcher in order to show a newer page.
 
 BookBrowser also provides a **command line tool** to perform some tasks like:
 
-* rename the images to fix page numbers,
-* guess the page orientation.
+* rename images to fix page numbers,
+* guess page orientation.
 
 **Implementation details:**
 
-BookBrowser is written in **Python 3** and the user interface is based on the **Qt5 QML** framework.
+BookBrowser is written in |Python|_ and the user interface is based on the |Qt|_ framework.
 BookBrowser can thus run on desktop platform like Linux, OSX and Windows, as well as on some
 embedded devices.
 
@@ -63,19 +65,14 @@ BookBrowser stores pages as images on disk.  It is an alternative to pack the pa
 huge PDF file.  Since BookBrowser acts as a post-scanning tool to fix orientation, skipped or
 rescanned pages and to crop image, theses post-scanning tasks are made easier if we keep raw data.
 For example, the page orientation recto/verso can be mangled in the file name by a flag.  This
-feature permits to keep raw data and avoid several image flips due to errors.  It is also a fast way
-to set the page orientation from a page by alternating the flag and just updating the directory on
-disk.  Pages are rendered in the right orientation by a basic GPU shader.
+feature permits to keep raw data and avoid several image flips due to mistakes.  It is also a fast
+way to set the page orientation from a page by alternating the flag and just updating the directory
+on disk.  Pages are rendered in the right orientation by a basic GPU shader.
 
 Where is the Documentation ?
 ----------------------------
 
 The documentation is available on the |BookBrowserHomePage|_.
-
-What are the main features ?
-----------------------------
-
-* to be completed
 
 How to install it ?
 -------------------

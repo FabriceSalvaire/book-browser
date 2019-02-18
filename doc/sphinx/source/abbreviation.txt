@@ -26,3 +26,10 @@
 
 .. |FreeDesktopThumbnail| replace:: Free Desktop Thumbnail
 .. _FreeDesktopThumbnail: https://specifications.freedesktop.org/thumbnail-spec/thumbnail-spec-latest.html
+
+.. |Tesseract| replace:: Tesseract
+.. _Tesseract: https://github.com/tesseract-ocr
+
+.. |Qt| replace:: Qt
+.. _Qt: https://www.qt.io
+
