@@ -378,6 +378,7 @@ ul.auto-toc {
 <!-- https://img.shields.io/pypi/status/Django.svg -->
 <!-- https://img.shields.io/github/stars/badges/shields.svg?style=social&label=Star -->
 <!-- -*- Mode: rst -*- -->
+<!-- https://www.iso.org/standard/63534.html -->
 <p><a class="reference external" href="https://pypi.python.org/pypi/BookBrowser"><object data="https://img.shields.io/pypi/l/BookBrowser.svg" type="image/svg+xml">BookBrowser license</object></a>
 <a class="reference external" href="https://pypi.python.org/pypi/BookBrowser"><object data="https://img.shields.io/pypi/pyversions/BookBrowser.svg" type="image/svg+xml">BookBrowser python version</object></a></p>
 <p><a class="reference external" href="https://pypi.python.org/pypi/BookBrowser"><object data="https://img.shields.io/pypi/v/BookBrowser.svg" type="image/svg+xml">BookBrowser last version</object></a></p>
@@ -389,45 +390,26 @@ ul.auto-toc {
 <h1>Overview</h1>
 <div class="section" id="what-is-bookbrowser">
 <h2>What is BookBrowser ?</h2>
-<p><strong>BookBrowser</strong> is an application <strong>to digitise books</strong> using a scanner device, to manage a
-<strong>digitised book library</strong> and <strong>read digitised books</strong> on screen.</p>
+<p><strong>BookBrowser</strong> is a full solution for <strong>book digitalisation</strong>.  The desktop application provides an
+<strong>interface to digitise a book</strong> using any scanner device, an <strong>interface to manage a digitised book
+library</strong> and <strong>an interface to read digitised books</strong> on screen.</p>
 <p>BookBrowser can be used to archive any paper documents to a numerical support or simply transform
 some kilo of papers to Go of space disks.</p>
 <p><strong>BookBrowser is multi-platforms and features:</strong></p>
+<!-- short list ! -->
 <ul class="simple">
-<li>A <strong>digitised book library</strong> manager showing book covers</li>
+<li>A <strong>digitised book library</strong> showing book covers</li>
 <li>A <strong>scanner interface</strong> similar to XSane and featuring a timer to estimate the scan process time (supports <a class="reference external" href="http://www.sane-project.org&gt;">SANE</a> and <a class="reference external" href="https://docs.microsoft.com/en-us/windows/desktop/wia/-wia-startpage">WIA</a>)</li>
 <li>A book metadata editor to define title etc.</li>
-<li>A summary pane showing <strong>page thumbnails</strong> (supports <a class="reference external" href="https://specifications.freedesktop.org/thumbnail-spec/thumbnail-spec-latest.html">Free Desktop Thumbnail</a>)</li>
+<li>A pane showing <strong>page thumbnails</strong></li>
 <li>A <strong>page viewer</strong> which permits to navigate, zoom and fix page orientation</li>
 <li>Pages can be converted to text using the Tesseract Open Source OCR Engine</li>
-</ul>
-<!-- It also implements a file system watcher in order to show a newer page. -->
-<p>BookBrowser also provides a <strong>command line tool</strong> to perform some tasks like:</p>
-<ul class="simple">
-<li>rename images to fix page numbers,</li>
-<li>guess page orientation.</li>
+<li>supports <a class="reference external" href="https://specifications.freedesktop.org/thumbnail-spec/thumbnail-spec-latest.html">Free Desktop Thumbnail</a></li>
 </ul>
 <p><strong>Implementation details:</strong></p>
 <p>BookBrowser is written in <a class="reference external" href="http://python.org">Python</a> and the user interface is based on the <a class="reference external" href="https://www.qt.io">Qt</a> framework.
 BookBrowser can thus run on desktop platform like Linux, OSX and Windows, as well as on some
 embedded devices.</p>
-<p>The graphical interfaced coded on QML is portable and parts of the Python code base could be
-rewritten in C++ to make a full Qt application which could run on any platform supported by the Qt
-framework, like Android or IOS.</p>
-<p>BookBrowser is designed so as to be splitted as a client-server architecture where the client could
-be a Python, C++ or web frontend.  This design is made easier by the fact QML supports network
-transparency by using URLs.</p>
-<p>For example, if you want to restrict that lambda users disseminate digitised books all around then a
-Qt frontend is an alternative to a web application, since it would be necessary to hack the frontend
-to save data.</p>
-<p>BookBrowser stores pages as images on disk.  It is an alternative to pack the page's images to a
-huge PDF file.  Since BookBrowser acts as a post-scanning tool to fix orientation, skipped or
-rescanned pages and to crop image, theses post-scanning tasks are made easier if we keep raw data.
-For example, the page orientation recto/verso can be mangled in the file name by a flag.  This
-feature permits to keep raw data and avoid several image flips due to mistakes.  It is also a fast
-way to set the page orientation from a page by alternating the flag and just updating the directory
-on disk.  Pages are rendered in the right orientation by a basic GPU shader.</p>
 </div>
 <div class="section" id="where-is-the-documentation">
 <h2>Where is the Documentation ?</h2>
