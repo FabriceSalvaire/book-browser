@@ -200,6 +200,15 @@
 	<file>icons/material/36x36/recto-page.png</file>
 	<file>icons/material/36x36@2/recto-page.png</file>
 
+        <!-- <file>icons/material/18x18/redo-black.png</file> -->
+        <!-- <file>icons/material/24x24/redo-black.png</file> -->
+        <file>icons/material/36x36/redo-black.png</file>
+        <!-- <file>icons/material/48x48/redo-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/redo-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/redo-black.png</file> -->
+        <file>icons/material/36x36@2/redo-black.png</file>
+        <!-- <file>icons/material/48x48@2/redo-black.png</file> -->
+
 	<!-- <file>icons/material/18x18/refresh-black.png</file> -->
         <!-- <file>icons/material/24x24/refresh-black.png</file> -->
         <file>icons/material/36x36/refresh-black.png</file>
@@ -256,6 +265,34 @@
         <file>icons/material/36x36@2/settings-overscan-black.png</file>
         <!-- <file>icons/material/48x48@2/settings-overscan-black.png</file> -->
 
+	<!-- import_contacts -->
+        <!-- <file>icons/material/18x18/side-by-side-page-black.png</file> -->
+        <!-- <file>icons/material/24x24/side-by-side-page-black.png</file> -->
+        <file>icons/material/36x36/side-by-side-page-black.png</file>
+        <!-- <file>icons/material/48x48/side-by-side-page-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/side-by-side-page-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/side-by-side-page-black.png</file> -->
+        <file>icons/material/36x36@2/side-by-side-page-black.png</file>
+        <!-- <file>icons/material/48x48@2/side-by-side-page-black.png</file> -->
+
+        <!-- <file>icons/material/18x18/sort-black.png</file> -->
+        <!-- <file>icons/material/24x24/sort-black.png</file> -->
+        <file>icons/material/36x36/sort-black.png</file>
+        <!-- <file>icons/material/48x48/sort-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/sort-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/sort-black.png</file> -->
+        <file>icons/material/36x36@2/sort-black.png</file>
+        <!-- <file>icons/material/48x48@2/sort-black.png</file> -->
+
+        <!-- <file>icons/material/18x18/subject-black.png</file> -->
+        <!-- <file>icons/material/24x24/subject-black.png</file> -->
+        <file>icons/material/36x36/subject-black.png</file>
+        <!-- <file>icons/material/48x48/subject-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/subject-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/subject-black.png</file> -->
+        <file>icons/material/36x36@2/subject-black.png</file>
+        <!-- <file>icons/material/48x48@2/subject-black.png</file> -->
+
 	<!-- <file>icons/material/18x18/swap-vert-black.png</file> -->
 	<!-- <file>icons/material/24x24/swap-vert-black.png</file> -->
         <file>icons/material/36x36/swap-vert-black.png</file>
@@ -264,6 +301,28 @@
 	<!-- <file>icons/material/24x24@2/swap-vert-black.png</file> -->
         <file>icons/material/36x36@2/swap-vert-black.png</file>
 	<!-- <file>icons/material/48x48@2/swap-vert-black.png</file> -->
+
+
+	<!-- T -->
+        <!-- <file>icons/material/18x18/toc-black.png</file> -->
+        <!-- <file>icons/material/24x24/toc-black.png</file> -->
+        <file>icons/material/36x36/toc-black.png</file>
+        <!-- <file>icons/material/48x48/toc-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/toc-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/toc-black.png</file> -->
+        <file>icons/material/36x36@2/toc-black.png</file>
+        <!-- <file>icons/material/48x48@2/toc-black.png</file> -->
+
+
+	<!-- U -->
+        <!-- <file>icons/material/18x18/undo-black.png</file> -->
+        <!-- <file>icons/material/24x24/undo-black.png</file> -->
+        <file>icons/material/36x36/undo-black.png</file>
+        <!-- <file>icons/material/48x48/undo-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/undo-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/undo-black.png</file> -->
+        <file>icons/material/36x36@2/undo-black.png</file>
+        <!-- <file>icons/material/48x48@2/undo-black.png</file> -->
 
 
 	<!-- V -->
