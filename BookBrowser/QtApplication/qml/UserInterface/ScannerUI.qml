@@ -505,7 +505,7 @@ Item {
                 width: 256
                 height: 256
 
-                image_previewer: image_preview
+                image_viewer: image_preview
             }
         }
     }

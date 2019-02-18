@@ -17,23 +17,23 @@
  *
  ***************************************************************************************************/
 
-// Fixme: selection area, label, backup
-// save preview
-// show mouse pointer
+// Fixme: name ???
+//    selection area, label, backup
+//    save preview
+//    show mouse pointer
 
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 
 Image {
-    id: image_preview
+
+    /******************************************************
+     *
+     * API
+     *
+     */
 
     property alias mouse_area: mouse_area
-
-    // anchors.fill: parent
-    // horizontalAlignment: Image.AlignLeft
-    // verticalAlignment: Image.AlignTop
-
-    fillMode: Image.PreserveAspectFit
 
     signal image_ready()
 
@@ -61,11 +61,22 @@ Image {
         return {x_inf:x_inf, x_sup:x_sup, y_inf:y_inf, y_sup:y_sup}
     }
 
+    /******************************************************/
+
+    id: image_preview
+
+    // anchors.fill: parent
+    // horizontalAlignment: Image.AlignLeft
+    // verticalAlignment: Image.AlignTop
+
+    fillMode: Image.PreserveAspectFit
+
     onStatusChanged: {
         if (status === Image.Ready)
             image_ready()
     }
 
+    /******************************************************/
 
     Rectangle {
         id: selection_area

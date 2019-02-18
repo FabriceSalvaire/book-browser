@@ -22,10 +22,19 @@ import QtQuick.Controls 2.4
 import Qt.labs.platform 1.1
 
 FolderDialog {
-    id: root
-    options: FolderDialog.ShowDirsOnly
+
+    /******************************************************
+     *
+     * API
+     *
+     */
 
     function selected_path() {
         return folder
     }
+
+    /******************************************************/
+
+    id: root
+    options: FolderDialog.ShowDirsOnly
 }

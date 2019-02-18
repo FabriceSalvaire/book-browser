@@ -1,12 +1,16 @@
 module Widgets
 Actions 1.0 Actions.qml
+BookCoverViewer 1.0 BookCoverViewer.qml
 FooterToolBar 1.0 FooterToolBar.qml
 HeaderToolBar 1.0 HeaderToolBar.qml
-MenuBar 1.0 MenuBar.qml
 LibraryPage 1.0 LibraryPage.qml
+MenuBar 1.0 MenuBar.qml
 MetadataPage 1.0 MetadataPage.qml
 OptionsDialog 1.0 OptionsDialog.qml
+PageViewer 1.0 PageViewer.qml
 PageViewerPage 1.0 PageViewerPage.qml
 PageViewerToolBar 1.0 PageViewerToolBar.qml
 ScannerPage 1.0 ScannerPage.qml
+ScannerUI 1.0 ScannerUI.qml
 ThumbnailPage 1.0 ThumbnailPage.qml
+ThumbnailViewer 1.0 ThumbnailViewer.qml

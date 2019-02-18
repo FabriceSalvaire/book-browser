@@ -19,9 +19,11 @@
 
 import QtQuick 2.11
 import QtQuick.Controls 2.4
+import QtQuick.Layouts 1.11
 
 import BookBrowser 1.0
 import Widgets 1.0 as Widgets
+import '.' 1.0 as Ui
 
 Page {
     id: root
@@ -40,17 +42,14 @@ Page {
 
     /******************************************************/
 
-    Widgets.PageViewer {
+    Ui.PageViewer {
         id: page_viewer
         anchors.fill: parent
 
-        book: application.book
-    }
-
-    // Fixme: move in page_viewer
-    Widgets.Grid {
-        id: grid
-        anchors.fill: parent
-        visible: false
+        Widgets.Grid {
+            id: grid
+            anchors.fill: parent
+            visible: false
+        }
     }
 }

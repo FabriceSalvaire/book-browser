@@ -21,7 +21,7 @@ import QtQuick 2.11
 import QtQuick.Controls 2.4
 
 import BookBrowser 1.0
-import Widgets 1.0 as Widgets
+import '.' 1.0 as Ui
 
 Page {
     id: root
@@ -37,7 +37,7 @@ Page {
 
     /******************************************************/
 
-    Widgets.ThumbnailViewer {
+    Ui.ThumbnailViewer {
         id: thumbnail_viewer
         anchors.fill: parent
 

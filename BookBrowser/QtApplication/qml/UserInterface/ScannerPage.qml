@@ -20,7 +20,7 @@
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 
-import Widgets 1.0 as Widgets
+import '.' 1.0 as Ui
 
 Page {
     id: root
@@ -35,7 +35,7 @@ Page {
 
     /******************************************************/
 
-    Widgets.ScannerUI {
+    Ui.ScannerUI {
         id: scanner_ui
         anchors.fill: parent
 

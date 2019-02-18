@@ -19,16 +19,16 @@
 
 import QtQuick 2.11
 
+import BookBrowser 1.0
 import Widgets 1.0 as Widgets
 
 Widgets.ImageViewer {
-    id: page_viewer
 
-    property var book
-    property var book_page
-
-    image_source: book_page ? book_page.path : ''
-    image_rotation: book_page ? book_page.orientation : 0
+    /*******************************************************
+     *
+     * API
+     *
+     */
 
     function first_page() {
         book_page = book.first_page
@@ -76,9 +76,17 @@ Widgets.ImageViewer {
         book.flip_from_page(book_page, 'v')
     }
 
+    /******************************************************/
+
+    id: page_viewer
+
+    property var book: application.book
+    property var book_page
+
+    image_source: book_page ? book_page.path : ''
+    image_rotation: book_page ? book_page.orientation : 0
 
     Component.onCompleted: {
         book.new_page.connect(last_page)
     }
-
 }

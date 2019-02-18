@@ -22,12 +22,21 @@ import QtQuick.Controls 2.4
 import QtQuick.Dialogs 1.0
 
 FileDialog {
-    id: book_folder_dialog
-    title: qsTr('Please choose a folder')
-    folder: shortcuts.home
-    selectFolder: true
+
+    /******************************************************
+     *
+     * API
+     *
+     */
 
     function selected_path() {
         return book_folder_dialog.fileUrls[0]
     }
+
+    /******************************************************/
+
+    id: book_folder_dialog
+    title: qsTr('Please choose a folder')
+    folder: shortcuts.home
+    selectFolder: true
 }

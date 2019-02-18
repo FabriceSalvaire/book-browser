@@ -21,17 +21,25 @@ import QtQuick 2.11
 import QtQuick.Shapes 1.11
 
 Item {
-    property Item image_previewer: null
+
+    /******************************************************
+     *
+     * API
+     *
+     */
+
+    // Must be an Image item and has a mouse_area property
+    property Item image_viewer: null
     property int pixel_scale: 4
 
     /******************************************************/
 
     id: root
-    visible: image_previewer != null
+    visible: image_viewer != null
 
     Image {
         id: image_source
-        source: image_previewer.source
+        source: image_viewer.source
     }
 
     ShaderEffectSource {
@@ -58,8 +66,8 @@ Item {
             // Image must be top-left aligned in the previewer
             // since mouse area is larger
             var offset = scaling / 2
-            var x = mouse.x / image_previewer.paintedWidth - offset
-            var y = mouse.y / image_previewer.paintedHeight - offset
+            var x = mouse.x / image_viewer.paintedWidth - offset
+            var y = mouse.y / image_viewer.paintedHeight - offset
             translation = Qt.point(x, y)
         }
 
@@ -111,7 +119,7 @@ Item {
     }
 
     Connections {
-        target: image_previewer != null ? image_previewer.mouse_area : null
+        target: image_viewer != null ? image_viewer.mouse_area : null
 
         onPressed: {
             if (target.pressedButtons & Qt.LeftButton)
