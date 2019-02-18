@@ -30,6 +30,8 @@ Widgets.ImageViewer {
      *
      */
 
+    property var book_page
+
     function first_page() {
         book_page = book.first_page
     }
@@ -81,7 +83,6 @@ Widgets.ImageViewer {
     id: page_viewer
 
     property var book: application.book
-    property var book_page
 
     image_source: book_page ? book_page.path : ''
     image_rotation: book_page ? book_page.orientation : 0

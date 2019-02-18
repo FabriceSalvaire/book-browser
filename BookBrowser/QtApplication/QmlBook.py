@@ -300,6 +300,10 @@ class QmlBookPage(QObject):
 
         self._page = book_page
 
+        self._text = None
+        self._ocr_running = False
+        self.text_ready.connect(self._ocr_cleanup)
+
     ##############################################
 
     def __repr__(self):
@@ -341,7 +345,7 @@ class QmlBookPage(QObject):
     ##############################################
 
     thumbnail_ready = Signal()
-    
+
     @Slot()
     def request_large_thumbnail(self):
 
@@ -350,10 +354,7 @@ class QmlBookPage(QObject):
             return str(thumbnail_cache[self._page.path].large)
 
         worker = Worker(job)
-        # worker.signals.result.connect(self.print_output)
         worker.signals.finished.connect(self.thumbnail_ready)
-        # worker.signals.progress.connect(self.progress_fn)
-
         from .QmlApplication import Application
         Application.instance.thread_pool.start(worker)
 
@@ -379,6 +380,35 @@ class QmlBookPage(QObject):
     def flip_page(self, orientation):
         # don't emit orientation_changed
         self._page.flip(orientation)
+
+    ##############################################
+
+    text_ready = Signal()
+
+    @Property(str, constant=True)
+    def text(self):
+
+        if not self._ocr_running and self._text is None:
+            metadata = self._page.book.metadata
+            language = metadata.language or None
+
+            def job():
+                # Set fake to debug and receive a large lorem ipsum
+                text = self._page.to_text(language, fake=False)
+                # use result signal ???
+                self._text = text
+                # return text
+
+            worker = Worker(job)
+            worker.signals.finished.connect(self.text_ready)
+            self._ocr_running = True
+            from .QmlApplication import Application
+            Application.instance.thread_pool.start(worker)
+
+        return self._text
+
+    def _ocr_cleanup(self):
+        self._ocr_running = False
 
 ####################################################################################################
 

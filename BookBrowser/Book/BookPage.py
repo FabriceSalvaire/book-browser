@@ -29,6 +29,7 @@ import logging
 import os
 import stat
 
+import PIL
 from PIL import Image
 import numpy as np
 
@@ -37,6 +38,11 @@ from BookBrowser.Common.FileTools import rename_file
 ####################################################################################################
 
 _module_logger = logging.getLogger(__name__)
+
+####################################################################################################
+
+RECTO = 'r'
+VERSO = 'v'
 
 ####################################################################################################
 
@@ -66,7 +72,7 @@ class EmptyBookPage:
 
     @property
     def orientation(self):
-        return 'r'
+        return RECTO
 
 ####################################################################################################
 
@@ -107,6 +113,12 @@ class BookPage:
     def __lt__(self, other):
         """Sort by page number or index"""
         return int(self) < int(other)
+
+    ##############################################
+
+    @property
+    def book(self):
+        return self._book
 
     ##############################################
 
@@ -153,6 +165,14 @@ class BookPage:
         return self._orientation
 
     @property
+    def is_recto(self):
+        return self._orientation == RECTO
+
+    @property
+    def is_verso(self):
+        return self._orientation == VERSO
+
+    @property
     def extension(self):
         return self._extension
 
@@ -180,12 +200,17 @@ class BookPage:
     ##############################################
 
     def _load_image(self, reload=False):
-
         if self._image is None or reload:
             pil_image = Image.open(self.path)
             self._image = np.asarray(pil_image)
-            self._dual_image = 255 - self._image
             # self._logger.info('Image shape {}'.format(self._image.shape))
+
+    ##############################################
+
+    def _load_dual_image(self, reload=False):
+        self._load_image(reload)
+        if self._dual_image is None or reload:
+            self._dual_image = 255 - self._image
 
     ##############################################
 
@@ -202,8 +227,14 @@ class BookPage:
 
     @property
     def dual_image(self):
-        self._load_image()
+        self._load_dual_image()
         return self._dual_image
+
+    ##############################################
+
+    def flip_image(self):
+        # Fixme: is it fast ??? numpy ???
+        self.image.transpose(PIL.Image.FLIP_TOP_BOTTOM)
 
     ##############################################
 
@@ -278,12 +309,28 @@ class BookPage:
 
         if orientation is None:
             orientation = self._orientation
-            if orientation == 'r':
-                orientation = 'v'
-            elif orientation == 'v':
-                orientation = 'r'
+            if orientation == RECTO:
+                orientation = VERSO
+            elif orientation == VERSO:
+                orientation = RECTO
             else:
                 orientation = None
 
         if orientation is not None:
             self.rename(orientation=orientation)
+
+    ##############################################
+
+    def to_text(self, language, fake=False):
+
+        from BookBrowser.OCR import OcrEngine
+        ocr_engine = OcrEngine()
+
+        if self.is_verso:
+            self.flip_image()
+
+        text = ocr_engine.image_to_text(self.image, language, fake)
+
+        self.release_image()
+
+        return text

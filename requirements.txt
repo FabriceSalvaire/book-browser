@@ -6,3 +6,4 @@ isbnlib>=3.9.5
 langcodes>=1.4.1
 numpy>=1.16
 pyinsane2>=2.0
+tesserocr>=2.4.0

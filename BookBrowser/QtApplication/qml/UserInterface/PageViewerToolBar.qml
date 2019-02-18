@@ -122,4 +122,12 @@ RowLayout {
         tip: qsTr('Flip page from this page')
         onClicked: page_viewer.flip_from_page()
     }
+
+
+    Widgets.ToolButtonTip {
+        // icon.name: 'flip-from-page'
+        text: 'To text'
+        tip: qsTr('Convert to text')
+        onClicked: page_viewer_page.convert_to_text()
+    }
 }
