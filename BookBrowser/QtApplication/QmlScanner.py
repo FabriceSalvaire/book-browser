@@ -109,15 +109,19 @@ class QmlScannerConfig(QObject):
         'number_of_pages',
     )
 
-    __default_area__ = dict(x_inf=0, x_sup=0, y_inf=0, y_sup=0)
+    # Fixme: invalid for sane
+    # __default_area__ = dict(x_inf=0, x_sup=0, y_inf=0, y_sup=0)
+    __default_area__ = dict(x_inf=0, x_sup=1, y_inf=0, y_sup=1)
 
     _logger = _module_logger.getChild('QmlScannerConfig')
 
     ##############################################
 
-    def __init__(self):
+    def __init__(self, qml_scanner):
 
         super().__init__()
+
+        self._qml_scanner = qml_scanner
 
         self._path = ''
         self._filename_pattern = ''
@@ -219,6 +223,18 @@ class QmlScannerConfig(QObject):
     @Property('QVariantMap', notify=area_changed)
     def area(self):
         return self._area
+
+    @Property('QVariantMap', notify=area_changed)
+    def area_mm(self):
+        area = self._area
+        scanner_width = self._qml_scanner.area_x_sup_mm
+        scanner_height = self._qml_scanner.area_y_sup_mm
+        return dict(
+            x_inf=area['x_inf']*scanner_width,
+            x_sup=area['x_sup']*scanner_width,
+            y_inf=area['y_inf']*scanner_height,
+            y_sup=area['y_sup']*scanner_height,
+        )
 
     @area.setter
     def area(self, value):
@@ -330,7 +346,7 @@ class QmlScanner(QObject):
             self._scanner = Scanner()
         # self.scanner_ready.emit()
 
-        self._config = QmlScannerConfig()
+        self._config = QmlScannerConfig(self)
 
         # Fixme: thread issue ???
         #
@@ -399,6 +415,14 @@ class QmlScanner(QObject):
     @Property(int, constant=True)
     def area_y_sup(self):
         return self._scanner.area_constraint_y_sup
+
+    @Property(int, constant=True)
+    def area_x_sup_mm(self):
+        return self._scanner.area_constraint_x_sup_mm
+
+    @Property(int, constant=True)
+    def area_y_sup_mm(self):
+        return self._scanner.area_constraint_y_sup_mm
 
     ##############################################
 

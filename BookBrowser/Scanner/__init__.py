@@ -31,6 +31,9 @@ Reference
 
 """
 
+# Fixme: replace PyInsane by a cffi or cython binding, featuring a clean oo api and nogil
+#        PyInsane raise exceptions when ???
+
 ####################################################################################################
 
 __all__ = [
@@ -45,6 +48,7 @@ from pathlib import Path
 import logging
 
 import pyinsane2
+from pyinsane2.sane.rawapi import SaneException
 
 from PIL import Image, ImageDraw, ImageFont
 
@@ -73,12 +77,17 @@ class Scanner:
     #: Scanning Area (x_inf, x_sup, y_inf, y_sup)
     AREA_OPTIONS = ('tl-x', 'br-x', 'tl-y', 'br-y')
 
+    AREA_UNIT_SCALE = 2**16
+
     ##############################################
 
     @classmethod
     def init(cls):
-        # take time
-        pyinsane2.init()
+        # This call takes a lot of time
+        try:
+            pyinsane2.init()
+        except:
+            cls._logger.warning('SANE initialisation failed')
         cls.__initialised__ = True
         cls._logger.info('Sane is initialised')
 
@@ -87,7 +96,10 @@ class Scanner:
     @classmethod
     def exit(cls):
         if cls.__initialised__:
-            pyinsane2.exit()
+            try:
+                pyinsane2.exit()
+            except:
+                self._logger.warning('SANE exit failed')
             cls.__initialised__ = False
             cls._logger.info('Sane exited')
 
@@ -96,7 +108,7 @@ class Scanner:
     @classmethod
     def devices(cls):
         if cls.__initialised__:
-            return pyinsane2.get_devices()
+            return pyinsane2.get_devices() # Fixme: exception ???
         else:
             return []
 
@@ -134,7 +146,7 @@ class Scanner:
 
     @device.setter
     def device(self, name):
-        self._device = pyinsane2.Scanner(name=name)
+        self._device = pyinsane2.Scanner(name=name) # Fixme: exception ???
 
     @property
     def device_name(self):
@@ -150,7 +162,10 @@ class Scanner:
 
     def _set_option(self, name, value):
         self._logger.info('{} = {}'.format(name, value))
-        pyinsane2.set_scanner_opt(self._device, name, [value])
+        try:
+            pyinsane2.set_scanner_opt(self._device, name, [value])
+        except SaneException:
+            self._logger.warning('Invalid option {}={}'.format(name, value))
 
     def _get_option(self, name):
         return self._device.options[name].value
@@ -161,7 +176,7 @@ class Scanner:
     ##############################################
 
     def maximize_scan_area(self):
-        pyinsane2.maximize_scan_area(self._device)
+        pyinsane2.maximize_scan_area(self._device) # Fixme: exception ??? 
 
     ##############################################
 
@@ -193,15 +208,33 @@ class Scanner:
 
     ##############################################
 
+    @classmethod
+    def area_unit_from_mm(cls, x):
+        # scanner unit mm * 2**16 ???
+        return x * cls.AREA_UNIT_SCALE
+
+    @classmethod
+    def area_unit_to_mm(cls, x):
+        return x / cls.AREA_UNIT_SCALE
+
     @property
     def area(self):
         return [self._get_option(name) for name in self.AREA_OPTIONS]
 
     @property
+    def area_mm(self):
+        return [self.area_unit_to_mm(x) for x in self.area]
+
+    @property
     def area_constraint(self):
         # [(0, 14149222, 0), (0, 14149222, 0),
         #  (0, 19475988, 0), (0, 19475988, 0)]
+        # ~ 21.59 x 29.79 cm
         return [self._get_option_constraint(name) for name in self.AREA_OPTIONS]
+
+    @property
+    def area_constraint_mm(self):
+        return [self.area_unit_to_mm(x) for x in self.area_constraint]
 
     @property
     def area_constraint_x_inf(self):
@@ -218,6 +251,22 @@ class Scanner:
     @property
     def area_constraint_y_sup(self):
         return self.area_constraint[2][1]
+
+    @property
+    def area_constraint_x_inf_mm(self):
+        return self.area_unit_to_mm(self.area_constraint_x_inf)
+
+    @property
+    def area_constraint_y_inf_mm(self):
+        return self.area_unit_to_mm(self.area_constraint_y_inf)
+
+    @property
+    def area_constraint_x_sup_mm(self):
+        return self.area_unit_to_mm(self.area_constraint_x_sup)
+
+    @property
+    def area_constraint_y_sup_mm(self):
+        return self.area_unit_to_mm(self.area_constraint_y_sup)
 
     @area.setter
     def area(self, bounds):

@@ -93,9 +93,12 @@ Item {
 
             number_of_pages.value = scanner.config.number_of_pages
 
-            if (loaded)
+            scan_area_label.set_custon()
+
+            if (loaded) {
                 filename_index.value = scanner.config.index
-            else if (application.book) {
+                valid_selection_area = true
+            } else if (application.book) {
                 var index = Math.max(application.book.last_page_number +1, 1)
                 filename_index.value = index
             }
@@ -220,12 +223,13 @@ Item {
                 var x_sup_p = to_percent(y_sup)
                 var y_inf_p = to_percent(y_inf)
                 var y_sup_p = to_percent(y_sup)
-                scan_area_label.set_custon()
                 application_window.show_message('Reset bounds to [%1, %2, %3, %4] %'.arg(x_inf_p).arg(x_sup_p).arg(y_inf_p).arg(y_sup_p))
                 scanner.config.area = bounds
+                scan_area_label.set_custon()
                 dirty_selection_area = false
             }
         } else {
+            console.info('no valid selection area')
             maximize_scan_area()
             dirty_selection_area = false
             valid_selection_area = true
@@ -428,7 +432,13 @@ Item {
                         text = qsTr('Maximised')
                     }
                     function set_custon() {
-                        text = qsTr('Custom')
+                        // Fixme: connect to mouse
+                        var area = scanner.config.area_mm
+                        text = '[%1, %2] x [%3, %4] mm'
+                            .arg(Math.round(area.x_inf))
+                            .arg(Math.round(area.x_sup))
+                            .arg(Math.round(area.y_inf))
+                            .arg(Math.round(area.y_sup))
                     }
                 }
             }
