@@ -28,6 +28,7 @@ from pathlib import Path
 import logging
 import os
 
+import numpy as np
 from PIL import Image
 
 import tesserocr
@@ -42,6 +43,8 @@ _module_logger = logging.getLogger(__name__)
 
 try:
     TESSERACT_DATA_PATH = Path(os.environ['TESSDATA_PREFIX'])
+    if not TESSERACT_DATA_PATH.exists():
+        TESSERACT_DATA_PATH = None
 except KeyError:
     TESSERACT_DATA_PATH = None
 
@@ -66,7 +69,7 @@ class OcrEngine(metaclass=SingletonMetaClass):
 
     def __init__(self, data_path=TESSERACT_DATA_PATH):
 
-        self._path = Path(data_path)
+        self._path = Path(data_path) if data_path else None
         self._logger.info('TESSERACT Data _path {}'.format(self._path))
 
     ##############################################
@@ -79,12 +82,22 @@ class OcrEngine(metaclass=SingletonMetaClass):
             import BookBrowser.Common.LoremIpsum as Lorem
             return Lorem.lorem_ipsum_20
 
-        # Fixme: np
-        image = Image.fromarray(image).convert('L')
+        if isinstance(image, np.ndarray):
+            image = Image.fromarray(image)
+        elif not isinstance(image, Image):
+            raise ValueError
+        image = image.convert('L')
 
         language_code = LANGUAGE_CODE[language.lower()]
-        text = tesserocr.image_to_text(image, path=str(self._path), lang=language_code)
+        kwargs = {}
+        if self._path:
+            kwargs['path'] = str(self._path)
 
-        self._logger.info('OCR done')
-
-        return text
+        try:
+            text = tesserocr.image_to_text(image, lang=language_code, **kwargs)
+            self._logger.info('OCR done')
+            return text
+        except:
+            # Fixme: report !!!
+            self._logger.info('OCR failed')
+            return None
