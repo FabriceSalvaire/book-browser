@@ -76,8 +76,10 @@ class QmlApplication(QObject):
 
     scanner_ready = Signal()
 
+    # Fixme: !!!
     preview_done = Signal(str)
     file_exists_error = Signal(str)
+    path_error = Signal(str)
     scan_done = Signal(str)
 
     _logger = _module_logger.getChild('QmlApplication')
@@ -167,6 +169,7 @@ class QmlApplication(QObject):
 
         self._application.scanner.preview_done.connect(self.preview_done)
         self._application.scanner.file_exists_error.connect(self.file_exists_error)
+        self._application.scanner.path_error.connect(self.path_error)
         self._application.scanner.scan_done.connect(self._on_scan_done)
         # self._application.scanner.scan_done.connect(self.scan_done)
 

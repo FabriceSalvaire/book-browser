@@ -110,6 +110,7 @@ Item {
             application.debug()
             application.preview_done.connect(on_preview_done)
             application.file_exists_error.connect(on_file_exists_error)
+            application.path_error.connect(on_path_error)
             application.scan_done.connect(on_scan_done)
 
             image_preview.image_ready.connect(on_image_ready)
@@ -132,6 +133,12 @@ Item {
     function on_file_exists_error(path) {
         console.info('on_file_exists_error', path)
         file_exists_error_dialog.open_for_path(path)
+        enable_scan_button(true)
+    }
+
+    function on_path_error(path) {
+        console.info('on_path_error', path)
+        path_error_dialog.open_for_path(path)
         enable_scan_button(true)
     }
 
@@ -261,12 +268,12 @@ Item {
 
         function open_for_path(path) {
             var template = qsTr('<p>A file "%1" already exists.</p><p><b>Do you want to overwrite it ?</b></p>')
-            file_exists_error_dialog_message.text = template.arg(path)
-            open() // Fixme: position
+            file_error_message.text = template.arg(path)
+            open()
         }
 
         TextArea {
-            id: file_exists_error_dialog_message
+            id: file_error_message
             anchors.margins: 20
             textFormat: TextEdit.RichText
         }
@@ -274,6 +281,25 @@ Item {
         onAccepted: {
             var overwrite = true
             call_scan_page(overwrite)
+        }
+    }
+
+    Widgets.CentredDialog {
+        id: path_error_dialog
+        modal: true
+        title: qsTr('Path Error')
+        standardButtons: Dialog.Ok
+
+        function open_for_path(path) {
+            var template = qsTr("<p>Path \"%1\" don't exists.</p>")
+            path_error_message.text = template.arg(path)
+            open()
+        }
+
+        TextArea {
+            id: path_error_message
+            anchors.margins: 20
+            textFormat: TextEdit.RichText
         }
     }
 

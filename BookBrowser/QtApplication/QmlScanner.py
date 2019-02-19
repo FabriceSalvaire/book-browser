@@ -42,7 +42,7 @@ from QtShim.QtCore import (
 
 from PIL import ImageQt, Image
 
-from BookBrowser.Scanner import Scanner, FakeScanner, FileExistsError
+from BookBrowser.Scanner import Scanner, FakeScanner, FileExistsError, PathError
 from .Runnable import Worker
 
 ####################################################################################################
@@ -293,6 +293,10 @@ class QmlScannerConfig(QObject):
             with open(self.json_path, 'r') as fh:
                 data = json.loads(fh.read())
 
+            # In case book was moved !!!
+            saved_path = data['path']
+            del data['path']
+
             self._logger.info('Loads scanner config {} {}'.format(self.json_path, data))
             for key, value in data.items():
                 setattr(self, key, value)
@@ -309,6 +313,7 @@ class QmlScanner(QObject):
     # scanner_ready = Signal()
     preview_done = Signal(str)
     file_exists_error = Signal(str)
+    path_error = Signal(str)
     scan_done = Signal(str)
 
     _logger = _module_logger.getChild('QmlScanner')
@@ -466,7 +471,10 @@ class QmlScanner(QObject):
             except FileExistsError as exception:
                 path = exception.args[0]
                 self.file_exists_error.emit(path)
-                return ''
+            except PathError as exception:
+                path = exception.args[0]
+                self.path_error.emit(path)
+            return '' # error
 
         worker = Worker(job)
         # worker.signals.progress.connect()

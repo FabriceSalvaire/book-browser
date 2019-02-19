@@ -35,7 +35,8 @@ Reference
 
 __all__ = [
     'Scanner',
-    'FileExistsError',
+    'FileExistsError'
+    'PathError',
 ]
 
 ####################################################################################################
@@ -54,6 +55,9 @@ _module_logger = logging.getLogger(__name__)
 ####################################################################################################
 
 class FileExistsError(NameError):
+    pass
+
+class PathError(NameError):
     pass
 
 ####################################################################################################
@@ -265,15 +269,21 @@ class Scanner:
 
         path = Path(path).resolve()
 
+        parent = path.parent
+        if not path.parent.exists():
+            raise PathError(str(parent))
+
         if not overwrite and path.exists():
-            # raise NameError('File {} exists'.format(path))
             raise FileExistsError(str(path))
 
         image = self.scan_image()
-        image.save(str(path))
-        self._logger.info('Saved {}'.format(path))
-
-        return path
+        try:
+            image.save(str(path))
+            self._logger.info('Saved {}'.format(path))
+            return path
+        except FileNotFoundError: # should not happen, cf. PathError
+            self._logger.warning('Invalid path {}'.format(path))
+            return None
 
 ####################################################################################################
 
