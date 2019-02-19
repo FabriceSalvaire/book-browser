@@ -36,19 +36,14 @@ Item {
     id: root
 
     ScrollView {
-        // Flickable {
         anchors.fill: parent
 
-        // TextArea.flickable:
         TextArea {
             id: text_area
             selectByMouse: true
             textFormat: TextEdit.PlainText
             wrapMode: TextEdit.Wrap
         }
-
-        //! ScrollIndicator.vertical: ScrollIndicator { }
-        // ScrollIndicator.horizontal: ScrollIndicator { }
     }
 
     BusyIndicator {

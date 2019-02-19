@@ -289,6 +289,7 @@ Item {
     }
 
     Widgets.CentredDialog {
+        // Fixme: QML Dialog: Binding loop detected for property "implicitWidth"
         id: path_error_dialog
         modal: true
         title: qsTr('Path Error')
