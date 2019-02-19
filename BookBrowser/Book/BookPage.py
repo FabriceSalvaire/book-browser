@@ -233,8 +233,9 @@ class BookPage:
     ##############################################
 
     def flip_image(self):
-        # Fixme: is it fast ??? numpy ???
-        self.image.transpose(PIL.Image.FLIP_TOP_BOTTOM)
+        # Fixme: is it fast ???
+        # self.image.transpose(PIL.Image.FLIP_TOP_BOTTOM)
+        self._image = np.flip(self.image, 0)
 
     ##############################################
 
