@@ -32,17 +32,23 @@ Widgets.ImageViewer {
 
     property var book_page
 
+    signal page_changed() // int page_number
+
     function first_page() {
         book_page = book.first_page
+        page_changed()
     }
 
     function last_page() {
         book_page = book.last_page
+        page_changed()
     }
 
     function to_page(page_number) {
-        if (book.is_valid_page_number(page_number))
+        if (book.is_valid_page_number(page_number)) {
             book_page = book.page(page_number)
+            page_changed()
+        }
     }
 
     function prev_page() {

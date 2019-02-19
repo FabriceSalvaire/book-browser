@@ -26,7 +26,6 @@ import Widgets 1.0 as Widgets
 import '.' 1.0 as Ui
 
 Page {
-    id: root
 
     /*******************************************************
      *
@@ -42,8 +41,8 @@ Page {
 
     function convert_to_text() {
         page_text.text = ''
-        page_text_container.processing = true
-        page_text_container.visible = true
+        page_text.processing = true
+        page_text.visible = true
         page_viewer.book_page.text_ready.connect(set_text)
         var text = page_viewer.book_page.text
         if (text)
@@ -55,13 +54,24 @@ Page {
         // console.info('OCR is done')
         page_text.text = text
         page_viewer.book_page.text_ready.disconnect(set_text)
-        page_text_container.processing = false
+        page_text.processing = false
     }
 
     /******************************************************/
 
-    // Component.onCompleted {
-    // }
+    id: root
+
+    Component.onCompleted: {
+        page_viewer.page_changed.connect(_clear_text)
+    }
+
+    function _clear_text() {
+        // in case ocr is running when user changes the current page
+        page_viewer.book_page.text_ready.disconnect(set_text)
+        page_text.visible = false
+        page_text.processing = false
+        page_text.text = ''
+    }
 
     /******************************************************/
 
@@ -80,34 +90,11 @@ Page {
             }
         }
 
-        Item {
-            id: page_text_container
+        Ui.PageText {
+            id: page_text
             visible: false
             Layout.fillHeight: true
             Layout.preferredWidth: parent.width/2
-
-            property bool processing: false
-
-            Flickable {
-                anchors.fill: parent
-
-                TextArea.flickable: TextArea {
-                    id: page_text
-                    selectByMouse: true
-                    textFormat: TextEdit.PlainText
-                    wrapMode: TextEdit.Wrap
-                }
-
-                ScrollIndicator.vertical: ScrollIndicator { }
-                // ScrollIndicator.horizontal: ScrollIndicator { }
-            }
-
-            BusyIndicator {
-                anchors.centerIn: parent
-                height: Math.min(parent.width, parent.height) * .5
-                width: height
-                running: page_text_container.processing
-            }
         }
     }
 }
