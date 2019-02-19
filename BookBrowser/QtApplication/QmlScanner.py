@@ -297,8 +297,12 @@ class QmlScannerConfig(QObject):
         data = {key:getattr(self, '_' + key) for key in self.__json_keys__}
         self._logger.info('Save scanner config {} {}'.format(self.json_path, data))
         json_data = json.dumps(data, sort_keys=True, indent=4)
-        with open(self.json_path, 'w') as fh:
-            fh.write(json_data)
+        try:
+            with open(self.json_path, 'w') as fh:
+                fh.write(json_data)
+        except FileNotFoundError:
+            # Fixme: better ??? not shown at exit !!!
+            self._qml_scanner.path_error.emit(str(self.json_path))
 
     ##############################################
 
