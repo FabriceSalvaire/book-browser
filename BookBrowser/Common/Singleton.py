@@ -1,6 +1,6 @@
 ####################################################################################################
 #
-# BookBrowser - A book browser
+# BookBrowser - A Digitised Book Solution
 # Copyright (C) 2019 Fabrice Salvaire
 #
 # This program is free software: you can redistribute it and/or modify
