@@ -17,21 +17,3 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  ***************************************************************************************************/
-
-import QtQuick 2.11
-import QtQuick.Controls 2.4
-
-ToolButton {
-    // property alias tip: ToolTip.text
-    property string tip: null
-    property int size: 22
-
-    icon.height: size
-    icon.width: size
-
-    hoverEnabled: tip
-    ToolTip.delay: 1000
-    ToolTip.timeout: 5000
-    ToolTip.visible: hovered
-    ToolTip.text: tip
-}
