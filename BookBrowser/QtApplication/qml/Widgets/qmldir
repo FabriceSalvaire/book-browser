@@ -6,6 +6,7 @@ Grid 1.0 Grid.qml
 ImageMagnifier 1.0 ImageMagnifier.qml
 ImagePreviewer 1.0 ImagePreviewer.qml
 ImageViewer 1.0 ImageViewer.qml
+MarkdownViewer 1.0 MarkdownViewer.qml
 NativeBookFolderDialog 1.0 NativeBookFolderDialog.qml
 ShortcutRow 1.0 ShortcutRow.qml
 TextField 1.0 TextField.qml
