@@ -33,7 +33,7 @@ import PIL
 from PIL import Image
 import numpy as np
 
-from BookBrowser.Common.FileTools import rename_file
+from BookBrowser.Common.FileTools import file_watcher
 
 ####################################################################################################
 
@@ -299,7 +299,7 @@ class BookPage:
         new_path = self._book.joinpath(filename)
         self._logger.info('rename\n  {}\n->\n{}'.format(old_path, new_path))
         if old_path != new_path:
-            if rename_file(old_path, new_path, dry_run=dry_run):
+            if file_watcher.rename_file(old_path, new_path, dry_run=dry_run):
                 self._filename = filename
                 return True
         return False

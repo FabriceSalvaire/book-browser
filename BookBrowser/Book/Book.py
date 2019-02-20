@@ -28,7 +28,7 @@ import logging
 import math
 import os
 
-from BookBrowser.Common.FileTools import rename_file
+from BookBrowser.Common.FileTools import file_watcher
 from .BookMetadata import BookMetadata
 from .BookPage import BookPage, EmptyBookPage
 
@@ -215,7 +215,7 @@ class Book:
             # Fixme: fix _ suffix
             if filename.endswith('_'):
                 path = str(self.joinpath(filename))
-                if not rename_file(path, path[:-1]):
+                if not file_watcher.rename_file(path, path[:-1]):
                     filename = filename[:-1]
                 else:
                     raise NameError('')
@@ -312,7 +312,7 @@ class Book:
         if not dry_run:
             for page, _ in renames:
                 path = page.path
-                rename_file(path, str(path) + '_') # , dry_run=dry_run
+                file_watcher.rename_file(path, str(path) + '_') # , dry_run=dry_run
 
         for page, page_number in renames:
             self._logger.info('Rename {} -> {}'.format(page.file_index, page_number))
