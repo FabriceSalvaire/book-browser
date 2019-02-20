@@ -314,8 +314,8 @@ class BookPage:
                 orientation = VERSO
             elif orientation == VERSO:
                 orientation = RECTO
-            else:
-                orientation = None
+            else: # assume is RECTO
+                orientation = VERSO # None
 
         if orientation is not None:
             self.rename(orientation=orientation)

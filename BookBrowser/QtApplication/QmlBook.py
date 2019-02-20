@@ -294,10 +294,11 @@ class QmlBookPage(QObject):
 
     ##############################################
 
-    def __init__(self, book_page):
+    def __init__(self, qml_book, book_page):
 
         super().__init__()
 
+        self._qml_book = qml_book
         self._page = book_page
 
         self._text = None
@@ -376,10 +377,11 @@ class QmlBookPage(QObject):
 
     ##############################################
 
-    @Slot(str)
-    def flip_page(self, orientation):
-        # don't emit orientation_changed
-        self._page.flip(orientation)
+    @Slot()
+    def flip_page(self):
+        self._page.flip()
+        self.orientation_changed.emit()
+        self._qml_book.pages_changed.emit()
 
     ##############################################
 
@@ -445,7 +447,7 @@ class QmlBook(QObject):
         self._metadata = QmlBookMetadata(self._book)
 
         # We must prevent garbage collection
-        self._pages = [QmlBookPage(page) for page in self._book]
+        self._pages = [QmlBookPage(self, page) for page in self._book]
 
     ##############################################
 
@@ -518,6 +520,8 @@ class QmlBook(QObject):
         # Fixme: qml_page.page.page_number is None
         self._logger.info('{} {}'.format(qml_page.page_number, orientation))
         self._book.flip_from_page(qml_page.page_number, orientation)
+        qml_page.orientation_changed.emit()
+        self.pages_changed.emit()
 
     ##############################################
 
@@ -565,7 +569,7 @@ class QmlBook(QObject):
         page._page_number = self._book.number_of_pages # Fixme: !!!
         self._logger.info('New page\n{}'.format(page))
 
-        self._pages.append(QmlBookPage(page))
+        self._pages.append(QmlBookPage(self, page))
         self.number_of_pages_changed.emit()
         self.new_page.emit(page.page_number)
 

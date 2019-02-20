@@ -34,6 +34,7 @@ Widgets.ImageViewer {
     property var book_page
 
     signal page_changed() // int page_number
+    signal dirty_page(var page) // orientation changed
 
     function first_page() {
         book_page = book.first_page
@@ -61,16 +62,7 @@ Widgets.ImageViewer {
     }
 
     function flip() {
-        var orientation
-        if (rotation == 0) {
-            rotation = 180
-            orientation = 'v'
-        }
-        else {
-            rotation = 0
-            orientation = 'r'
-        }
-        book_page.flip_page(orientation)
+        book_page.flip_page()
     }
 
     function set_recto() {
