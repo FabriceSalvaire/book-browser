@@ -4,68 +4,81 @@
 <context>
     <name>BookFolderDialog</name>
     <message>
-        <location filename="../../qml/Widgets/BookFolderDialog.qml" line="26"/>
+        <location filename="../../qml/Widgets/BookFolderDialog.qml" line="40"/>
         <source>Please choose a folder</source>
-        <translation>Sélectionner un dossier</translation>
+        <translation>Veuillez choisir un dossier</translation>
     </message>
 </context>
 <context>
     <name>HeaderToolBar</name>
     <message>
-        <location filename="../../qml/UserInterface/HeaderToolBar.qml" line="51"/>
+        <location filename="../../qml/UserInterface/HeaderToolBar.qml" line="52"/>
         <source>Reload book</source>
         <translation>Recharger le livre</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/HeaderToolBar.qml" line="56"/>
+        <location filename="../../qml/UserInterface/HeaderToolBar.qml" line="57"/>
+        <source>Show Book Library</source>
+        <translation>Afficher la bibliothèque de livres</translation>
+    </message>
+    <message>
+        <location filename="../../qml/UserInterface/HeaderToolBar.qml" line="63"/>
         <source>Edit metadata</source>
         <translation>Modifier les métadonnées</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/HeaderToolBar.qml" line="62"/>
+        <location filename="../../qml/UserInterface/HeaderToolBar.qml" line="69"/>
         <source>Show page thumbnails</source>
         <translation>Afficher les vignettes des page</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/HeaderToolBar.qml" line="68"/>
+        <location filename="../../qml/UserInterface/HeaderToolBar.qml" line="76"/>
         <source>Show page viewer</source>
         <translation>Afficher le visualiseur de page</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/HeaderToolBar.qml" line="74"/>
+        <location filename="../../qml/UserInterface/HeaderToolBar.qml" line="82"/>
         <source>Show scanner interface</source>
         <translation>Afficher l&apos;interface du scanner</translation>
     </message>
 </context>
 <context>
+    <name>MarkdownViewer</name>
+    <message>
+        <location filename="../../qml/Widgets/MarkdownViewer.qml" line="108"/>
+        <source>Edit Markdown</source>
+        <translation>Modifier Markdown</translation>
+    </message>
+</context>
+<context>
     <name>MenuBar</name>
     <message>
-        <location filename="../../qml/UserInterface/MenuBar.qml" line="51"/>
+        <location filename="../../qml/UserInterface/MenuBar.qml" line="52"/>
         <source>File</source>
         <translation>Fichier</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/MenuBar.qml" line="56"/>
+        <location filename="../../qml/UserInterface/MenuBar.qml" line="57"/>
         <source>Open a book</source>
         <translation>Ouvrir un livre</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/MenuBar.qml" line="71"/>
+        <location filename="../../qml/UserInterface/MenuBar.qml" line="72"/>
         <source>Quit</source>
         <translation>Quitter</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/MenuBar.qml" line="77"/>
+        <location filename="../../qml/UserInterface/MenuBar.qml" line="78"/>
         <source>Help</source>
         <translation>Aide</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/MenuBar.qml" line="80"/>
+        <location filename="../../qml/UserInterface/MenuBar.qml" line="81"/>
         <source>Documentation</source>
         <translation>Documentation</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/MenuBar.qml" line="85"/>
+        <location filename="../../qml/UserInterface/MenuBar.qml" line="86"/>
         <source>About</source>
         <translation>À propos</translation>
     </message>
@@ -73,77 +86,76 @@
 <context>
     <name>MetadataPage</name>
     <message>
-        <location filename="../../qml/UserInterface/MetadataPage.qml" line="90"/>
+        <location filename="../../qml/UserInterface/MetadataPage.qml" line="91"/>
         <source>Save</source>
         <translation>sauvegarder</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/MetadataPage.qml" line="112"/>
+        <location filename="../../qml/UserInterface/MetadataPage.qml" line="113"/>
         <source>Path</source>
         <translation>Chemin</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/MetadataPage.qml" line="121"/>
+        <location filename="../../qml/UserInterface/MetadataPage.qml" line="122"/>
         <source>ISBN</source>
         <translation>ISBN</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/MetadataPage.qml" line="134"/>
+        <location filename="../../qml/UserInterface/MetadataPage.qml" line="135"/>
         <source>Query ISBN</source>
         <translation>Requête ISBN</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/MetadataPage.qml" line="141"/>
+        <location filename="../../qml/UserInterface/MetadataPage.qml" line="142"/>
         <source>Title</source>
         <translation>Titre</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/MetadataPage.qml" line="151"/>
+        <location filename="../../qml/UserInterface/MetadataPage.qml" line="152"/>
         <source>Authors</source>
         <translation>Auteurs</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/MetadataPage.qml" line="161"/>
+        <location filename="../../qml/UserInterface/MetadataPage.qml" line="162"/>
         <source>Publisher</source>
         <translation>Éditeur</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/MetadataPage.qml" line="171"/>
+        <location filename="../../qml/UserInterface/MetadataPage.qml" line="172"/>
         <source>Language</source>
         <translation>Langage</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/MetadataPage.qml" line="181"/>
+        <location filename="../../qml/UserInterface/MetadataPage.qml" line="182"/>
         <source>Number of pages</source>
         <translation>Nombre de pages</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/MetadataPage.qml" line="193"/>
+        <location filename="../../qml/UserInterface/MetadataPage.qml" line="194"/>
         <source>Page Offset</source>
         <translation>Décalage de page</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/MetadataPage.qml" line="205"/>
+        <location filename="../../qml/UserInterface/MetadataPage.qml" line="206"/>
         <source>Year</source>
         <translation>Année</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/MetadataPage.qml" line="219"/>
+        <location filename="../../qml/UserInterface/MetadataPage.qml" line="220"/>
         <source>Keywords</source>
         <translation>Mots clés</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/MetadataPage.qml" line="229"/>
+        <location filename="../../qml/UserInterface/MetadataPage.qml" line="230"/>
         <source>Description</source>
         <translation>Description</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/MetadataPage.qml" line="240"/>
+        <location filename="../../qml/UserInterface/MetadataPage.qml" line="241"/>
         <source>Notes</source>
         <translation>Remarques</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/MetadataPage.qml" line="291"/>
         <source>Edit metadata</source>
         <translation>Modifier les métadonnées</translation>
     </message>
@@ -151,109 +163,132 @@
 <context>
     <name>OptionsDialog</name>
     <message>
-        <location filename="../../qml/UserInterface/OptionsDialog.qml" line="44"/>
+        <location filename="../../qml/UserInterface/OptionsDialog.qml" line="45"/>
         <source>General</source>
         <translation>Général</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/OptionsDialog.qml" line="48"/>
+        <location filename="../../qml/UserInterface/OptionsDialog.qml" line="49"/>
         <source>Shortcuts</source>
         <translation>Raccourcis</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/OptionsDialog.qml" line="75"/>
-        <location filename="../../qml/UserInterface/OptionsDialog.qml" line="123"/>
+        <location filename="../../qml/UserInterface/OptionsDialog.qml" line="76"/>
+        <location filename="../../qml/UserInterface/OptionsDialog.qml" line="124"/>
         <source>Foo</source>
         <translation>Foo</translation>
     </message>
 </context>
 <context>
+    <name>PageText</name>
+    <message>
+        <location filename="../../qml/UserInterface/PageText.qml" line="103"/>
+        <source>close text viewer</source>
+        <translation>fermer la visionneuse de texte</translation>
+    </message>
+    <message>
+        <location filename="../../qml/UserInterface/PageText.qml" line="109"/>
+        <source>save text to file</source>
+        <translation>enregistrer le texte dans un fichier</translation>
+    </message>
+</context>
+<context>
     <name>PageViewerToolBar</name>
     <message>
-        <location filename="../../qml/UserInterface/PageViewerToolBar.qml" line="98"/>
+        <location filename="../../qml/UserInterface/PageViewerToolBar.qml" line="99"/>
         <source>Show grid</source>
         <translation>Afficher la grille</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/PageViewerToolBar.qml" line="105"/>
+        <location filename="../../qml/UserInterface/PageViewerToolBar.qml" line="106"/>
         <source>Flip page</source>
         <translation>Retourner la page</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/PageViewerToolBar.qml" line="110"/>
+        <location filename="../../qml/UserInterface/PageViewerToolBar.qml" line="111"/>
         <source>Flip page as recto</source>
         <translation>Définir la page en recto</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/PageViewerToolBar.qml" line="116"/>
+        <location filename="../../qml/UserInterface/PageViewerToolBar.qml" line="117"/>
         <source>Flip page as verso</source>
         <translation>Définir la page en verso</translation>
     </message>
     <message>
-        <location filename="../../qml/UserInterface/PageViewerToolBar.qml" line="122"/>
+        <location filename="../../qml/UserInterface/PageViewerToolBar.qml" line="123"/>
         <source>Flip page from this page</source>
         <translation>Retourner les pages à partir de cette page</translation>
+    </message>
+    <message>
+        <location filename="../../qml/UserInterface/PageViewerToolBar.qml" line="130"/>
+        <source>Convert to text using OCR engine</source>
+        <translation>Conversion en texte à l&apos;aide du moteur d&apos;OCR</translation>
     </message>
 </context>
 <context>
     <name>ScannerUI</name>
     <message>
-        <location filename="../../qml/Widgets/ScannerUI.qml" line="259"/>
+        <location filename="../../qml/UserInterface/ScannerUI.qml" line="271"/>
         <source>File Error</source>
         <translation>Erreur de fichier</translation>
     </message>
     <message>
-        <location filename="../../qml/Widgets/ScannerUI.qml" line="263"/>
+        <location filename="../../qml/UserInterface/ScannerUI.qml" line="275"/>
         <source>&lt;p&gt;A file &quot;%1&quot; already exists.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Do you want to overwrite it ?&lt;/b&gt;&lt;/p&gt;</source>
         <translation>&lt;p&gt;Un fichier &quot;%1&quot; existe déjà.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Voulez-vous le remplacer ?&lt;/b&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../../qml/Widgets/ScannerUI.qml" line="308"/>
+        <location filename="../../qml/UserInterface/ScannerUI.qml" line="296"/>
+        <source>Path Error</source>
+        <translation>Erreur de chemin</translation>
+    </message>
+    <message>
+        <location filename="../../qml/UserInterface/ScannerUI.qml" line="300"/>
+        <source>&lt;p&gt;Path &quot;%1&quot; don&apos;t exists.&lt;/p&gt;</source>
+        <translation>&lt;p&gt;Path &quot;%1 &quot; n&apos;existe pas.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <location filename="../../qml/UserInterface/ScannerUI.qml" line="340"/>
         <source>Device</source>
         <translation>Modèle</translation>
     </message>
     <message>
-        <location filename="../../qml/Widgets/ScannerUI.qml" line="324"/>
+        <location filename="../../qml/UserInterface/ScannerUI.qml" line="356"/>
         <source>Scan</source>
         <translation>Scanner</translation>
     </message>
     <message>
-        <location filename="../../qml/Widgets/ScannerUI.qml" line="337"/>
+        <location filename="../../qml/UserInterface/ScannerUI.qml" line="369"/>
         <source>Preview</source>
         <translation>Aperçu</translation>
     </message>
     <message>
-        <location filename="../../qml/Widgets/ScannerUI.qml" line="375"/>
+        <location filename="../../qml/UserInterface/ScannerUI.qml" line="407"/>
         <source>Resolution</source>
         <translation>Résolution</translation>
     </message>
     <message>
-        <location filename="../../qml/Widgets/ScannerUI.qml" line="386"/>
+        <location filename="../../qml/UserInterface/ScannerUI.qml" line="418"/>
         <source>Mode</source>
         <translation>Mode</translation>
     </message>
     <message>
-        <location filename="../../qml/Widgets/ScannerUI.qml" line="397"/>
+        <location filename="../../qml/UserInterface/ScannerUI.qml" line="429"/>
         <source>Scan Area</source>
         <translation>Zone de numérisation</translation>
     </message>
     <message>
-        <location filename="../../qml/Widgets/ScannerUI.qml" line="402"/>
+        <location filename="../../qml/UserInterface/ScannerUI.qml" line="434"/>
         <source>Maximised</source>
         <translation>Maximisé</translation>
     </message>
     <message>
-        <location filename="../../qml/Widgets/ScannerUI.qml" line="405"/>
-        <source>Custom</source>
-        <translation>Custom</translation>
-    </message>
-    <message>
-        <location filename="../../qml/Widgets/ScannerUI.qml" line="418"/>
+        <location filename="../../qml/UserInterface/ScannerUI.qml" line="456"/>
         <source>Rescan</source>
         <translation>Rescanner</translation>
     </message>
     <message>
-        <location filename="../../qml/Widgets/ScannerUI.qml" line="433"/>
+        <location filename="../../qml/UserInterface/ScannerUI.qml" line="471"/>
         <source>Number of pages</source>
         <translation>Nombre de pages</translation>
     </message>
@@ -261,19 +296,24 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../../qml/main.qml" line="32"/>
+        <location filename="../../qml/main.qml" line="69"/>
         <source>Book Viewer</source>
         <translation>Visionneuse de livre</translation>
     </message>
     <message>
-        <location filename="../../qml/main.qml" line="54"/>
+        <location filename="../../qml/main.qml" line="42"/>
         <source>Close ...</source>
         <translation>Fermer ...</translation>
     </message>
     <message>
-        <location filename="../../qml/main.qml" line="91"/>
+        <location filename="../../qml/main.qml" line="109"/>
         <source>About Book Browser</source>
         <translation>À propos de Book Browser</translation>
+    </message>
+    <message>
+        <location filename="../../qml/main.qml" line="115"/>
+        <source>An error occurred in Book Browser</source>
+        <translation>Une erreur s&apos;est produite dans Book Browser</translation>
     </message>
 </context>
 </TS>

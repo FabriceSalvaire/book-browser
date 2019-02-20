@@ -50,8 +50,6 @@ _module_logger = logging.getLogger(__name__)
 
 thumbnail_cache = FreeDesktopThumbnailCache()
 
-qsTr = QCoreApplication.translate
-
 ####################################################################################################
 
 class QmlBookMetadata(QObject):
@@ -424,7 +422,8 @@ class QmlBookPage(QObject):
         except:
             application = QCoreApplication.instance()
             qml_application = application.qml_main
-            qml_application.notify_message(qsTr('QmlBookPage', 'Could not save file {}').format(path))
+            tr_str = QCoreApplication.translate('QmlBookPage', 'Could not save file {}')
+            qml_application.notify_message(tr_str.format(path))
 
 ####################################################################################################
 

@@ -52,6 +52,7 @@ DEFAULT_LANGUAGES = (
 # Fixme: project dependent
 source_path = Path(__file__).resolve().parents[1]
 qml_path = source_path.joinpath('qml')
+py_path = source_path.joinpath('BookBrowser')
 translation_path = source_path.joinpath('share', 'translations')
 base_name = 'book-browser'
 
@@ -127,10 +128,11 @@ class TanslationManager:
 
     ##############################################
 
-    def __init__(self, translation_path, base_name, qml_path):
+    def __init__(self, translation_path, base_name, py_path, qml_path):
 
         self._translation_path = _clean_path(translation_path)
         self._base_name = base_name
+        self._py_path = _clean_path(py_path)
         self._qml_path = _clean_path(qml_path)
 
         if not self._translation_path.exists():
@@ -138,8 +140,11 @@ class TanslationManager:
 
     ##############################################
 
-    def ts_path(self, language):
-        filename = '{}.{}.ts'.format(self._base_name, language)
+    def ts_path(self, scope, language):
+        if scope:
+            filename = '{}.{}.{}.ts'.format(self._base_name, scope, language)
+        else:
+            filename = '{}.{}.ts'.format(self._base_name, language)
         return self._translation_path.joinpath(filename)
 
     def po_path(self, language):
@@ -233,16 +238,50 @@ class TanslationManager:
         #            Read additional file names (one per line) or includepaths (one per
         #            line, and prefixed with -I) from lst-file.
 
+        for root, _, filenames in os.walk(self._py_path):
+            root = Path(root)
+            for filename in filenames:
+                filename = Path(filename)
+                if filename.suffix == '.py':
+                    command = (
+                        'pylupdate5',
+                        str(root.joinpath(filename)),
+                        '-ts', str(self.ts_path('py', language)),
+                    )
+                    print('>', ' '.join(command))
+                    subprocess.check_call(command)
+
         command = (
             'lupdate-qt5',
             '-extensions', 'qml,js',
             '-source-language', 'en_GB',
             '-target-language', language,
             str(self._qml_path),
-            '-ts', str(self.ts_path(language)),
+            '-ts', str(self.ts_path('qml', language)),
         )
         print('>', ' '.join(command))
         subprocess.check_call(command)
+
+        # Fixme: pylupdate5 don't support qml and folder !!!
+
+        command = (
+            'lconvert-qt5',
+            '-i',
+            str(self.ts_path('qml', language)),
+            str(self.ts_path('py', language)),
+            '-o', str(self.ts_path(None, language)),
+        )
+        print('>', ' '.join(command))
+        subprocess.check_call(command)
+
+        # print('Fix obsolete')
+        # with open(ts_path, 'r') as fh:
+        #     content = fh.readlines()
+        # with open(ts_path, 'w') as fh:
+        #     for line in content:
+        #         line = line.replace('type="obsolete"', '')
+        #         line = line.replace('<translation >', '<translation>')
+        #         fh.write(line)
 
     ##############################################
 
@@ -250,7 +289,7 @@ class TanslationManager:
 
         command = (
             'linguist-qt5',
-            str(self.ts_path(language)),
+            str(self.ts_path(None, language)),
         )
         print('>', ' '.join(command))
         subprocess.check_call(command)
@@ -299,7 +338,7 @@ class TanslationManager:
 
         command = (
             'lrelease-qt5',
-            str(self.ts_path(language)),
+            str(self.ts_path(None, language)),
         )
         print('>', ' '.join(command))
         subprocess.check_call(command)
@@ -399,7 +438,7 @@ class TanslationManager:
 
         command = (
             'lconvert-qt5',
-            '-i' if is_po else '-o', str(self.ts_path(language)),
+            '-i' if is_po else '-o', str(self.ts_path(None, language)),
             '-o' if is_po else '-i', str(self.po_path(language)),
         )
         print('>', ' '.join(command))
@@ -425,7 +464,7 @@ class TanslationManager:
         def translate_string(source):
             return translator.translate(source, src='en', dest=language_code).text
 
-        ts_path = self.ts_path(language)
+        ts_path = self.ts_path(None, language)
         with open(ts_path, 'r') as fh:
             lines = list(fh.readlines())
 
@@ -436,11 +475,13 @@ class TanslationManager:
                 if striped_line.startswith('<source>'):
                     source = striped_line[striped_line.find('>')+1:striped_line.rfind('<')]
                 elif striped_line.startswith('<translation type="unfinished">'):
-                    translation = translate_string(source)
-                    print()
-                    print(source)
-                    print(translation)
-                    line = line.replace(' type="unfinished">', '>' + translation)
+                    old_translation = striped_line[striped_line.find('>')+1:striped_line.rfind('<')]
+                    if not old_translation:
+                        translation = translate_string(source)
+                        print()
+                        print(source)
+                        print(translation)
+                        line = line.replace(' type="unfinished">', '>' + translation)
                 fh.write(line)
 
 ####################################################################################################
@@ -448,6 +489,7 @@ class TanslationManager:
 manager = TanslationManager(
     translation_path,
     base_name,
+    py_path,
     qml_path,
 )
 
