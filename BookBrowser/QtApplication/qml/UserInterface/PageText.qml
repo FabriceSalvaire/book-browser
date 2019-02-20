@@ -20,6 +20,8 @@
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 
+import Widgets 1.0 as Widgets
+
 Item {
 
     /*******************************************************
@@ -28,12 +30,46 @@ Item {
      *
      */
 
-    property alias text: text_area.text
-    property bool processing: false
+    function wait_for_page(book_page) {
+        _book_page = book_page
+        text_area.text = ''
+        _processing = true
+        visible = true
+        _book_page.text_ready.connect(set_text)
+        if (_book_page.text)
+            set_text()
+    }
+
+    function clear_text() {
+        // in case ocr is running when user changes the current page
+        if (_book_page)
+            _book_page.text_ready.disconnect(set_text)
+        visible = false
+        _processing = false
+        text_area.text = ''
+        _book_page = null
+    }
 
     /******************************************************/
 
     id: root
+
+    property var _book_page
+    property bool _processing: false
+
+    function set_text() {
+        // console.info('OCR is done')
+        text_area.text = _book_page.text
+        _book_page.text_ready.disconnect(set_text)
+        _processing = false
+    }
+
+    /******************************************************/
+
+    Widgets.NativeFileDialog {
+        id: save_text_file_dialog
+        onAccepted: _book_page.save_text(selected_path())
+    }
 
     ScrollView {
         anchors.fill: parent
@@ -50,6 +86,27 @@ Item {
         anchors.centerIn: parent
         height: Math.min(parent.width, parent.height) * .5
         width: height
-        running: root.processing
+        running: root._processing
     }
+
+     Column {
+         anchors.top: root.top
+         anchors.right: root.right
+         anchors.margins: 20
+         z: 1
+         visible: !root._processing
+         spacing: 20
+
+         Widgets.ToolButtonTip {
+             icon.name: 'close-black'
+             tip: qsTr('close text viewer')
+             onClicked: root.visible = false
+         }
+
+         Widgets.ToolButtonTip {
+             icon.name: 'save-black'
+             tip: qsTr('save text to file')
+             onClicked: save_text_file_dialog.open()
+         }
+     }
 }

@@ -52,6 +52,15 @@
 
 
 	<!-- C -->
+        <!-- <file>icons/material/18x18/close-black.png</file> -->
+        <!-- <file>icons/material/24x24/close-black.png</file> -->
+        <file>icons/material/36x36/close-black.png</file>
+        <!-- <file>icons/material/48x48/close-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/close-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/close-black.png</file> -->
+        <file>icons/material/36x36@2/close-black.png</file>
+        <!-- <file>icons/material/48x48@2/close-black.png</file> -->
+
         <!-- <file>icons/material/18x18/crop-black.png</file> -->
         <!-- <file>icons/material/24x24/crop-black.png</file> -->
         <file>icons/material/36x36/crop-black.png</file>

@@ -19,60 +19,22 @@
 
 import QtQuick 2.11
 import QtQuick.Controls 2.4
-import QtQuick.Layouts 1.11
+import Qt.labs.platform 1.1
 
-import BookBrowser 1.0
-import Widgets 1.0 as Widgets
-import '.' 1.0 as Ui
+FileDialog {
 
-Page {
-
-    /*******************************************************
+    /******************************************************
      *
      * API
      *
      */
 
-    property alias page_viewer: page_viewer
-
-    function toggle_grid() {
-        grid.visible = !grid.visible
-    }
-
-    function convert_to_text() {
-        page_text.wait_for_page(page_viewer.book_page)
+    function selected_path() {
+        return currentFile
     }
 
     /******************************************************/
 
     id: root
-
-    Component.onCompleted: {
-        page_viewer.page_changed.connect(page_text.clear_text)
-    }
-
-    /******************************************************/
-
-    RowLayout {
-        anchors.fill: parent
-
-        Ui.PageViewer {
-            id: page_viewer
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-
-            Widgets.Grid {
-                id: grid
-                anchors.fill: parent
-                visible: false
-            }
-        }
-
-        Ui.PageText {
-            id: page_text
-            Layout.fillHeight: true
-            Layout.preferredWidth: parent.width/2
-            visible: false
-        }
-    }
+    fileMode : FileDialog.SaveFile
 }

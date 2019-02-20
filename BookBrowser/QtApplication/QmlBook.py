@@ -410,6 +410,18 @@ class QmlBookPage(QObject):
     def _ocr_cleanup(self):
         self._ocr_running = False
 
+    ##############################################
+
+    @Slot(QUrl)
+    def save_text(self, url):
+        path = url.toString(QUrl.RemoveScheme)
+        try:
+            with open(path, 'w') as fh:
+                fh.write(self.text)
+            self._logger.info('Save text page in {}'.format(path))
+        except:
+            raise # Fixme: !!!
+
 ####################################################################################################
 
 class QmlBook(QObject):
