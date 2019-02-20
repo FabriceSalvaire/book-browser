@@ -31,7 +31,10 @@ Widgets.CentredDialog {
      *
      */
 
-    property alias about_message: text_area.text
+    function open_with_message(message) {
+        text_area.text = message
+        open()
+    }
 
     /******************************************************/
 

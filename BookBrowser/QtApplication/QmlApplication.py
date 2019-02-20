@@ -74,6 +74,9 @@ class QmlApplication(QObject):
 
     """Class to implement a Qt QML Application."""
 
+    show_message = Signal(str) # message
+    show_error = Signal(str, str) # message backtrace
+
     scanner_ready = Signal()
 
     # Fixme: !!!
@@ -91,6 +94,15 @@ class QmlApplication(QObject):
         super().__init__()
 
         self._application = application
+
+    ##############################################
+
+    def notify_message(self ,message):
+        self.show_message.emit(str(message))
+
+    def notify_error(self, message):
+        backtrace_str = traceback.format_exc()
+        self.show_error.emit(str(message), backtrace_str)
 
     ##############################################
 
@@ -194,6 +206,7 @@ class QmlApplication(QObject):
 
 ####################################################################################################
 
+# Fixme: why not derive from QGuiApplication ???
 class Application(QObject):
 
     """Class to implement a Qt Application."""
@@ -239,11 +252,14 @@ class Application(QObject):
 
         # For Qt Labs Platform native widgets
         # self._application = QGuiApplication(sys.argv)
+        # use QCoreApplication::instance() to get instance
         self._application = QApplication(sys.argv)
+        self._application.main = self
         self._init_application()
 
         self._engine = QQmlApplicationEngine()
         self._qml_application = QmlApplication(self)
+        self._application.qml_main = self._qml_application
 
         self._platform = QtPlatform()
         # self._logger.info('\n' + str(self._platform))
@@ -346,7 +362,8 @@ class Application(QObject):
     def _on_critical_exception(self, exception):
         message = str(exception) + '\n' + traceback.format_exc()
         self._print_critical_message(message)
-        sys.exit(1)
+        self._qml_application.notify_error(exception)
+        # sys.exit(1)
 
     ##############################################
 

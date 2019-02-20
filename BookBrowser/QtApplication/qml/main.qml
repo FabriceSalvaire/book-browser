@@ -30,21 +30,6 @@ import UserInterface 1.0 as Ui
 
 ApplicationWindow {
     id: application_window
-    title: qsTr('Book Viewer') // Fixme: ???
-    visible: true
-
-    width: 1000
-    height: 500
-
-    /******************************************************/
-
-    Component.onCompleted: {
-        console.info('ApplicationWindow.onCompleted')
-        console.info(application.book)
-        console.info(application.library)
-        application_window.showMaximized()
-        page_viewer_page.page_viewer.first_page()
-    }
 
     /*******************************************************
      *
@@ -78,6 +63,35 @@ ApplicationWindow {
 
     /*******************************************************
      *
+     *
+     */
+
+    title: qsTr('Book Viewer') // Fixme: ???
+    visible: true
+    width: 1000
+    height: 500
+
+    Component.onCompleted: {
+        console.info('ApplicationWindow.onCompleted')
+        console.info(application.book)
+        console.info(application.library)
+        application.show_message.connect(on_message)
+        application.show_error.connect(on_error)
+        application_window.showMaximized()
+        page_viewer_page.page_viewer.first_page()
+    }
+
+    function on_message(message) {
+        error_message_dialog.open_with_message(message)
+    }
+
+    function on_error(message, backtrace) {
+        var text = message + '\n' + backtrace
+        error_message_dialog.open_with_message(text)
+    }
+
+    /*******************************************************
+     *
      * Slots
      *
      */
@@ -94,6 +108,11 @@ ApplicationWindow {
         id: about_dialog
         title: qsTr('About Book Browser')
         about_message: application.about_message // qsTr('...')
+    }
+
+    Widgets.ErrorMessageDialog {
+        id: error_message_dialog
+        title: qsTr('An error occurred in Book Browser')
     }
 
     // Widgets.BookFolderDialog {

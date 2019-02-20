@@ -29,7 +29,7 @@ import glob
 import logging
 import time
 
-from PyQt5.QtCore import QFileSystemWatcher
+from PyQt5.QtCore import QCoreApplication, QFileSystemWatcher
 from PyQt5.QtQml import QQmlListProperty
 from QtShim.QtCore import (
     Property, Signal, Slot, QObject,
@@ -49,6 +49,8 @@ _module_logger = logging.getLogger(__name__)
 ####################################################################################################
 
 thumbnail_cache = FreeDesktopThumbnailCache()
+
+qsTr = QCoreApplication.translate
 
 ####################################################################################################
 
@@ -420,7 +422,9 @@ class QmlBookPage(QObject):
                 fh.write(self.text)
             self._logger.info('Save text page in {}'.format(path))
         except:
-            raise # Fixme: !!!
+            application = QCoreApplication.instance()
+            qml_application = application.qml_main
+            qml_application.notify_message(qsTr('QmlBookPage', 'Could not save file {}').format(path))
 
 ####################################################################################################
 

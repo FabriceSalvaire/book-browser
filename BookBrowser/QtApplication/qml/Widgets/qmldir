@@ -3,6 +3,7 @@ AboutDialog 1.0 AboutDialog.qml
 BookFolderDialog 1.0 BookFolderDialog.qml
 CentredDialog 1.0 CentredDialog.qml
 Grid 1.0 Grid.qml
+ErrorMessageDialog 1.0 ErrorMessageDialog.qml
 ImageMagnifier 1.0 ImageMagnifier.qml
 ImagePreviewer 1.0 ImagePreviewer.qml
 ImageViewer 1.0 ImageViewer.qml
