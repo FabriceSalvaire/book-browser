@@ -130,4 +130,11 @@ RowLayout {
         tip: qsTr('Convert to text using OCR engine')
         onClicked: page_viewer_page.convert_to_text()
     }
+
+
+    Widgets.ToolButtonTip {
+        icon.name: 'oopen-in-new-black'
+        tip: qsTr('Open in ...')
+        // onClicked: page_viewer_page.
+    }
 }

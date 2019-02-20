@@ -71,6 +71,9 @@
         <!-- <file>icons/material/48x48@2/crop-black.png</file> -->
 
 
+	<!-- D -->
+
+
 	<!-- E -->
         <!-- <file>icons/material/18x18/edit-black.png</file> -->
         <!-- <file>icons/material/24x24/edit-black.png</file> -->
@@ -164,6 +167,9 @@
         <file>icons/material/36x36@2/image-black.png</file>
         <!-- <file>icons/material/48x48@2/image-black.png</file> -->
 
+	<!-- J -->
+	<!-- K -->
+
 
 	<!-- L -->
 	<!-- <file>icons/material/18x18/last-page-black.png</file> -->
@@ -193,6 +199,19 @@
         <file>icons/material/36x36@2/library-books-black.png</file>
         <!-- <file>icons/material/48x48@2/library-books-black.png</file> -->
 
+	<!-- M -->
+	<!-- N -->
+
+	<!-- O -->
+        <!-- <file>icons/material/18x18/open-in-new-black.png</file> -->
+        <!-- <file>icons/material/24x24/open-in-new-black.png</file> -->
+        <file>icons/material/36x36/open-in-new-black.png</file>
+        <!-- <file>icons/material/48x48/open-in-new-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/open-in-new-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/open-in-new-black.png</file> -->
+        <file>icons/material/36x36@2/open-in-new-black.png</file>
+        <!-- <file>icons/material/48x48@2/open-in-new-black.png</file> -->
+
 
 	<!-- P -->
         <!-- <file>icons/material/18x18/pageview-black.png</file> -->
@@ -203,6 +222,9 @@
         <!-- <file>icons/material/24x24@2/pageview-black.png</file> -->
         <file>icons/material/36x36@2/pageview-black.png</file>
         <!-- <file>icons/material/48x48@2/pageview-black.png</file> -->
+
+
+	<!-- Q -->
 
 
 	<!-- R -->
@@ -357,6 +379,10 @@
         <!-- <file>icons/material/24x24@2/warning-black.png</file> -->
 	<file>icons/material/36x36@2/warning-black.png</file>
         <!-- <file>icons/material/48x48@2/warning-black.png</file> -->
+
+
+	<!-- X -->
+	<!-- Y -->
 
 
 	<!-- Z -->
