@@ -88,13 +88,14 @@ class OcrEngine(metaclass=SingletonMetaClass):
             raise ValueError
         image = image.convert('L')
 
-        language_code = LANGUAGE_CODE[language.lower()]
         kwargs = {}
+        if language:
+            kwargs['lang'] = LANGUAGE_CODE[language.lower()]
         if self._path:
             kwargs['path'] = str(self._path)
 
         try:
-            text = tesserocr.image_to_text(image, lang=language_code, **kwargs)
+            text = tesserocr.image_to_text(image, **kwargs)
             self._logger.info('OCR done')
             return text
         except:
