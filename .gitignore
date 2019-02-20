@@ -14,6 +14,7 @@ BookBrowser.egg-info/
 BookBrowser/QtApplication/rcc/BookBrowserRessource.py
 BookBrowser/QtApplication/rcc/book-browser.rcc
 
+BookBrowser/QtApplication/rcc/translations/book-browser.fr_FR.ts
 *.po
 *.qm
 
