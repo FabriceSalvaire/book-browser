@@ -24,11 +24,22 @@ import QtQuick.Layouts 1.11
 
 Item {
     id: thumbnail_container
-    anchors.margins: 20
+
+    /*******************************************************
+     *
+     * API
+     *
+     */
 
     signal show_page(int page_number)
 
     property var thumbnail_model
+
+    /******************************************************/
+
+    anchors.margins: 20
+
+    /******************************************************/
 
     Flickable {
         id: flickable
