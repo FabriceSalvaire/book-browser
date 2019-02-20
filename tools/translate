@@ -147,8 +147,8 @@ class TanslationManager:
             filename = '{}.{}.ts'.format(self._base_name, language)
         return self._translation_path.joinpath(filename)
 
-    def po_path(self, language):
-        filename = '{}.{}.po'.format(self._base_name, language)
+    def po_path(self, scope, language):
+        filename = '{}.{}.{}.po'.format(self._base_name, scope, language)
         return self._translation_path.joinpath(filename)
 
     ##############################################
@@ -238,19 +238,6 @@ class TanslationManager:
         #            Read additional file names (one per line) or includepaths (one per
         #            line, and prefixed with -I) from lst-file.
 
-        for root, _, filenames in os.walk(self._py_path):
-            root = Path(root)
-            for filename in filenames:
-                filename = Path(filename)
-                if filename.suffix == '.py':
-                    command = (
-                        'pylupdate5',
-                        str(root.joinpath(filename)),
-                        '-ts', str(self.ts_path('py', language)),
-                    )
-                    print('>', ' '.join(command))
-                    subprocess.check_call(command)
-
         command = (
             'lupdate-qt5',
             '-extensions', 'qml,js',
@@ -262,17 +249,25 @@ class TanslationManager:
         print('>', ' '.join(command))
         subprocess.check_call(command)
 
-        # Fixme: pylupdate5 don't support qml and folder !!!
+        py_filenames = []
+        for root, _, filenames in os.walk(self._py_path):
+            root = Path(root)
+            for filename in filenames:
+                filename = Path(filename)
+                if filename.suffix == '.py':
+                    filename = str(root.joinpath(filename))
+                    py_filenames.append(filename)
 
         command = (
-            'lconvert-qt5',
-            '-i',
-            str(self.ts_path('qml', language)),
-            str(self.ts_path('py', language)),
-            '-o', str(self.ts_path(None, language)),
+            'pylupdate5',
+            '-verbose',
+            *py_filenames,
+            '-ts', str(self.ts_path('py', language)),
         )
         print('>', ' '.join(command))
         subprocess.check_call(command)
+
+        # Fixme: pylupdate5 don't support qml and folder !!!
 
         # print('Fix obsolete')
         # with open(ts_path, 'r') as fh:
@@ -287,12 +282,13 @@ class TanslationManager:
 
     def run_linguist(self, language):
 
-        command = (
-            'linguist-qt5',
-            str(self.ts_path(None, language)),
-        )
-        print('>', ' '.join(command))
-        subprocess.check_call(command)
+        for scope in ('qml', 'py'):
+            command = (
+                'linguist-qt5',
+                str(self.ts_path(scope, language)),
+            )
+            print('>', ' '.join(command))
+            subprocess.check_call(command)
 
     ##############################################
 
@@ -335,6 +331,16 @@ class TanslationManager:
         #            Do not explain what is being done
         #     -version
         #            Display the version of lrelease and exit
+
+        command = (
+            'lconvert-qt5',
+            '-i',
+            str(self.ts_path('qml', language)),
+            str(self.ts_path('py', language)),
+            '-o', str(self.ts_path(None, language)),
+        )
+        print('>', ' '.join(command))
+        subprocess.check_call(command)
 
         command = (
             'lrelease-qt5',
@@ -436,19 +442,26 @@ class TanslationManager:
 
         is_po = format == 'po'
 
-        command = (
-            'lconvert-qt5',
-            '-i' if is_po else '-o', str(self.ts_path(None, language)),
-            '-o' if is_po else '-i', str(self.po_path(language)),
-        )
-        print('>', ' '.join(command))
-        subprocess.check_call(command)
+        for scope in ('qml', 'py'):
+            command = (
+                'lconvert-qt5',
+                '-i' if is_po else '-o', str(self.ts_path(scope, language)),
+                '-o' if is_po else '-i', str(self.po_path(language)),
+            )
+            print('>', ' '.join(command))
+            subprocess.check_call(command)
 
     ##############################################
 
     def translate(self, language):
+        for scope in ('qml', 'py'):
+            self.translate_scope(scope, language)
 
-        print('Translate {} ...'.format(language))
+    ##############################################
+
+    def translate_scope(self, scope, language):
+
+        print('Translate {} {} ...'.format(scope, language))
 
         language_code = language[:2]
         if language_code == 'en':
@@ -464,7 +477,7 @@ class TanslationManager:
         def translate_string(source):
             return translator.translate(source, src='en', dest=language_code).text
 
-        ts_path = self.ts_path(None, language)
+        ts_path = self.ts_path(scope, language)
         with open(ts_path, 'r') as fh:
             lines = list(fh.readlines())
 

@@ -157,7 +157,7 @@
     </message>
     <message>
         <source>Edit metadata</source>
-        <translation>Modifier les métadonnées</translation>
+        <translation type="vanished">Modifier les métadonnées</translation>
     </message>
 </context>
 <context>
@@ -245,7 +245,7 @@
     <message>
         <location filename="../../qml/UserInterface/ScannerUI.qml" line="300"/>
         <source>&lt;p&gt;Path &quot;%1&quot; don&apos;t exists.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Path &quot;%1 &quot; n&apos;existe pas.&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Le chemin &quot;%1&quot; n&apos;existe pas.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../../qml/UserInterface/ScannerUI.qml" line="340"/>
@@ -281,6 +281,10 @@
         <location filename="../../qml/UserInterface/ScannerUI.qml" line="434"/>
         <source>Maximised</source>
         <translation>Maximisé</translation>
+    </message>
+    <message>
+        <source>Custom</source>
+        <translation type="vanished">Custom</translation>
     </message>
     <message>
         <location filename="../../qml/UserInterface/ScannerUI.qml" line="456"/>
