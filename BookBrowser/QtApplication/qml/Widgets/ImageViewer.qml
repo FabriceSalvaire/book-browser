@@ -26,8 +26,63 @@ import QtQuick.Controls 2.4
 Flickable {
     id: flickable
 
+    /******************************************************
+     *
+     * API
+     *
+     */
+
     property string image_source
     property int image_rotation
+
+    function reset_rotation() {
+        image_rotation = 0
+    }
+
+    function flip_vertically() {
+        image_rotation = image_rotation == 0 ? 180 : 0
+    }
+
+    function fit_to_screen() {
+        var new_scale = Math.min(flickable.width / image.width, flickable.height / image.height, 1)
+        image.scale = new_scale
+        flickable.min_zoom = new_scale // cannot zoom out more than fit scale
+        image.prev_scale = 1.0 // flickable.scale ???
+        fit_to_screen_active = true
+        full_zoom_active = false
+        // Ensures the content is within legal bounds
+        flickable.returnToBounds()
+    }
+
+    function zoom_in() {
+        if (image.scale < max_zoom)
+            image.scale *= (1.0 + zoom_step)
+        // duplicated code
+        // flickable.returnToBounds()
+        fit_to_screen_active = false
+        full_zoom_active = false
+        flickable.returnToBounds() // why twice ?
+    }
+
+    function zoom_out() {
+        if (image.scale > min_zoom)
+            image.scale *= (1.0 - zoom_step)
+        else
+            image.scale = flickable.min_zoom
+        // flickable.returnToBounds()
+        fit_to_screen_active = false
+        full_zoom_active = false
+        flickable.returnToBounds()
+    }
+
+    function zoom_full() {
+        image.scale = 1
+        fit_to_screen_active = false
+        full_zoom_active = true
+        flickable.returnToBounds()
+    }
+
+    /******************************************************/
 
     // The dimensions of the content (the surface controlled by Flickable).
     contentHeight: image_container.height
@@ -110,44 +165,4 @@ Flickable {
 
     ScrollIndicator.vertical: ScrollIndicator { }
     ScrollIndicator.horizontal: ScrollIndicator { }
-
-
-    function fit_to_screen() {
-        var new_scale = Math.min(flickable.width / image.width, flickable.height / image.height, 1)
-        image.scale = new_scale
-        flickable.min_zoom = new_scale // cannot zoom out more than fit scale
-        image.prev_scale = 1.0 // flickable.scale ???
-        fit_to_screen_active = true
-        full_zoom_active = false
-        // Ensures the content is within legal bounds
-        flickable.returnToBounds()
-    }
-
-    function zoom_in() {
-        if (image.scale < max_zoom)
-            image.scale *= (1.0 + zoom_step)
-        // duplicated code
-        // flickable.returnToBounds()
-        fit_to_screen_active = false
-        full_zoom_active = false
-        flickable.returnToBounds() // why twice ?
-    }
-
-    function zoom_out() {
-        if (image.scale > min_zoom)
-            image.scale *= (1.0 - zoom_step)
-        else
-            image.scale = flickable.min_zoom
-        // flickable.returnToBounds()
-        fit_to_screen_active = false
-        full_zoom_active = false
-        flickable.returnToBounds()
-    }
-
-    function zoom_full() {
-        image.scale = 1
-        fit_to_screen_active = false
-        full_zoom_active = true
-        flickable.returnToBounds()
-    }
 }
