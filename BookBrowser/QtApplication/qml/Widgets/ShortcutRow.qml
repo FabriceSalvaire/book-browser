@@ -37,12 +37,13 @@ RowLayout {
     property string shortcut_name
     property string shortcut_display_name
     property alias original_sequence: editor.original_sequence
+
     property alias has_changed: editor.has_changed
     property alias new_sequence: editor.new_sequence
 
     /******************************************************/
 
-    width: parent ? parent.width : 0
+    //??? width: parent ? parent.width : 0
 
     function reset() {
         editor.reset()
@@ -59,11 +60,10 @@ RowLayout {
     KeySequenceEditor {
         id: editor
         Layout.minimumWidth: 200
-        enabled: shortcut_name.length > 0
         implicitHeight: edit_button.implicitHeight
 
-        // settings[shortcut_name]
-        original_sequence: enabled ? 'Ctrl+A' : ''
+        enabled: shortcut_name.length > 0
+        original_sequence: enabled ? application_settings.get_shortcut(shortcut_name) : ''
 
         // The fix for QTBUG-57098 probably should have been implemented in C++ as well.
         // I've tried implementing it in C++ with event() and converting the event

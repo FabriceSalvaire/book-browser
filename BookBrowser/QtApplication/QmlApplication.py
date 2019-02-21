@@ -56,6 +56,7 @@ from BookBrowser.Book import BookLibrary
 from BookBrowser.Common.ArgparseAction import PathAction
 from BookBrowser.Common.Platform import QtPlatform
 from .ApplicationMetadata import ApplicationMetadata
+from .ApplicationSettings import ApplicationSettings
 from .KeySequenceEditor import KeySequenceEditor
 from .QmlBook import QmlBook, QmlBookPage, QmlBookMetadata
 from .QmlBookLibrary import QmlBookCover, QmlBookLibrary
@@ -295,6 +296,10 @@ class Application(QObject):
         return self._platform
 
     @property
+    def settings(self):
+        return self._settings
+
+    @property
     def qml_application(self):
         return self._qml_application
 
@@ -380,6 +385,8 @@ class Application(QObject):
         self._application.setWindowIcon(QIcon(logo_path))
 
         QIcon.setThemeName('material')
+
+        self._settings = ApplicationSettings()
 
     ##############################################
 
@@ -476,6 +483,7 @@ class Application(QObject):
 
         qmlRegisterType(KeySequenceEditor, 'BookBrowser', 1, 0, 'KeySequenceEditor')
 
+        qmlRegisterUncreatableType(ApplicationSettings, 'BookBrowser', 1, 0, 'ApplicationSettings', 'Cannot create ApplicationSettings')
         qmlRegisterUncreatableType(QmlApplication, 'BookBrowser', 1, 0, 'QmlApplication', 'Cannot create QmlApplication')
         qmlRegisterUncreatableType(QmlBookCover, 'BookBrowser', 1, 0, 'QmlBookCover', 'Cannot create QmlBookCover')
         qmlRegisterUncreatableType(QmlBookLibrary, 'BookBrowser', 1, 0, 'QmlBookLibrary', 'Cannot create QmlBookLi')
@@ -490,6 +498,7 @@ class Application(QObject):
     def _set_context_properties(self):
         context = self._engine.rootContext()
         context.setContextProperty('application', self._qml_application)
+        context.setContextProperty('application_settings', self._settings)
 
     ##############################################
 

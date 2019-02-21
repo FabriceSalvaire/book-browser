@@ -90,39 +90,14 @@ Widgets.CentredDialog {
             ListView {
                 id: shortcut_list_view
                 anchors.fill: parent
-                anchors.rightMargin: ScrollBar.vertical.width
                 clip: true
 
-                ScrollBar.vertical: ScrollBar {
-                    // id: vertical_scroll_bar
-                    // parent: shortcut_list_view.parent
-                    anchors.right: parent.right
-                    anchors.top: parent.top
-                    anchors.bottom: parent.bottom
-                }
+                model: application_settings.shortcuts
 
-                // Fixme: ???
-                Rectangle {
+                delegate: Widgets.ShortcutRow {
                     width: parent.width
-                    height: 1
-                    anchors.top: parent.top
-                    color: "#1a000000"
-                }
-
-                Rectangle {
-                    width: parent.width
-                    height: 1
-                    anchors.bottom: parent.bottom
-                    color: "#1a000000"
-                }
-
-                model: ObjectModel {
-                    id: shortcut_model
-
-                    Widgets.ShortcutRow {
-                        shortcut_name: "Foo"
-                        shortcut_display_name: qsTr("Foo")
-                    }
+                    shortcut_name: modelData
+                    shortcut_display_name: modelData
                 }
             }
         }
