@@ -19,6 +19,7 @@
  ***************************************************************************************************/
 
 // Forked from https://github.com/mitchcurtis/slate/blob/master/app/qml/ui/ShortcutRow.qml
+// See KeySequenceEditor.py for item implementation
 
 import QtQuick 2.0
 import QtQuick.Controls 2.0
@@ -34,16 +35,7 @@ RowLayout {
      *
      */
 
-    property string shortcut_name
-    property string shortcut_display_name
-    property alias original_sequence: editor.original_sequence
-
-    property alias has_changed: editor.has_changed
-    property alias new_sequence: editor.new_sequence
-
-    /******************************************************/
-
-    //??? width: parent ? parent.width : 0
+    property var shortcut
 
     function reset() {
         editor.reset()
@@ -54,7 +46,7 @@ RowLayout {
     Label {
         Layout.leftMargin: 10
         Layout.fillWidth: true
-        text: shortcut_display_name
+        text: shortcut.display_name
     }
 
     KeySequenceEditor {
@@ -62,8 +54,14 @@ RowLayout {
         Layout.minimumWidth: 200
         implicitHeight: edit_button.implicitHeight
 
-        enabled: shortcut_name.length > 0
-        original_sequence: enabled ? application_settings.get_shortcut(shortcut_name) : ''
+        // enabled: shortcut_name.length > 0
+        default_sequence: shortcut.default_sequence
+
+        // Fixme: name ...
+        onNew_sequenceChanged: {
+            console.info('New sequence', editor.new_sequence)
+            shortcut.sequence = editor.new_sequence
+        }
 
         // The fix for QTBUG-57098 probably should have been implemented in C++ as well.
         // I've tried implementing it in C++ with event() and converting the event
@@ -75,10 +73,11 @@ RowLayout {
             width: parent.width
             implicitWidth: 200
             text: editor.display_sequence
-            font.bold: editor.has_changed
+            font.bold: editor.is_customised
 
             onClicked: editor.forceActiveFocus()
 
+            // Animation to blink the sequence while editing
             SequentialAnimation {
                 id: flash_animation
                 running: editor.activeFocus

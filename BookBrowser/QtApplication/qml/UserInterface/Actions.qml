@@ -56,35 +56,35 @@ Item {
     Action {
         id: prev_page_action
         icon.name: 'arrow-back-black'
-        shortcut: 'Backspace'
+        shortcut: application_settings.shortcut('previous_page').sequence
         onTriggered: page_viewer.prev_page()
     }
 
     Action {
         id: next_page_action
         icon.name: 'arrow-forward-black'
-        shortcut: 'n' //'Space'
+        shortcut: application_settings.shortcut('next_page').sequence
         onTriggered: page_viewer.next_page()
     }
 
     Action {
         id: flip_action
         icon.name: 'swap-vert-black'
-        shortcut: 'r'
+        shortcut: application_settings.shortcut('flip_page').sequence
         onTriggered: page_viewer.flip()
     }
 
     Action {
         id: fit_to_screen_action
         icon.name: 'settings-overscan-black'
-        shortcut: 'f'
+        shortcut: application_settings.shortcut('fit_to_screen').sequence
         onTriggered: page_viewer.fit_to_screen()
     }
 
     Action {
-        id: zoom_full_action
+        id: zoom_full_action // Fixme: name
         icon.name: 'zoom-fit-width'
-        shortcut: 'z'
+        shortcut: application_settings.shortcut('full_zoom').sequence
         onTriggered: page_viewer.zoom_full()
     }
 }

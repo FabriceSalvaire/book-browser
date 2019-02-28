@@ -37,6 +37,8 @@ ApplicationWindow {
      *
      */
 
+     property var shortcuts: null
+
     function close_application(close) {
         console.info('Close application')
         show_message(qsTr('Close ...'))
@@ -79,6 +81,18 @@ ApplicationWindow {
         application.show_error.connect(on_error)
         application_window.showMaximized()
         page_viewer_page.page_viewer.first_page()
+
+        // Fixme: prevent crash when opening option dialog
+        //   RuntimeError: wrapped C/C++ object of type Shortcut has been deleted
+        let _shortcuts = application_settings.shortcuts
+        shortcuts = {} // []
+        /* for (var shortcut in _shortcuts) */
+        /*     console.info('shortcut', shortcut) */
+        for (var i = 0; i < _shortcuts.length; i++) {
+            var shortcut = _shortcuts[i]
+            shortcuts[shortcut.name] = shortcut
+            // shortcuts.push(shortcut)
+        }
     }
 
     function on_message(message) {

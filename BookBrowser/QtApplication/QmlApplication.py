@@ -56,7 +56,7 @@ from BookBrowser.Book import BookLibrary
 from BookBrowser.Common.ArgparseAction import PathAction
 from BookBrowser.Common.Platform import QtPlatform
 from .ApplicationMetadata import ApplicationMetadata
-from .ApplicationSettings import ApplicationSettings
+from .ApplicationSettings import ApplicationSettings, Shortcut
 from .KeySequenceEditor import KeySequenceEditor
 from .QmlBook import QmlBook, QmlBookPage, QmlBookMetadata
 from .QmlBookLibrary import QmlBookCover, QmlBookLibrary
@@ -483,6 +483,7 @@ class Application(QObject):
 
         qmlRegisterType(KeySequenceEditor, 'BookBrowser', 1, 0, 'KeySequenceEditor')
 
+        qmlRegisterUncreatableType(Shortcut, 'BookBrowser', 1, 0, 'Shortcut', 'Cannot create Shortcut')
         qmlRegisterUncreatableType(ApplicationSettings, 'BookBrowser', 1, 0, 'ApplicationSettings', 'Cannot create ApplicationSettings')
         qmlRegisterUncreatableType(QmlApplication, 'BookBrowser', 1, 0, 'QmlApplication', 'Cannot create QmlApplication')
         qmlRegisterUncreatableType(QmlBookCover, 'BookBrowser', 1, 0, 'QmlBookCover', 'Cannot create QmlBookCover')

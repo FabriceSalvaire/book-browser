@@ -96,8 +96,7 @@ Widgets.CentredDialog {
 
                 delegate: Widgets.ShortcutRow {
                     width: parent.width
-                    shortcut_name: modelData
-                    shortcut_display_name: modelData
+                    shortcut: modelData
                 }
             }
         }
