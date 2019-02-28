@@ -50,8 +50,8 @@ _about_message_template = '''
 
 class ApplicationMetadata:
 
-    organisation_name = 'Fabrice Salvaire'
-    organisation_domain = 'fabrice-salvaire.fr'
+    organisation_name = 'BookBrowser'
+    organisation_domain = 'book-browser.org' # Fixme: fake
 
     name = 'BookBrowser'
     display_name = 'BookBrowser — A Book Scanner and Reader Application'
