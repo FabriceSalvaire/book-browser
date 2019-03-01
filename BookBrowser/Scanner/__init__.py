@@ -123,6 +123,7 @@ class Scanner:
 
         self._device = None
         for device in self.devices():
+            self._logger.info('Sane device {}'.format(device))
             if device_hint in str(device):
                 self._device = device
                 self._logger.info('Sane use {}'.format(device))
