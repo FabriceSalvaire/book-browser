@@ -290,6 +290,20 @@ Item {
     }
 
     Widgets.CentredDialog {
+        id: rescan_page_dialog
+        modal: true
+        // title: qsTr('')
+        standardButtons: Dialog.Ok | Dialog.Cancel
+        onAccepted: rescan_page()
+
+        TextArea {
+            anchors.margins: 20
+            textFormat: TextEdit.RichText
+            text: qsTr('<b>Do you want to rescan the page ?</b>')
+        }
+    }
+
+    Widgets.CentredDialog {
         // Fixme: QML Dialog: Binding loop detected for property "implicitWidth"
         id: path_error_dialog
         modal: true
@@ -455,7 +469,12 @@ Item {
 
                 text: qsTr('Rescan')
 
-                onClicked: rescan_page()
+                onClicked: {
+                    // rescan_page()
+                    rescan_page_dialog.open()
+                    rescan_button.focus = false
+                    scan_button.focus = true
+                }
             }
 
             GroupBox {
