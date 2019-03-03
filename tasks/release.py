@@ -44,7 +44,7 @@ STANDARD_PACKAGES = (
 
 @task()
 def show_import(ctx):
-    package = 'BookBrowser'
+    package = ctx.Package
     with ctx.cd(package):
         result = ctx.run("grep -r -h -E  '^(import|from) [a-zA-Z]' . | sort | uniq", hide='out')
     imports = set()
@@ -76,8 +76,8 @@ def find_package(ctx, name):
 def update_git_sha(ctx):
     result = ctx.run('git describe --tags --abbrev=0 --always', hide='out')
     sha = result.stdout.strip()
-    filename = 'RadioCrawler/__init__.py'
-    with open(filename + '.in', 'r') as fh:
+    filename = Path(ctx.Package, '__init__.py')
+    with open(str(filename) + '.in', 'r') as fh:
         lines = fh.readlines()
     with open(filename, 'w') as fh:
         for line in lines:

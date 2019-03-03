@@ -26,7 +26,8 @@ from invoke import task
 
 @task
 def clean_flycheck(ctx):
-    ctx.run('find RadioCrawler -name "flycheck*.py" -exec rm {} \;')
+    with ctx.cd(ctx.Package):
+        ctx.run('find . -name "flycheck*.py" -exec rm {} \;')
 
 @task
 def clean_emacs_backup(ctx):

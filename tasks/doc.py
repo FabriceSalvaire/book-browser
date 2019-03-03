@@ -38,7 +38,7 @@ def clean_api(ctx):
 @task(clean_flycheck, clean_api)
 def make_api(ctx):
     print('\nGenerate RST API files')
-    ctx.run('pyterate-rst-api RadioCrawler')
+    ctx.run('pyterate-rst-api {0.Package}'.format(ctx))
     print('\nRun Sphinx')
     with ctx.cd('doc/sphinx/'):
         ctx.run('./make-html') #--clean
