@@ -61,6 +61,7 @@ Item {
                 wrapMode: TextEdit.Wrap
                 textFormat: TextEdit.RichText
                 readOnly: true
+		selectByMouse: true
 
                 // background: Rectangle {
                 // }
@@ -78,6 +79,7 @@ Item {
                 id: editor
                 wrapMode: TextEdit.Wrap
                 textFormat: TextEdit.PlainText
+		selectByMouse: true
 
                 // background: Rectangle {
                 // }
