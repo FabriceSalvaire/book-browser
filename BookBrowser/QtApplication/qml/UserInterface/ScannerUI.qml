@@ -325,9 +325,7 @@ Item {
 
     Widgets.BookFolderDialog {
         id: book_folder_dialog
-        onAccepted: {
-            filename_path.text = book_folder_dialog.selected_path()
-        }
+        onAccepted: filename_path.text = book_folder_dialog.selected_path()
     }
 
     /***********************************************************************************************
