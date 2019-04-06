@@ -24,4 +24,6 @@ import QtQuick.Controls 2.12
 Dialog {
     modal: true
     anchors.centerIn: parent
+    dim: true
+    // Fixme: cannot be resized
 }
