@@ -81,7 +81,7 @@ class ImageFilterOutput(TimeStampMixin):
 
     ##############################################
 
-    def __init__(self, source, name):
+    def __init__(self, source, name, output_cls):
 
         # When was this data last generated?
         # This time stamp is an integer number and it is intended to synchronize the activities of
@@ -94,7 +94,10 @@ class ImageFilterOutput(TimeStampMixin):
 
         self.connect_source(source, name)
 
-        self.image = None
+        # this object holds the output data, it is instanciated in copy_information
+        # output_cls must implement image_format property
+        self._output_cls = output_cls
+        self.image = None # Fixme: _image ???
         # self._image_format = None
 
     ##############################################
@@ -129,7 +132,6 @@ class ImageFilterOutput(TimeStampMixin):
 
     @property
     def image_format(self):
-
         if self.image is not None:
             return self.image.image_format
         else:
@@ -139,7 +141,6 @@ class ImageFilterOutput(TimeStampMixin):
     ##############################################
 
     def connect_source(self, source, name):
-
         self._source = source # image_filter
         self._name = name
         self.modified()
@@ -147,7 +148,6 @@ class ImageFilterOutput(TimeStampMixin):
     ##############################################
 
     def disconnect_source(self):
-
         self._source = None
         self._name = None
         self.modified()
@@ -232,12 +232,11 @@ class ImageFilterOutput(TimeStampMixin):
             self.name,
             str(image_format),
         ))
-        self.image = Image(image_format)
+        self.image = self._output_cls(image_format)
 
     ##############################################
 
     def data_has_been_generated(self):
-
         self._logger.info(self.name)
         self.modified()
 
@@ -251,6 +250,7 @@ class ImageFilter(TimeStampMixin):
     __filter_name__ = None # a string to identify the filter
     __input_names__ = None # list of input's name
     __output_names__ = None # list of output's name
+    __output_classes__ = Image
 
     _last_filter_id = 0
 
@@ -279,7 +279,19 @@ class ImageFilter(TimeStampMixin):
         self._updating = False
 
         self._inputs = dict()
-        self._outputs = {name:ImageFilterOutput(self, name) for name in self.__output_names__}
+
+        number_of_outputs = len(self.__output_names__)
+        number_of_classes = len(self.__output_classes__)
+        if number_of_classes == 1:
+            output_classes = [self.__output_classes__]*number_of_outputs
+        elif number_of_classes == number_of_outputs:
+            output_classes = self.__output_classes__
+        else:
+            raise ValueError('Inconsistent number of output classes')
+        self._outputs = {
+            name:ImageFilterOutput(self, name, output_classes)
+            for name, output_cls in zip(self.__output_names__, self.__output_classes__)
+        }
 
         self.modified()
 
