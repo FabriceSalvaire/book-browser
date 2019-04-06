@@ -43,6 +43,7 @@ Item {
     property alias prev_page_action: prev_page_action
     property alias reload_action: reload_action
     property alias zoom_full_action:zoom_full_action
+    property alias open_page_in_external_program_action:open_page_in_external_program_action
 
     /******************************************************/
 
@@ -86,5 +87,12 @@ Item {
         icon.name: 'zoom-fit-width'
         shortcut: application_settings.shortcut('full_zoom').sequence
         onTriggered: page_viewer.zoom_full()
+    }
+
+    Action {
+        id: open_page_in_external_program_action
+        icon.name: 'open-in-new-black'
+        // shortcut: application_settings.shortcut('open_page_in_external_program').sequence
+        onTriggered: page_viewer.open_in_external_program()
     }
 }

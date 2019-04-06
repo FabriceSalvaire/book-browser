@@ -131,10 +131,8 @@ RowLayout {
         onClicked: page_viewer_page.convert_to_text()
     }
 
-
     Widgets.ToolButtonTip {
-        icon.name: 'oopen-in-new-black'
-        tip: qsTr('Open in ...')
-        // onClicked: page_viewer_page.
+        action: actions.open_page_in_external_program_action
+        // tip: qsTr('Open in ...')
     }
 }

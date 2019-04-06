@@ -77,6 +77,10 @@ Widgets.ImageViewer {
         book.flip_from_page(book_page, 'v')
     }
 
+    function open_in_external_program() {
+        book_page.open_in_external_program(application_settings.external_program)
+    }
+
     /******************************************************/
 
     id: page_viewer

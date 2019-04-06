@@ -20,11 +20,16 @@
 
 __all__ = [
     'Shortcuts',
+    'ExternalProgram',
 ]
 
 ####################################################################################################
 
+from pathlib import Path
+
 from PyQt5.QtCore import QCoreApplication
+
+from BookBrowser.Config import ConfigInstall
 
 ####################################################################################################
 
@@ -35,3 +40,17 @@ class Shortcuts:
     flip_page = QCoreApplication.translate('shortcut', 'Flip page'), 'r'
     fit_to_screen = QCoreApplication.translate('shortcut', 'Fit to screen'), 'f'
     full_zoom = QCoreApplication.translate('shortcut', 'Full Zoom'), 'z'
+    # open_page_in_external_program = QCoreApplication.translate('shortcut', 'Open in External Program'), ''
+    # apply_filter_on_page = QCoreApplication.translate('shortcut', 'Apply Filter on Page'), ''
+
+####################################################################################################
+
+class ExternalProgram:
+
+    if ConfigInstall.OS.on_linux:
+        gimp = Path('/usr', 'bin', 'gimp')
+
+    else:
+        gimp = None
+
+    default = gimp

@@ -27,6 +27,7 @@ __all__ = [
 from pathlib import Path
 import glob
 import logging
+import subprocess
 import time
 
 from PyQt5.QtCore import QCoreApplication, QFileSystemWatcher
@@ -426,6 +427,14 @@ class QmlBookPage(QObject):
             qml_application = application.qml_main
             tr_str = QCoreApplication.translate('QmlBookPage', 'Could not save file {}')
             qml_application.notify_message(tr_str.format(path))
+
+    ##############################################
+
+    @Slot(str)
+    def open_in_external_program(self, program):
+        command = (program, self.path)
+        self._logger.info(' '.join(command))
+        process = subprocess.Popen(command)
 
 ####################################################################################################
 

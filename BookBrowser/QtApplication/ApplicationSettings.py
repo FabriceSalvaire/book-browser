@@ -38,8 +38,10 @@ from PyQt5.QtCore import QSettings
 from PyQt5.QtQml import QQmlListProperty
 from QtShim.QtCore import (
     Property, Signal, Slot, QObject,
+    # QUrl,
 )
 
+from . import DefaultSettings
 from .DefaultSettings import Shortcuts
 
 ####################################################################################################
@@ -169,3 +171,29 @@ class ApplicationSettings(QSettings):
     #         return shortcut.sequence
     #     else:
     #         return None
+
+    ##############################################
+
+    external_program_changed = Signal()
+
+    __EXTERNAL_PROGRAM_ID__ = 'external_program'
+
+    @Property(str, constant=True)
+    def default_external_program(self):
+        # return QUrl('file://' + )
+        return str(DefaultSettings.ExternalProgram.default)
+
+    @Property(str, notify=external_program_changed)
+    def external_program(self):
+        if self.contains(self.__EXTERNAL_PROGRAM_ID__):
+            return self.value(self.__EXTERNAL_PROGRAM_ID__)
+        else:
+            return self.default_external_program
+
+    @external_program.setter
+    def external_program(self, value):
+        self._logger.info('set external sequence {}'.format(value))
+        if value != self.external_program:
+            self._logger.info('set external sequence {}'.format(value))
+            self.setValue(self.__EXTERNAL_PROGRAM_ID__, value)
+            self.external_program_changed.emit()

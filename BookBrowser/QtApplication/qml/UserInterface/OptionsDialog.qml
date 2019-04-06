@@ -28,7 +28,7 @@ import Widgets 1.0 as Widgets
 
 Widgets.CentredDialog {
     id: dialog
-    implicitWidth: 500
+    implicitWidth: 800
     implicitHeight: 400
 
     standardButtons: Dialog.Ok | Dialog.Cancel
@@ -43,7 +43,7 @@ Widgets.CentredDialog {
 
         TabButton {
             text: qsTr("General")
-        }
+	}
 
         TabButton {
             text: qsTr("Shortcuts")
@@ -54,31 +54,37 @@ Widgets.CentredDialog {
         anchors.fill: parent
         currentIndex: tab_bar.currentIndex
 
-        ColumnLayout {
+        Item {
             id: general_tab
 
-            Item {
-                Layout.preferredHeight: 10
-            }
-
             ScrollView {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
+                anchors.fill: parent
                 clip: true
                 ScrollBar.horizontal.policy: ScrollBar.AsNeeded
+                ScrollBar.vertical.policy: ScrollBar.AsNeeded
 
                 GridLayout {
-                    width: parent.width
+                    width: general_tab.width
                     columns: 2
-                    columnSpacing: 12
+                    columnSpacing: 10
 
                     Label {
-                        text: qsTr('Foo')
+                        text: qsTr('External Program to Open Page')
                     }
-                    CheckBox {
+                    Widgets.FileField {
                         // id:
-                        leftPadding: 0
-                        // checked: settings.
+	        	Layout.fillWidth: true
+                        path: application_settings.external_program
+                        onPathChanged: application_settings.external_program = path
+                   }
+
+                    Label {
+                        text: qsTr('Filter Script')
+                    }
+                    Widgets.TextField {
+                        // id:
+	        	Layout.fillWidth: true
+	        	// onEditingFinished:
                     }
                 }
             }
@@ -92,7 +98,7 @@ Widgets.CentredDialog {
                 anchors.fill: parent
                 clip: true
 
-                model: application_settings.shortcuts
+                //! model: application_settings.shortcuts
 
                 delegate: Widgets.ShortcutRow {
                     width: parent.width
