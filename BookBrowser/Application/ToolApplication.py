@@ -128,6 +128,13 @@ class ToolApplication(BasicApplication):
             help='Dump library',
         )
 
+        self._parser.add_argument(
+            '--scan-library',
+            action='store_true',
+            default=False,
+            help='Scan library',
+        )
+
     ##############################################
 
     def run(self):
@@ -160,3 +167,15 @@ class ToolApplication(BasicApplication):
         if self._args.dump_library:
             library = BookLibrary(self._args.book_path)
             library.dump()
+
+        if self._args.scan_library:
+            import os
+            from pathlib import Path
+            import subprocess
+            root_path = str(self._args.book_path)
+            for path, directories, files in os.walk(root_path):
+                for filename in files:
+                    if Path(filename).suffix == '.png':
+                        subprocess.call(('book-browser', path))
+                        break
+
