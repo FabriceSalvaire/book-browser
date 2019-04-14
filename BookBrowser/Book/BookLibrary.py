@@ -22,6 +22,7 @@ __all__ = ['BookLibrary']
 
 ####################################################################################################
 
+from operator import attrgetter
 from pathlib import Path
 import glob
 import json
@@ -43,6 +44,8 @@ class BookCover:
         ('path', str),
         ('cover_path', str),
     )
+
+    _logger = _module_logger.getChild('BookCover')
 
     ##############################################
 
@@ -76,7 +79,11 @@ class BookCover:
                 pattern = str(self._path.joinpath('*' + extension))
                 images += glob.glob(pattern)
             images.sort()
+            if len(images) < 1:
+                self._logger.warning('Any cover for {}'.format(self._path))
+                return None
             self._cover_path = images[0] # Fixme: full proof ???
+            self._logger.info('Cover set to {}'.format(self._cover_path))
         return self._cover_path
 
     ##############################################
@@ -139,6 +146,7 @@ class BookLibrary:
                     # self._logger.info('Book {}'.format(book_path))
                     book_cover = BookCover(book_path)
                     self._books.append(book_cover)
+        self.sort_by_title()
 
     ##############################################
 
@@ -150,6 +158,11 @@ class BookLibrary:
 
     def __getitemm__(self, slice_):
         return self._books[slice_]
+
+    ##############################################
+
+    def sort_by_title(self):
+        self._books.sort(key=lambda book: book.metadata.title)
 
     ##############################################
 
