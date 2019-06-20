@@ -259,14 +259,15 @@ class Book:
     def fix_empty_pages(self):
 
         pages = []
-        page_number = 0
+        page_counter = 0
         for page in self._pages:
-            page_number += 1
-            if page.page_number is not None and page_number < page.page_number:
-                for i in range(page.page_number - page_number):
-                    self._logger.warning('Missing page {}'.format(page_number))
-                    pages.append(EmptyBookPage(page_number))
-                    page_number += 1
+            page_counter += 1
+            page_number = int(page) # page.page_number
+            if page_number is not None and page_counter < page_number:
+                for i in range(page_number - page_counter):
+                    self._logger.warning('Missing page {}'.format(page_counter))
+                    pages.append(EmptyBookPage(page_counter))
+                    page_counter += 1
             pages.append(page)
         self._pages = pages
 

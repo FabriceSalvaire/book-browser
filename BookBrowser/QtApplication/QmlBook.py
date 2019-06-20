@@ -329,7 +329,10 @@ class QmlBookPage(QObject):
 
     @Property(str, notify=path_changed)
     def path(self):
-        return str(self._page.path)
+        if self._page.is_empty:
+            return ''
+        else:
+            return str(self._page.path)
 
     ##############################################
 
