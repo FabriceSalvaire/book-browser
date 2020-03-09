@@ -125,6 +125,7 @@ class Worker(QRunnable):
             traceback.print_exc()
             # exctype, value = sys.exc_info()[:2]
             self._logger.info('emit error')
+            # Fixme:
             self._signals.error.emit((exctype, value, traceback.format_exc()))
         else:
             self._logger.info('emit result {}'.format(result))
