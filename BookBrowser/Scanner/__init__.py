@@ -47,14 +47,40 @@ __all__ = [
 from pathlib import Path
 import logging
 
-import pyinsane2
-from pyinsane2.sane.rawapi import SaneException
-
 from PIL import Image, ImageDraw, ImageFont
 
 ####################################################################################################
 
 _module_logger = logging.getLogger(__name__)
+
+####################################################################################################
+
+# import pyinsane2
+# from pyinsane2.sane.rawapi import SaneException
+
+_module_logger.info("Initializing libinsane ...")
+# pip install gobject PyGObject
+import gi
+from gi.repository import GObject
+gi.require_version('Libinsane', '1.0')
+from gi.repository import Libinsane
+
+class LibinsaneLogger(GObject.GObject, Libinsane.Logger):
+    CALLBACKS = {
+        Libinsane.LogLevel.ERROR: _module_logger.error,
+        Libinsane.LogLevel.WARNING: _module_logger.warning,
+        Libinsane.LogLevel.INFO: _module_logger.info,
+        Libinsane.LogLevel.DEBUG: lambda msg: 0,
+    }
+    def do_log(self, lvl, msg):
+        self.CALLBACKS[lvl](msg)
+
+Libinsane.register_logger(LibinsaneLogger())
+libinsane = Libinsane.Api.new_safebet()
+
+_module_logger.info('Scan library: Libinsane {}'.format(
+    Libinsane.Api.get_version())
+)
 
 ####################################################################################################
 
@@ -66,11 +92,280 @@ class PathError(NameError):
 
 ####################################################################################################
 
+####class LegacyScanner:
+####
+####    """class to implement a scanner interface."""
+####
+####    __initialised__ = False
+####
+####    _logger = _module_logger.getChild('Scanner')
+####
+####    #: Scanning Area (x_inf, x_sup, y_inf, y_sup)
+####    AREA_OPTIONS = ('tl-x', 'br-x', 'tl-y', 'br-y')
+####
+####    AREA_UNIT_SCALE = 2**16
+####
+####    ##############################################
+####
+####    @classmethod
+####    def init(cls):
+####        # This call takes a lot of time
+####        try:
+####            pyinsane2.init()
+####        except:
+####            cls._logger.warning('SANE initialisation failed')
+####        cls.__initialised__ = True
+####        cls._logger.info('Sane is initialised')
+####
+####    ##############################################
+####
+####    @classmethod
+####    def exit(cls):
+####        if cls.__initialised__:
+####            try:
+####                pyinsane2.exit()
+####            except:
+####                self._logger.warning('SANE exit failed')
+####            cls.__initialised__ = False
+####            cls._logger.info('Sane exited')
+####
+####    ##############################################
+####
+####    @classmethod
+####    def devices(cls):
+####        if cls.__initialised__:
+####            return pyinsane2.get_devices() # Fixme: exception ???
+####        else:
+####            return []
+####
+####    ##############################################
+####
+####    def __init__(self, device_hint='libusb', release=True):
+####
+####        if not self.__initialised__:
+####            self.init()
+####
+####        self._release = bool(release)
+####
+####        self._device = None
+####        for device in self.devices():
+####            self._logger.info('Sane device {}'.format(device))
+####            if device_hint in str(device):
+####                self._device = device
+####                self._logger.info('Sane use {}'.format(device))
+####
+####    ##############################################
+####
+####    def __del__(self):
+####        if self._release:
+####            self.exit()
+####
+####    ##############################################
+####
+####    def __bool__(self):
+####        return self._device is not None
+####
+####    ##############################################
+####
+####    @property
+####    def device(self):
+####        return self._device
+####
+####    @device.setter
+####    def device(self, name):
+####        self._device = pyinsane2.Scanner(name=name) # Fixme: exception ???
+####
+####    @property
+####    def device_name(self):
+####        # See pyinsane2/sane/abstract_proc.py
+####        # device.name
+####        # device.nice_name
+####        # device.vendor
+####        # device.model
+####        # device.dev_type
+####        return '{0.vendor} {0.model}'.format(self._device)
+####
+####    ##############################################
+####
+####    def _set_option(self, name, value):
+####        self._logger.info('{} = {}'.format(name, value))
+####        try:
+####            pyinsane2.set_scanner_opt(self._device, name, [value])
+####        except SaneException:
+####            self._logger.warning('Invalid option {}={}'.format(name, value))
+####
+####    def _get_option(self, name):
+####        return self._device.options[name].value
+####
+####    def _get_option_constraint(self, name):
+####        return self._device.options[name].constraint
+####
+####    ##############################################
+####
+####    def maximize_scan_area(self):
+####        pyinsane2.maximize_scan_area(self._device) # Fixme: exception ??? 
+####
+####    ##############################################
+####
+####    @property
+####    def resolution(self):
+####        return self._get_option('resolution')
+####
+####    @property
+####    def resolution_constraint(self):
+####        return self._get_option_constraint('resolution')
+####
+####    @resolution.setter
+####    def resolution(self, value):
+####        self._set_option('resolution', value)
+####
+####    ##############################################
+####
+####    @property
+####    def mode(self):
+####        return self._get_option('mode')
+####
+####    @property
+####    def mode_constraint(self):
+####        return self._get_option_constraint('mode')
+####
+####    @mode.setter
+####    def mode(self, value):
+####        self._set_option('mode', value)
+####
+####    ##############################################
+####
+####    @classmethod
+####    def area_unit_from_mm(cls, x):
+####        # scanner unit mm * 2**16 ???
+####        return x * cls.AREA_UNIT_SCALE
+####
+####    @classmethod
+####    def area_unit_to_mm(cls, x):
+####        return x / cls.AREA_UNIT_SCALE
+####
+####    @property
+####    def area(self):
+####        return [self._get_option(name) for name in self.AREA_OPTIONS]
+####
+####    @property
+####    def area_mm(self):
+####        return [self.area_unit_to_mm(x) for x in self.area]
+####
+####    @property
+####    def area_constraint(self):
+####        # [(0, 14149222, 0), (0, 14149222, 0),
+####        #  (0, 19475988, 0), (0, 19475988, 0)]
+####        # ~ 21.59 x 29.79 cm
+####        return [self._get_option_constraint(name) for name in self.AREA_OPTIONS]
+####
+####    @property
+####    def area_constraint_mm(self):
+####        return [self.area_unit_to_mm(x) for x in self.area_constraint]
+####
+####    @property
+####    def area_constraint_x_inf(self):
+####        return self.area_constraint[0][0]
+####
+####    @property
+####    def area_constraint_x_sup(self):
+####        return self.area_constraint[0][1]
+####
+####    @property
+####    def area_constraint_y_inf(self):
+####        return self.area_constraint[2][0]
+####
+####    @property
+####    def area_constraint_y_sup(self):
+####        return self.area_constraint[2][1]
+####
+####    @property
+####    def area_constraint_x_inf_mm(self):
+####        return self.area_unit_to_mm(self.area_constraint_x_inf)
+####
+####    @property
+####    def area_constraint_y_inf_mm(self):
+####        return self.area_unit_to_mm(self.area_constraint_y_inf)
+####
+####    @property
+####    def area_constraint_x_sup_mm(self):
+####        return self.area_unit_to_mm(self.area_constraint_x_sup)
+####
+####    @property
+####    def area_constraint_y_sup_mm(self):
+####        return self.area_unit_to_mm(self.area_constraint_y_sup)
+####
+####    @area.setter
+####    def area(self, bounds):
+####        # x_inf, x_sup, y_inf, y_sup = bounds
+####        self._logger.info('Set scanner area to {}'.format(bounds))
+####        for name, value in zip(self.AREA_OPTIONS, bounds):
+####            self._set_option(name, value)
+####
+####    def set_area_as_scale(self, x_inf, x_sup, y_inf, y_sup):
+####        bounds = (x_inf, x_sup, y_inf, y_sup)
+####        self._logger.info('Set scanner area to {} %'.format(bounds))
+####        scanner_width = self.area_constraint_x_sup
+####        scanner_height = self.area_constraint_y_sup
+####        area = [int(round(x)) for x in (
+####            x_inf*scanner_width,  x_sup*scanner_width,
+####            y_inf*scanner_height, y_sup*scanner_height,
+####        )
+####        ]
+####        self.area = area
+####
+####    ##############################################
+####
+####    def scan_image(self):
+####
+####        self._logger.info('Start scanning ...')
+####
+####        scan_session = self._device.scan(multiple=False)
+####
+####        try:
+####            while True:
+####                scan_session.scan.read()
+####        except EOFError:
+####            pass
+####
+####        image = scan_session.images[-1]
+####        self._logger.info('Start done')
+####
+####        return image
+####
+####    ##############################################
+####
+####    def scan(self, path, overwrite=False, index=None):
+####
+####        self._logger.info('Scan {} {} overwrite = {}'.format(path, index, overwrite))
+####
+####        # Fixme: kwargs
+####        if index is not None:
+####            path = str(path).format(index)
+####
+####        path = Path(path).resolve()
+####
+####        parent = path.parent
+####        if not path.parent.exists():
+####            raise PathError(str(parent))
+####
+####        if not overwrite and path.exists():
+####            raise FileExistsError(str(path))
+####
+####        image = self.scan_image()
+####        try:
+####            image.save(str(path))
+####            self._logger.info('Saved {}'.format(path))
+####            return path
+####        except FileNotFoundError: # should not happen, cf. PathError
+####            self._logger.warning('Invalid path {}'.format(path))
+####            return None
+
+####################################################################################################
+
 class Scanner:
 
     """class to implement a scanner interface."""
-
-    __initialised__ = False
 
     _logger = _module_logger.getChild('Scanner')
 
@@ -83,56 +378,36 @@ class Scanner:
 
     @classmethod
     def init(cls):
-        # This call takes a lot of time
-        try:
-            pyinsane2.init()
-        except:
-            cls._logger.warning('SANE initialisation failed')
-        cls.__initialised__ = True
-        cls._logger.info('Sane is initialised')
+        pass
 
     ##############################################
 
     @classmethod
     def exit(cls):
-        if cls.__initialised__:
-            try:
-                pyinsane2.exit()
-            except:
-                self._logger.warning('SANE exit failed')
-            cls.__initialised__ = False
-            cls._logger.info('Sane exited')
+        pass
 
     ##############################################
 
     @classmethod
     def devices(cls):
-        if cls.__initialised__:
-            return pyinsane2.get_devices() # Fixme: exception ???
-        else:
-            return []
+        devices = libinsane.list_devices(Libinsane.DeviceLocations.ANY)
+        # for device in devices:
+        #     print("[{}] : [{}]".format(device.get_dev_id(), device.to_string()))
+        return [device.get_dev_id() for device in devices]
 
     ##############################################
 
-    def __init__(self, device_hint='libusb', release=True):
-
-        if not self.__initialised__:
-            self.init()
-
-        self._release = bool(release)
+    def __init__(self, device_hint='libusb'):
 
         self._device = None
-        for device in self.devices():
-            self._logger.info('Sane device {}'.format(device))
-            if device_hint in str(device):
-                self._device = device
-                self._logger.info('Sane use {}'.format(device))
-
-    ##############################################
-
-    def __del__(self):
-        if self._release:
-            self.exit()
+        # Fixme: take a while, async
+        devices = libinsane.list_devices(Libinsane.DeviceLocations.ANY)
+        for device in devices:
+            device_id = device.get_dev_id()
+            self._logger.info('Sane device {} {}'.format(device_id, device.to_string()))
+            if device_hint in device_id:
+                self.device = device_id
+                self._logger.info('Sane use {}'.format(device_id))
 
     ##############################################
 
@@ -146,38 +421,69 @@ class Scanner:
         return self._device
 
     @device.setter
-    def device(self, name):
-        self._device = pyinsane2.Scanner(name=name) # Fixme: exception ???
+    def device(self, device_id):
+        self._device = libinsane.get_device(device_id)
 
     @property
     def device_name(self):
-        # See pyinsane2/sane/abstract_proc.py
-        # device.name
-        # device.nice_name
-        # device.vendor
-        # device.model
-        # device.dev_type
-        return '{0.vendor} {0.model}'.format(self._device)
+        # Fixme:
+        return self._device.get_name()
+
+    ##############################################
+
+    def source_names(self):
+        return [source.get_name() for source in self._device.get_children()]
+
+    def source(self, name='flatbed'):
+        sources = self._device.get_children()
+        for src in sources:
+            if src.get_name() == name:
+                return  src
+        else:
+            raise NameError("Source '{}' not found".format(name))
+
+    ##############################################
+
+    @property
+    def options(self):
+        # Fixme: cache ???
+        return {option.get_name():option for option in self._device.get_options()}
+
+    # option.get_name()
+    # option.get_title()
+    # option.get_desc()
+    # option.get_value_type()
+    # option.get_value_unit()
+    # option.is_readable()
+    # option.is_writable()
+    # option.get_capabilities()
+    # option.get_constraint_type()
+    # option.get_constraint()
+    # option.get_value()
 
     ##############################################
 
     def _set_option(self, name, value):
         self._logger.info('{} = {}'.format(name, value))
         try:
-            pyinsane2.set_scanner_opt(self._device, name, [value])
-        except SaneException:
+            self.options[name].set_value(value)
+        except Exception as exception:
+            # traceback.print_exc()
             self._logger.warning('Invalid option {}={}'.format(name, value))
 
     def _get_option(self, name):
-        return self._device.options[name].value
+        return self.options[name].get_value()
 
     def _get_option_constraint(self, name):
-        return self._device.options[name].constraint
+        return self.options[name].get_constraint()
 
     ##############################################
 
     def maximize_scan_area(self):
-        pyinsane2.maximize_scan_area(self._device) # Fixme: exception ??? 
+        self._set_option('tl-x', self._get_option_constraint('tl-x')[0])
+        self._set_option('tl-y', self._get_option_constraint('tl-y')[0])
+        self._set_option('br-x', self._get_option_constraint('br-x')[1])
+        self._set_option('br-y', self._get_option_constraint('br-y')[1])
 
     ##############################################
 
@@ -290,20 +596,40 @@ class Scanner:
 
     ##############################################
 
+    def raw_to_image(self, parameters, image_bytes):
+        fmt = parameters.get_format()
+        assert(fmt == Libinsane.ImgFormat.RAW_RGB_24)
+        (w, h) = (
+            parameters.get_width(),
+            int(len(image_bytes) / 3 / parameters.get_width())
+        )
+        return Image.frombuffer('RGB', (w, h), image_bytes, 'raw', 'RGB', 0, 1)
+
+    ##############################################
+
     def scan_image(self):
 
         self._logger.info('Start scanning ...')
 
-        scan_session = self._device.scan(multiple=False)
-
+        source = self.source()
+        session = source.scan_start()
         try:
-            while True:
-                scan_session.scan.read()
-        except EOFError:
-            pass
+            image = []
+            while not session.end_of_page():
+                data = session.read_bytes(128 * 1024) # 128 kb
+                data = data.get_data()
+                image.append(data)
+            image = b''.join(image)
 
-        image = scan_session.images[-1]
-        self._logger.info('Start done')
+            scan_params = session.get_scan_parameters()
+            if scan_params.get_format() == Libinsane.ImgFormat.RAW_RGB_24:
+                image = self.raw_to_image(scan_params, image)
+
+        except Exception as exception:
+            self._logger.error(str(exception))
+            raise exception
+        finally:
+            session.cancel()
 
         return image
 
