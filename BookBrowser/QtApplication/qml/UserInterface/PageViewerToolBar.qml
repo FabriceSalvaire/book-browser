@@ -63,6 +63,13 @@ RowLayout {
     }
 
     Widgets.ToolButtonTip {
+        icon.name: 'wrap-text-black'
+        tip: qsTr('Continuous Mode')
+        checkable: true
+        onClicked: page_viewer.toggle_continuous_mode()
+    }
+
+    Widgets.ToolButtonTip {
         icon.name: 'first-page-black'
         onClicked: page_viewer.first_page()
     }

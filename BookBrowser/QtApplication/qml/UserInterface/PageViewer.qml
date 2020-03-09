@@ -33,8 +33,14 @@ Widgets.ImageViewer {
 
     property var book_page
 
+    property bool continuous_mode: false
+
     signal page_changed() // int page_number
     signal dirty_page(var page) // orientation changed
+
+    function toggle_continuous_mode() {
+        continuous_mode = !continuous_mode
+    }
 
     function first_page() {
         book_page = book.first_page
@@ -92,5 +98,23 @@ Widgets.ImageViewer {
 
     Component.onCompleted: {
         book.new_page.connect(last_page)
+    }
+
+    onMovementEnded: {
+        // Fixme: this simple implementation has issues
+        //   It require to start a flick event (a wheel event is not enought)
+        //     Need a way to receive a wheel event
+        //   It show glitches when the page change
+        //     Disable the animation
+        if (continuous_mode) {
+            if (page_viewer.atYBeginning) {
+                prev_page()
+                page_viewer.contentY = page_viewer.contentHeight
+            }
+            else if (page_viewer.atYEnd) {
+                next_page()
+                page_viewer.contentY = 0
+            }
+        }
     }
 }
