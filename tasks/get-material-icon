@@ -169,7 +169,8 @@ class MaterialIconFetcher:
 
 ####################################################################################################
 
-icons_path = Path(__file__).resolve().parents[1]
+root_path = Path(__file__).resolve().parents[1]
+icons_path = root_path.joinpath('share', 'icons')
 theme = 'material'
 print('Icons path:', icons_path, theme)
 
