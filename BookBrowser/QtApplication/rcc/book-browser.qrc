@@ -380,6 +380,15 @@
 	<file>icons/material/36x36@2/warning-black.png</file>
         <!-- <file>icons/material/48x48@2/warning-black.png</file> -->
 
+        <!-- <file>icons/material/18x18/wrap-text-black.png</file> -->
+        <!-- <file>icons/material/24x24/wrap-text-black.png</file> -->
+        <file>icons/material/36x36/wrap-text-black.png</file>
+        <!-- <file>icons/material/48x48/wrap-text-black.png</file> -->
+        <!-- <file>icons/material/18x18@2/wrap-text-black.png</file> -->
+        <!-- <file>icons/material/24x24@2/wrap-text-black.png</file> -->
+        <file>icons/material/36x36@2/wrap-text-black.png</file>
+        <!-- <file>icons/material/48x48@2/wrap-text-black.png</file> -->
+
 
 	<!-- X -->
 	<!-- Y -->
